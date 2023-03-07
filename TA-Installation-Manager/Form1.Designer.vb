@@ -37,8 +37,13 @@ Partial Class Form1
         Me.SplitContainer2V = New System.Windows.Forms.SplitContainer()
         Me.ButtonBat = New System.Windows.Forms.Button()
         Me.ButtonPS = New System.Windows.Forms.Button()
+        Me.CheckBoxTASetup = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxTASelect = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxTADeinstall = New System.Windows.Forms.CheckBox()
+        Me.ButtonStartCreate = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerBase.Panel1.SuspendLayout()
         Me.SplitContainerBase.Panel2.SuspendLayout()
         Me.SplitContainerBase.SuspendLayout()
         CType(Me.SplitContainer1H, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,6 +126,7 @@ Partial Class Form1
         'SplitContainerBase.Panel1
         '
         Me.SplitContainerBase.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonStartCreate)
         '
         'SplitContainerBase.Panel2
         '
@@ -175,6 +181,9 @@ Partial Class Form1
         'SplitContainer2V.Panel1
         '
         Me.SplitContainer2V.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxTADeinstall)
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxTASelect)
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxTASetup)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.ButtonBat)
         '
         'SplitContainer2V.Panel2
@@ -191,7 +200,7 @@ Partial Class Form1
         Me.ButtonBat.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonBat.Location = New System.Drawing.Point(0, 0)
         Me.ButtonBat.Name = "ButtonBat"
-        Me.ButtonBat.Size = New System.Drawing.Size(285, 23)
+        Me.ButtonBat.Size = New System.Drawing.Size(285, 40)
         Me.ButtonBat.TabIndex = 0
         Me.ButtonBat.Text = "Windows Batch"
         Me.ButtonBat.UseVisualStyleBackColor = True
@@ -202,10 +211,55 @@ Partial Class Form1
         Me.ButtonPS.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonPS.Location = New System.Drawing.Point(0, 0)
         Me.ButtonPS.Name = "ButtonPS"
-        Me.ButtonPS.Size = New System.Drawing.Size(384, 23)
+        Me.ButtonPS.Size = New System.Drawing.Size(384, 40)
         Me.ButtonPS.TabIndex = 0
         Me.ButtonPS.Text = "Power Shell"
         Me.ButtonPS.UseVisualStyleBackColor = True
+        '
+        'CheckBoxTASetup
+        '
+        Me.CheckBoxTASetup.AutoSize = True
+        Me.CheckBoxTASetup.Checked = True
+        Me.CheckBoxTASetup.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxTASetup.Enabled = False
+        Me.CheckBoxTASetup.Location = New System.Drawing.Point(16, 46)
+        Me.CheckBoxTASetup.Name = "CheckBoxTASetup"
+        Me.CheckBoxTASetup.Size = New System.Drawing.Size(91, 17)
+        Me.CheckBoxTASetup.TabIndex = 1
+        Me.CheckBoxTASetup.Text = "TA-Setup.exe"
+        Me.CheckBoxTASetup.UseVisualStyleBackColor = True
+        '
+        'CheckBoxTASelect
+        '
+        Me.CheckBoxTASelect.AutoSize = True
+        Me.CheckBoxTASelect.Location = New System.Drawing.Point(16, 70)
+        Me.CheckBoxTASelect.Name = "CheckBoxTASelect"
+        Me.CheckBoxTASelect.Size = New System.Drawing.Size(93, 17)
+        Me.CheckBoxTASelect.TabIndex = 2
+        Me.CheckBoxTASelect.Text = "TA-Select.exe"
+        Me.CheckBoxTASelect.UseVisualStyleBackColor = True
+        '
+        'CheckBoxTADeinstall
+        '
+        Me.CheckBoxTADeinstall.AutoSize = True
+        Me.CheckBoxTADeinstall.Location = New System.Drawing.Point(16, 94)
+        Me.CheckBoxTADeinstall.Name = "CheckBoxTADeinstall"
+        Me.CheckBoxTADeinstall.Size = New System.Drawing.Size(103, 17)
+        Me.CheckBoxTADeinstall.TabIndex = 3
+        Me.CheckBoxTADeinstall.Text = "TA-Deinstall.exe"
+        Me.CheckBoxTADeinstall.UseVisualStyleBackColor = True
+        '
+        'ButtonStartCreate
+        '
+        Me.ButtonStartCreate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ButtonStartCreate.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonStartCreate.Location = New System.Drawing.Point(18, 93)
+        Me.ButtonStartCreate.Name = "ButtonStartCreate"
+        Me.ButtonStartCreate.Size = New System.Drawing.Size(157, 34)
+        Me.ButtonStartCreate.TabIndex = 0
+        Me.ButtonStartCreate.Text = "Create installation"
+        Me.ButtonStartCreate.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -219,6 +273,7 @@ Partial Class Form1
         Me.Text = "Form1"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.SplitContainerBase.Panel1.ResumeLayout(False)
         Me.SplitContainerBase.Panel2.ResumeLayout(False)
         Me.SplitContainerBase.Panel2.PerformLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).EndInit()
@@ -227,6 +282,7 @@ Partial Class Form1
         CType(Me.SplitContainer1H, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1H.ResumeLayout(False)
         Me.SplitContainer2V.Panel1.ResumeLayout(False)
+        Me.SplitContainer2V.Panel1.PerformLayout()
         Me.SplitContainer2V.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer2V, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2V.ResumeLayout(False)
@@ -249,4 +305,8 @@ Partial Class Form1
     Friend WithEvents SplitContainer2V As SplitContainer
     Friend WithEvents ButtonBat As Button
     Friend WithEvents ButtonPS As Button
+    Friend WithEvents CheckBoxTASetup As CheckBox
+    Friend WithEvents ButtonStartCreate As Button
+    Friend WithEvents CheckBoxTADeinstall As CheckBox
+    Friend WithEvents CheckBoxTASelect As CheckBox
 End Class

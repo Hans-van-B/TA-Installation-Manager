@@ -18,6 +18,11 @@
         xtrace_sube("Form1_Load")
     End Sub
 
+    '---- Rezize
+    Private Sub Form1_ResizeEnd(sender As Object, e As EventArgs) Handles MyBase.ResizeEnd
+        SplitContainerBase.SplitterDistance = 200
+    End Sub
+
     Public Sub WriteInfo(Msg)
         TextBoxInfo.AppendText(Msg & vbNewLine)
         xtrace(Msg)
@@ -66,17 +71,39 @@
 
     '==== Button select Script-type ==========================================================
     Dim ScryptTypeSelectColor As Color = Color.AliceBlue
+    Dim ScryptTypeSelect As String = ""
     Private Sub ButtonBat_Click(sender As Object, e As EventArgs) Handles ButtonBat.Click
+        xtrace_subs("ButtonBat_Click")
         ButtonBat.BackColor = ScryptTypeSelectColor
         ButtonPS.BackColor = SystemColors.Control
         SplitContainer2V.Panel1.BackColor = ScryptTypeSelectColor
         SplitContainer2V.Panel2.BackColor = SystemColors.Control
+        ScryptTypeSelect = "BAT"
+        xtrace_sube("ButtonBat_Click")
     End Sub
 
     Private Sub ButtonPS_Click(sender As Object, e As EventArgs) Handles ButtonPS.Click
+        xtrace_subs("ButtonPS_Click")
         ButtonPS.BackColor = ScryptTypeSelectColor
         ButtonBat.BackColor = SystemColors.Control
         SplitContainer2V.Panel2.BackColor = ScryptTypeSelectColor
         SplitContainer2V.Panel1.BackColor = SystemColors.Control
+        ScryptTypeSelect = "PS"
+        xtrace_sube("ButtonPS_Click")
     End Sub
+
+    '---- Create the installation
+    Private Sub ButtonStartCreate_Click(sender As Object, e As EventArgs) Handles ButtonStartCreate.Click
+        xtrace_subs("ButtonStartCreate_Click")
+        If ScryptTypeSelect = "BAT" Then
+
+        ElseIf ScryptTypeSelect = "PS" Then
+
+        Else
+
+        End If
+
+        xtrace_sube("ButtonStartCreate_Click")
+    End Sub
+
 End Class
