@@ -72,6 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLineArg.vb" />
+    <Compile Include="Create_Installation_Type_All.vb" />
+    <Compile Include="Create_Installation_Type_Bat.vb" />
+    <Compile Include="Create_Installation_Type_PS.vb" />
     <Compile Include="Defaults.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>

@@ -96,11 +96,15 @@
     Private Sub ButtonStartCreate_Click(sender As Object, e As EventArgs) Handles ButtonStartCreate.Click
         xtrace_subs("ButtonStartCreate_Click")
         If ScryptTypeSelect = "BAT" Then
-
+            ToolStripStatusLabel1.Text = "Create TA-Installation type .bat"
+            Create_Installation_Base()
+            Add_Installation_Components_Bat()
         ElseIf ScryptTypeSelect = "PS" Then
-
+            ToolStripStatusLabel1.Text = "Create TA-Installation type .ps2"
+            Create_Installation_Base()
+            Add_Installation_Components_PS()
         Else
-
+            ToolStripStatusLabel1.Text = "First select the installation type and it's components"
         End If
 
         xtrace_sube("ButtonStartCreate_Click")
