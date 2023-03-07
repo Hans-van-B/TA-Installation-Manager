@@ -12,6 +12,8 @@
         Me.Text = AppName.Replace("-", " ") & " V" & AppVer
 
         SplitContainerBase.SplitterDistance = 200
+        ButtonBat.Height = 40
+        ButtonPS.Height = 40
 
         xtrace_sube("Form1_Load")
     End Sub
@@ -62,7 +64,19 @@
         xtrace_sube("Help, About")
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
+    '==== Button select Script-type ==========================================================
+    Dim ScryptTypeSelectColor As Color = Color.AliceBlue
+    Private Sub ButtonBat_Click(sender As Object, e As EventArgs) Handles ButtonBat.Click
+        ButtonBat.BackColor = ScryptTypeSelectColor
+        ButtonPS.BackColor = SystemColors.Control
+        SplitContainer2V.Panel1.BackColor = ScryptTypeSelectColor
+        SplitContainer2V.Panel2.BackColor = SystemColors.Control
+    End Sub
 
+    Private Sub ButtonPS_Click(sender As Object, e As EventArgs) Handles ButtonPS.Click
+        ButtonPS.BackColor = ScryptTypeSelectColor
+        ButtonBat.BackColor = SystemColors.Control
+        SplitContainer2V.Panel2.BackColor = ScryptTypeSelectColor
+        SplitContainer2V.Panel1.BackColor = SystemColors.Control
     End Sub
 End Class

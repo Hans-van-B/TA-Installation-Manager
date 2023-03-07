@@ -35,6 +35,8 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.SplitContainer1H = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2V = New System.Windows.Forms.SplitContainer()
+        Me.ButtonBat = New System.Windows.Forms.Button()
+        Me.ButtonPS = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel2.SuspendLayout()
@@ -43,6 +45,8 @@ Partial Class Form1
         Me.SplitContainer1H.Panel2.SuspendLayout()
         Me.SplitContainer1H.SuspendLayout()
         CType(Me.SplitContainer2V, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer2V.Panel1.SuspendLayout()
+        Me.SplitContainer2V.Panel2.SuspendLayout()
         Me.SplitContainer2V.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -171,13 +175,37 @@ Partial Class Form1
         'SplitContainer2V.Panel1
         '
         Me.SplitContainer2V.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.ButtonBat)
         '
         'SplitContainer2V.Panel2
         '
         Me.SplitContainer2V.Panel2.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer2V.Panel2.Controls.Add(Me.ButtonPS)
         Me.SplitContainer2V.Size = New System.Drawing.Size(673, 350)
         Me.SplitContainer2V.SplitterDistance = 285
         Me.SplitContainer2V.TabIndex = 0
+        '
+        'ButtonBat
+        '
+        Me.ButtonBat.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonBat.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonBat.Location = New System.Drawing.Point(0, 0)
+        Me.ButtonBat.Name = "ButtonBat"
+        Me.ButtonBat.Size = New System.Drawing.Size(285, 23)
+        Me.ButtonBat.TabIndex = 0
+        Me.ButtonBat.Text = "Windows Batch"
+        Me.ButtonBat.UseVisualStyleBackColor = True
+        '
+        'ButtonPS
+        '
+        Me.ButtonPS.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonPS.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonPS.Location = New System.Drawing.Point(0, 0)
+        Me.ButtonPS.Name = "ButtonPS"
+        Me.ButtonPS.Size = New System.Drawing.Size(384, 23)
+        Me.ButtonPS.TabIndex = 0
+        Me.ButtonPS.Text = "Power Shell"
+        Me.ButtonPS.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -198,6 +226,8 @@ Partial Class Form1
         Me.SplitContainer1H.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1H, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1H.ResumeLayout(False)
+        Me.SplitContainer2V.Panel1.ResumeLayout(False)
+        Me.SplitContainer2V.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer2V, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2V.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -217,4 +247,6 @@ Partial Class Form1
     Friend WithEvents TextBoxInfo As TextBox
     Friend WithEvents SplitContainer1H As SplitContainer
     Friend WithEvents SplitContainer2V As SplitContainer
+    Friend WithEvents ButtonBat As Button
+    Friend WithEvents ButtonPS As Button
 End Class
