@@ -12,8 +12,6 @@
         Me.Text = AppName.Replace("-", " ") & " V" & AppVer
 
         SplitContainerBase.SplitterDistance = 200
-        ButtonBat.Height = 40
-        ButtonPS.Height = 40
         TimerInit.Start()
 
         xtrace_sube("Form1_Load")
@@ -77,29 +75,48 @@
         xtrace_sube("Help, About")
     End Sub
 
-    '==== Button select Script-type ==========================================================
+    '==== Select Script-type ==========================================================
     Dim ScryptTypeSelectColor As Color = Color.AliceBlue
     Dim ButtonHighLite As Color = Color.LightYellow
 
     Public Shared ScriptTypeSelect As String = ""
-    Private Sub ButtonBat_Click(sender As Object, e As EventArgs) Handles ButtonBat.Click
-        xtrace_subs("ButtonBat_Click")
-        ButtonBat.BackColor = ScryptTypeSelectColor
-        ButtonPS.BackColor = SystemColors.Control
-        SplitContainer2V.Panel1.BackColor = ScryptTypeSelectColor
-        SplitContainer2V.Panel2.BackColor = SystemColors.Control
+
+    Private Sub SelectScriptTypeBat()
+        xtrace_subs("SelectScriptTypeBat")
         ScriptTypeSelect = "BAT"
-        xtrace_sube("ButtonBat_Click")
+        TabPageWinBat.BackColor = ScryptTypeSelectColor
+        TabPagePS.BackColor = SystemColors.Control
+        xtrace_sube("SelectScriptTypeBat")
     End Sub
 
-    Private Sub ButtonPS_Click(sender As Object, e As EventArgs) Handles ButtonPS.Click
-        xtrace_subs("ButtonPS_Click")
-        ButtonPS.BackColor = ScryptTypeSelectColor
-        ButtonBat.BackColor = SystemColors.Control
-        SplitContainer2V.Panel2.BackColor = ScryptTypeSelectColor
-        SplitContainer2V.Panel1.BackColor = SystemColors.Control
+    Private Sub SelectScriptTypePS()
+        xtrace_subs("SelectScriptTypePS")
+        TabPagePS.BackColor = ScryptTypeSelectColor
+        TabPageWinBat.BackColor = SystemColors.Control
         ScriptTypeSelect = "PS"
-        xtrace_sube("ButtonPS_Click")
+        xtrace_sube("SelectScriptTypePS")
+    End Sub
+
+    Private Sub SelectScriptType()
+        xtrace_subs("SelectScriptType")
+        If TabControl1.SelectedTab Is TabPageWinBat Then
+            SelectScriptTypeBat()
+        ElseIf TabControl1.SelectedTab Is TabPagePS Then
+            SelectScriptTypePS()
+        End If
+        xtrace_sube("SelectScriptType")
+    End Sub
+
+    Private Sub TabControl1_Selected(sender As Object, e As TabControlEventArgs) Handles TabControl1.Selected
+        xtrace_subs("TabControl1_Selected")
+        SelectScriptType()
+        xtrace_sube("TabControl1_Selected")
+    End Sub
+
+    Private Sub TabControl1_MouseClick(sender As Object, e As MouseEventArgs) Handles TabControl1.MouseClick
+        xtrace_subs("TabControl1_MouseClick")
+        SelectScriptType()
+        xtrace_sube("TabControl1_MouseClick")
     End Sub
 
     '---- Create the installation
@@ -128,8 +145,11 @@
         Else
             ToolStripStatusLabel1.Text = "First select the installation type and it's components"
             MsgBox("Please select the installation type" & vbCrLf & " and it's components", MessageBoxIcon.Information, "Hint:")
-            ButtonPS.BackColor = ButtonHighLite
-            ButtonBat.BackColor = ButtonHighLite
+            'TabPageWinBat.BackColor = ButtonHighLite
+            'TabPagePS.BackColor = ButtonHighLite
+            'TabControl1.BackColor = ButtonHighLite
+            'TabControl1.SelectedTab = TabPageWinBat
+            SelectScriptType()
         End If
 
         ButtonStartCreate.Enabled = True
@@ -147,4 +167,5 @@
         xtrace_i("Show hint: " & Msg)
         MsgBox(Msg, MessageBoxIcon.Information, "Hint:")
     End Sub
+
 End Class

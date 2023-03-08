@@ -35,22 +35,26 @@ Partial Class Form1
         Me.SplitContainerBase = New System.Windows.Forms.SplitContainer()
         Me.ButtonStartCreate = New System.Windows.Forms.Button()
         Me.SplitContainer1H = New System.Windows.Forms.SplitContainer()
+        Me.CheckBoxTADeinstall = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxTASelect = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxTASetup = New System.Windows.Forms.CheckBox()
+        Me.ComboBoxInstVer = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.ComboBoxInstName = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.ComboBoxDevDepo = New System.Windows.Forms.ComboBox()
         Me.SplitContainer2V = New System.Windows.Forms.SplitContainer()
-        Me.ButtonBat = New System.Windows.Forms.Button()
-        Me.ButtonPS = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.ComboBoxInstName = New System.Windows.Forms.ComboBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.ComboBoxInstVer = New System.Windows.Forms.ComboBox()
-        Me.CheckBoxTADeinstall = New System.Windows.Forms.CheckBox()
-        Me.CheckBoxTASelect = New System.Windows.Forms.CheckBox()
-        Me.CheckBoxTASetup = New System.Windows.Forms.CheckBox()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPageWinBat = New System.Windows.Forms.TabPage()
+        Me.TabPagePS = New System.Windows.Forms.TabPage()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.CheckBoxStopUpdates = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxLogToServer = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -65,6 +69,7 @@ Partial Class Form1
         Me.SplitContainer2V.Panel2.SuspendLayout()
         Me.SplitContainer2V.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -188,136 +193,8 @@ Partial Class Form1
         Me.SplitContainer1H.Panel2.Controls.Add(Me.SplitContainer2V)
         Me.SplitContainer1H.Panel2.Controls.Add(Me.StatusStrip1)
         Me.SplitContainer1H.Size = New System.Drawing.Size(673, 519)
-        Me.SplitContainer1H.SplitterDistance = 165
+        Me.SplitContainer1H.SplitterDistance = 103
         Me.SplitContainer1H.TabIndex = 2
-        '
-        'ComboBoxDevDepo
-        '
-        Me.ComboBoxDevDepo.FormattingEnabled = True
-        Me.ComboBoxDevDepo.Location = New System.Drawing.Point(84, 3)
-        Me.ComboBoxDevDepo.Name = "ComboBoxDevDepo"
-        Me.ComboBoxDevDepo.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBoxDevDepo.TabIndex = 0
-        '
-        'SplitContainer2V
-        '
-        Me.SplitContainer2V.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.SplitContainer2V.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer2V.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer2V.Name = "SplitContainer2V"
-        '
-        'SplitContainer2V.Panel1
-        '
-        Me.SplitContainer2V.Panel1.BackColor = System.Drawing.SystemColors.Control
-        Me.SplitContainer2V.Panel1.Controls.Add(Me.ButtonBat)
-        '
-        'SplitContainer2V.Panel2
-        '
-        Me.SplitContainer2V.Panel2.BackColor = System.Drawing.SystemColors.Control
-        Me.SplitContainer2V.Panel2.Controls.Add(Me.ButtonPS)
-        Me.SplitContainer2V.Size = New System.Drawing.Size(673, 328)
-        Me.SplitContainer2V.SplitterDistance = 284
-        Me.SplitContainer2V.TabIndex = 2
-        '
-        'ButtonBat
-        '
-        Me.ButtonBat.Dock = System.Windows.Forms.DockStyle.Top
-        Me.ButtonBat.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonBat.Location = New System.Drawing.Point(0, 0)
-        Me.ButtonBat.Name = "ButtonBat"
-        Me.ButtonBat.Size = New System.Drawing.Size(284, 40)
-        Me.ButtonBat.TabIndex = 0
-        Me.ButtonBat.Text = "Windows Batch"
-        Me.ButtonBat.UseVisualStyleBackColor = True
-        '
-        'ButtonPS
-        '
-        Me.ButtonPS.Dock = System.Windows.Forms.DockStyle.Top
-        Me.ButtonPS.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonPS.Location = New System.Drawing.Point(0, 0)
-        Me.ButtonPS.Name = "ButtonPS"
-        Me.ButtonPS.Size = New System.Drawing.Size(385, 40)
-        Me.ButtonPS.TabIndex = 0
-        Me.ButtonPS.Text = "Power Shell"
-        Me.ButtonPS.UseVisualStyleBackColor = True
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 328)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(673, 22)
-        Me.StatusStrip1.TabIndex = 1
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'ToolStripStatusLabel1
-        '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(238, 17)
-        Me.ToolStripStatusLabel1.Text = "Select the installation type and components"
-        '
-        'TextBoxInfo
-        '
-        Me.TextBoxInfo.AcceptsReturn = True
-        Me.TextBoxInfo.Font = New System.Drawing.Font("Liberation Mono", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxInfo.Location = New System.Drawing.Point(228, 227)
-        Me.TextBoxInfo.Multiline = True
-        Me.TextBoxInfo.Name = "TextBoxInfo"
-        Me.TextBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBoxInfo.Size = New System.Drawing.Size(123, 64)
-        Me.TextBoxInfo.TabIndex = 1
-        Me.TextBoxInfo.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        Me.TextBoxInfo.Visible = False
-        Me.TextBoxInfo.WordWrap = False
-        '
-        'TimerInit
-        '
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 11)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(56, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Dev Depo"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 39)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(55, 13)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Inst Name"
-        '
-        'ComboBoxInstName
-        '
-        Me.ComboBoxInstName.FormattingEnabled = True
-        Me.ComboBoxInstName.Items.AddRange(New Object() {"NX12", "NX1926", "Creo4", "Creo8", "Notepad_pp", "WinSysinternals", "VirtualDesktopManager"})
-        Me.ComboBoxInstName.Location = New System.Drawing.Point(84, 31)
-        Me.ComboBoxInstName.Name = "ComboBoxInstName"
-        Me.ComboBoxInstName.Size = New System.Drawing.Size(200, 21)
-        Me.ComboBoxInstName.TabIndex = 3
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(13, 67)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(62, 13)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Inst Version"
-        '
-        'ComboBoxInstVer
-        '
-        Me.ComboBoxInstVer.FormattingEnabled = True
-        Me.ComboBoxInstVer.Items.AddRange(New Object() {"01", "02", "03", "04", "05"})
-        Me.ComboBoxInstVer.Location = New System.Drawing.Point(84, 59)
-        Me.ComboBoxInstVer.Name = "ComboBoxInstVer"
-        Me.ComboBoxInstVer.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBoxInstVer.TabIndex = 5
-        Me.ComboBoxInstVer.Text = "01"
         '
         'CheckBoxTADeinstall
         '
@@ -354,6 +231,176 @@ Partial Class Form1
         Me.CheckBoxTASetup.Text = "TA-Setup.exe"
         Me.CheckBoxTASetup.UseVisualStyleBackColor = True
         '
+        'ComboBoxInstVer
+        '
+        Me.ComboBoxInstVer.FormattingEnabled = True
+        Me.ComboBoxInstVer.Items.AddRange(New Object() {"01", "02", "03", "04", "05"})
+        Me.ComboBoxInstVer.Location = New System.Drawing.Point(84, 59)
+        Me.ComboBoxInstVer.Name = "ComboBoxInstVer"
+        Me.ComboBoxInstVer.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxInstVer.TabIndex = 5
+        Me.ComboBoxInstVer.Text = "01"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(13, 67)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(62, 13)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "Inst Version"
+        '
+        'ComboBoxInstName
+        '
+        Me.ComboBoxInstName.FormattingEnabled = True
+        Me.ComboBoxInstName.Items.AddRange(New Object() {"NX12", "NX1926", "Creo4", "Creo8", "Notepad_pp", "WinSysinternals", "VirtualDesktopManager"})
+        Me.ComboBoxInstName.Location = New System.Drawing.Point(84, 31)
+        Me.ComboBoxInstName.Name = "ComboBoxInstName"
+        Me.ComboBoxInstName.Size = New System.Drawing.Size(200, 21)
+        Me.ComboBoxInstName.TabIndex = 3
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(13, 39)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(55, 13)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Inst Name"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(13, 11)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(56, 13)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Dev Depo"
+        '
+        'ComboBoxDevDepo
+        '
+        Me.ComboBoxDevDepo.FormattingEnabled = True
+        Me.ComboBoxDevDepo.Location = New System.Drawing.Point(84, 3)
+        Me.ComboBoxDevDepo.Name = "ComboBoxDevDepo"
+        Me.ComboBoxDevDepo.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxDevDepo.TabIndex = 0
+        '
+        'SplitContainer2V
+        '
+        Me.SplitContainer2V.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.SplitContainer2V.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer2V.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer2V.Name = "SplitContainer2V"
+        '
+        'SplitContainer2V.Panel1
+        '
+        Me.SplitContainer2V.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxLogToServer)
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxStopUpdates)
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.Label4)
+        '
+        'SplitContainer2V.Panel2
+        '
+        Me.SplitContainer2V.Panel2.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer2V.Panel2.Controls.Add(Me.TabControl1)
+        Me.SplitContainer2V.Size = New System.Drawing.Size(673, 390)
+        Me.SplitContainer2V.SplitterDistance = 130
+        Me.SplitContainer2V.TabIndex = 2
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 390)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(673, 22)
+        Me.StatusStrip1.TabIndex = 1
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(238, 17)
+        Me.ToolStripStatusLabel1.Text = "Select the installation type and components"
+        '
+        'TextBoxInfo
+        '
+        Me.TextBoxInfo.AcceptsReturn = True
+        Me.TextBoxInfo.Font = New System.Drawing.Font("Liberation Mono", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxInfo.Location = New System.Drawing.Point(228, 227)
+        Me.TextBoxInfo.Multiline = True
+        Me.TextBoxInfo.Name = "TextBoxInfo"
+        Me.TextBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.TextBoxInfo.Size = New System.Drawing.Size(123, 64)
+        Me.TextBoxInfo.TabIndex = 1
+        Me.TextBoxInfo.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.TextBoxInfo.Visible = False
+        Me.TextBoxInfo.WordWrap = False
+        '
+        'TimerInit
+        '
+        '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.TabPageWinBat)
+        Me.TabControl1.Controls.Add(Me.TabPagePS)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(539, 390)
+        Me.TabControl1.TabIndex = 0
+        '
+        'TabPageWinBat
+        '
+        Me.TabPageWinBat.Location = New System.Drawing.Point(4, 24)
+        Me.TabPageWinBat.Name = "TabPageWinBat"
+        Me.TabPageWinBat.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageWinBat.Size = New System.Drawing.Size(531, 362)
+        Me.TabPageWinBat.TabIndex = 0
+        Me.TabPageWinBat.Text = "Windows Batch"
+        Me.TabPageWinBat.UseVisualStyleBackColor = True
+        '
+        'TabPagePS
+        '
+        Me.TabPagePS.Location = New System.Drawing.Point(4, 24)
+        Me.TabPagePS.Name = "TabPagePS"
+        Me.TabPagePS.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPagePS.Size = New System.Drawing.Size(531, 362)
+        Me.TabPagePS.TabIndex = 1
+        Me.TabPagePS.Text = "Power Shell"
+        Me.TabPagePS.UseVisualStyleBackColor = True
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(14, 5)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(55, 15)
+        Me.Label4.TabIndex = 0
+        Me.Label4.Text = "All Types"
+        '
+        'CheckBoxStopUpdates
+        '
+        Me.CheckBoxStopUpdates.AutoSize = True
+        Me.CheckBoxStopUpdates.Location = New System.Drawing.Point(4, 33)
+        Me.CheckBoxStopUpdates.Name = "CheckBoxStopUpdates"
+        Me.CheckBoxStopUpdates.Size = New System.Drawing.Size(91, 17)
+        Me.CheckBoxStopUpdates.TabIndex = 1
+        Me.CheckBoxStopUpdates.Text = "Stop Updates"
+        Me.CheckBoxStopUpdates.UseVisualStyleBackColor = True
+        '
+        'CheckBoxLogToServer
+        '
+        Me.CheckBoxLogToServer.AutoSize = True
+        Me.CheckBoxLogToServer.Location = New System.Drawing.Point(4, 57)
+        Me.CheckBoxLogToServer.Name = "CheckBoxLogToServer"
+        Me.CheckBoxLogToServer.Size = New System.Drawing.Size(121, 17)
+        Me.CheckBoxLogToServer.TabIndex = 2
+        Me.CheckBoxLogToServer.Text = "Copy Log To Server"
+        Me.CheckBoxLogToServer.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -378,11 +425,13 @@ Partial Class Form1
         CType(Me.SplitContainer1H, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1H.ResumeLayout(False)
         Me.SplitContainer2V.Panel1.ResumeLayout(False)
+        Me.SplitContainer2V.Panel1.PerformLayout()
         Me.SplitContainer2V.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer2V, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2V.ResumeLayout(False)
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        Me.TabControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -401,8 +450,6 @@ Partial Class Form1
     Friend WithEvents SplitContainer1H As SplitContainer
     Friend WithEvents ButtonStartCreate As Button
     Friend WithEvents SplitContainer2V As SplitContainer
-    Friend WithEvents ButtonBat As Button
-    Friend WithEvents ButtonPS As Button
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents TimerInit As Timer
@@ -415,4 +462,10 @@ Partial Class Form1
     Friend WithEvents CheckBoxTADeinstall As CheckBox
     Friend WithEvents CheckBoxTASelect As CheckBox
     Friend WithEvents CheckBoxTASetup As CheckBox
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabPageWinBat As TabPage
+    Friend WithEvents TabPagePS As TabPage
+    Friend WithEvents CheckBoxStopUpdates As CheckBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents CheckBoxLogToServer As CheckBox
 End Class
