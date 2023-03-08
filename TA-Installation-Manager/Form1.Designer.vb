@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -32,30 +33,38 @@ Partial Class Form1
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainerBase = New System.Windows.Forms.SplitContainer()
-        Me.TextBoxInfo = New System.Windows.Forms.TextBox()
-        Me.SplitContainer1H = New System.Windows.Forms.SplitContainer()
         Me.ButtonStartCreate = New System.Windows.Forms.Button()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.SplitContainer1H = New System.Windows.Forms.SplitContainer()
+        Me.ComboBoxDevDepo = New System.Windows.Forms.ComboBox()
         Me.SplitContainer2V = New System.Windows.Forms.SplitContainer()
         Me.CheckBoxTADeinstall = New System.Windows.Forms.CheckBox()
         Me.CheckBoxTASelect = New System.Windows.Forms.CheckBox()
         Me.CheckBoxTASetup = New System.Windows.Forms.CheckBox()
         Me.ButtonBat = New System.Windows.Forms.Button()
         Me.ButtonPS = New System.Windows.Forms.Button()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.TextBoxInfo = New System.Windows.Forms.TextBox()
+        Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.ComboBoxInstName = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.ComboBoxInstVer = New System.Windows.Forms.ComboBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
         Me.SplitContainerBase.Panel2.SuspendLayout()
         Me.SplitContainerBase.SuspendLayout()
         CType(Me.SplitContainer1H, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1H.Panel1.SuspendLayout()
         Me.SplitContainer1H.Panel2.SuspendLayout()
         Me.SplitContainer1H.SuspendLayout()
-        Me.StatusStrip1.SuspendLayout()
         CType(Me.SplitContainer2V, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer2V.Panel1.SuspendLayout()
         Me.SplitContainer2V.Panel2.SuspendLayout()
         Me.SplitContainer2V.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -77,7 +86,7 @@ Partial Class Form1
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'SettingsToolStripMenuItem
@@ -91,13 +100,13 @@ Partial Class Form1
         '
         Me.ShowSettingsToolStripMenuItem.CheckOnClick = True
         Me.ShowSettingsToolStripMenuItem.Name = "ShowSettingsToolStripMenuItem"
-        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.ShowSettingsToolStripMenuItem.Text = "Show settings"
         '
         'ShowLogToolStripMenuItem
         '
         Me.ShowLogToolStripMenuItem.Name = "ShowLogToolStripMenuItem"
-        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.ShowLogToolStripMenuItem.Text = "Show &Log"
         '
         'HelpToolStripMenuItem
@@ -110,13 +119,13 @@ Partial Class Form1
         'HelpToolStripMenuItem1
         '
         Me.HelpToolStripMenuItem1.Name = "HelpToolStripMenuItem1"
-        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(107, 22)
         Me.HelpToolStripMenuItem1.Text = "Help"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'SplitContainerBase
@@ -140,41 +149,6 @@ Partial Class Form1
         Me.SplitContainerBase.SplitterDistance = 196
         Me.SplitContainerBase.TabIndex = 3
         '
-        'TextBoxInfo
-        '
-        Me.TextBoxInfo.AcceptsReturn = True
-        Me.TextBoxInfo.Font = New System.Drawing.Font("Liberation Mono", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxInfo.Location = New System.Drawing.Point(228, 227)
-        Me.TextBoxInfo.Multiline = True
-        Me.TextBoxInfo.Name = "TextBoxInfo"
-        Me.TextBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBoxInfo.Size = New System.Drawing.Size(123, 64)
-        Me.TextBoxInfo.TabIndex = 1
-        Me.TextBoxInfo.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        Me.TextBoxInfo.Visible = False
-        Me.TextBoxInfo.WordWrap = False
-        '
-        'SplitContainer1H
-        '
-        Me.SplitContainer1H.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.SplitContainer1H.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1H.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer1H.Name = "SplitContainer1H"
-        Me.SplitContainer1H.Orientation = System.Windows.Forms.Orientation.Horizontal
-        '
-        'SplitContainer1H.Panel1
-        '
-        Me.SplitContainer1H.Panel1.BackColor = System.Drawing.SystemColors.Control
-        '
-        'SplitContainer1H.Panel2
-        '
-        Me.SplitContainer1H.Panel2.BackColor = System.Drawing.SystemColors.Control
-        Me.SplitContainer1H.Panel2.Controls.Add(Me.SplitContainer2V)
-        Me.SplitContainer1H.Panel2.Controls.Add(Me.StatusStrip1)
-        Me.SplitContainer1H.Size = New System.Drawing.Size(673, 519)
-        Me.SplitContainer1H.SplitterDistance = 165
-        Me.SplitContainer1H.TabIndex = 2
-        '
         'ButtonStartCreate
         '
         Me.ButtonStartCreate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -187,14 +161,40 @@ Partial Class Form1
         Me.ButtonStartCreate.Text = "Create installation"
         Me.ButtonStartCreate.UseVisualStyleBackColor = True
         '
-        'StatusStrip1
+        'SplitContainer1H
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 328)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(673, 22)
-        Me.StatusStrip1.TabIndex = 1
-        Me.StatusStrip1.Text = "StatusStrip1"
+        Me.SplitContainer1H.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.SplitContainer1H.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1H.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1H.Name = "SplitContainer1H"
+        Me.SplitContainer1H.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer1H.Panel1
+        '
+        Me.SplitContainer1H.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer1H.Panel1.Controls.Add(Me.ComboBoxInstVer)
+        Me.SplitContainer1H.Panel1.Controls.Add(Me.Label3)
+        Me.SplitContainer1H.Panel1.Controls.Add(Me.ComboBoxInstName)
+        Me.SplitContainer1H.Panel1.Controls.Add(Me.Label2)
+        Me.SplitContainer1H.Panel1.Controls.Add(Me.Label1)
+        Me.SplitContainer1H.Panel1.Controls.Add(Me.ComboBoxDevDepo)
+        '
+        'SplitContainer1H.Panel2
+        '
+        Me.SplitContainer1H.Panel2.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer1H.Panel2.Controls.Add(Me.SplitContainer2V)
+        Me.SplitContainer1H.Panel2.Controls.Add(Me.StatusStrip1)
+        Me.SplitContainer1H.Size = New System.Drawing.Size(673, 519)
+        Me.SplitContainer1H.SplitterDistance = 165
+        Me.SplitContainer1H.TabIndex = 2
+        '
+        'ComboBoxDevDepo
+        '
+        Me.ComboBoxDevDepo.FormattingEnabled = True
+        Me.ComboBoxDevDepo.Location = New System.Drawing.Point(84, 3)
+        Me.ComboBoxDevDepo.Name = "ComboBoxDevDepo"
+        Me.ComboBoxDevDepo.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxDevDepo.TabIndex = 0
         '
         'SplitContainer2V
         '
@@ -274,11 +274,83 @@ Partial Class Form1
         Me.ButtonPS.Text = "Power Shell"
         Me.ButtonPS.UseVisualStyleBackColor = True
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 328)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(673, 22)
+        Me.StatusStrip1.TabIndex = 1
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(238, 17)
         Me.ToolStripStatusLabel1.Text = "Select the installation type and components"
+        '
+        'TextBoxInfo
+        '
+        Me.TextBoxInfo.AcceptsReturn = True
+        Me.TextBoxInfo.Font = New System.Drawing.Font("Liberation Mono", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxInfo.Location = New System.Drawing.Point(228, 227)
+        Me.TextBoxInfo.Multiline = True
+        Me.TextBoxInfo.Name = "TextBoxInfo"
+        Me.TextBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.TextBoxInfo.Size = New System.Drawing.Size(123, 64)
+        Me.TextBoxInfo.TabIndex = 1
+        Me.TextBoxInfo.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.TextBoxInfo.Visible = False
+        Me.TextBoxInfo.WordWrap = False
+        '
+        'TimerInit
+        '
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(13, 11)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(56, 13)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Dev Depo"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(13, 39)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(55, 13)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Inst Name"
+        '
+        'ComboBoxInstName
+        '
+        Me.ComboBoxInstName.FormattingEnabled = True
+        Me.ComboBoxInstName.Items.AddRange(New Object() {"NX12", "NX1926", "Creo4", "Creo8", "Notepad_pp", "WinSysinternals", "VirtualDesktopManager"})
+        Me.ComboBoxInstName.Location = New System.Drawing.Point(84, 31)
+        Me.ComboBoxInstName.Name = "ComboBoxInstName"
+        Me.ComboBoxInstName.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxInstName.TabIndex = 3
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(13, 67)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(62, 13)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "Inst Version"
+        '
+        'ComboBoxInstVer
+        '
+        Me.ComboBoxInstVer.FormattingEnabled = True
+        Me.ComboBoxInstVer.Items.AddRange(New Object() {"01", "02", "03", "04", "05"})
+        Me.ComboBoxInstVer.Location = New System.Drawing.Point(84, 59)
+        Me.ComboBoxInstVer.Name = "ComboBoxInstVer"
+        Me.ComboBoxInstVer.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxInstVer.TabIndex = 5
+        Me.ComboBoxInstVer.Text = "01"
         '
         'Form1
         '
@@ -297,17 +369,19 @@ Partial Class Form1
         Me.SplitContainerBase.Panel2.PerformLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerBase.ResumeLayout(False)
+        Me.SplitContainer1H.Panel1.ResumeLayout(False)
+        Me.SplitContainer1H.Panel1.PerformLayout()
         Me.SplitContainer1H.Panel2.ResumeLayout(False)
         Me.SplitContainer1H.Panel2.PerformLayout()
         CType(Me.SplitContainer1H, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1H.ResumeLayout(False)
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
         Me.SplitContainer2V.Panel1.ResumeLayout(False)
         Me.SplitContainer2V.Panel1.PerformLayout()
         Me.SplitContainer2V.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer2V, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2V.ResumeLayout(False)
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -333,4 +407,11 @@ Partial Class Form1
     Friend WithEvents ButtonPS As Button
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents TimerInit As Timer
+    Friend WithEvents ComboBoxDevDepo As ComboBox
+    Friend WithEvents ComboBoxInstVer As ComboBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents ComboBoxInstName As ComboBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
 End Class

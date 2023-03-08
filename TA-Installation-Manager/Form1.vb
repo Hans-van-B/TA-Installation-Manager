@@ -14,8 +14,16 @@
         SplitContainerBase.SplitterDistance = 200
         ButtonBat.Height = 40
         ButtonPS.Height = 40
+        TimerInit.Start()
 
         xtrace_sube("Form1_Load")
+    End Sub
+
+    Private Sub TimerInit_Tick(sender As Object, e As EventArgs) Handles TimerInit.Tick
+        xtrace_subs("Form1_Load2 (TimerInit)")
+        TimerInit.Stop()
+        Set_TAISDevDepo()
+        xtrace_sube("Form1_Load2")
     End Sub
 
     '---- Rezize
@@ -71,14 +79,14 @@
 
     '==== Button select Script-type ==========================================================
     Dim ScryptTypeSelectColor As Color = Color.AliceBlue
-    Dim ScryptTypeSelect As String = ""
+    Public Shared ScriptTypeSelect As String = ""
     Private Sub ButtonBat_Click(sender As Object, e As EventArgs) Handles ButtonBat.Click
         xtrace_subs("ButtonBat_Click")
         ButtonBat.BackColor = ScryptTypeSelectColor
         ButtonPS.BackColor = SystemColors.Control
         SplitContainer2V.Panel1.BackColor = ScryptTypeSelectColor
         SplitContainer2V.Panel2.BackColor = SystemColors.Control
-        ScryptTypeSelect = "BAT"
+        ScriptTypeSelect = "BAT"
         xtrace_sube("ButtonBat_Click")
     End Sub
 
@@ -88,19 +96,21 @@
         ButtonBat.BackColor = SystemColors.Control
         SplitContainer2V.Panel2.BackColor = ScryptTypeSelectColor
         SplitContainer2V.Panel1.BackColor = SystemColors.Control
-        ScryptTypeSelect = "PS"
+        ScriptTypeSelect = "PS"
         xtrace_sube("ButtonPS_Click")
     End Sub
 
     '---- Create the installation
     Private Sub ButtonStartCreate_Click(sender As Object, e As EventArgs) Handles ButtonStartCreate.Click
         xtrace_subs("ButtonStartCreate_Click")
-        If ScryptTypeSelect = "BAT" Then
+        If ScriptTypeSelect = "BAT" Then
             ToolStripStatusLabel1.Text = "Create TA-Installation type .bat"
+            Create_Depo()
             Create_Installation_Base()
             Add_Installation_Components_Bat()
-        ElseIf ScryptTypeSelect = "PS" Then
+        ElseIf ScriptTypeSelect = "PS" Then
             ToolStripStatusLabel1.Text = "Create TA-Installation type .ps2"
+            Create_Depo()
             Create_Installation_Base()
             Add_Installation_Components_PS()
         Else
