@@ -1,25 +1,47 @@
 ﻿Module Create_Installation_Type_All
     Public DepoPath As String
+    Public InstRoot As String
+    Public InstName As String
     Sub Create_Installation_Base()
         xtrace_subs("Create_Installation_Base")
 
-        DepoPath = TAISDevDepo & "\" & Form1.ComboBoxInstName.Text & "\" & Form1.ComboBoxInstVer.Text
+        InstName = Form1.ComboBoxInstName.Text
+        DepoPath = TAISDevDepo & "\" & InstName & "\" & Form1.ComboBoxInstVer.Text
         xtrace_i("DepoPath = " & DepoPath)
         If Not My.Computer.FileSystem.DirectoryExists(DepoPath) Then
             CreateDirectory(DepoPath, 0, "", "Please check your directory access rights", True, True)
         End If
 
-        DepoRoot = DepoPath & "\Inst"
-        xtrace_i("DepoRoot = " & DepoRoot)
-        If Not My.Computer.FileSystem.DirectoryExists(DepoRoot) Then
-            CreateDirectory(DepoRoot, 0, "", "Please check your directory access rights", True, True)
+        InstRoot = DepoPath & "\Inst"
+        xtrace_i("InstRoot = " & InstRoot)
+        If Not My.Computer.FileSystem.DirectoryExists(InstRoot) Then
+            CreateDirectory(InstRoot, 0, "", "Please check your directory access rights", True, True)
         End If
 
-        Check_InstSubDirs(DepoRoot, "   ")
+        Check_InstSubDirs(InstRoot, "   ")
+
+        Dim CheckDir, SD As String
+        For Each SD In {"Inst\Doc", "Source", "Source\W64", "Prepare", "Prepare\Doc", "Prepare\Doc\Err", "Prepare\Doc\ChangeReq"}
+            CheckDir = DepoPath & "\" & SD
+            xtrace_i("Check : " & CheckDir)
+            If Not My.Computer.FileSystem.DirectoryExists(CheckDir) Then
+                CreateDirectory(CheckDir, 0, "", "Please check your directory access rights", True, True)
+            End If
+        Next
 
         AddInstFile(Form1.CheckBoxTASetup.Checked, "Inst\TA-Setup.exe")
+        AddInstFile(Form1.CheckBoxTASelect.Checked, "Inst\TA-Select.exe")
+        AddInstFile(Form1.CheckBoxTADeinstall.Checked, "Inst\TA-Deinstall.exe")
 
         xtrace_sube("Create_Installation_Base")
+    End Sub
+
+    Sub Finalize_Installation()
+        xtrace_subs("Finalize_Installation")
+
+        wait(1)
+        Form1.ToolStripStatusLabel1.Text = "Done."
+        xtrace_sube("Finalize_Installation")
     End Sub
 
     Sub AddInstFile(CheckBox As Boolean, SubPath As String)

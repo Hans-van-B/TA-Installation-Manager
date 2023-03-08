@@ -37,9 +37,6 @@ Partial Class Form1
         Me.SplitContainer1H = New System.Windows.Forms.SplitContainer()
         Me.ComboBoxDevDepo = New System.Windows.Forms.ComboBox()
         Me.SplitContainer2V = New System.Windows.Forms.SplitContainer()
-        Me.CheckBoxTADeinstall = New System.Windows.Forms.CheckBox()
-        Me.CheckBoxTASelect = New System.Windows.Forms.CheckBox()
-        Me.CheckBoxTASetup = New System.Windows.Forms.CheckBox()
         Me.ButtonBat = New System.Windows.Forms.Button()
         Me.ButtonPS = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
@@ -51,6 +48,9 @@ Partial Class Form1
         Me.ComboBoxInstName = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ComboBoxInstVer = New System.Windows.Forms.ComboBox()
+        Me.CheckBoxTADeinstall = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxTASelect = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxTASetup = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -172,6 +172,9 @@ Partial Class Form1
         'SplitContainer1H.Panel1
         '
         Me.SplitContainer1H.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer1H.Panel1.Controls.Add(Me.CheckBoxTADeinstall)
+        Me.SplitContainer1H.Panel1.Controls.Add(Me.CheckBoxTASelect)
+        Me.SplitContainer1H.Panel1.Controls.Add(Me.CheckBoxTASetup)
         Me.SplitContainer1H.Panel1.Controls.Add(Me.ComboBoxInstVer)
         Me.SplitContainer1H.Panel1.Controls.Add(Me.Label3)
         Me.SplitContainer1H.Panel1.Controls.Add(Me.ComboBoxInstName)
@@ -206,9 +209,6 @@ Partial Class Form1
         'SplitContainer2V.Panel1
         '
         Me.SplitContainer2V.Panel1.BackColor = System.Drawing.SystemColors.Control
-        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxTADeinstall)
-        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxTASelect)
-        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxTASetup)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.ButtonBat)
         '
         'SplitContainer2V.Panel2
@@ -218,39 +218,6 @@ Partial Class Form1
         Me.SplitContainer2V.Size = New System.Drawing.Size(673, 328)
         Me.SplitContainer2V.SplitterDistance = 284
         Me.SplitContainer2V.TabIndex = 2
-        '
-        'CheckBoxTADeinstall
-        '
-        Me.CheckBoxTADeinstall.AutoSize = True
-        Me.CheckBoxTADeinstall.Location = New System.Drawing.Point(16, 94)
-        Me.CheckBoxTADeinstall.Name = "CheckBoxTADeinstall"
-        Me.CheckBoxTADeinstall.Size = New System.Drawing.Size(103, 17)
-        Me.CheckBoxTADeinstall.TabIndex = 3
-        Me.CheckBoxTADeinstall.Text = "TA-Deinstall.exe"
-        Me.CheckBoxTADeinstall.UseVisualStyleBackColor = True
-        '
-        'CheckBoxTASelect
-        '
-        Me.CheckBoxTASelect.AutoSize = True
-        Me.CheckBoxTASelect.Location = New System.Drawing.Point(16, 70)
-        Me.CheckBoxTASelect.Name = "CheckBoxTASelect"
-        Me.CheckBoxTASelect.Size = New System.Drawing.Size(93, 17)
-        Me.CheckBoxTASelect.TabIndex = 2
-        Me.CheckBoxTASelect.Text = "TA-Select.exe"
-        Me.CheckBoxTASelect.UseVisualStyleBackColor = True
-        '
-        'CheckBoxTASetup
-        '
-        Me.CheckBoxTASetup.AutoSize = True
-        Me.CheckBoxTASetup.Checked = True
-        Me.CheckBoxTASetup.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBoxTASetup.Enabled = False
-        Me.CheckBoxTASetup.Location = New System.Drawing.Point(16, 46)
-        Me.CheckBoxTASetup.Name = "CheckBoxTASetup"
-        Me.CheckBoxTASetup.Size = New System.Drawing.Size(91, 17)
-        Me.CheckBoxTASetup.TabIndex = 1
-        Me.CheckBoxTASetup.Text = "TA-Setup.exe"
-        Me.CheckBoxTASetup.UseVisualStyleBackColor = True
         '
         'ButtonBat
         '
@@ -352,6 +319,41 @@ Partial Class Form1
         Me.ComboBoxInstVer.TabIndex = 5
         Me.ComboBoxInstVer.Text = "01"
         '
+        'CheckBoxTADeinstall
+        '
+        Me.CheckBoxTADeinstall.AutoSize = True
+        Me.CheckBoxTADeinstall.Checked = True
+        Me.CheckBoxTADeinstall.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxTADeinstall.Location = New System.Drawing.Point(345, 55)
+        Me.CheckBoxTADeinstall.Name = "CheckBoxTADeinstall"
+        Me.CheckBoxTADeinstall.Size = New System.Drawing.Size(103, 17)
+        Me.CheckBoxTADeinstall.TabIndex = 8
+        Me.CheckBoxTADeinstall.Text = "TA-Deinstall.exe"
+        Me.CheckBoxTADeinstall.UseVisualStyleBackColor = True
+        '
+        'CheckBoxTASelect
+        '
+        Me.CheckBoxTASelect.AutoSize = True
+        Me.CheckBoxTASelect.Location = New System.Drawing.Point(345, 31)
+        Me.CheckBoxTASelect.Name = "CheckBoxTASelect"
+        Me.CheckBoxTASelect.Size = New System.Drawing.Size(93, 17)
+        Me.CheckBoxTASelect.TabIndex = 7
+        Me.CheckBoxTASelect.Text = "TA-Select.exe"
+        Me.CheckBoxTASelect.UseVisualStyleBackColor = True
+        '
+        'CheckBoxTASetup
+        '
+        Me.CheckBoxTASetup.AutoSize = True
+        Me.CheckBoxTASetup.Checked = True
+        Me.CheckBoxTASetup.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxTASetup.Enabled = False
+        Me.CheckBoxTASetup.Location = New System.Drawing.Point(345, 7)
+        Me.CheckBoxTASetup.Name = "CheckBoxTASetup"
+        Me.CheckBoxTASetup.Size = New System.Drawing.Size(91, 17)
+        Me.CheckBoxTASetup.TabIndex = 6
+        Me.CheckBoxTASetup.Text = "TA-Setup.exe"
+        Me.CheckBoxTASetup.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -376,7 +378,6 @@ Partial Class Form1
         CType(Me.SplitContainer1H, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1H.ResumeLayout(False)
         Me.SplitContainer2V.Panel1.ResumeLayout(False)
-        Me.SplitContainer2V.Panel1.PerformLayout()
         Me.SplitContainer2V.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer2V, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2V.ResumeLayout(False)
@@ -400,9 +401,6 @@ Partial Class Form1
     Friend WithEvents SplitContainer1H As SplitContainer
     Friend WithEvents ButtonStartCreate As Button
     Friend WithEvents SplitContainer2V As SplitContainer
-    Friend WithEvents CheckBoxTADeinstall As CheckBox
-    Friend WithEvents CheckBoxTASelect As CheckBox
-    Friend WithEvents CheckBoxTASetup As CheckBox
     Friend WithEvents ButtonBat As Button
     Friend WithEvents ButtonPS As Button
     Friend WithEvents StatusStrip1 As StatusStrip
@@ -414,4 +412,7 @@ Partial Class Form1
     Friend WithEvents ComboBoxInstName As ComboBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents CheckBoxTADeinstall As CheckBox
+    Friend WithEvents CheckBoxTASelect As CheckBox
+    Friend WithEvents CheckBoxTASetup As CheckBox
 End Class

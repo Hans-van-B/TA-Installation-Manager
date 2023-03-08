@@ -106,8 +106,10 @@
     Private Sub ButtonStartCreate_Click(sender As Object, e As EventArgs) Handles ButtonStartCreate.Click
         xtrace_subs("ButtonStartCreate_Click")
 
+        ButtonStartCreate.Enabled = False
+
         If ComboBoxInstName.Text = "" Then
-            MsgBox("Please enter the name of the new installation", MessageBoxIcon.Information, "Hint:")
+            ShowHint("Please enter the name of the new installation")
             ComboBoxInstName.BackColor = ButtonHighLite
         End If
 
@@ -116,23 +118,33 @@
             Create_Depo()
             Create_Installation_Base()
             Add_Installation_Components_Bat()
+            Finalize_Installation()
         ElseIf ScriptTypeSelect = "PS" Then
             ToolStripStatusLabel1.Text = "Create TA-Installation type .ps2"
             Create_Depo()
             Create_Installation_Base()
             Add_Installation_Components_PS()
+            Finalize_Installation()
         Else
             ToolStripStatusLabel1.Text = "First select the installation type and it's components"
             MsgBox("Please select the installation type" & vbCrLf & " and it's components", MessageBoxIcon.Information, "Hint:")
             ButtonPS.BackColor = ButtonHighLite
             ButtonBat.BackColor = ButtonHighLite
-
         End If
+
+        ButtonStartCreate.Enabled = True
 
         xtrace_sube("ButtonStartCreate_Click")
     End Sub
 
+    '---- Reset backColor after entering data
     Private Sub ComboBoxInstName_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxInstName.TextChanged
         ComboBoxInstName.BackColor = SystemColors.Control
+    End Sub
+
+    '---- Show Hint
+    Sub ShowHint(Msg As String)
+        xtrace_i("Show hint: " & Msg)
+        MsgBox(Msg, MessageBoxIcon.Information, "Hint:")
     End Sub
 End Class
