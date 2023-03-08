@@ -79,6 +79,8 @@
 
     '==== Button select Script-type ==========================================================
     Dim ScryptTypeSelectColor As Color = Color.AliceBlue
+    Dim ButtonHighLite As Color = Color.LightYellow
+
     Public Shared ScriptTypeSelect As String = ""
     Private Sub ButtonBat_Click(sender As Object, e As EventArgs) Handles ButtonBat.Click
         xtrace_subs("ButtonBat_Click")
@@ -103,6 +105,12 @@
     '---- Create the installation
     Private Sub ButtonStartCreate_Click(sender As Object, e As EventArgs) Handles ButtonStartCreate.Click
         xtrace_subs("ButtonStartCreate_Click")
+
+        If ComboBoxInstName.Text = "" Then
+            MsgBox("Please enter the name of the new installation", MessageBoxIcon.Information, "Hint:")
+            ComboBoxInstName.BackColor = ButtonHighLite
+        End If
+
         If ScriptTypeSelect = "BAT" Then
             ToolStripStatusLabel1.Text = "Create TA-Installation type .bat"
             Create_Depo()
@@ -115,9 +123,16 @@
             Add_Installation_Components_PS()
         Else
             ToolStripStatusLabel1.Text = "First select the installation type and it's components"
+            MsgBox("Please select the installation type" & vbCrLf & " and it's components", MessageBoxIcon.Information, "Hint:")
+            ButtonPS.BackColor = ButtonHighLite
+            ButtonBat.BackColor = ButtonHighLite
+
         End If
 
         xtrace_sube("ButtonStartCreate_Click")
     End Sub
 
+    Private Sub ComboBoxInstName_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxInstName.TextChanged
+        ComboBoxInstName.BackColor = SystemColors.Control
+    End Sub
 End Class

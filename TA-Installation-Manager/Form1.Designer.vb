@@ -330,7 +330,7 @@ Partial Class Form1
         Me.ComboBoxInstName.Items.AddRange(New Object() {"NX12", "NX1926", "Creo4", "Creo8", "Notepad_pp", "WinSysinternals", "VirtualDesktopManager"})
         Me.ComboBoxInstName.Location = New System.Drawing.Point(84, 31)
         Me.ComboBoxInstName.Name = "ComboBoxInstName"
-        Me.ComboBoxInstName.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxInstName.Size = New System.Drawing.Size(200, 21)
         Me.ComboBoxInstName.TabIndex = 3
         '
         'Label3
