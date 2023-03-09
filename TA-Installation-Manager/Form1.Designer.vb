@@ -58,6 +58,7 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
         Me.ButtonShowResult = New System.Windows.Forms.Button()
+        Me.CheckBoxBatSeparatePost = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -97,7 +98,7 @@ Partial Class Form1
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'SettingsToolStripMenuItem
@@ -111,13 +112,13 @@ Partial Class Form1
         '
         Me.ShowSettingsToolStripMenuItem.CheckOnClick = True
         Me.ShowSettingsToolStripMenuItem.Name = "ShowSettingsToolStripMenuItem"
-        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShowSettingsToolStripMenuItem.Text = "Show settings"
         '
         'ShowLogToolStripMenuItem
         '
         Me.ShowLogToolStripMenuItem.Name = "ShowLogToolStripMenuItem"
-        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShowLogToolStripMenuItem.Text = "Show &Log"
         '
         'HelpToolStripMenuItem
@@ -356,6 +357,7 @@ Partial Class Form1
         '
         'TabPageWinBat
         '
+        Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparatePost)
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparateApp)
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparateInit)
         Me.TabPageWinBat.Location = New System.Drawing.Point(4, 24)
@@ -442,6 +444,16 @@ Partial Class Form1
         Me.ButtonShowResult.Text = "Show result"
         Me.ButtonShowResult.UseVisualStyleBackColor = True
         '
+        'CheckBoxBatSeparatePost
+        '
+        Me.CheckBoxBatSeparatePost.AutoSize = True
+        Me.CheckBoxBatSeparatePost.Location = New System.Drawing.Point(6, 59)
+        Me.CheckBoxBatSeparatePost.Name = "CheckBoxBatSeparatePost"
+        Me.CheckBoxBatSeparatePost.Size = New System.Drawing.Size(165, 19)
+        Me.CheckBoxBatSeparatePost.TabIndex = 2
+        Me.CheckBoxBatSeparatePost.Text = "Separate Post Installation"
+        Me.CheckBoxBatSeparatePost.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -514,4 +526,5 @@ Partial Class Form1
     Friend WithEvents CheckBoxBatSeparateApp As CheckBox
     Friend WithEvents CheckBoxBatSeparateInit As CheckBox
     Friend WithEvents ButtonShowResult As Button
+    Friend WithEvents CheckBoxBatSeparatePost As CheckBox
 End Class
