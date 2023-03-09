@@ -168,4 +168,8 @@
         MsgBox(Msg, MessageBoxIcon.Information, "Hint:")
     End Sub
 
+    Private Sub ButtonShowResult_Click(sender As Object, e As EventArgs) Handles ButtonShowResult.Click
+        Process.Start(InstRoot)
+
+    End Sub
 End Class

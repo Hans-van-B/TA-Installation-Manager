@@ -28,12 +28,16 @@ Module ModFileSystem
                    Fatal As Boolean) As Boolean
         Dim Result As Boolean = True
         xtrace_i("DeleteFile")
-        Try
-            My.Computer.FileSystem.DeleteFile(FileName)
-        Catch ex As Exception
-            Result = False
-            CreateWarning(ErrNr, "Failed to delete: " & FileName, ErrDetails, Hint, ShowDialog, ex.Message, Fatal)
-        End Try
+        If My.Computer.FileSystem.FileExists(FileName) Then
+            Try
+                My.Computer.FileSystem.DeleteFile(FileName)
+            Catch ex As Exception
+                Result = False
+                CreateWarning(ErrNr, "Failed to delete: " & FileName, ErrDetails, Hint, ShowDialog, ex.Message, Fatal)
+            End Try
+        Else
+            xtrace_i("The file " & FileName & " Does not exist")
+        End If
         Return Result
     End Function
 

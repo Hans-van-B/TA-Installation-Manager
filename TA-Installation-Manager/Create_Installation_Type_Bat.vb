@@ -19,56 +19,41 @@
 
         '---- Create bat\Install.bat
 
-        Dim CreateFile As String = "\bat\Install.bat"
-        Dim AppInstBat As String = "\bat\05_" & InstName & ".bat"
+        Dim InstallStartFile As String = "\bat\Install.bat"
 
-        xtrace_i("Create " & CreateFile)
-        Dim StartFile As String =
+        xtrace_i("Create " & InstallStartFile)
+        Dim StartFileTxt As String =
             ":: Created by : " & AppName & " V" & AppVer & vbCrLf &
             ":: Date       : " & DateTime.Now.ToString("yyyy-MM-dd") & vbCrLf &
             "echo on" & vbCrLf &
             "title " & InstName & " Installation" & vbCrLf &
             "echo Starting the " & InstName & " installation >%ICL%" & vbCrLf &
             "echo  * INSTROOT = %INSTROOT% >>%ICL%" & vbCrLf &
-            vbCrLf &
-            "call ""%instroot%\bat\init""" & vbCrLf &
-            "call ""%instroot%" & AppInstBat & """" & vbCrLf &
-            vbCrLf &
-            "if exist ""%instroot%\bat\09_After_Install.bat"" call ""%instroot%\bat\09_After_Install""" & vbCrLf &
-            vbCrLf &
-            "echo Installation finished! >>%ICL%" & vbCrLf &
-            "call ""%util%\exit""" & vbCrLf
-
-        WriteTxtToFile(InstRoot & CreateFile, StartFile, False, 0, "", "", True, True)
+            vbCrLf
+        WriteTxtToFile(InstRoot & InstallStartFile, StartFileTxt, False, 0, "", "", True, True)
 
         '---- Create bat\init.bat
-
-        CreateFile = "\bat\init.bat"
-        xtrace_i("Create " & CreateFile)
-        StartFile = BatFileHeader &
-            BatTimeStamp &
-            "%WRITE% "" * Initializing""" & vbCrLf
-
-        StartFile = StartFile &
-            BatFileFooter
-
-        WriteTxtToFile(InstRoot & CreateFile, StartFile, False, 0, "", "", True, True)
+        Add_Installation_Init(InstallStartFile)
 
         '---- Create Application Install bat
+        Add_Installation_Application(InstallStartFile)
 
-        CreateFile = AppInstBat
-        xtrace_i("Create " & CreateFile)
-        StartFile = BatFileHeader &
-            BatTimeStamp
+        '---- Create post installation file or section
+        'vbCrLf &
+        '    "if exist ""%instroot%\bat\09_After_Install.bat"" call ""%instroot%\bat\09_After_Install""" & vbCrLf &
 
-        StartFile = StartFile &
-            BatFileFooter
+        StartFileTxt = vbCrLf &
+            "echo Installation finished! >>%ICL%" & vbCrLf &
+            "call ""%util%\exit""" & vbCrLf
+        WriteTxtToFile(InstRoot & InstallStartFile, StartFileTxt, True, 0, "", "", True, True)
 
-        WriteTxtToFile(InstRoot & CreateFile, StartFile, False, 0, "", "", True, True)
 
+
+        ' It is not possible to integrate this file, keep it separate
         '---- Create util\exit.bat
 
-        CreateFile = "\bat\util\exit.bat"
+        Dim Createfile, StartFile
+        Createfile = "\bat\util\exit.bat"
         xtrace_i("Create " & CreateFile)
         StartFile = BatFileHeader &
             vbCrLf &
@@ -96,4 +81,100 @@
 
         xtrace_sube("Add_Installation_Components_Bat")
     End Sub
+
+    '==== Write Init =============================================================
+    Sub Add_Installation_Init(InstallStartFile As String)
+        xtrace_subs("Add_Installation_Init")
+        Dim StartFileTxt As String
+
+        Dim InitFileTxt As String
+        Dim InstallInitFile As String = "\bat\init.bat"
+
+        Dim SeparateFile As Boolean = Form1.CheckBoxBatSeparateInit.Checked
+
+        If SeparateFile Then
+            ' Write call in the start file
+            StartFileTxt = "call ""%instroot%" & InstallInitFile & """" & vbCrLf
+            WriteTxtToFile(InstRoot & InstallStartFile, StartFileTxt, True, 0, "", "", True, True)
+
+            ' Write the file header
+            xtrace_i("Create " & InstallInitFile)
+            InitFileTxt = BatFileHeader & BatTimeStamp
+            WriteTxtToFile(InstRoot & InstallInitFile, InitFileTxt, False, 0, "", "", True, True)
+        Else
+            ' Remove the separate file if it exists
+            DeleteFile(InstRoot & InstallInitFile, 0, "", "", True, False)
+
+            ' Write the section header
+            InitFileTxt = vbCrLf & "@echo ---- Start Init -----------------------" & vbCrLf
+            WriteTxtToFile(InstRoot & InstallStartFile, InitFileTxt, True, 0, "", "", True, True)
+        End If
+
+        ' Set init body txt
+        InitFileTxt = "%WRITE% "" * Initializing""" & vbCrLf
+
+        ' Add footer and write
+        If SeparateFile Then
+            InitFileTxt = InitFileTxt &
+            BatFileFooter
+
+            WriteTxtToFile(InstRoot & InstallInitFile, InitFileTxt, True, 0, "", "", True, True)
+        Else
+            InitFileTxt = InitFileTxt &
+                "@echo ---- End Init --------------------" & vbCrLf & vbCrLf
+
+            WriteTxtToFile(InstRoot & InstallStartFile, InitFileTxt, True, 0, "", "", True, True)
+        End If
+
+        xtrace_sube("Add_Installation_Init")
+    End Sub
+
+    '==== Write Application Installation ========================================
+    Sub Add_Installation_Application(InstallStartFile As String)
+        xtrace_subs("Add_Installation_Application")
+        Dim StartFileTxt As String
+
+        Dim AppFileTxt As String
+        Dim InstallAppFile As String = "\bat\05_" & InstName & ".bat"
+
+        Dim SeparateFile As Boolean = Form1.CheckBoxBatSeparateApp.Checked
+
+        If SeparateFile Then
+            ' Write call in the start file
+            StartFileTxt = "call ""%instroot%" & InstallAppFile & """" & vbCrLf
+            WriteTxtToFile(InstRoot & InstallStartFile, StartFileTxt, True, 0, "", "", True, True)
+
+            ' Write the file header
+            xtrace_i("Create " & InstallAppFile)
+            AppFileTxt = BatFileHeader &
+                BatTimeStamp
+            WriteTxtToFile(InstRoot & InstallAppFile, AppFileTxt, False, 0, "", "", True, True)
+        Else
+            ' Remove the separate file if it exists
+            DeleteFile(InstRoot & InstallAppFile, 0, "", "", True, False)
+
+            ' Write the section header
+            AppFileTxt = vbCrLf & "@echo ---- Start Application Install -----------------------" & vbCrLf
+            WriteTxtToFile(InstRoot & InstallStartFile, AppFileTxt, True, 0, "", "", True, True)
+        End If
+
+        ' Set Application Install body txt
+        AppFileTxt = ":: Install Body" & vbCrLf
+
+        ' Add footer and write
+        If SeparateFile Then
+            AppFileTxt = AppFileTxt &
+            BatFileFooter
+
+            WriteTxtToFile(InstRoot & InstallAppFile, AppFileTxt, True, 0, "", "", True, True)
+        Else
+            AppFileTxt = AppFileTxt &
+                "@echo ---- End Application Install --------------------" & vbCrLf & vbCrLf
+
+            WriteTxtToFile(InstRoot & InstallStartFile, AppFileTxt, True, 0, "", "", True, True)
+        End If
+
+        xtrace_sube("Add_Installation_Application")
+    End Sub
+
 End Module
