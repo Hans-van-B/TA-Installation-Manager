@@ -1,22 +1,27 @@
 ﻿Module Defaults
+    Public Inifile As String = IniFile1
+
+    Dim XX As String ' Dummy
     Sub ReadDefaults()
+        xtrace_subs("ReadDefaults")
         Dim ReadFile
 
         If My.Computer.FileSystem.FileExists(IniFile1) Then
-            Form1.WriteInfo("Read Defaults " & IniFile1)
-            ReadFile = My.Computer.FileSystem.OpenTextFileReader(IniFile1)
+            Inifile = IniFile1
 
         ElseIf My.Computer.FileSystem.FileExists(IniFile2) Then
-            Form1.WriteInfo("Read Defaults " & IniFile2)
-            ReadFile = My.Computer.FileSystem.OpenTextFileReader(IniFile2)
+            Inifile = IniFile2
 
         Else
             Form1.WriteInfo("Failed to read:")
             Form1.WriteInfo("   " & IniFile1)
             Form1.WriteInfo("Or " & IniFile2)
-            CreateIniFile()
+            'WriteIniFile()
             Exit Sub
         End If
+
+        Form1.WriteInfo("Read Defaults " & Inifile)
+        ReadFile = My.Computer.FileSystem.OpenTextFileReader(Inifile)
 
         Dim Line As String
         Dim Group As String = ""
@@ -32,6 +37,10 @@
                     Continue While
                 End If
 
+                If Len(Line) < 2 Then
+                    Continue While
+                End If
+
                 '---- Read Group ----------
                 P1 = InStr(Line, "[")
                 P2 = InStr(Line, "]")
@@ -44,10 +53,6 @@
 
                 '---- Pick Lists ----
                 ' Reset group (Optional)
-                If Len(Line) < 2 Then
-                    Group = ""
-                    Continue While
-                End If
 
                 If Group = "COMBOBOX01" Then
                     'Form1.COMBOBOX01.Items.Add(Line)
@@ -68,6 +73,41 @@
                         End If
                     End If
 
+                    If DName = "ScriptTypeSelect" Then
+                        ScriptTypeSelect = DVal
+                        xtrace("Set ScriptTypeSelect = " & ScriptTypeSelect)
+                    End If
+
+                    If DName = "BatSeparateInit" Then
+                        BatSeparateInit = DVal
+                        xtrace("Set BatSeparateInit = " & BatSeparateInit)
+                    End If
+
+                    If DName = "BatSeparateApp" Then
+                        BatSeparateApp = DVal
+                        xtrace("Set BatSeparateApp = " & BatSeparateApp)
+                    End If
+
+                    If DName = "BatSeparatePost" Then
+                        BatSeparatePost = DVal
+                        xtrace("Set BatSeparatePost = " & BatSeparatePost)
+                    End If
+
+                    If DName = "StopUpdates" Then
+                        StopUpdates = DVal
+                        xtrace("Set StopUpdates = " & StopUpdates)
+                    End If
+
+                    If DName = "CopyLogToServer" Then
+                        CopyLogToServer = DVal
+                        xtrace("Set CopyLogToServer = " & CopyLogToServer)
+                    End If
+
+                    If DName = "XX" Then
+                        XX = DVal
+                        xtrace("Set XX = " & XX)
+                    End If
+
                 End If
 
             Catch ex As Exception
@@ -75,6 +115,7 @@
             End Try
         End While
         ReadFile.Dispose()
+        xtrace_sube("ReadDefaults")
     End Sub
 
     Function StringToBoolean(Val As String) As Boolean
@@ -90,7 +131,21 @@
     End Function
 
     '---- Create ini file -----------------------------------------------------
-    Sub CreateIniFile()
-        My.Computer.FileSystem.WriteAllText(IniFile1, "[INIT]" & vbNewLine, False)
+    Sub WriteIniFile()
+        xtrace_subs("WriteIniFile")
+
+        Dim IniTxt As String = "[INIT]" & vbCrLf &
+            "ScriptTypeSelect=" & Glob.ScriptTypeSelect & vbCrLf &
+            "BatSeparateInit=" & Form1.CheckBoxBatSeparateInit.Checked.ToString & vbCrLf &
+            "BatSeparateApp=" & Form1.CheckBoxBatSeparateApp.Checked.ToString & vbCrLf &
+            "BatSeparatePost=" & Form1.CheckBoxBatSeparatePost.Checked.ToString & vbCrLf &
+            "" & vbCrLf &
+            "StopUpdates=" & Form1.CheckBoxStopUpdates.Checked.ToString & vbCrLf &
+            "CopyLogToServer=" & Form1.CheckBoxLogToServer.Checked.ToString & vbCrLf &
+            "" & vbCrLf &
+            ""
+        WriteTxtToFile(Inifile, IniTxt, False, 0, "", "", True, False)
+
+        xtrace_sube("WriteIniFile")
     End Sub
 End Module

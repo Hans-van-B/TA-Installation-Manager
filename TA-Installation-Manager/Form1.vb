@@ -20,7 +20,20 @@
     Private Sub TimerInit_Tick(sender As Object, e As EventArgs) Handles TimerInit.Tick
         xtrace_subs("Form1_Load2 (TimerInit)")
         TimerInit.Stop()
+
         Set_TAISDevDepo()
+
+        If Glob.ScriptTypeSelect = "BAT" Then
+            TabPageWinBat.BackColor = ScryptTypeSelectColor
+            TabPagePS.BackColor = SystemColors.Control
+        End If
+
+        If Glob.BatSeparateInit = "True" Then CheckBoxBatSeparateInit.Checked = True
+        If Glob.BatSeparateApp = "True" Then CheckBoxBatSeparateApp.Checked = True
+        If Glob.BatSeparatePost = "True" Then CheckBoxBatSeparatePost.Checked = True
+        If Glob.StopUpdates = "True" Then CheckBoxStopUpdates.Checked = True
+        If Glob.CopyLogToServer = "True" Then CheckBoxLogToServer.Checked = True
+
         xtrace_sube("Form1_Load2")
     End Sub
 
@@ -35,6 +48,13 @@
     End Sub
 
     '==== Main Menu ===========================================================
+
+    '---- File, Save
+    Private Sub ToolStripSave_Click(sender As Object, e As EventArgs) Handles ToolStripSave.Click
+        xtrace_subs("File, Save")
+        WriteIniFile()
+        xtrace_sube("File, Save")
+    End Sub
 
     '---- File, Exit
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
@@ -78,8 +98,6 @@
     '==== Select Script-type ==========================================================
     Dim ScryptTypeSelectColor As Color = Color.AliceBlue
     Dim ButtonHighLite As Color = Color.LightYellow
-
-    Public Shared ScriptTypeSelect As String = ""
 
     Private Sub SelectScriptTypeBat()
         xtrace_subs("SelectScriptTypeBat")
@@ -172,4 +190,5 @@
         Process.Start(InstRoot)
 
     End Sub
+
 End Class

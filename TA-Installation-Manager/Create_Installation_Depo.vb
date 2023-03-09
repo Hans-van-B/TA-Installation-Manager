@@ -95,7 +95,7 @@
         Next
 
         ' Script Type .bat
-        If Form1.ScriptTypeSelect = "BAT" Then
+        If Glob.ScriptTypeSelect = "BAT" Then
             For Each SD In {"pl"}
                 CheckDir = InstRoot & "\" & SD
                 xtrace_i("Check " & T & ": " & CheckDir)
