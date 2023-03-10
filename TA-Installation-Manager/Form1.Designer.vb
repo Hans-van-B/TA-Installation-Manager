@@ -60,6 +60,7 @@ Partial Class Form1
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
+        Me.ButtonDeleteResult = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -158,6 +159,7 @@ Partial Class Form1
         'SplitContainerBase.Panel1
         '
         Me.SplitContainerBase.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonDeleteResult)
         Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonShowResult)
         Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonStartCreate)
         '
@@ -174,7 +176,7 @@ Partial Class Form1
         '
         Me.ButtonShowResult.Enabled = False
         Me.ButtonShowResult.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonShowResult.Location = New System.Drawing.Point(9, 124)
+        Me.ButtonShowResult.Location = New System.Drawing.Point(12, 114)
         Me.ButtonShowResult.Name = "ButtonShowResult"
         Me.ButtonShowResult.Size = New System.Drawing.Size(161, 35)
         Me.ButtonShowResult.TabIndex = 1
@@ -186,7 +188,7 @@ Partial Class Form1
         Me.ButtonStartCreate.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonStartCreate.Location = New System.Drawing.Point(10, 74)
         Me.ButtonStartCreate.Name = "ButtonStartCreate"
-        Me.ButtonStartCreate.Size = New System.Drawing.Size(161, 34)
+        Me.ButtonStartCreate.Size = New System.Drawing.Size(163, 34)
         Me.ButtonStartCreate.TabIndex = 0
         Me.ButtonStartCreate.Text = "Create installation"
         Me.ButtonStartCreate.UseVisualStyleBackColor = True
@@ -462,6 +464,16 @@ Partial Class Form1
         'TimerInit
         '
         '
+        'ButtonDeleteResult
+        '
+        Me.ButtonDeleteResult.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonDeleteResult.Location = New System.Drawing.Point(12, 155)
+        Me.ButtonDeleteResult.Name = "ButtonDeleteResult"
+        Me.ButtonDeleteResult.Size = New System.Drawing.Size(161, 36)
+        Me.ButtonDeleteResult.TabIndex = 2
+        Me.ButtonDeleteResult.Text = "Delete the result"
+        Me.ButtonDeleteResult.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -536,4 +548,5 @@ Partial Class Form1
     Friend WithEvents ButtonShowResult As Button
     Friend WithEvents CheckBoxBatSeparatePost As CheckBox
     Friend WithEvents ToolStripSave As ToolStripMenuItem
+    Friend WithEvents ButtonDeleteResult As Button
 End Class

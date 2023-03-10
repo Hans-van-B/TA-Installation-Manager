@@ -1,5 +1,5 @@
 ﻿Module Create_Installation_Depo
-    Public TAISDevDepo As String = "<Undefined>"
+    Public TAISDevDepo As String
     Public DepoRoot As String
 
     Public TA_InstLib As String
@@ -77,6 +77,8 @@
             TAISDevDepo = Environment.GetEnvironmentVariable("TAIS_DEV_DEPO")
         ElseIf Environment.GetEnvironmentVariable("TA_DEV_DEPO") <> "" Then
             TAISDevDepo = Environment.GetEnvironmentVariable("TA_DEV_DEPO")
+        Else
+            TAISDevDepo = IniDevDepo
         End If
         Form1.ComboBoxDevDepo.Text = TAISDevDepo
         xtrace_i("TAISDevDepo = " & TAISDevDepo)

@@ -58,6 +58,23 @@ Module ModFileSystem
         Return Result
     End Function
 
+    Function DeleteDirectory(DirPath As String,
+                        ErrNr As Integer,
+                        ErrDetails As String,
+                        Hint As String,
+                        ShowDialog As Boolean,
+                        Fatal As Boolean) As Boolean
+        xtrace_i("Delete Directory " & DirPath)
+        Dim Result As Boolean = True
+        Try
+            System.IO.Directory.Delete(DirPath, True)
+        Catch ex As Exception
+            Result = False
+            CreateWarning(ErrNr, "Failed to delete directory: " & DirPath, ErrDetails, Hint, ShowDialog, ex.Message, Fatal)
+        End Try
+        Return Result
+    End Function
+
     Function CopyFile(FileName1 As String,
                       FileName2 As String, ErrNr As Integer,
                       ErrDetails As String,

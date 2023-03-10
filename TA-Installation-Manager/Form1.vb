@@ -137,6 +137,7 @@
         xtrace_sube("TabControl1_MouseClick")
     End Sub
 
+    '==== Buttons =============================================================================
     '---- Create the installation
     Private Sub ButtonStartCreate_Click(sender As Object, e As EventArgs) Handles ButtonStartCreate.Click
         xtrace_subs("ButtonStartCreate_Click")
@@ -171,24 +172,82 @@
         End If
 
         ButtonStartCreate.Enabled = True
+        CheckResultPath()
 
         xtrace_sube("ButtonStartCreate_Click")
     End Sub
+    '---- Show the resuly
+    Private Sub ButtonShowResult_Click(sender As Object, e As EventArgs) Handles ButtonShowResult.Click
+        Process.Start(InstRoot)
+    End Sub
+    '---- Delete the result
+    Private Sub ButtonDeleteResult_Click(sender As Object, e As EventArgs) Handles ButtonDeleteResult.Click
+        xtrace_subs("Button Delete the result")
+        Dim Rsp As MsgBoxResult
+        Rsp = MsgBox("Are you sure you want to delete the" & vbCrLf & InstName & " installation?", MsgBoxStyle.OkCancel, "Delete result?")
 
-    '---- Reset backColor after entering data
+        ' Delete version dir
+        If Rsp = MsgBoxResult.Ok Then
+            DeleteDirectory(MyDepoPath, 0, "Delete the installation", "", True, False)
+        End If
+
+        'Try to delete the InstName directory
+        xtrace_i("Delete the " & InstName & " Dir.")
+        Try
+            System.IO.Directory.Delete(TAISDevDepo & "\" & InstName, False)
+        Catch ex As Exception
+            xtrace_i(ex.Message)
+        End Try
+        CheckResultPath()
+
+        xtrace_sube("Button Delete the result")
+    End Sub
+
+    '==== TextChanged =======================================================================
+
+    '---- Update the DevDepo Var
+    Private Sub ComboBoxDevDepo_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxDevDepo.TextChanged
+        Dim NewV As String = ComboBoxDevDepo.Text
+        If My.Computer.FileSystem.DirectoryExists(NewV) Then
+            TAISDevDepo = NewV
+            ComboBoxDevDepo.ForeColor = ForeColor
+        Else
+            ComboBoxDevDepo.ForeColor = Color.DarkRed
+        End If
+        CheckResultPath()
+    End Sub
+
+    '---- Update the InstName (Reset backColor after entering data)
     Private Sub ComboBoxInstName_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxInstName.TextChanged
+        InstName = ComboBoxInstName.Text
+        xtrace_i("Set InstName = " & InstName)
         ComboBoxInstName.BackColor = SystemColors.Control
+        CheckResultPath()
+    End Sub
+
+    '---- Update Inst version
+    Private Sub ComboBoxInstVer_TextUpdate(sender As Object, e As EventArgs) Handles ComboBoxInstVer.TextUpdate
+        CheckResultPath()
+    End Sub
+
+    Dim ResultPathExist As Boolean = False
+    Dim MyDepoPath As String
+    Sub CheckResultPath()
+        MyDepoPath = TAISDevDepo & "\" & InstName & "\" & ComboBoxInstVer.Text
+        xtrace_i("Check " & MyDepoPath, 2)
+
+        If My.Computer.FileSystem.DirectoryExists(MyDepoPath) Then
+            ResultPathExist = True
+        Else
+            ResultPathExist = False
+        End If
+        ButtonDeleteResult.Enabled = ResultPathExist
     End Sub
 
     '---- Show Hint
     Sub ShowHint(Msg As String)
         xtrace_i("Show hint: " & Msg)
         MsgBox(Msg, MessageBoxIcon.Information, "Hint:")
-    End Sub
-
-    Private Sub ButtonShowResult_Click(sender As Object, e As EventArgs) Handles ButtonShowResult.Click
-        Process.Start(InstRoot)
-
     End Sub
 
 End Class

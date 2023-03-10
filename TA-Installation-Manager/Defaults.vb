@@ -103,6 +103,12 @@
                         xtrace("Set CopyLogToServer = " & CopyLogToServer)
                     End If
 
+                    If DName = "TAISDevDepo" Then
+                        IniDevDepo = DVal
+                        xtrace("Set TAISDevDepo = " & IniDevDepo)
+                    End If
+
+
                     If DName = "XX" Then
                         XX = DVal
                         xtrace("Set XX = " & XX)
@@ -142,6 +148,9 @@
             "" & vbCrLf &
             "StopUpdates=" & Form1.CheckBoxStopUpdates.Checked.ToString & vbCrLf &
             "CopyLogToServer=" & Form1.CheckBoxLogToServer.Checked.ToString & vbCrLf &
+            "" & vbCrLf &
+            "# Only used if the environment var. is missing" & vbCrLf &
+            "TAISDevDepo=" & TAISDevDepo & vbCrLf &
             "" & vbCrLf &
             ""
         WriteTxtToFile(Inifile, IniTxt, False, 0, "", "", True, False)
