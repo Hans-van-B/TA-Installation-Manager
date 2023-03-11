@@ -66,6 +66,7 @@ Module InstallationWizzardBat
 
         Dim wclient As WebClient = New WebClient()
 
+        ' Get Name from URL
         Dim P1 As Integer = InStrRev(Url, "/")
         xtrace_i("P1 = " & P1.ToString)
         Dim Name = Mid(Url, P1 + 1)
@@ -74,14 +75,29 @@ Module InstallationWizzardBat
         ' Store the name for later unpacking
         DownloadFileNames(Index) = Name
 
+        ' Set the target path
         Dim FPath = DepoPath & "\" & Target & "\" & Name
 
-        xtrace_i(Url & " -> " & FPath)
-        Try
-            wclient.DownloadFile(Url, FPath)
-        Catch ex As Exception
-            xtrace_i(ex.Message)
-        End Try
+        Dim GetFile As Boolean
+        If ReDownload Then
+            xtrace_i("Redownload = True")
+            GetFile = True
+        ElseIf My.Computer.FileSystem.FileExists(FPath) Then
+            xtrace_i("Target exists")
+            GetFile = False
+        Else
+            xtrace_i("Target does not exist")
+            GetFile = True
+        End If
+
+        If GetFile Then
+            xtrace_i(Url & " -> " & FPath)
+            Try
+                wclient.DownloadFile(Url, FPath)
+            Catch ex As Exception
+                xtrace_i(ex.Message)
+            End Try
+        End If
 
         xtrace_sube("GetUrl")
     End Sub

@@ -78,6 +78,15 @@
                         xtrace("Set ScriptTypeSelect = " & ScriptTypeSelect)
                     End If
 
+                    If DName = "CopySourceToLocal" Then
+                        If DVal = "True" Then
+                            CopySourceToLocal = True
+                        ElseIf DVal = False Then
+                            CopySourceToLocal = False
+                        End If
+                        xtrace_i("Set CopySourceToLocal = " & CopySourceToLocal.ToString)
+                    End If
+
                     If DName = "BatSeparateInit" Then
                         BatSeparateInit = DVal
                         xtrace("Set BatSeparateInit = " & BatSeparateInit)
@@ -101,6 +110,13 @@
                     If DName = "CopyLogToServer" Then
                         CopyLogToServer = DVal
                         xtrace("Set CopyLogToServer = " & CopyLogToServer)
+                    End If
+
+                    If DName = "Redownload" Then
+                        If DVal = "True" Then
+                            ReDownload = True
+                            xtrace_i("Set Redownload = " & ReDownload.ToString)
+                        End If
                     End If
 
                     If DName = "TAISDevDepo" Then
@@ -143,11 +159,13 @@
         Dim IniTxt As String = "[INIT]" & vbCrLf &
             "ScriptTypeSelect=" & Glob.ScriptTypeSelect & vbCrLf &
             "BatSeparateInit=" & Form1.CheckBoxBatSeparateInit.Checked.ToString & vbCrLf &
+            "CopySourceToLocal=" & Form1.CheckBoxCopySource.Checked.ToString & vbCrLf &
             "BatSeparateApp=" & Form1.CheckBoxBatSeparateApp.Checked.ToString & vbCrLf &
             "BatSeparatePost=" & Form1.CheckBoxBatSeparatePost.Checked.ToString & vbCrLf &
             "" & vbCrLf &
             "StopUpdates=" & Form1.CheckBoxStopUpdates.Checked.ToString & vbCrLf &
             "CopyLogToServer=" & Form1.CheckBoxLogToServer.Checked.ToString & vbCrLf &
+            "ReDownload=" & Form1.CheckBoxReDownload.Checked.ToString & vbCrLf &
             "" & vbCrLf &
             "# Only used if the environment var. is missing" & vbCrLf &
             "TAISDevDepo=" & TAISDevDepo & vbCrLf &

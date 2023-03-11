@@ -48,6 +48,7 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ComboBoxDevDepo = New System.Windows.Forms.ComboBox()
         Me.SplitContainer2V = New System.Windows.Forms.SplitContainer()
+        Me.CheckBoxCopySource = New System.Windows.Forms.CheckBox()
         Me.CheckBoxLogToServer = New System.Windows.Forms.CheckBox()
         Me.CheckBoxStopUpdates = New System.Windows.Forms.CheckBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -62,7 +63,7 @@ Partial Class Form1
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
-        Me.CheckBoxCopySource = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxReDownload = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -334,6 +335,7 @@ Partial Class Form1
         'SplitContainer2V.Panel1
         '
         Me.SplitContainer2V.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxReDownload)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxCopySource)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxLogToServer)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxStopUpdates)
@@ -346,6 +348,16 @@ Partial Class Form1
         Me.SplitContainer2V.Size = New System.Drawing.Size(674, 391)
         Me.SplitContainer2V.SplitterDistance = 129
         Me.SplitContainer2V.TabIndex = 2
+        '
+        'CheckBoxCopySource
+        '
+        Me.CheckBoxCopySource.AutoSize = True
+        Me.CheckBoxCopySource.Location = New System.Drawing.Point(6, 25)
+        Me.CheckBoxCopySource.Name = "CheckBoxCopySource"
+        Me.CheckBoxCopySource.Size = New System.Drawing.Size(132, 17)
+        Me.CheckBoxCopySource.TabIndex = 3
+        Me.CheckBoxCopySource.Text = "Copy Source To Local"
+        Me.CheckBoxCopySource.UseVisualStyleBackColor = True
         '
         'CheckBoxLogToServer
         '
@@ -488,15 +500,15 @@ Partial Class Form1
         'TimerInit
         '
         '
-        'CheckBoxCopySource
+        'CheckBoxReDownload
         '
-        Me.CheckBoxCopySource.AutoSize = True
-        Me.CheckBoxCopySource.Location = New System.Drawing.Point(6, 25)
-        Me.CheckBoxCopySource.Name = "CheckBoxCopySource"
-        Me.CheckBoxCopySource.Size = New System.Drawing.Size(132, 17)
-        Me.CheckBoxCopySource.TabIndex = 3
-        Me.CheckBoxCopySource.Text = "Copy Source To Local"
-        Me.CheckBoxCopySource.UseVisualStyleBackColor = True
+        Me.CheckBoxReDownload.AutoSize = True
+        Me.CheckBoxReDownload.Location = New System.Drawing.Point(6, 129)
+        Me.CheckBoxReDownload.Name = "CheckBoxReDownload"
+        Me.CheckBoxReDownload.Size = New System.Drawing.Size(91, 17)
+        Me.CheckBoxReDownload.TabIndex = 4
+        Me.CheckBoxReDownload.Text = "Re-Download"
+        Me.CheckBoxReDownload.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -575,4 +587,5 @@ Partial Class Form1
     Friend WithEvents ButtonDeleteResult As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents CheckBoxCopySource As CheckBox
+    Friend WithEvents CheckBoxReDownload As CheckBox
 End Class

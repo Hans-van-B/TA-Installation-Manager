@@ -28,11 +28,13 @@
             TabPagePS.BackColor = SystemColors.Control
         End If
 
+        If Glob.CopySourceToLocal Then CheckBoxCopySource.Checked = True
         If Glob.BatSeparateInit = "True" Then CheckBoxBatSeparateInit.Checked = True
         If Glob.BatSeparateApp = "True" Then CheckBoxBatSeparateApp.Checked = True
         If Glob.BatSeparatePost = "True" Then CheckBoxBatSeparatePost.Checked = True
         If Glob.StopUpdates = "True" Then CheckBoxStopUpdates.Checked = True
         If Glob.CopyLogToServer = "True" Then CheckBoxLogToServer.Checked = True
+        If Glob.ReDownload = True Then CheckBoxReDownload.Checked = True
 
         xtrace_sube("Form1_Load2")
     End Sub
