@@ -40,8 +40,6 @@
     Sub Finalize_Installation()
         xtrace_subs("Finalize_Installation")
 
-        wait(1)
-        Form1.ToolStripStatusLabel1.Text = "Done."
         xtrace_sube("Finalize_Installation")
     End Sub
 

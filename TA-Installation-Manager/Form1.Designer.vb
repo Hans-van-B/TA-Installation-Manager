@@ -34,6 +34,7 @@ Partial Class Form1
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainerBase = New System.Windows.Forms.SplitContainer()
+        Me.ButtonDeleteResult = New System.Windows.Forms.Button()
         Me.ButtonShowResult = New System.Windows.Forms.Button()
         Me.ButtonStartCreate = New System.Windows.Forms.Button()
         Me.SplitContainer1H = New System.Windows.Forms.SplitContainer()
@@ -52,6 +53,7 @@ Partial Class Form1
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPageWinBat = New System.Windows.Forms.TabPage()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.CheckBoxBatSeparatePost = New System.Windows.Forms.CheckBox()
         Me.CheckBoxBatSeparateApp = New System.Windows.Forms.CheckBox()
         Me.CheckBoxBatSeparateInit = New System.Windows.Forms.CheckBox()
@@ -60,7 +62,7 @@ Partial Class Form1
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
-        Me.ButtonDeleteResult = New System.Windows.Forms.Button()
+        Me.CheckBoxCopySource = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -171,6 +173,16 @@ Partial Class Form1
         Me.SplitContainerBase.Size = New System.Drawing.Size(873, 519)
         Me.SplitContainerBase.SplitterDistance = 195
         Me.SplitContainerBase.TabIndex = 3
+        '
+        'ButtonDeleteResult
+        '
+        Me.ButtonDeleteResult.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonDeleteResult.Location = New System.Drawing.Point(12, 155)
+        Me.ButtonDeleteResult.Name = "ButtonDeleteResult"
+        Me.ButtonDeleteResult.Size = New System.Drawing.Size(161, 36)
+        Me.ButtonDeleteResult.TabIndex = 2
+        Me.ButtonDeleteResult.Text = "Delete the result"
+        Me.ButtonDeleteResult.UseVisualStyleBackColor = True
         '
         'ButtonShowResult
         '
@@ -322,6 +334,7 @@ Partial Class Form1
         'SplitContainer2V.Panel1
         '
         Me.SplitContainer2V.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxCopySource)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxLogToServer)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxStopUpdates)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.Label4)
@@ -337,7 +350,7 @@ Partial Class Form1
         'CheckBoxLogToServer
         '
         Me.CheckBoxLogToServer.AutoSize = True
-        Me.CheckBoxLogToServer.Location = New System.Drawing.Point(4, 57)
+        Me.CheckBoxLogToServer.Location = New System.Drawing.Point(6, 105)
         Me.CheckBoxLogToServer.Name = "CheckBoxLogToServer"
         Me.CheckBoxLogToServer.Size = New System.Drawing.Size(121, 17)
         Me.CheckBoxLogToServer.TabIndex = 2
@@ -347,7 +360,7 @@ Partial Class Form1
         'CheckBoxStopUpdates
         '
         Me.CheckBoxStopUpdates.AutoSize = True
-        Me.CheckBoxStopUpdates.Location = New System.Drawing.Point(4, 33)
+        Me.CheckBoxStopUpdates.Location = New System.Drawing.Point(6, 82)
         Me.CheckBoxStopUpdates.Name = "CheckBoxStopUpdates"
         Me.CheckBoxStopUpdates.Size = New System.Drawing.Size(91, 17)
         Me.CheckBoxStopUpdates.TabIndex = 1
@@ -378,6 +391,7 @@ Partial Class Form1
         '
         'TabPageWinBat
         '
+        Me.TabPageWinBat.Controls.Add(Me.Label5)
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparatePost)
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparateApp)
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparateInit)
@@ -388,6 +402,16 @@ Partial Class Form1
         Me.TabPageWinBat.TabIndex = 0
         Me.TabPageWinBat.Text = "Windows Batch"
         Me.TabPageWinBat.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(7, 329)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(110, 15)
+        Me.Label5.TabIndex = 3
+        Me.Label5.Text = "InstallationWizzard"
+        Me.Label5.Visible = False
         '
         'CheckBoxBatSeparatePost
         '
@@ -464,15 +488,15 @@ Partial Class Form1
         'TimerInit
         '
         '
-        'ButtonDeleteResult
+        'CheckBoxCopySource
         '
-        Me.ButtonDeleteResult.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonDeleteResult.Location = New System.Drawing.Point(12, 155)
-        Me.ButtonDeleteResult.Name = "ButtonDeleteResult"
-        Me.ButtonDeleteResult.Size = New System.Drawing.Size(161, 36)
-        Me.ButtonDeleteResult.TabIndex = 2
-        Me.ButtonDeleteResult.Text = "Delete the result"
-        Me.ButtonDeleteResult.UseVisualStyleBackColor = True
+        Me.CheckBoxCopySource.AutoSize = True
+        Me.CheckBoxCopySource.Location = New System.Drawing.Point(6, 25)
+        Me.CheckBoxCopySource.Name = "CheckBoxCopySource"
+        Me.CheckBoxCopySource.Size = New System.Drawing.Size(132, 17)
+        Me.CheckBoxCopySource.TabIndex = 3
+        Me.CheckBoxCopySource.Text = "Copy Source To Local"
+        Me.CheckBoxCopySource.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -549,4 +573,6 @@ Partial Class Form1
     Friend WithEvents CheckBoxBatSeparatePost As CheckBox
     Friend WithEvents ToolStripSave As ToolStripMenuItem
     Friend WithEvents ButtonDeleteResult As Button
+    Friend WithEvents Label5 As Label
+    Friend WithEvents CheckBoxCopySource As CheckBox
 End Class

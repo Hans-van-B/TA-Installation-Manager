@@ -86,6 +86,7 @@
     </Compile>
     <Compile Include="Glob.vb" />
     <Compile Include="HelpMod.vb" />
+    <Compile Include="InstallationWizzardBat.vb" />
     <Compile Include="Log.vb" />
     <Compile Include="ModFileSystem.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

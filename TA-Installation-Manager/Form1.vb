@@ -155,12 +155,22 @@
             Create_Installation_Base()
             Add_Installation_Components_Bat()
             Finalize_Installation()
+
+            AddWebContent()
+            wait(1)
+            ToolStripStatusLabel1.Text = "Done."
+
         ElseIf ScriptTypeSelect = "PS" Then
             ToolStripStatusLabel1.Text = "Create TA-Installation type .ps2"
             Create_Depo()
             Create_Installation_Base()
             Add_Installation_Components_PS()
             Finalize_Installation()
+
+            AddWebContent()
+            wait(1)
+            ToolStripStatusLabel1.Text = "Done."
+
         Else
             ToolStripStatusLabel1.Text = "First select the installation type and it's components"
             MsgBox("Please select the installation type" & vbCrLf & " and it's components", MessageBoxIcon.Information, "Hint:")
