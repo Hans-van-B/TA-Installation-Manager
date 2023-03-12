@@ -124,6 +124,7 @@
         Else
             WTO(ContentInit)    ' Optional Wizzard Content
         End If
+        WTO("")
 
         ' Add footer and write
         If SeparateFile Then
@@ -183,6 +184,13 @@
             WTO("")
         End If
 
+        If ContentAIExtr <> "" Then
+            WTO(CreateELine("Extract Installation Archive"))
+            WTO("")
+            WTO(ContentAIExtr)
+            WTO("")
+        End If
+
         WTO(CreateELine("Start the App installation."))
         WTO("")
         WTO(":: Add the installation command here")
@@ -228,7 +236,7 @@
 
             ' Write the file header
             xtrace_i("Create " & OutFile)
-            WTO(BatFileHeader)
+            WTO(BatFileHeader, False)
             WTO(BatTimeStamp)
         Else
             ' Remove the separate file if it exists
@@ -269,7 +277,7 @@
 
         OutFile = "\bat\util\exit.bat"
         xtrace_i("Create " & OutFile)
-        WTO(BatFileHeader)
+        WTO(BatFileHeader, False)
         WTO("")
         WTO("%WRITE% ' * Finalizing'")
         WTO("")

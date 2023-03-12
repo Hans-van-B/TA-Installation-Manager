@@ -1,11 +1,14 @@
 ﻿Imports System.Net
+Imports System.Reflection
 
 Module InstallationWizzardStart
     Public WizzardName As String
     Public WizzardExists As Boolean
 
     Public ContentInit As String
+    Public ContentAIExtr As String  ' Application Installation Extract
     Public Downloads(10) As String
+    'Public DownloadFileNames(10) As String
     Public DownLoadIndex As Integer
 
     Sub InstallationWizzard()
@@ -16,6 +19,7 @@ Module InstallationWizzardStart
 
         xtrace_i("Reset content")
         ContentInit = ""
+        ContentAIExtr = ""
         DownLoadIndex = -1
 
         InitWizzard()
@@ -86,10 +90,13 @@ Module InstallationWizzardStart
                     End If
 
                     SharedDefaults(DName, DVal)
+                    BatWDefaults(DName, DVal)
 
                     If DName = "ContentInitLine" Then
+                        xtrace_i("Add InitLine: " & DVal)
                         ContentInit = ContentInit & DVal & vbCrLf
                     End If
+
 
                 End If
 
@@ -105,24 +112,38 @@ QUIT:
 
     '==== General Purpose routines ======================================================
 
+    Function DownloadData(DLine As String) As String()
+        Dim DData() As String
+        Dim URL As String
+        Dim Target As String
+        Dim Name As String
+        Dim P1 As Integer
+
+        DData = DLine.Split(";")
+        URL = DData(0)
+        Target = DData(1)
+
+        P1 = InStrRev(URL, "/")
+        'xtrace_i("P1 = " & P1.ToString)
+        Name = Mid(URL, P1 + 1)
+
+        xtrace_i("DownloadData = " & URL & "," & Target & "," & Name)
+        DownloadData = {URL, Target, Name}
+    End Function
+
     '---- Download ----------------------------------------------------------------------
-    Public DownloadFileNames(10) As String
-    Sub GetUrl(Url As String, Target As String, Index As Integer)
+    Sub GetUrl(DData() As String)
         xtrace_subs("GetUrl")
 
+        Dim Url As String = DData(0)
+        Dim Target As String = DData(1)
+        Dim FName As String = DData(2)
         Dim wclient As WebClient = New WebClient()
 
-        ' Get Name from URL
-        Dim P1 As Integer = InStrRev(Url, "/")
-        xtrace_i("P1 = " & P1.ToString)
-        Dim Name = Mid(Url, P1 + 1)
-        xtrace_i("Name = " & Name)
-
-        ' Store the name for later unpacking
-        DownloadFileNames(Index) = Name
+        xtrace_i("FName = " & FName)
 
         ' Set the target path
-        Dim FPath = DepoPath & "\" & Target & "\" & Name
+        Dim FPath = DepoPath & "\" & Target & "\" & FName
 
         Dim GetFile As Boolean
         If ReDownload Then
@@ -147,5 +168,12 @@ QUIT:
 
         xtrace_sube("GetUrl")
     End Sub
+
+    'Sub unzip(ZipFile As String, OutputD As String)
+    '    Dim sc As New Shell32.Shell()
+    '    Dim output As Shell32.Folder = sc.NameSpace(OutputD)
+    '    Dim input As Shell32.Folder = sc.NameSpace(ZipFile)
+    '    output.CopyHere(input.Items, 4)
+    'End Sub
 
 End Module
