@@ -119,7 +119,11 @@
 
         ' Set init body txt
         WTO("%WRITE% ' * Initializing'")
-        WTO(":: Add initialization conten here")
+        If (ContentInit = "") Then
+            WTO(":: Add initialization content here")
+        Else
+            WTO(ContentInit)    ' Optional Wizzard Content
+        End If
 
         ' Add footer and write
         If SeparateFile Then

@@ -78,29 +78,7 @@
                         xtrace("Set ScriptTypeSelect = " & ScriptTypeSelect)
                     End If
 
-                    If DName = "CopySourceToLocal" Then
-                        If DVal = "True" Then
-                            CopySourceToLocal = True
-                        ElseIf DVal = False Then
-                            CopySourceToLocal = False
-                        End If
-                        xtrace_i("Set CopySourceToLocal = " & CopySourceToLocal.ToString)
-                    End If
-
-                    If DName = "BatSeparateInit" Then
-                        BatSeparateInit = DVal
-                        xtrace("Set BatSeparateInit = " & BatSeparateInit)
-                    End If
-
-                    If DName = "BatSeparateApp" Then
-                        BatSeparateApp = DVal
-                        xtrace("Set BatSeparateApp = " & BatSeparateApp)
-                    End If
-
-                    If DName = "BatSeparatePost" Then
-                        BatSeparatePost = DVal
-                        xtrace("Set BatSeparatePost = " & BatSeparatePost)
-                    End If
+                    SharedDefaults(DName, DVal)
 
                     If DName = "StopUpdates" Then
                         StopUpdates = DVal
@@ -138,6 +116,36 @@
         End While
         ReadFile.Dispose()
         xtrace_sube("ReadDefaults")
+    End Sub
+
+    ' These defaults are used both in the general defaults and also in the wizzard init
+    Sub SharedDefaults(DName As String, DVal As String)
+        If DName = "CopySourceToLocal" Then
+            If DVal = "True" Then
+                CopySourceToLocal = True
+                Form1.CheckBoxCopySource.Checked = True
+            ElseIf DVal = False Then
+                CopySourceToLocal = False
+                Form1.CheckBoxCopySource.Checked = False
+            End If
+            xtrace_i("Set CopySourceToLocal = " & CopySourceToLocal.ToString)
+        End If
+
+        If DName = "BatSeparateInit" Then
+            BatSeparateInit = DVal
+            xtrace("Set BatSeparateInit = " & BatSeparateInit)
+        End If
+
+        If DName = "BatSeparateApp" Then
+            BatSeparateApp = DVal
+            xtrace("Set BatSeparateApp = " & BatSeparateApp)
+        End If
+
+        If DName = "BatSeparatePost" Then
+            BatSeparatePost = DVal
+            xtrace("Set BatSeparatePost = " & BatSeparatePost)
+        End If
+
     End Sub
 
     Function StringToBoolean(Val As String) As Boolean

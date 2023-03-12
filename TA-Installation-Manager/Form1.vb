@@ -28,7 +28,8 @@
             TabPagePS.BackColor = SystemColors.Control
         End If
 
-        If Glob.CopySourceToLocal Then CheckBoxCopySource.Checked = True
+        ' Shared defaults can be changed ad execution time and are therefore set after reading the default
+        ' CheckBoxCopySource.Checked: See SharedDefaults
         If Glob.BatSeparateInit = "True" Then CheckBoxBatSeparateInit.Checked = True
         If Glob.BatSeparateApp = "True" Then CheckBoxBatSeparateApp.Checked = True
         If Glob.BatSeparatePost = "True" Then CheckBoxBatSeparatePost.Checked = True
@@ -155,6 +156,7 @@
             ToolStripStatusLabel1.Text = "Create TA-Installation type .bat"
             Create_Depo()
             Create_Installation_Base()
+            InstallationWizzard()
             Add_Installation_Components_Bat()
             Finalize_Installation()
 
@@ -166,6 +168,7 @@
             ToolStripStatusLabel1.Text = "Create TA-Installation type .ps2"
             Create_Depo()
             Create_Installation_Base()
+            InstallationWizzard()
             Add_Installation_Components_PS()
             Finalize_Installation()
 
