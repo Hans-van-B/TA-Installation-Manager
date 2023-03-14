@@ -32,6 +32,7 @@
         AddInstFile(Form1.CheckBoxTASetup.Checked, "Inst\TA-Setup.exe")
         AddInstFile(Form1.CheckBoxTASelect.Checked, "Inst\TA-Select.exe")
         AddInstFile(Form1.CheckBoxTADeinstall.Checked, "Inst\TA-Deinstall.exe")
+
         Form1.ButtonShowResult.Enabled = True
 
         xtrace_sube("Create_Installation_Base")

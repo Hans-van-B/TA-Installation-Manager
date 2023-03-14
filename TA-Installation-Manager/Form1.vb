@@ -265,4 +265,12 @@
         MsgBox(Msg, MessageBoxIcon.Information, "Hint:")
     End Sub
 
+    Private Sub RadioButtonRemRem_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonRemRem.CheckedChanged, RadioButtonRemHash.CheckedChanged, RadioButtonRemEcho.CheckedChanged, RadioButtonRemDots.CheckedChanged
+        xtrace_i("RadioButtonRemRem_CheckedChanged")
+        If RadioButtonRemRem.Checked Then RemType = "REM"
+        If RadioButtonRemDots.Checked Then RemType = "::"
+        If RadioButtonRemEcho.Checked Then RemType = "echo"
+        If RadioButtonRemHash.Checked Then RemType = "#"
+        xtrace_i("Set RemType = " & RemType)
+    End Sub
 End Class

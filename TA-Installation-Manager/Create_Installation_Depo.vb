@@ -1,4 +1,6 @@
-﻿Module Create_Installation_Depo
+﻿Imports System.Security.Policy
+
+Module Create_Installation_Depo
     Public TAISDevDepo As String
     Public DepoRoot As String
 
@@ -28,7 +30,7 @@
         xtrace_i("TA_InstLib       = " & TA_InstLib)
         ' ToDo If Not exist
         If Not My.Computer.FileSystem.DirectoryExists(TA_InstLib) Then
-
+            MD(TA_InstLib)
         End If
 
         '---- TA_InstLibV
@@ -42,34 +44,44 @@
         TA_InstLib_Inst = TA_InstLibV & "\Inst"
         xtrace_i("TA_InstLib_Inst  = " & TA_InstLib_Inst)
         If Not My.Computer.FileSystem.DirectoryExists(TA_InstLib_Inst) Then
-            CreateDirectory(TA_InstLib_Inst, 0, "Failed to create the Inst directory in TA_InstLib", "Please check your directory access rights", True, True)
+            MD(TA_InstLib_Inst)
         End If
         Check_InstSubDirs(TA_InstLib_Inst, "           ")
+
+        '---- TA_Instlib_Files
+        'Fails: GetUrl3("https://github.com/Hans-van-B/XElevate/raw/master/XElevate/bin/Debug/XElevate.exe", TA_InstLib_Inst & "\exe\XElevate.exe")
+        'GetUrl2("", TA_InstLib_Inst & "")
 
         '---- TA_Template
         TA_Template = TAISDevDepo & "\TA_Template"
         xtrace_i("TA_Template      = " & TA_Template)
         If Not My.Computer.FileSystem.DirectoryExists(TA_Template) Then
-            CreateDirectory(TA_Template, 0, "Failed to create the directory TA_Template", "Please check your directory access rights", True, True)
+            MD(TA_Template)
         End If
+
 
         '---- TA_TemplateV
         TA_TemplateV = TA_Template & "\" & TA_Template_Version
         xtrace_i("TA_TemplateV     = " & TA_TemplateV)
         If Not My.Computer.FileSystem.DirectoryExists(TA_TemplateV) Then
-            CreateDirectory(TA_TemplateV, 0, "Failed to create the version directory in TA_Template", "Please check your directory access rights", True, True)
+            MD(TA_TemplateV)
         End If
 
         '---- TA_Template_Inst
         TA_Template_Inst = TA_TemplateV & "\Inst"
         xtrace_i("TA_Template_Inst = " & TA_Template_Inst)
         If Not My.Computer.FileSystem.DirectoryExists(TA_Template_Inst) Then
-            CreateDirectory(TA_Template_Inst, 0, "Failed to create the Inst directory in TA_Template", "Please check your directory access rights", True, True)
+            MD(TA_Template_Inst)
         End If
         Check_InstSubDirs(TA_Template_Inst, "           ")
 
+        '---- TA_Template Files
+        'Fails: GetUrl3("https://github.com/Hans-van-B/TA-Setup/releases/download/V0.01.24/TA-Setup.exe",       TA_Template_Inst & "\TA-Setup.exe")
+        'Fails: GetUrl3("https://github.com/Hans-van-B/TA-Select/raw/master/TA-Select/bin/Debug/TA-Select.exe", TA_Template_Inst & "\TA-Select.exe")
+
         xtrace_sube("Create_Depo")
     End Sub
+
 
     Sub Set_TAISDevDepo()
         xtrace_subs("Set_TAISDevDepo")
@@ -81,6 +93,8 @@
             TAISDevDepo = IniDevDepo
         End If
         Form1.ComboBoxDevDepo.Text = TAISDevDepo
+        Form1.ComboBoxDevDepo.Items.Add(TAISDevDepo)
+        Form1.ComboBoxDevDepo.Items.Add(TAISDevDepo & "Test")
         xtrace_i("TAISDevDepo = " & TAISDevDepo)
         xtrace_sube("Set_TAISDevDepo")
     End Sub

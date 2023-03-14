@@ -120,6 +120,8 @@
 
     ' These defaults are used both in the general defaults and also in the wizzard init
     Sub SharedDefaults(DName As String, DVal As String)
+        xtrace_subs("SharedDefaults", 3)
+
         If DName = "CopySourceToLocal" Then
             If DVal = "True" Then
                 CopySourceToLocal = True
@@ -146,6 +148,17 @@
             xtrace("Set BatSeparatePost = " & BatSeparatePost)
         End If
 
+        If DName = "BatRemarkMethod" Then
+            RemType = DVal
+            xtrace_i("Set BatRemarkMethod = " & RemType)
+            If RemType = "REM" Then Form1.RadioButtonRemRem.Checked = True Else Form1.RadioButtonRemRem.Checked = False
+            If RemType = "::" Then Form1.RadioButtonRemDots.Checked = True Else Form1.RadioButtonRemDots.Checked = False
+            If RemType = "echo" Then Form1.RadioButtonRemEcho.Checked = True Else Form1.RadioButtonRemEcho.Checked = False
+            If RemType = "#" Then Form1.RadioButtonRemHash.Checked = True Else Form1.RadioButtonRemHash.Checked = False
+
+        End If
+
+        xtrace_sube("SharedDefaults", 3)
     End Sub
 
     Function StringToBoolean(Val As String) As Boolean
@@ -170,6 +183,7 @@
             "CopySourceToLocal=" & Form1.CheckBoxCopySource.Checked.ToString & vbCrLf &
             "BatSeparateApp=" & Form1.CheckBoxBatSeparateApp.Checked.ToString & vbCrLf &
             "BatSeparatePost=" & Form1.CheckBoxBatSeparatePost.Checked.ToString & vbCrLf &
+            "BatRemarkMethod=" & RemType & vbCrLf &
             "" & vbCrLf &
             "StopUpdates=" & Form1.CheckBoxStopUpdates.Checked.ToString & vbCrLf &
             "CopyLogToServer=" & Form1.CheckBoxLogToServer.Checked.ToString & vbCrLf &

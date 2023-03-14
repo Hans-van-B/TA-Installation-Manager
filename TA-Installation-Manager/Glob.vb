@@ -1,7 +1,7 @@
 ﻿Module Glob
     ' Template Windows Forms
     Public AppName As String = "TA-Installation-Manager"
-    Public AppVer As String = "0.01.06"
+    Public AppVer As String = "0.01.07"
 
     Public AppRoot As String = Application.StartupPath
     Public CD As String = My.Computer.FileSystem.CurrentDirectory
@@ -22,6 +22,7 @@
     Public BatSeparatePost As String = "False"
     Public IniDevDepo As String = "<Undefined>"
     Public ReDownload As Boolean = False
+    Public RemType As String = "REM"    ' REM|::|echo|#
 
     Public StopUpdates As String = "False"
     Public CopyLogToServer As String = "False"

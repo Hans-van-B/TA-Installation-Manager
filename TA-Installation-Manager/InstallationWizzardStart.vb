@@ -5,8 +5,9 @@ Module InstallationWizzardStart
     Public WizzardName As String
     Public WizzardExists As Boolean
 
-    Public ContentInit As String
-    Public ContentAIExtr As String  ' Application Installation Extract
+    Public ContentInit As String = ""
+    Public ContentAIExtr As String = ""  ' Application Installation Extract
+    Public ContentReadme As String = ""
     Public Downloads(10) As String
     'Public DownloadFileNames(10) As String
     Public DownLoadIndex As Integer
@@ -17,14 +18,21 @@ Module InstallationWizzardStart
         xtrace_i("Wizzard Name = " & WizzardName)
         WizzardExists = False
 
+        '---- Start Wizzard Init
         xtrace_i("Reset content")
         ContentInit = ""
         ContentAIExtr = ""
+        ContentReadme = ""
         DownLoadIndex = -1
 
         InitWizzard()
+        AddReadme()
 
         xtrace_sube("InstallationWizzard")
+    End Sub
+
+    Sub AddReadme()
+
     End Sub
 
     '---- Init Wizzard (Read Defaults) --------------------------------------------------
@@ -93,8 +101,21 @@ Module InstallationWizzardStart
                     BatWDefaults(DName, DVal)
 
                     If DName = "ContentInitLine" Then
-                        xtrace_i("Add InitLine: " & DVal)
+                        xtrace_i("Add Init Line: " & DVal)
                         ContentInit = ContentInit & DVal & vbCrLf
+                    End If
+
+                    If DName = "Readme" Then
+                        Dim RLine As String
+                        If Left(DVal, 4) = "URL;" Then
+                            Dim Nr As Integer = Val(Mid(DVal, 5))
+                            Dim RData() As String = DownloadData(Downloads(Nr))
+                            RLine = "Source: " & RData(0)
+                        Else
+                            RLine = DVal
+                        End If
+                        xtrace_i("Add Readme Line: " & RLine)
+                        ContentReadme = ContentReadme & RLine & vbCrLf
                     End If
 
 
@@ -113,6 +134,8 @@ QUIT:
     '==== General Purpose routines ======================================================
 
     Function DownloadData(DLine As String) As String()
+        xtrace_subs("DownloadData")
+
         Dim DData() As String
         Dim URL As String
         Dim Target As String
@@ -124,11 +147,13 @@ QUIT:
         Target = DData(1)
 
         P1 = InStrRev(URL, "/")
-        'xtrace_i("P1 = " & P1.ToString)
+        xtrace_i("P1 = " & P1.ToString)
         Name = Mid(URL, P1 + 1)
 
-        xtrace_i("DownloadData = " & URL & "," & Target & "," & Name)
+        xtrace_i("DownloadData = " & URL & " -> " & Target & " (" & Name & ")")
         DownloadData = {URL, Target, Name}
+
+        xtrace_sube("DownloadData")
     End Function
 
     '---- Download ----------------------------------------------------------------------
@@ -138,36 +163,17 @@ QUIT:
         Dim Url As String = DData(0)
         Dim Target As String = DData(1)
         Dim FName As String = DData(2)
-        Dim wclient As WebClient = New WebClient()
+        'Dim wclient As WebClient = New WebClient()
 
         xtrace_i("FName = " & FName)
 
         ' Set the target path
         Dim FPath = DepoPath & "\" & Target & "\" & FName
-
-        Dim GetFile As Boolean
-        If ReDownload Then
-            xtrace_i("Redownload = True")
-            GetFile = True
-        ElseIf My.Computer.FileSystem.FileExists(FPath) Then
-            xtrace_i("Target exists")
-            GetFile = False
-        Else
-            xtrace_i("Target does not exist")
-            GetFile = True
-        End If
-
-        If GetFile Then
-            xtrace_i(Url & " -> " & FPath)
-            Try
-                wclient.DownloadFile(Url, FPath)
-            Catch ex As Exception
-                xtrace_i(ex.Message)
-            End Try
-        End If
+        GetUrl4(Url, FPath)
 
         xtrace_sube("GetUrl")
     End Sub
+
 
     'Sub unzip(ZipFile As String, OutputD As String)
     '    Dim sc As New Shell32.Shell()

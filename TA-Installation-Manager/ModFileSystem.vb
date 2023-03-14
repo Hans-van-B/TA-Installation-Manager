@@ -40,6 +40,8 @@ Module ModFileSystem
         End If
         Return Result
     End Function
+	
+	'---- Create Directory --------------------------------------------------------------
 
     Function CreateDirectory(DirPath As String,
                         ErrNr As Integer,
@@ -57,6 +59,13 @@ Module ModFileSystem
         End Try
         Return Result
     End Function
+	
+	' Abbriviated notation
+    Sub MD(Dir As String)
+        CreateDirectory(Dir, 0, "Failed to create the Inst directory in TA_Template", "Please check your directory access rights", True, True)
+    End Sub
+	
+	'---- Delete Directory --------------------------------------------------------------
 
     Function DeleteDirectory(DirPath As String,
                         ErrNr As Integer,

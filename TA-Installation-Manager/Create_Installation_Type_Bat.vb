@@ -1,34 +1,51 @@
 ﻿Module Create_Installation_Type_Bat
-    '==== Frequently ysed strings
-    Dim BatFileHeader As String = "@echo ---- Start %~n0 ----------------------------" & vbCrLf & ":: Created by " & AppName & " V" & AppVer
-    Dim BatFileFooter As String = vbCrLf & ":END" & vbCrLf & "@echo ---- End %~n0 ------------------------------"
-    Dim BatTimeStamp As String = "@echo Timestamp: %DATE% / %TIME%"
+    '==== Frequently used strings
+    Dim BatRemStr As String
+    Dim BatFileHeader As String
+    Dim BatFileFooter As String
+    Dim BatTimeStamp As String
 
     '==== Short notation of write to batch file
     Dim OutFile As String
     Dim InstallStartFile As String = "\bat\Install.bat"
 
     Sub WTI(Content As String)  ' Default append
-        WTI(Content, True)
+        WT(Content, True, "I")
     End Sub
     Sub WTI(Content As String, Append As Boolean)
-        Content = Content.Replace("'", """")
-        WriteTxtToFile(InstRoot & InstallStartFile, Content & vbCrLf, Append, 0, "", "", True, True)
+        WT(Content, Append, "I")
     End Sub
 
     Sub WTO(Content As String)  ' Default append
-        WTO(Content, True)
+        WT(Content, True, "O")
     End Sub
     Sub WTO(Content As String, Append As Boolean)
+        WT(Content, Append, "O")
+    End Sub
+    Sub WT(Content As String, Append As Boolean, OID As String)
+        Dim Output As String
+        If OID = "I" Then
+            Output = InstallStartFile
+        ElseIf OID = "O" Then
+            Output = OutFile
+        Else
+            Output = OutFile
+        End If
+
+        If Content Is Nothing Then
+            Content = ":: "
+            xtrace_i("Warning: WT" & OID & " Content is nothing")
+        End If
+
         Content = Content.Replace("'", """")
-        WriteTxtToFile(InstRoot & OutFile, Content & vbCrLf, Append, 0, "", "", True, True)
+        WriteTxtToFile(InstRoot & Output, Content & vbCrLf, Append, 0, "", "", True, True)
     End Sub
 
     '---- Create echo line with title
-    Function CreateELine(Msg As String)
-        Msg = "@echo ---- " & Msg & " --------------------------------------------------"
+    Function CreRemLine(Msg As String)
+        Msg = BatRemStr & "---- " & Msg & " --------------------------------------------------"
         Msg = Left(Msg, 60)
-        CreateELine = Msg
+        CreRemLine = Msg
     End Function
 
     ' Both lines produce the same result
@@ -39,6 +56,29 @@
         WriteMsg = Msg
     End Function
 
+    '---- Set the bat remark string ------------------------------------------------
+
+    Sub SetBatRemString()
+        xtrace_subs("SetBatRemString")
+
+        If RemType = "REM" Then BatRemStr = "REM "
+        If RemType = "::" Then BatRemStr = "::"
+        If RemType = "echo" Then BatRemStr = "@echo "
+        If RemType = "#" Then BatRemStr = "# "
+        xtrace_i("BatRemStr = " & BatRemStr)
+
+        BatFileHeader =
+            BatRemStr & "---- Start %~n0 ----------------------------" & vbCrLf &
+            BatRemStr & "Created by " & AppName & " V" & AppVer
+        BatFileFooter =
+            vbCrLf &
+            ":END" & vbCrLf &
+            BatRemStr & "---- End %~n0 ------------------------------"
+        BatTimeStamp =
+            BatRemStr & "Timestamp: %DATE% / %TIME%"
+
+        xtrace_sube("SetBatRemString")
+    End Sub
     '==== Add Installation Components Bat ==========================================
     Sub Add_Installation_Components_Bat()
         xtrace_subs("Add_Installation_Components_Bat")
@@ -53,6 +93,9 @@
                 CreateDirectory(CheckDir, 0, "", "Please check your directory access rights", True, True)
             End If
         Next
+
+        SetBatRemString()
+        AddInstFile((RemType = "#"), "Inst\exe\#.exe")
 
         '---- Create bat\Install.bat
         xtrace_i("Create " & InstallStartFile)
@@ -77,6 +120,9 @@
         '---- Create util\exit.bat
         Add_Util_Exit()
 
+        '---- Add Readme
+        Add_Readme()
+
         '---- Add DeInstallation
         If (Form1.CheckBoxTADeinstall.Checked) Or (Form1.CheckBoxTASelect.Checked) Then
             Add_DeinstallationBat()
@@ -97,7 +143,7 @@
         Dim SeparateFile As Boolean = Form1.CheckBoxBatSeparateInit.Checked
 
         If SeparateFile Then
-            ' Write call in the start file
+            xtrace_i("Write call in the start file")
             WTI("call ""%instroot%" & OutFile & """")
 
             ' Write the file header
@@ -108,9 +154,9 @@
             ' Remove the separate file if it exists
             DeleteFile(InstRoot & OutFile, 0, "", "", True, False)
 
-            ' Write the section header
+            xtrace_i("Write the section header")
             WTI("")
-            WTI(CreateELine("Start Init"))
+            WTI(CreRemLine("Start Init"))
             WTI("")
             WTI(BatTimeStamp)
 
@@ -119,7 +165,7 @@
 
         ' Set init body txt
         WTO("%WRITE% ' * Initializing'")
-        If (ContentInit = "") Then
+        If (ContentInit = "") Or (ContentInit Is Nothing) Then
             WTO(":: Add initialization content here")
         Else
             WTO(ContentInit)    ' Optional Wizzard Content
@@ -130,7 +176,7 @@
         If SeparateFile Then
             WTO(BatFileFooter)
         Else
-            WTI(CreateELine("End Init"))
+            WTI(CreRemLine("End Init"))
             WTI("")
         End If
 
@@ -159,7 +205,7 @@
 
             ' Write the section header
             WTI("")
-            WTI(CreateELine("Start Application Install"))
+            WTI(CreRemLine("Start Application Install"))
             WTI(BatTimeStamp)
 
             OutFile = InstallStartFile
@@ -168,16 +214,16 @@
         xtrace_i("Write Application Install body")
         WTO(WriteMsg("Start %appname% Installation"))
         WTO("")
-        WTO(CreateELine("Check if the installation exists"))
+        WTO(CreRemLine("Check if the installation exists"))
         WTO("")
-        WTO(CreateELine("Verify"))
+        WTO(CreRemLine("Verify"))
         WTO("")
 
         '---- Copy Source files #1
         If Form1.CheckBoxCopySource.Checked = True Then
             xtrace_i("Add copy source files")
             WTO("")
-            WTO(CreateELine("Copy source files"))
+            WTO(CreRemLine("Copy source files"))
             WTO("")
             WTO("set ARCHIVES=%INSTTMP%\Archives")
             WTO("robocopy '%SOURCEPATH%' '%ARCHIVES%' /mir /r:3 /w:10 /FFT")
@@ -185,29 +231,31 @@
         End If
 
         If ContentAIExtr <> "" Then
-            WTO(CreateELine("Extract Installation Archive"))
+            WTO(CreRemLine("Extract Installation Archive"))
             WTO("")
             WTO(ContentAIExtr)
             WTO("")
+            WTO("if /i not '%TA_INST_KEEP_ARCHIVES%'=='TRUE' rd /s/q '%ARCHIVES%'")
+            WTO("")
         End If
 
-        WTO(CreateELine("Start the App installation."))
+        WTO(CreRemLine("Start the App installation."))
         WTO("")
         WTO(":: Add the installation command here")
         WTO("@echo Result = %ERRORLEVEL%")
         WTO("")
-        WTO(CreateELine("App Settings"))
+        WTO(CreRemLine("App Settings"))
         WTO(":APPSET")
         WTO("")
         WTO("goto INSTDONE")
         WTO("")
-        WTO("::---- Messages ---------------------------------")
+        WTO(CreRemLine("Messages"))
         WTO("")
         WTO(":EXISTS")
         WTO("   echo  * %appname% Already exists >> %ICL%")
         WTO("   goto APPSET")
         WTO("")
-        WTO("::---- End Inst ---------------------------------")
+        WTO(CreRemLine("End Inst"))
         WTO(":INSTDONE")
         WTO("")
 
@@ -215,7 +263,7 @@
         If SeparateFile Then
             WTO(BatFileFooter)
         Else
-            WTO(CreateELine("End Application Install"))
+            WTO(CreRemLine("End Application Install"))
         End If
 
         xtrace_sube("Add_Installation_Application")
@@ -244,7 +292,7 @@
 
             ' Write the section header
             WTI("")
-            WTI(CreateELine("Start Post Installation"))
+            WTI(CreRemLine("Start Post Installation"))
             WTI(BatTimeStamp)
             WTI("")
         End If
@@ -257,7 +305,7 @@
         If SeparateFile Then
             WTO(BatFileFooter)
         Else
-            WTI(CreateELine("End Post Installation"))
+            WTI(CreRemLine("End Post Installation"))
             WTI("")
         End If
 
@@ -298,6 +346,20 @@
 
         xtrace_sube("Add_Util_Exit")
     End Sub
+
+    '==== Add Readme
+
+    Sub Add_Readme()
+        xtrace_subs("Add_Readme")
+        If (ContentReadme <> "") Then
+            ContentReadme = ContentReadme.Replace(";", vbCrLf)
+            OutFile = "\..\Readme.txt"
+            WTO(ContentReadme, False)
+        End If
+        xtrace_sube("Add_Readme")
+    End Sub
+
+
 
     '==== Add Deinstallation Bat ====
 
