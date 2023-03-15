@@ -95,7 +95,7 @@
         Next
 
         SetBatRemString()
-        AddInstFile((RemType = "#"), "Inst\exe\#.exe")
+        AddInstFile((RemType = "#"), "Inst\exe", "#.exe")
 
         '---- Create bat\Install.bat
         xtrace_i("Create " & InstallStartFile)
@@ -129,7 +129,7 @@
         End If
 
         '---- Add exe files
-        AddInstFile(True, "Inst\Exe\wait.exe")
+        AddInstFile(True, "Inst\Exe", "wait.exe")
 
         xtrace_sube("Add_Installation_Components_Bat")
     End Sub

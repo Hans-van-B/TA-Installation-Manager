@@ -79,9 +79,9 @@ Module Create_Installation_Depo
         Check_InstSubDirs(TA_Template_Inst, "           ")
 
         '---- TA_Template Files
-        GetFile("XElevate.exe", TA_InstLib_Inst & "\exe\XElevate.exe")
-        'Fails: GetUrl3(",       TA_Template_Inst & "\TA-Setup.exe")
-        'Fails: GetUrl3("", TA_Template_Inst & "\TA-Select.exe")
+        GetFile("XElevate.exe", TA_InstLib_InstExe)
+        GetFile("TA-Setup.exe", TA_Template_Inst)
+        GetFile("TA-Select.exe", TA_Template_Inst)
 
         xtrace_sube("Create_Depo")
     End Sub

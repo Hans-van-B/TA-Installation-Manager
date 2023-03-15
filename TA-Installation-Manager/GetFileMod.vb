@@ -3,7 +3,7 @@
     Dim UseBinLib As Boolean
     Dim UseUrl As Boolean
     Dim GetFileURL As String
-    Dim BinLib As String = AppRoot & "\BinLib"
+    Dim BinLib As String = AppRoot & "\Lib\Bin"
     Sub GetFile(FileName As String, Target As String)
         xtrace_subs("GetFile " & FileName)
         If FileExists(FileName, Target) Then GoTo QUIT
@@ -27,21 +27,19 @@
                 If FileInTemplateInst(FileName, Target) Then GoTo QUIT
 
             ElseIf Field = "URL" Then
-                    UseUrl = True
+                'UseUrl = True
 
-                ElseIf Field = "<URL>" Then
-                    xtrace_i("URL not available yet")
+            ElseIf Field = "<URL>" Then
+                xtrace_i("URL not available yet")
 
-                ElseIf InStr(Field, "/") > 0 Then
-                    GetFileURL = Field
-                Else
-                    xtrace_warn("Unknown field " & Field)
-            End If
-
-            If UseInstLibExe Then
-
+            ElseIf InStr(Field, "/") > 0 Then
+                GetFileURL = Field
+                If GetFileFromTheWeb(FileName, Target) Then GoTo QUIT
+            Else
+                xtrace_warn("Unknown field " & Field)
             End If
         Next
+        Form1.TextBoxInfo.AppendText("Failed: " & Target & "\" & FileName & vbNewLine)
 QUIT:
         xtrace_sube("GetFile")
     End Sub
@@ -50,7 +48,7 @@ QUIT:
         xtrace_subs("GetFileDefaults")
 
         Dim Line As String
-        Dim P1, P2 As Integer
+        Dim P1 As Integer
         Dim DName, DVal As String
         Dim Result = ""
         If Not WizzardInitialized Then InitWizzard()
@@ -157,7 +155,7 @@ QUIT:
 
         FileInBinLib = Result
     End Function
-    '----  -------------------------------------------
+    '---- File In TA_Template \Inst -------------------------------------------
     Function FileInTemplateInst(FileName As String, Target As String)
         Dim SLoc As String = TA_Template_Inst & "\" & FileName
         Dim Result As Boolean = False
@@ -177,9 +175,17 @@ QUIT:
 
         FileInTemplateInst = Result
     End Function
-    '----  -------------------------------------------
+
+    '---- Get File From The Web -------------------------------------------
     Function GetFileFromTheWeb(FileName As String, Target As String) As Boolean
+        Dim Result As Boolean = False
         xtrace_i("Try: " & GetFileURL)
+
+        If Left(GetFileURL, 1) = "#" Then
+            xtrace_i("Temp disabled")
+        End If
+
+        GetFileFromTheWeb = Result
     End Function
 
 End Module

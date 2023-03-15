@@ -70,6 +70,7 @@
     Private Sub ShowSettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowSettingsToolStripMenuItem.Click
         xtrace_subs("Menu, Settings, Show settings")
         If ShowSettingsToolStripMenuItem.Checked Then
+            TextBoxInfo.BringToFront()
             TextBoxInfo.Visible = True
             TextBoxInfo.Dock = DockStyle.Fill
         Else

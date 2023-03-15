@@ -18,10 +18,10 @@
             CreateDirectory(InstRoot, 0, "", "Please check your directory access rights", True, True)
         End If
 
-        Check_InstSubDirs(InstRoot, "   ")
+        Check_InstSubDirs(InstRoot, "")
 
         Dim CheckDir, SD As String
-        For Each SD In {"Inst\Doc", "Source", "Source\W64", "Prepare", "Prepare\Doc", "Prepare\Doc\Err", "Prepare\Doc\ChangeReq"}
+        For Each SD In {"Inst\Doc", "Source", "Source\W64", "Prepare", "Prepare\Bookmark", "Prepare\Doc", "Prepare\Doc\Err", "Prepare\Doc\ChangeReq"}
             CheckDir = DepoPath & "\" & SD
             xtrace_i("Check : " & CheckDir)
             If Not My.Computer.FileSystem.DirectoryExists(CheckDir) Then
@@ -29,9 +29,9 @@
             End If
         Next
 
-        AddInstFile(Form1.CheckBoxTASetup.Checked, "Inst\TA-Setup.exe")
-        AddInstFile(Form1.CheckBoxTASelect.Checked, "Inst\TA-Select.exe")
-        AddInstFile(Form1.CheckBoxTADeinstall.Checked, "Inst\TA-Deinstall.exe")
+        AddInstFile(Form1.CheckBoxTASetup.Checked, "Inst", "TA-Setup.exe")
+        AddInstFile(Form1.CheckBoxTASelect.Checked, "Inst", "TA-Select.exe")
+        AddInstFile(Form1.CheckBoxTADeinstall.Checked, "Inst", "TA-Deinstall.exe")
 
         Form1.ButtonShowResult.Enabled = True
 
@@ -44,13 +44,11 @@
         xtrace_sube("Finalize_Installation")
     End Sub
 
-    Sub AddInstFile(CheckBox As Boolean, SubPath As String)
+    Sub AddInstFile(CheckBox As Boolean, FileName As String, SubPath As String)
         If CheckBox Then
-            Dim Source As String = TA_TemplateV & "\" & SubPath
             Dim Target As String = DepoPath & "\" & SubPath
-            xtrace_i("Add: " & Target)
-            CopyFile(Source, Target, 0, "", "", True, True)
-
+            xtrace_i("Add: " & Target & "\" & FileName)
+            GetFile(FileName, Target)
         End If
     End Sub
 End Module
