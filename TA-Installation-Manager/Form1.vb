@@ -2,68 +2,78 @@
 
     '---- Initialize application ----------------------------------------------
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        xtrace_init()
-        xtrace_subs("Form1_Load")
-        xtrace_header()
+        Log.xtrace_init()
+        Log.xtrace_subs("Form1_Load")
+        Log.xtrace_header()
         WriteInfo("Log file = " & LogFile)
-        xtrace("Initializing")
-        ReadDefaults()
+        Log.xtrace("Initializing")
+        Defaults.ReadDefaults()
         Read_Command_Line_Arg()
         Me.Text = AppName.Replace("-", " ") & " V" & AppVer
 
         SplitContainerBase.SplitterDistance = 200
         TimerInit.Start()
 
-        xtrace_sube("Form1_Load")
+        Log.xtrace_sube("Form1_Load")
     End Sub
 
     Private Sub TimerInit_Tick(sender As Object, e As EventArgs) Handles TimerInit.Tick
-        xtrace_subs("Form1_Load2 (TimerInit)")
+        Log.xtrace_subs("Form1_Load2 (TimerInit)")
         TimerInit.Stop()
 
         Set_TAISDevDepo()
+        ButtonCheckWizzard.Left = 10
 
-        If Glob.ScriptTypeSelect = "BAT" Then
-            TabPageWinBat.BackColor = ScryptTypeSelectColor
-            TabPagePS.BackColor = SystemColors.Control
-        End If
+        SetGUIScryptType(Glob.ScriptTypeSelect)
 
         ' Shared defaults can be changed ad execution time and are therefore set after reading the default
+        ' But also by a wizzard, therefore move them to the shared defaults
         ' CheckBoxCopySource.Checked: See SharedDefaults
-        If Glob.BatSeparateInit = "True" Then CheckBoxBatSeparateInit.Checked = True
-        If Glob.BatSeparateApp = "True" Then CheckBoxBatSeparateApp.Checked = True
-        If Glob.BatSeparatePost = "True" Then CheckBoxBatSeparatePost.Checked = True
+
+        ' No shared defaults (Only manual selection)
         If Glob.StopUpdates = "True" Then CheckBoxStopUpdates.Checked = True
         If Glob.CopyLogToServer = "True" Then CheckBoxLogToServer.Checked = True
         If Glob.ReDownload = True Then CheckBoxReDownload.Checked = True
 
-        xtrace_sube("Form1_Load2")
+        Log.xtrace_sube("Form1_Load2")
     End Sub
 
-    '---- Rezize
+    Sub SetGUIScryptType(Type As String)
+        If Type = "BAT" Then
+            TabControl1.SelectedTab = TabPageWinBat
+            TabPageWinBat.BackColor = ScryptTypeSelectColor
+            TabPagePS.BackColor = SystemColors.Control
+        ElseIf Type = "PS" Then
+            TabControl1.SelectedTab = TabPagePS
+            TabPagePS.BackColor = ScryptTypeSelectColor
+            TabPageWinBat.BackColor = SystemColors.Control
+        End If
+    End Sub
+
+    '---- Resize
     Private Sub Form1_ResizeEnd(sender As Object, e As EventArgs) Handles MyBase.ResizeEnd
         SplitContainerBase.SplitterDistance = 200
     End Sub
 
     Public Sub WriteInfo(Msg)
         TextBoxInfo.AppendText(Msg & vbNewLine)
-        xtrace(Msg)
+        Log.xtrace(Msg)
     End Sub
 
     '==== Main Menu ===========================================================
 
     '---- File, Save
     Private Sub ToolStripSave_Click(sender As Object, e As EventArgs) Handles ToolStripSave.Click
-        xtrace_subs("File, Save")
-        WriteIniFile()
-        xtrace_sube("File, Save")
+        Log.xtrace_subs("File, Save")
+        Defaults.WriteIniFile()
+        Log.xtrace_sube("File, Save")
     End Sub
 
     '---- File, Exit
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        xtrace_subs("Menu, File, Exit")
-        exit_program()
-        xtrace_sube("Menu, File, Exit")
+        Log.xtrace_subs("Menu, File, Exit")
+        Util.exit_program()
+        Log.xtrace_sube("Menu, File, Exit")
     End Sub
 
     '---- Show Settings -------------------------------------------------------
@@ -142,11 +152,24 @@
     End Sub
 
     '==== Buttons =============================================================================
+
+    Private Sub ButtonCheckWizzard_Click(sender As Object, e As EventArgs) Handles ButtonCheckWizzard.Click
+        xtrace_subs("ButtonCheckWizzard_Click")
+        If ComboBoxInstName.Text = "" Then
+            ShowHint("Please enter the name of the new installation")
+            ComboBoxInstName.BackColor = ButtonHighLite
+        Else
+            InstallationWizzard()
+        End If
+        xtrace_sube("ButtonCheckWizzard_Click")
+    End Sub
+
     '---- Create the installation
     Private Sub ButtonStartCreate_Click(sender As Object, e As EventArgs) Handles ButtonStartCreate.Click
         xtrace_subs("ButtonStartCreate_Click")
 
         ButtonStartCreate.Enabled = False
+        ListGUISettings()
 
         If ComboBoxInstName.Text = "" Then
             ShowHint("Please enter the name of the new installation")
@@ -191,6 +214,31 @@
         CheckResultPath()
 
         xtrace_sube("ButtonStartCreate_Click")
+    End Sub
+
+    '---- List Settings ---------------------------------------------------
+    Sub ListGUISettings()
+        xtrace("ListGUISettings", 2)
+        xtrace_i("Dev Depo      = " & ComboBoxDevDepo.Text)
+        xtrace_i("Inst name     = " & ComboBoxInstName.Text)
+        xtrace_i("Inst Version  = " & ComboBoxInstVer.Text)
+        xtrace_i("TA-Setup      = " & CheckBoxTASetup.Checked.ToString)
+        xtrace_i("TA-Select     = " & CheckBoxTASelect.Checked.ToString)
+        xtrace_i("TA-Deinstall  = " & CheckBoxTADeinstall.Checked.ToString)
+        xtrace_i("Copy to local = " & CheckBoxCopySource.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+        xtrace_i("Re-Download   = " & CheckBoxReDownload.Checked.ToString)
+        xtrace_i("Saparate Init = " & CheckBoxBatSeparateInit.Checked.ToString)
+        xtrace_i("Separate App  = " & CheckBoxBatSeparateApp.Checked.ToString)
+        xtrace_i("Separate Post = " & CheckBoxBatSeparatePost.Checked.ToString)
     End Sub
     '---- Show the resuly
     Private Sub ButtonShowResult_Click(sender As Object, e As EventArgs) Handles ButtonShowResult.Click
@@ -274,4 +322,5 @@
         If RadioButtonRemHash.Checked Then RemType = "#"
         xtrace_i("Set RemType = " & RemType)
     End Sub
+
 End Class

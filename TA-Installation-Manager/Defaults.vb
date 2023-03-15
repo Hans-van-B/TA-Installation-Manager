@@ -73,11 +73,6 @@
                         End If
                     End If
 
-                    If DName = "ScriptTypeSelect" Then
-                        ScriptTypeSelect = DVal
-                        xtrace("Set ScriptTypeSelect = " & ScriptTypeSelect)
-                    End If
-
                     SharedDefaults(DName, DVal)
 
                     If DName = "StopUpdates" Then
@@ -122,6 +117,12 @@
     Sub SharedDefaults(DName As String, DVal As String)
         xtrace_subs("SharedDefaults", 3)
 
+        If DName = "ScriptTypeSelect" Then
+            ScriptTypeSelect = DVal
+            xtrace("Set ScriptTypeSelect = " & ScriptTypeSelect)
+            Form1.SetGUIScryptType(Glob.ScriptTypeSelect)
+        End If
+
         If DName = "CopySourceToLocal" Then
             If DVal = "True" Then
                 CopySourceToLocal = True
@@ -136,16 +137,31 @@
         If DName = "BatSeparateInit" Then
             BatSeparateInit = DVal
             xtrace("Set BatSeparateInit = " & BatSeparateInit)
+            If BatSeparateInit = "True" Then
+                Form1.CheckBoxBatSeparateInit.Checked = True
+            ElseIf BatSeparateInit = "False" Then
+                Form1.CheckBoxBatSeparateInit.Checked = False
+            End If
         End If
 
         If DName = "BatSeparateApp" Then
             BatSeparateApp = DVal
             xtrace("Set BatSeparateApp = " & BatSeparateApp)
+            If BatSeparateApp = "True" Then
+                Form1.CheckBoxBatSeparateApp.Checked = True
+            ElseIf BatSeparateApp = "False" Then
+                Form1.CheckBoxBatSeparateApp.Checked = False
+            End If
         End If
 
         If DName = "BatSeparatePost" Then
             BatSeparatePost = DVal
             xtrace("Set BatSeparatePost = " & BatSeparatePost)
+            If Glob.BatSeparatePost = "True" Then
+                Form1.CheckBoxBatSeparatePost.Checked = True
+            ElseIf Glob.BatSeparatePost = "False" Then
+                Form1.CheckBoxBatSeparatePost.Checked = False
+            End If
         End If
 
         If DName = "BatRemarkMethod" Then
@@ -155,7 +171,30 @@
             If RemType = "::" Then Form1.RadioButtonRemDots.Checked = True Else Form1.RadioButtonRemDots.Checked = False
             If RemType = "echo" Then Form1.RadioButtonRemEcho.Checked = True Else Form1.RadioButtonRemEcho.Checked = False
             If RemType = "#" Then Form1.RadioButtonRemHash.Checked = True Else Form1.RadioButtonRemHash.Checked = False
+        End If
 
+        If DName = "UseTASetup" Then
+            If DVal = "True" Then
+                Form1.CheckBoxTASetup.Checked = True
+            ElseIf DVal = "False" Then
+                Form1.CheckBoxTASetup.Checked = False
+            End If
+        End If
+
+        If DName = "UseTASelect" Then
+            If DVal = "True" Then
+                Form1.CheckBoxTASelect.Checked = True
+            ElseIf DVal = "False" Then
+                Form1.CheckBoxTASelect.Checked = False
+            End If
+        End If
+
+        If DName = "UseTADeinstall" Then
+            If DVal = "True" Then
+                Form1.CheckBoxTADeinstall.Checked = True
+            ElseIf DVal = "False" Then
+                Form1.CheckBoxTADeinstall.Checked = False
+            End If
         End If
 
         xtrace_sube("SharedDefaults", 3)

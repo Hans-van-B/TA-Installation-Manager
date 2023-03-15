@@ -79,6 +79,7 @@ Module InstallationWizzardStart
         Dim Group As String = ""
         Dim P1, P2 As Integer
         Dim DName, DVal As String
+        GetFileData.Clear()
 
         While Not ReadFile.EndOfStream
             Try
