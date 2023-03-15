@@ -8,11 +8,13 @@ Module Create_Installation_Depo
     Public TA_InstLib_Version = "04"
     Public TA_InstLibV As String
     Public TA_InstLib_Inst As String
+    Public TA_InstLib_InstExe As String
 
     Public TA_Template As String
     Public TA_Template_Version As String = "06"
     Public TA_TemplateV As String
     Public TA_Template_Inst As String
+    Public TA_Template_InstExe As String
 
     Sub Create_Depo()
         xtrace_subs("Create_Depo")
@@ -42,6 +44,7 @@ Module Create_Installation_Depo
 
         '---- TA_InstLib_Inst
         TA_InstLib_Inst = TA_InstLibV & "\Inst"
+        TA_InstLib_InstExe = TA_InstLib_Inst & "\exe"
         xtrace_i("TA_InstLib_Inst  = " & TA_InstLib_Inst)
         If Not My.Computer.FileSystem.DirectoryExists(TA_InstLib_Inst) Then
             MD(TA_InstLib_Inst)
@@ -49,7 +52,6 @@ Module Create_Installation_Depo
         Check_InstSubDirs(TA_InstLib_Inst, "           ")
 
         '---- TA_Instlib_Files
-        'Fails: GetUrl3("https://github.com/Hans-van-B/XElevate/raw/master/XElevate/bin/Debug/XElevate.exe", TA_InstLib_Inst & "\exe\XElevate.exe")
         'GetUrl2("", TA_InstLib_Inst & "")
 
         '---- TA_Template
@@ -69,6 +71,7 @@ Module Create_Installation_Depo
 
         '---- TA_Template_Inst
         TA_Template_Inst = TA_TemplateV & "\Inst"
+        TA_Template_InstExe = TA_Template_Inst & "\exe"
         xtrace_i("TA_Template_Inst = " & TA_Template_Inst)
         If Not My.Computer.FileSystem.DirectoryExists(TA_Template_Inst) Then
             MD(TA_Template_Inst)
@@ -76,8 +79,9 @@ Module Create_Installation_Depo
         Check_InstSubDirs(TA_Template_Inst, "           ")
 
         '---- TA_Template Files
-        'Fails: GetUrl3("https://github.com/Hans-van-B/TA-Setup/releases/download/V0.01.24/TA-Setup.exe",       TA_Template_Inst & "\TA-Setup.exe")
-        'Fails: GetUrl3("https://github.com/Hans-van-B/TA-Select/raw/master/TA-Select/bin/Debug/TA-Select.exe", TA_Template_Inst & "\TA-Select.exe")
+        GetFile("XElevate.exe", TA_InstLib_Inst & "\exe\XElevate.exe")
+        'Fails: GetUrl3(",       TA_Template_Inst & "\TA-Setup.exe")
+        'Fails: GetUrl3("", TA_Template_Inst & "\TA-Select.exe")
 
         xtrace_sube("Create_Depo")
     End Sub

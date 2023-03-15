@@ -11,6 +11,9 @@ Module InstallationWizzardStart
     Public Downloads(10) As String
     'Public DownloadFileNames(10) As String
     Public DownLoadIndex As Integer
+    Public WizIniFile As String
+    Public GetFileData As New Stack
+    Public WizzardInitialized As Boolean = False
 
     Sub InstallationWizzard()
         xtrace_subs("InstallationWizzard")
@@ -25,7 +28,7 @@ Module InstallationWizzardStart
         ContentReadme = ""
         DownLoadIndex = -1
 
-        InitWizzard()
+        If Not WizzardInitialized Then InitWizzard()
         AddReadme()
 
         xtrace_sube("InstallationWizzard")
@@ -36,29 +39,41 @@ Module InstallationWizzardStart
     End Sub
 
     '---- Init Wizzard (Read Defaults) --------------------------------------------------
-    Sub InitWizzard()
-        xtrace_subs("InitWizzard")
+    ' Allows the file to be read from elsewhere
+    ' The GetFile Data is now pushed on a stack GetFileData so it can be accessed more quickly
+    Function AssignWizIniFile() As Boolean
+        xtrace_subs("AssignWizIniFile")
 
+        Dim Result As Boolean
         Dim WIniFile1 As String = AppRoot & "\" & AppName & "_W.ini"
         Dim WIniFile2 As String = AppRoot & "\Data\" & AppName & "_W.ini"
-        Dim WIniFile As String
 
         If My.Computer.FileSystem.FileExists(WIniFile1) Then
-            WIniFile = WIniFile1
-
+            WizIniFile = WIniFile1
+            Result = True
         ElseIf My.Computer.FileSystem.FileExists(WIniFile2) Then
-            WIniFile = WIniFile2
-
+            WizIniFile = WIniFile2
+            Result = True
         Else
             Form1.WriteInfo("Failed to read:")
             Form1.WriteInfo("   " & WIniFile1)
             Form1.WriteInfo("Or " & WIniFile2)
-            GoTo QUIT
+            WizIniFile = ""
+            Result = False
+        End If
+        AssignWizIniFile = Result
+        xtrace_sube("AssignWizIniFile")
+    End Function
+    Sub InitWizzard()
+        xtrace_subs("InitWizzard (Read defaults)")
+
+        If WizIniFile Is Nothing Then
+            If Not AssignWizIniFile() Then GoTo QUIT
         End If
 
         Dim ReadFile
-        Form1.WriteInfo("Read Defaults " & WIniFile)
-        ReadFile = My.Computer.FileSystem.OpenTextFileReader(WIniFile)
+        Form1.WriteInfo("Read Defaults " & WizIniFile)
+        ReadFile = My.Computer.FileSystem.OpenTextFileReader(WizIniFile)
 
         Dim Line As String
         Dim Group As String = ""
@@ -121,11 +136,18 @@ Module InstallationWizzardStart
 
                 End If
 
+                If Group = "GETFILE" Then
+                    xtrace_i("Push")
+                    GetFileData.Push(Line)
+                End If
+
             Catch ex As Exception
 
             End Try
         End While
         ReadFile.Dispose()
+        WizzardInitialized = True
+        xtrace("GetFileData Length = " & GetFileData.Count.ToString)
 
 QUIT:
         xtrace_sube("InitWizzard")

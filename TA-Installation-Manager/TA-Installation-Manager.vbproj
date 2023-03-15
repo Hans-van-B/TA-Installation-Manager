@@ -84,6 +84,7 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GetFileMod.vb" />
     <Compile Include="Glob.vb" />
     <Compile Include="HelpMod.vb" />
     <Compile Include="InstallationWizzardBat.vb" />
