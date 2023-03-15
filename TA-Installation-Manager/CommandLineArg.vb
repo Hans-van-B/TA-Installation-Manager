@@ -24,6 +24,11 @@
                     ValS = Mid(SwName, P1 + 1)
                     xtrace_i("Name = " & Name & ", Val = " & ValS)
 
+                    If Name = "AutoRun" Then
+                        AutoRun = ValS
+                        xtrace_i("Set AutoRun = '" & AutoRun & "'")
+                    End If
+
                     If Name = "??" Then
 
                     End If

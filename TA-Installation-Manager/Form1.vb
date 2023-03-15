@@ -35,7 +35,29 @@
         If Glob.CopyLogToServer = "True" Then CheckBoxLogToServer.Checked = True
         If Glob.ReDownload = True Then CheckBoxReDownload.Checked = True
 
+        If Len(AutoRun) > 2 Then
+            StartAutoRun
+        End If
+
         Log.xtrace_sube("Form1_Load2")
+    End Sub
+
+    Sub StartAutoRun()
+        Dim ARData() As String = AutoRun.Split(";")
+        Dim ARDCount As Integer = ARData.Length
+        xtrace_i("ARDCount = " & ARDCount.ToString)
+
+        ComboBoxInstName.Text = ARData(0)
+        For Nr As Integer = 1 To ARDCount - 1
+            Dim ArStep As String = ARData(Nr)
+            xtrace_i("Step = " & ArStep)
+            If ArStep = "Start" Then
+                ButtonStartCreate_Click(Nothing, Nothing)
+            ElseIf ArStep = "Exit" Then
+                wait(2)
+                Util.exit_program()
+            End If
+        Next
     End Sub
 
     Sub SetGUIScryptType(Type As String)
