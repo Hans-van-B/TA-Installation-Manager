@@ -25,6 +25,7 @@
     Public ReDownload As Boolean = False
     Public RemType As String = "REM"    ' REM|::|echo|#
     Public AutoRun As String = ""
+    Public IncreasePerformance As Boolean = False
 
     Public StopUpdates As String = "False"
     Public CopyLogToServer As String = "False"
