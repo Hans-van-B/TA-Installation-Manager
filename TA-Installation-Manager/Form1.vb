@@ -43,14 +43,19 @@
     End Sub
 
     Sub StartAutoRun()
+        xtrace_subs("StartAutoRun")
+
         Dim ARData() As String = AutoRun.Split(";")
         Dim ARDCount As Integer = ARData.Length
+        Dim ArStep As String = ARData(0)
         xtrace_i("ARDCount = " & ARDCount.ToString)
 
-        ComboBoxInstName.Text = ARData(0)
+        xtrace_i("Step 0: Set Instname = " & ArStep)
+        ComboBoxInstName.Text = ArStep
+
         For Nr As Integer = 1 To ARDCount - 1
-            Dim ArStep As String = ARData(Nr)
-            xtrace_i("Step = " & ArStep)
+            ArStep = ARData(Nr)
+            xtrace_i("Step " & Nr.ToString & ": " & ArStep)
             If ArStep = "Start" Then
                 ButtonStartCreate_Click(Nothing, Nothing)
             ElseIf ArStep = "Exit" Then
@@ -58,6 +63,8 @@
                 Util.exit_program()
             End If
         Next
+
+        xtrace_sube("StartAutoRun")
     End Sub
 
     Sub SetGUIScryptType(Type As String)
@@ -319,14 +326,43 @@
     Dim ResultPathExist As Boolean = False
     Dim MyDepoPath As String
     Sub CheckResultPath()
-        MyDepoPath = TAISDevDepo & "\" & InstName & "\" & ComboBoxInstVer.Text
+        Dim MyDepo As String
+        Dim MyInstName As String
+        Dim MyInstVer As String
+        ResultPathExist = True
+
+        If TAISDevDepo = "" Then
+            MyDepo = "<Undefined>"
+            ResultPathExist = False
+        Else
+            MyDepo = TAISDevDepo
+        End If
+
+        If InstName = "" Then
+            MyInstName = "<Undefined>"
+            ResultPathExist = False
+        Else
+            MyInstName = InstName
+        End If
+
+        If ComboBoxInstVer.Text = "" Then
+            MyInstVer = "<Undefined>"
+            ResultPathExist = False
+        Else
+            MyInstVer = ComboBoxInstVer.Text
+        End If
+
+        MyDepoPath = MyDepo & "\" & MyInstName & "\" & MyInstVer
         xtrace_i("Check " & MyDepoPath, 2)
 
-        If My.Computer.FileSystem.DirectoryExists(MyDepoPath) Then
-            ResultPathExist = True
-        Else
-            ResultPathExist = False
+        If ResultPathExist Then
+            If My.Computer.FileSystem.DirectoryExists(MyDepoPath) Then
+                ResultPathExist = True
+            Else
+                ResultPathExist = False
+            End If
         End If
+        xtrace_i("Result = " & ResultPathExist.ToString)
         ButtonDeleteResult.Enabled = ResultPathExist
     End Sub
 
