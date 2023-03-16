@@ -34,6 +34,7 @@ Partial Class Form1
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainerBase = New System.Windows.Forms.SplitContainer()
+        Me.ButtonCheckWizzard = New System.Windows.Forms.Button()
         Me.ButtonDeleteResult = New System.Windows.Forms.Button()
         Me.ButtonShowResult = New System.Windows.Forms.Button()
         Me.ButtonStartCreate = New System.Windows.Forms.Button()
@@ -69,8 +70,9 @@ Partial Class Form1
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
-        Me.ButtonCheckWizzard = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.GroupBoxAutoRun = New System.Windows.Forms.GroupBox()
+        Me.TextBoxAutoRun = New System.Windows.Forms.TextBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -88,6 +90,7 @@ Partial Class Form1
         Me.TabPageWinBat.SuspendLayout()
         Me.GroupBoxRem.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        Me.GroupBoxAutoRun.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -170,6 +173,7 @@ Partial Class Form1
         'SplitContainerBase.Panel1
         '
         Me.SplitContainerBase.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainerBase.Panel1.Controls.Add(Me.GroupBoxAutoRun)
         Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonCheckWizzard)
         Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonDeleteResult)
         Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonShowResult)
@@ -183,6 +187,17 @@ Partial Class Form1
         Me.SplitContainerBase.Size = New System.Drawing.Size(873, 519)
         Me.SplitContainerBase.SplitterDistance = 195
         Me.SplitContainerBase.TabIndex = 3
+        '
+        'ButtonCheckWizzard
+        '
+        Me.ButtonCheckWizzard.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonCheckWizzard.Location = New System.Drawing.Point(10, 31)
+        Me.ButtonCheckWizzard.Name = "ButtonCheckWizzard"
+        Me.ButtonCheckWizzard.Size = New System.Drawing.Size(163, 33)
+        Me.ButtonCheckWizzard.TabIndex = 3
+        Me.ButtonCheckWizzard.Text = "Check Settings"
+        Me.ToolTip1.SetToolTip(Me.ButtonCheckWizzard, "Checks if there is a settings wizzard for this application")
+        Me.ButtonCheckWizzard.UseVisualStyleBackColor = True
         '
         'ButtonDeleteResult
         '
@@ -436,7 +451,7 @@ Partial Class Form1
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparateInit)
         Me.TabPageWinBat.Location = New System.Drawing.Point(4, 24)
         Me.TabPageWinBat.Name = "TabPageWinBat"
-        Me.TabPageWinBat.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.TabPageWinBat.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPageWinBat.Size = New System.Drawing.Size(534, 364)
         Me.TabPageWinBat.TabIndex = 0
         Me.TabPageWinBat.Text = "Windows Batch"
@@ -450,9 +465,9 @@ Partial Class Form1
         Me.GroupBoxRem.Controls.Add(Me.RadioButtonRemDots)
         Me.GroupBoxRem.Controls.Add(Me.RadioButtonRemRem)
         Me.GroupBoxRem.Location = New System.Drawing.Point(380, 6)
-        Me.GroupBoxRem.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBoxRem.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBoxRem.Name = "GroupBoxRem"
-        Me.GroupBoxRem.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBoxRem.Padding = New System.Windows.Forms.Padding(2)
         Me.GroupBoxRem.Size = New System.Drawing.Size(150, 102)
         Me.GroupBoxRem.TabIndex = 4
         Me.GroupBoxRem.TabStop = False
@@ -462,7 +477,7 @@ Partial Class Form1
         '
         Me.RadioButtonRemHash.AutoSize = True
         Me.RadioButtonRemHash.Location = New System.Drawing.Point(5, 80)
-        Me.RadioButtonRemHash.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.RadioButtonRemHash.Margin = New System.Windows.Forms.Padding(2)
         Me.RadioButtonRemHash.Name = "RadioButtonRemHash"
         Me.RadioButtonRemHash.Size = New System.Drawing.Size(32, 19)
         Me.RadioButtonRemHash.TabIndex = 3
@@ -474,7 +489,7 @@ Partial Class Form1
         '
         Me.RadioButtonRemEcho.AutoSize = True
         Me.RadioButtonRemEcho.Location = New System.Drawing.Point(5, 59)
-        Me.RadioButtonRemEcho.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.RadioButtonRemEcho.Margin = New System.Windows.Forms.Padding(2)
         Me.RadioButtonRemEcho.Name = "RadioButtonRemEcho"
         Me.RadioButtonRemEcho.Size = New System.Drawing.Size(64, 19)
         Me.RadioButtonRemEcho.TabIndex = 2
@@ -486,7 +501,7 @@ Partial Class Form1
         '
         Me.RadioButtonRemDots.AutoSize = True
         Me.RadioButtonRemDots.Location = New System.Drawing.Point(5, 38)
-        Me.RadioButtonRemDots.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.RadioButtonRemDots.Margin = New System.Windows.Forms.Padding(2)
         Me.RadioButtonRemDots.Name = "RadioButtonRemDots"
         Me.RadioButtonRemDots.Size = New System.Drawing.Size(31, 19)
         Me.RadioButtonRemDots.TabIndex = 1
@@ -498,7 +513,7 @@ Partial Class Form1
         '
         Me.RadioButtonRemRem.AutoSize = True
         Me.RadioButtonRemRem.Location = New System.Drawing.Point(5, 17)
-        Me.RadioButtonRemRem.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.RadioButtonRemRem.Margin = New System.Windows.Forms.Padding(2)
         Me.RadioButtonRemRem.Name = "RadioButtonRemRem"
         Me.RadioButtonRemRem.Size = New System.Drawing.Size(53, 19)
         Me.RadioButtonRemRem.TabIndex = 0
@@ -530,7 +545,7 @@ Partial Class Form1
         '
         Me.CheckBoxBatSeparateApp.AutoSize = True
         Me.CheckBoxBatSeparateApp.Location = New System.Drawing.Point(6, 35)
-        Me.CheckBoxBatSeparateApp.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.CheckBoxBatSeparateApp.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxBatSeparateApp.Name = "CheckBoxBatSeparateApp"
         Me.CheckBoxBatSeparateApp.Size = New System.Drawing.Size(187, 19)
         Me.CheckBoxBatSeparateApp.TabIndex = 1
@@ -541,7 +556,7 @@ Partial Class Form1
         '
         Me.CheckBoxBatSeparateInit.AutoSize = True
         Me.CheckBoxBatSeparateInit.Location = New System.Drawing.Point(6, 11)
-        Me.CheckBoxBatSeparateInit.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.CheckBoxBatSeparateInit.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxBatSeparateInit.Name = "CheckBoxBatSeparateInit"
         Me.CheckBoxBatSeparateInit.Size = New System.Drawing.Size(95, 19)
         Me.CheckBoxBatSeparateInit.TabIndex = 0
@@ -552,8 +567,8 @@ Partial Class Form1
         '
         Me.TabPagePS.Location = New System.Drawing.Point(4, 24)
         Me.TabPagePS.Name = "TabPagePS"
-        Me.TabPagePS.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.TabPagePS.Size = New System.Drawing.Size(534, 371)
+        Me.TabPagePS.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPagePS.Size = New System.Drawing.Size(534, 364)
         Me.TabPagePS.TabIndex = 1
         Me.TabPagePS.Text = "Power Shell"
         Me.TabPagePS.UseVisualStyleBackColor = True
@@ -591,16 +606,28 @@ Partial Class Form1
         'TimerInit
         '
         '
-        'ButtonCheckWizzard
+        'GroupBoxAutoRun
         '
-        Me.ButtonCheckWizzard.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonCheckWizzard.Location = New System.Drawing.Point(10, 31)
-        Me.ButtonCheckWizzard.Name = "ButtonCheckWizzard"
-        Me.ButtonCheckWizzard.Size = New System.Drawing.Size(163, 33)
-        Me.ButtonCheckWizzard.TabIndex = 3
-        Me.ButtonCheckWizzard.Text = "Check Settings"
-        Me.ToolTip1.SetToolTip(Me.ButtonCheckWizzard, "Checks if there is a settings wizzard for this application")
-        Me.ButtonCheckWizzard.UseVisualStyleBackColor = True
+        Me.GroupBoxAutoRun.Controls.Add(Me.TextBoxAutoRun)
+        Me.GroupBoxAutoRun.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBoxAutoRun.Location = New System.Drawing.Point(0, 476)
+        Me.GroupBoxAutoRun.Name = "GroupBoxAutoRun"
+        Me.GroupBoxAutoRun.Size = New System.Drawing.Size(195, 43)
+        Me.GroupBoxAutoRun.TabIndex = 4
+        Me.GroupBoxAutoRun.TabStop = False
+        Me.GroupBoxAutoRun.Text = "AutoRun"
+        Me.GroupBoxAutoRun.Visible = False
+        '
+        'TextBoxAutoRun
+        '
+        Me.TextBoxAutoRun.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.TextBoxAutoRun.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxAutoRun.ForeColor = System.Drawing.Color.Crimson
+        Me.TextBoxAutoRun.Location = New System.Drawing.Point(3, 17)
+        Me.TextBoxAutoRun.Name = "TextBoxAutoRun"
+        Me.TextBoxAutoRun.Size = New System.Drawing.Size(189, 23)
+        Me.TextBoxAutoRun.TabIndex = 0
+        Me.TextBoxAutoRun.Text = "XX"
         '
         'Form1
         '
@@ -637,6 +664,8 @@ Partial Class Form1
         Me.GroupBoxRem.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        Me.GroupBoxAutoRun.ResumeLayout(False)
+        Me.GroupBoxAutoRun.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -689,4 +718,6 @@ Partial Class Form1
     Friend WithEvents RadioButtonRemHash As RadioButton
     Friend WithEvents ButtonCheckWizzard As Button
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents GroupBoxAutoRun As GroupBox
+    Friend WithEvents TextBoxAutoRun As TextBox
 End Class

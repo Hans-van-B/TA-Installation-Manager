@@ -17,16 +17,6 @@ Module InstallationWizzardStart
 
     Sub InstallationWizzard()
         xtrace_subs("InstallationWizzard")
-        WizzardName = "W_" & Form1.ComboBoxInstName.Text
-        xtrace_i("Wizzard Name = " & WizzardName)
-        WizzardExists = False
-
-        '---- Start Wizzard Init
-        xtrace_i("Reset content")
-        ContentInit = ""
-        ContentAIExtr = ""
-        ContentReadme = ""
-        DownLoadIndex = -1
 
         If Not WizzardInitialized Then InitWizzard()
         AddReadme()
@@ -71,6 +61,19 @@ Module InstallationWizzardStart
             If Not AssignWizIniFile() Then GoTo QUIT
         End If
 
+        '---- Initialize
+        WizzardName = "W_" & Form1.ComboBoxInstName.Text
+        xtrace_i("Wizzard Name = " & WizzardName)
+        WizzardExists = False
+
+        '---- Start Wizzard Init
+        xtrace_i("Reset content")
+        ContentInit = ""
+        ContentAIExtr = ""
+        ContentReadme = ""
+        DownLoadIndex = -1
+
+        '---- Start
         Dim ReadFile
         Form1.WriteInfo("Read Defaults " & WizIniFile)
         ReadFile = My.Computer.FileSystem.OpenTextFileReader(WizIniFile)

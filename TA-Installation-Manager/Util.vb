@@ -37,4 +37,31 @@
     Sub Do_Events()
         Application.DoEvents()
     End Sub
+
+    Function StringToBool(Val As String) As Boolean
+        Dim Result As Boolean
+        Dim Valid As Boolean = False
+        Dim Test As Integer
+        Val = Val.ToUpper
+
+        Test = Array.IndexOf({"TRUE", "YES", "1"}, Val)
+        If Test >= 0 Then
+            Result = True
+            Valid = True
+        End If
+
+        Test = Array.IndexOf({"FALSE", "NO", "0", "-1"}, Val)
+        If Test >= 0 Then
+            Result = False
+            Valid = True
+        End If
+
+        If Not Valid Then
+            xtrace_warn("The boolean value given in invalid: " & Val)
+            Result = False
+        End If
+
+        xtrace_i("StringToBool returns " & Result.ToString)
+        StringToBool = Result
+    End Function
 End Module

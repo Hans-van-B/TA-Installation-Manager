@@ -42,6 +42,9 @@
         Log.xtrace_sube("Form1_Load2")
     End Sub
 
+    '---- Auto Run ----------------------------------------------------------------------
+    ' Mainly for automatic testing and validation, to get predictable and reproducable log files
+    ' This is an Undocumented development feature, so no hiding or disabeling of the user-interface is done.
     Sub StartAutoRun()
         xtrace_subs("StartAutoRun")
 
@@ -50,12 +53,18 @@
         Dim ArStep As String = ARData(0)
         xtrace_i("ARDCount = " & ARDCount.ToString)
 
+        GroupBoxAutoRun.Visible = True
+        TextBoxAutoRun.Text = ArStep
+        wait(1)
+
         xtrace_i("Step 0: Set Instname = " & ArStep)
         ComboBoxInstName.Text = ArStep
 
         For Nr As Integer = 1 To ARDCount - 1
             ArStep = ARData(Nr)
+            TextBoxAutoRun.Text = ArStep
             xtrace_i("Step " & Nr.ToString & ": " & ArStep)
+
             If ArStep = "Start" Then
                 ButtonStartCreate_Click(Nothing, Nothing)
             ElseIf ArStep = "Exit" Then
@@ -63,6 +72,7 @@
                 Util.exit_program()
             End If
         Next
+        GroupBoxAutoRun.Visible = False
 
         xtrace_sube("StartAutoRun")
     End Sub

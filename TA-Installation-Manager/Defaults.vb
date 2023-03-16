@@ -2,6 +2,7 @@
     Public Inifile As String = IniFile1
 
     Dim XX As String ' Dummy
+    Dim UseTASetup, UseTASelect, UseTADeinstall As Boolean
     Sub ReadDefaults()
         xtrace_subs("ReadDefaults")
         Dim ReadFile
@@ -115,7 +116,8 @@
 
     ' These defaults are used both in the general defaults and also in the wizzard init
     Sub SharedDefaults(DName As String, DVal As String)
-        xtrace_subs("SharedDefaults", 3)
+        Dim LT As Integer = SharedDefaultsTraceValue
+        xtrace_subs("SharedDefaults", LT)
 
         If DName = "ScriptTypeSelect" Then
             ScriptTypeSelect = DVal
@@ -155,13 +157,9 @@
         End If
 
         If DName = "BatSeparatePost" Then
-            BatSeparatePost = DVal
-            xtrace("Set BatSeparatePost = " & BatSeparatePost)
-            If Glob.BatSeparatePost = "True" Then
-                Form1.CheckBoxBatSeparatePost.Checked = True
-            ElseIf Glob.BatSeparatePost = "False" Then
-                Form1.CheckBoxBatSeparatePost.Checked = False
-            End If
+            BatSeparatePost = StringToBool(DVal)
+            Form1.CheckBoxBatSeparatePost.Checked = BatSeparatePost
+            xtrace_i("Set BatSeparatePost = " & BatSeparatePost.ToString)
         End If
 
         If DName = "BatRemarkMethod" Then
@@ -174,30 +172,24 @@
         End If
 
         If DName = "UseTASetup" Then
-            If DVal = "True" Then
-                Form1.CheckBoxTASetup.Checked = True
-            ElseIf DVal = "False" Then
-                Form1.CheckBoxTASetup.Checked = False
-            End If
+            UseTASetup = StringToBool(DVal)
+            Form1.CheckBoxTASetup.Checked = UseTASetup
+            xtrace_i("Set UseTASetup = " & UseTASetup.ToString)
         End If
 
         If DName = "UseTASelect" Then
-            If DVal = "True" Then
-                Form1.CheckBoxTASelect.Checked = True
-            ElseIf DVal = "False" Then
-                Form1.CheckBoxTASelect.Checked = False
-            End If
+            UseTASelect = StringToBool(DVal)
+            Form1.CheckBoxTASelect.Checked = UseTASelect
+            xtrace_i("Set UseTASelect = " & UseTASelect.ToString)
         End If
 
         If DName = "UseTADeinstall" Then
-            If DVal = "True" Then
-                Form1.CheckBoxTADeinstall.Checked = True
-            ElseIf DVal = "False" Then
-                Form1.CheckBoxTADeinstall.Checked = False
-            End If
+            UseTADeinstall = StringToBool(DVal)
+            Form1.CheckBoxTADeinstall.Checked = UseTADeinstall
+            xtrace_i("Set UseTADeinstall = " & UseTADeinstall.ToString)
         End If
 
-        xtrace_sube("SharedDefaults", 3)
+        xtrace_sube("SharedDefaults", LT)
     End Sub
 
     Function StringToBoolean(Val As String) As Boolean
