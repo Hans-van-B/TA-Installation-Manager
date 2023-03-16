@@ -46,6 +46,12 @@
                     ShowHelp()
                     ExitProgram = True
                 End If
+            
+            If SwName = "ip" Then
+                IncreasePerformance = True
+                xtrace_i("Set IncreasePerformance = " & IncreasePerformance.ToString)
+                ' ToDo Lower the trace level
+            End If
 
                 Continue For
             End If
