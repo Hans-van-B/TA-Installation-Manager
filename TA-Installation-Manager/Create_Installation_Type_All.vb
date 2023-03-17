@@ -3,8 +3,10 @@
     Public InstRoot As String
     Public InstName As String
     Sub Create_Installation_Base()
+        xtrace_line()
         xtrace_subs("Create_Installation_Base")
 
+        Form1.SetStatus("Create Installation")
         InstName = Form1.ComboBoxInstName.Text
         DepoPath = TAISDevDepo & "\" & InstName & "\" & Form1.ComboBoxInstVer.Text
         xtrace_i("DepoPath = " & DepoPath)
@@ -29,9 +31,9 @@
             End If
         Next
 
-        AddInstFile(Form1.CheckBoxTASetup.Checked, "Inst", "TA-Setup.exe")
-        AddInstFile(Form1.CheckBoxTASelect.Checked, "Inst", "TA-Select.exe")
-        AddInstFile(Form1.CheckBoxTADeinstall.Checked, "Inst", "TA-Deinstall.exe")
+        AddInstFile(Form1.CheckBoxTASetup.Checked, "TA-Setup.exe", "Inst")
+        AddInstFile(Form1.CheckBoxTASelect.Checked, "TA-Select.exe", "Inst")
+        AddInstFile(Form1.CheckBoxTADeinstall.Checked, "TA-Deinstall.exe", "Inst")
 
         Form1.ButtonShowResult.Enabled = True
 
@@ -47,8 +49,10 @@
     Sub AddInstFile(CheckBox As Boolean, FileName As String, SubPath As String)
         If CheckBox Then
             Dim Target As String = DepoPath & "\" & SubPath
-            xtrace_i("Add: " & Target & "\" & FileName)
+            xtrace_i("Add: " & SubPath & "\" & FileName)
             GetFile(FileName, Target)
+        Else
+            xtrace_i("Off: " & SubPath & "\" & FileName)
         End If
     End Sub
 End Module

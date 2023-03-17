@@ -18,6 +18,8 @@ Module Create_Installation_Depo
 
     Sub Create_Depo()
         xtrace_subs("Create_Depo")
+
+        Form1.SetStatus("Check / Create Depo")
         '---- Depo Root
         TAISDevDepo = Form1.ComboBoxDevDepo.Text
         DepoRoot = TAISDevDepo
@@ -78,10 +80,15 @@ Module Create_Installation_Depo
         End If
         Check_InstSubDirs(TA_Template_Inst, "           ")
 
+        '---- TA_InstLib files
+        xtrace_i("Add files for InstLib")
+        'GetFile("XElevate.exe", TA_InstLib_InstExe)
+
         '---- TA_Template Files
-        GetFile("XElevate.exe", TA_InstLib_InstExe)
+        xtrace_i("Add files for Template")
         GetFile("TA-Setup.exe", TA_Template_Inst)
         GetFile("TA-Select.exe", TA_Template_Inst)
+        GetFile("TA-Deinstall.exe", TA_Template_Inst)
 
         xtrace_sube("Create_Depo")
     End Sub

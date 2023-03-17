@@ -250,6 +250,17 @@ Module Log
     Sub xtrace_i(Msg As String, TV As Integer)
         xtrace(" * " & Msg, TV)
     End Sub
+	
+	'---- xtrace_line ----
+	
+	sub xtrace_line()
+	xtrace("----------------------------------------------------------------------")
+	End Sub
+
+	sub xtrace_line(Msg As String)
+	xtrace(Left("---- " & Msg & " ----------------------------------------------------------------", 70))
+	End Sub
+	
 
     '--- xtrace TimeStamp ----
     Sub xtrace_TimeStamp()

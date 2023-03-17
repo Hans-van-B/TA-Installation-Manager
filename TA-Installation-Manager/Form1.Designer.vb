@@ -23,6 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSave = New System.Windows.Forms.ToolStripMenuItem()
@@ -34,6 +35,8 @@ Partial Class Form1
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainerBase = New System.Windows.Forms.SplitContainer()
+        Me.GroupBoxAutoRun = New System.Windows.Forms.GroupBox()
+        Me.TextBoxAutoRun = New System.Windows.Forms.TextBox()
         Me.ButtonCheckWizzard = New System.Windows.Forms.Button()
         Me.ButtonDeleteResult = New System.Windows.Forms.Button()
         Me.ButtonShowResult = New System.Windows.Forms.Button()
@@ -71,13 +74,12 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.GroupBoxAutoRun = New System.Windows.Forms.GroupBox()
-        Me.TextBoxAutoRun = New System.Windows.Forms.TextBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
         Me.SplitContainerBase.Panel2.SuspendLayout()
         Me.SplitContainerBase.SuspendLayout()
+        Me.GroupBoxAutoRun.SuspendLayout()
         CType(Me.SplitContainer1H, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1H.Panel1.SuspendLayout()
         Me.SplitContainer1H.Panel2.SuspendLayout()
@@ -90,7 +92,6 @@ Partial Class Form1
         Me.TabPageWinBat.SuspendLayout()
         Me.GroupBoxRem.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
-        Me.GroupBoxAutoRun.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -187,6 +188,29 @@ Partial Class Form1
         Me.SplitContainerBase.Size = New System.Drawing.Size(873, 519)
         Me.SplitContainerBase.SplitterDistance = 195
         Me.SplitContainerBase.TabIndex = 3
+        '
+        'GroupBoxAutoRun
+        '
+        Me.GroupBoxAutoRun.Controls.Add(Me.TextBoxAutoRun)
+        Me.GroupBoxAutoRun.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBoxAutoRun.Location = New System.Drawing.Point(0, 476)
+        Me.GroupBoxAutoRun.Name = "GroupBoxAutoRun"
+        Me.GroupBoxAutoRun.Size = New System.Drawing.Size(195, 43)
+        Me.GroupBoxAutoRun.TabIndex = 4
+        Me.GroupBoxAutoRun.TabStop = False
+        Me.GroupBoxAutoRun.Text = "AutoRun"
+        Me.GroupBoxAutoRun.Visible = False
+        '
+        'TextBoxAutoRun
+        '
+        Me.TextBoxAutoRun.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.TextBoxAutoRun.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxAutoRun.ForeColor = System.Drawing.Color.Crimson
+        Me.TextBoxAutoRun.Location = New System.Drawing.Point(3, 17)
+        Me.TextBoxAutoRun.Name = "TextBoxAutoRun"
+        Me.TextBoxAutoRun.Size = New System.Drawing.Size(189, 23)
+        Me.TextBoxAutoRun.TabIndex = 0
+        Me.TextBoxAutoRun.Text = "XX"
         '
         'ButtonCheckWizzard
         '
@@ -606,29 +630,6 @@ Partial Class Form1
         'TimerInit
         '
         '
-        'GroupBoxAutoRun
-        '
-        Me.GroupBoxAutoRun.Controls.Add(Me.TextBoxAutoRun)
-        Me.GroupBoxAutoRun.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBoxAutoRun.Location = New System.Drawing.Point(0, 476)
-        Me.GroupBoxAutoRun.Name = "GroupBoxAutoRun"
-        Me.GroupBoxAutoRun.Size = New System.Drawing.Size(195, 43)
-        Me.GroupBoxAutoRun.TabIndex = 4
-        Me.GroupBoxAutoRun.TabStop = False
-        Me.GroupBoxAutoRun.Text = "AutoRun"
-        Me.GroupBoxAutoRun.Visible = False
-        '
-        'TextBoxAutoRun
-        '
-        Me.TextBoxAutoRun.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TextBoxAutoRun.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxAutoRun.ForeColor = System.Drawing.Color.Crimson
-        Me.TextBoxAutoRun.Location = New System.Drawing.Point(3, 17)
-        Me.TextBoxAutoRun.Name = "TextBoxAutoRun"
-        Me.TextBoxAutoRun.Size = New System.Drawing.Size(189, 23)
-        Me.TextBoxAutoRun.TabIndex = 0
-        Me.TextBoxAutoRun.Text = "XX"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -636,6 +637,7 @@ Partial Class Form1
         Me.ClientSize = New System.Drawing.Size(873, 543)
         Me.Controls.Add(Me.SplitContainerBase)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
         Me.Text = "Form1"
@@ -646,6 +648,8 @@ Partial Class Form1
         Me.SplitContainerBase.Panel2.PerformLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerBase.ResumeLayout(False)
+        Me.GroupBoxAutoRun.ResumeLayout(False)
+        Me.GroupBoxAutoRun.PerformLayout()
         Me.SplitContainer1H.Panel1.ResumeLayout(False)
         Me.SplitContainer1H.Panel1.PerformLayout()
         Me.SplitContainer1H.Panel2.ResumeLayout(False)
@@ -664,8 +668,6 @@ Partial Class Form1
         Me.GroupBoxRem.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        Me.GroupBoxAutoRun.ResumeLayout(False)
-        Me.GroupBoxAutoRun.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

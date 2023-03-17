@@ -1,7 +1,7 @@
 ﻿Module Glob
     ' Template Windows Forms
     Public AppName As String = "TA-Installation-Manager"
-    Public AppVer As String = "0.01.10"
+    Public AppVer As String = "0.01.11"
 
     Public AppRoot As String = Application.StartupPath
     Public CD As String = My.Computer.FileSystem.CurrentDirectory

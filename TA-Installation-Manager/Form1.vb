@@ -18,6 +18,7 @@
     End Sub
 
     Private Sub TimerInit_Tick(sender As Object, e As EventArgs) Handles TimerInit.Tick
+        Log.xtrace_line()
         Log.xtrace_subs("Form1_Load2 (TimerInit)")
         TimerInit.Stop()
 
@@ -36,10 +37,12 @@
         If Glob.ReDownload = True Then CheckBoxReDownload.Checked = True
 
         If Len(AutoRun) > 2 Then
-            StartAutoRun
+            Log.xtrace_line()
+            StartAutoRun()
         End If
 
         Log.xtrace_sube("Form1_Load2")
+        Log.xtrace_line()
     End Sub
 
     '---- Auto Run ----------------------------------------------------------------------
@@ -97,6 +100,10 @@
     Public Sub WriteInfo(Msg)
         TextBoxInfo.AppendText(Msg & vbNewLine)
         Log.xtrace(Msg)
+    End Sub
+
+    Public Shared Sub SetStatus(Msg As String)
+        Form1.ToolStripStatusLabel1.Text = Msg
     End Sub
 
     '==== Main Menu ===========================================================
@@ -216,7 +223,7 @@
         End If
 
         If ScriptTypeSelect = "BAT" Then
-            ToolStripStatusLabel1.Text = "Create TA-Installation type .bat"
+            SetStatus("Create TA-Installation type .bat")
             Create_Depo()
             Create_Installation_Base()
             InstallationWizzard()
@@ -225,10 +232,10 @@
 
             AddWebContent()
             wait(1)
-            ToolStripStatusLabel1.Text = "Done."
+            SetStatus("Done.")
 
         ElseIf ScriptTypeSelect = "PS" Then
-            ToolStripStatusLabel1.Text = "Create TA-Installation type .ps2"
+            SetStatus("Create TA-Installation type .ps2")
             Create_Depo()
             Create_Installation_Base()
             InstallationWizzard()
@@ -237,10 +244,10 @@
 
             AddWebContent()
             wait(1)
-            ToolStripStatusLabel1.Text = "Done."
+            SetStatus("Done.")
 
         Else
-            ToolStripStatusLabel1.Text = "First select the installation type and it's components"
+            SetStatus("First select the installation type and it's components")
             MsgBox("Please select the installation type" & vbCrLf & " and it's components", MessageBoxIcon.Information, "Hint:")
             'TabPageWinBat.BackColor = ButtonHighLite
             'TabPagePS.BackColor = ButtonHighLite

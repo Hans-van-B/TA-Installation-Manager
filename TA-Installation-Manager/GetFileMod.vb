@@ -5,7 +5,7 @@
     Dim GetFileURL As String
     Dim BinLib As String = AppRoot & "\Lib\Bin"
     Sub GetFile(FileName As String, Target As String)
-        xtrace_subs("GetFile " & FileName)
+        xtrace_subs("GetFile (" & Target & "\" & FileName & ")")
         If FileExists(FileName, Target) Then GoTo QUIT
 
         Dim DLine As String = GetFileDefaults(FileName)
@@ -68,15 +68,25 @@ QUIT:
             End If
         Next
 
+        If Result = "" Then
+            xtrace_warn("Defaults for " & FileName & " are missing")
+            Result = "InstLibExe|BinLib"
+        End If
+
         xtrace_i("Result = '" & Result & "'")
         GetFileDefaults = Result
         xtrace_sube("GetFileDefaults")
     End Function
-    '----  -------------------------------------------
-    Sub GetFileElse()
 
+    '---- GetFileElse -------------------------------------------
+    ' Not sure what the porpose of this was, remove?
+    Sub GetFileElse()
+        xtrace_subs("GetFileElse")
+        xtrace_warn("Not implemented yet")
+        xtrace_sube("GetFileElse")
     End Sub
-    '----  -------------------------------------------
+
+    '---- FileExists -------------------------------------------
     Function FileExists(FileName As String, Target As String)
         Dim Exists As Boolean
         If ReDownload Then
@@ -140,7 +150,8 @@ QUIT:
         xtrace_i("Try: " & SLoc)
 
         If Not My.Computer.FileSystem.DirectoryExists(BinLib) Then
-            xtrace_i("BinLib does not exist")
+            xtrace_warn({"BinLib does not exist", "It is usually created during the installation of " & AppName})
+
         ElseIf My.Computer.FileSystem.FileExists(SLoc) Then
             Try
                 My.Computer.FileSystem.CopyFile(SLoc, Target & "\" & FileName)

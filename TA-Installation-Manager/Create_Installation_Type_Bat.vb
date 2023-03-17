@@ -81,8 +81,10 @@
     End Sub
     '==== Add Installation Components Bat ==========================================
     Sub Add_Installation_Components_Bat()
+        xtrace_line()
         xtrace_subs("Add_Installation_Components_Bat")
 
+        Form1.SetStatus("Create Installation (Bat)")
         '---- Create directories for InstType .bat
 
         Dim CheckDir, SD As String
@@ -95,7 +97,7 @@
         Next
 
         SetBatRemString()
-        AddInstFile((RemType = "#"), "Inst\exe", "#.exe")
+        AddInstFile((RemType = "#"), "#.exe", "Inst\exe")
 
         '---- Create bat\Install.bat
         xtrace_i("Create " & InstallStartFile)
@@ -129,7 +131,7 @@
         End If
 
         '---- Add exe files
-        AddInstFile(True, "Inst\Exe", "wait.exe")
+        AddInstFile(True, "wait.exe", "Inst\Exe")
 
         xtrace_sube("Add_Installation_Components_Bat")
     End Sub
@@ -141,6 +143,7 @@
         OutFile = "\bat\01_init.bat"
 
         Dim SeparateFile As Boolean = Form1.CheckBoxBatSeparateInit.Checked
+        xtrace_i("Separate file = " & SeparateFile.ToString)
 
         If SeparateFile Then
             xtrace_i("Write call in the start file")
@@ -187,9 +190,10 @@
     Sub Add_Installation_Application()
         xtrace_subs("Add_Installation_Application")
 
-        Dim OutFile As String = "\bat\05_" & InstName & ".bat"
+        OutFile = "\bat\05_" & InstName & ".bat"
 
         Dim SeparateFile As Boolean = Form1.CheckBoxBatSeparateApp.Checked
+        xtrace_i("Separate file = " & SeparateFile.ToString)
 
         If SeparateFile Then
             ' Write call in the start file
@@ -274,9 +278,10 @@
     Sub Add_Post_Installation()
         xtrace_subs("Add_Post_Installation")
 
-        Dim OutFile As String = "\bat\09_After_Install.bat"
+        OutFile = "\bat\09_After_Install.bat"
 
         Dim SeparateFile As Boolean = Form1.CheckBoxBatSeparatePost.Checked
+        xtrace_i("Separate file = " & SeparateFile.ToString)
 
         If SeparateFile Then
             ' Write call in the start file
