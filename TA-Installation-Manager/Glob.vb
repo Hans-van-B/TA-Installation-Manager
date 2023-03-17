@@ -12,6 +12,7 @@
     Public ExitProgram As Boolean = False
     Public StartSeq As String = ""
     Public SharedDefaultsTraceValue As Integer = 2   ' Default value = 3
+    Public AppStartTime As Date = DateTime.Now
 
     ' Defaults
     Public IniFile1 As String = AppRoot & "\" & AppName & ".ini"

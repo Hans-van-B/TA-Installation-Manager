@@ -2,7 +2,11 @@
     '---- Wait ----------------------------------------------------------------
     Public Sub wait(ByVal interval As Integer)
         xtrace_i("Wait " & interval.ToString)
-        interval = interval * 1000
+        If IncreasePerformance Then
+            interval = interval * 100
+        Else
+            interval = interval * 1000
+        End If
 
         Dim sw As New Stopwatch
         sw.Start()
@@ -22,6 +26,8 @@
         Else
             xtrace("Exit Ok", 1)
         End If
+        Dim RunTimeSpan As TimeSpan = DateTime.Now - AppStartTime
+        xtrace("Elapsed time = " & RunTimeSpan.ToString, 1)
 
         xtrace("")
         xtrace("================")
