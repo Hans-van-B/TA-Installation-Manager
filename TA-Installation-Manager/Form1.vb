@@ -26,6 +26,8 @@
         Log.xtrace_subs("Form1_Load2 (TimerInit)")
         TimerInit.Stop()
 
+        WriteInfo("Bin Library = " & BinLib)
+
         Set_TAISDevDepo()
         ButtonCheckWizzard.Left = 10
 
