@@ -66,6 +66,10 @@
                 xtrace("Default " & DName & "=" & DVal)
 
                 If Group = "INIT" Then
+                    If DName = "LicID" Then
+                        LicC.LicID = DVal
+                        xtrace(" - SET LicID=" & LicC.LicID, 2)
+                    End If
 
                     If DName = "WindowState" Then
                         If UCase(DVal) = "MIN" Then
@@ -120,7 +124,7 @@
         xtrace_subs("SharedDefaults", LT)
 
         If DName = "ScriptTypeSelect" Then
-            ScriptTypeSelect = DVal
+            ScriptTypeSelect = DVal.ToUpper
             xtrace("Set ScriptTypeSelect = " & ScriptTypeSelect)
             Form1.SetGUIScryptType(Glob.ScriptTypeSelect)
         End If
@@ -207,8 +211,10 @@
     '---- Create ini file -----------------------------------------------------
     Sub WriteIniFile()
         xtrace_subs("WriteIniFile")
+        If Glob.ScriptTypeSelect = "" Then Glob.ScriptTypeSelect = "Bat"
 
         Dim IniTxt As String = "[INIT]" & vbCrLf &
+            "LicID=" & LicC.LicID & vbCrLf &
             "ScriptTypeSelect=" & Glob.ScriptTypeSelect & vbCrLf &
             "BatSeparateInit=" & Form1.CheckBoxBatSeparateInit.Checked.ToString & vbCrLf &
             "CopySourceToLocal=" & Form1.CheckBoxCopySource.Checked.ToString & vbCrLf &

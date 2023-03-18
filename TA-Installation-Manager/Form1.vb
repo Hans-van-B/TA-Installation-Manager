@@ -9,6 +9,10 @@
         Log.xtrace("Initializing")
         Defaults.ReadDefaults()
         Read_Command_Line_Arg()
+
+        LicC.GetLic()
+        LicC.CheckLicDate()
+
         Me.Text = AppName.Replace("-", " ") & " V" & AppVer
 
         SplitContainerBase.SplitterDistance = 200
@@ -53,24 +57,26 @@
 
         Dim ARData() As String = AutoRun.Split(";")
         Dim ARDCount As Integer = ARData.Length
-        Dim ArStep As String = ARData(0)
+        Dim ArStep As String
         xtrace_i("ARDCount = " & ARDCount.ToString)
 
-        GroupBoxAutoRun.Visible = True
-        TextBoxAutoRun.Text = ArStep
-        wait(1)
-
-        xtrace_i("Step 0: Set Instname = " & ArStep)
-        ComboBoxInstName.Text = ArStep
-
-        For Nr As Integer = 1 To ARDCount - 1
+        For Nr As Integer = 0 To ARDCount - 1
             ArStep = ARData(Nr)
             TextBoxAutoRun.Text = ArStep
             xtrace_i("Step " & Nr.ToString & ": " & ArStep)
 
+            If Nr = 0 Then
+                ComboBoxInstName.Text = ArStep
+                wait(1)
+            End If
+
             If ArStep = "Start" Then
                 ButtonStartCreate_Click(Nothing, Nothing)
-            ElseIf ArStep = "Exit" Then
+            End If
+            If ArStep = "Save" Then
+                ToolStripSave_Click(Nothing, Nothing)
+            End If
+            If ArStep = "Exit" Then
                 wait(2)
                 Util.exit_program()
             End If
@@ -140,6 +146,13 @@
         xtrace_subs("Menu, Settings, Show log file")
         Process.Start(LogFile)
         xtrace_sube("Show log file")
+    End Sub
+
+    '---- Advanced, Reset License
+    Private Sub ResetLicenseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetLicenseToolStripMenuItem.Click
+        xtrace_subs("Menu, Advanced, Reset License")
+        LicC.LicID = LicC.DefaultLicID
+        xtrace_sube("Reset License")
     End Sub
 
     '---- Show help ----

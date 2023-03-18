@@ -74,6 +74,8 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.AdvancedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ResetLicenseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -127,7 +129,7 @@ Partial Class Form1
         '
         'SettingsToolStripMenuItem
         '
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowSettingsToolStripMenuItem, Me.ShowLogToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowSettingsToolStripMenuItem, Me.ShowLogToolStripMenuItem, Me.AdvancedToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.SettingsToolStripMenuItem.Text = "Settings"
@@ -136,13 +138,13 @@ Partial Class Form1
         '
         Me.ShowSettingsToolStripMenuItem.CheckOnClick = True
         Me.ShowSettingsToolStripMenuItem.Name = "ShowSettingsToolStripMenuItem"
-        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShowSettingsToolStripMenuItem.Text = "Show settings"
         '
         'ShowLogToolStripMenuItem
         '
         Me.ShowLogToolStripMenuItem.Name = "ShowLogToolStripMenuItem"
-        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShowLogToolStripMenuItem.Text = "Show &Log"
         '
         'HelpToolStripMenuItem
@@ -630,6 +632,19 @@ Partial Class Form1
         'TimerInit
         '
         '
+        'AdvancedToolStripMenuItem
+        '
+        Me.AdvancedToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetLicenseToolStripMenuItem})
+        Me.AdvancedToolStripMenuItem.Name = "AdvancedToolStripMenuItem"
+        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AdvancedToolStripMenuItem.Text = "Advanced"
+        '
+        'ResetLicenseToolStripMenuItem
+        '
+        Me.ResetLicenseToolStripMenuItem.Name = "ResetLicenseToolStripMenuItem"
+        Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ResetLicenseToolStripMenuItem.Text = "Reset License"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -722,4 +737,6 @@ Partial Class Form1
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents GroupBoxAutoRun As GroupBox
     Friend WithEvents TextBoxAutoRun As TextBox
+    Friend WithEvents AdvancedToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ResetLicenseToolStripMenuItem As ToolStripMenuItem
 End Class
