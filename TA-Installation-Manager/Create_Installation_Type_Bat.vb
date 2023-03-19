@@ -4,6 +4,8 @@
     Dim BatFileHeader As String
     Dim BatFileFooter As String
     Dim BatTimeStamp As String
+    Dim InstBat As String = InstRoot & "\bat"
+    Dim InstData As String = InstRoot & "\data"
 
     '==== Short notation of write to batch file
     Dim OutFile As String
@@ -112,6 +114,13 @@
         '---- Create bat\init.bat
         Add_Installation_Init()
 
+        '---- Create Site/Group config
+        If Form1.CheckBoxDeptConfigs.Checked Then
+            Add_DeptConfig()
+        Else
+            xtrace_i("No Dept config")
+        End If
+
         '---- Create Application Install bat
         Add_Installation_Application()
 
@@ -168,12 +177,21 @@
 
         ' Set init body txt
         WTO("%WRITE% ' * Initializing'")
+        WTO("")
+
+        If Form1.CheckBoxDeptConfigs.Checked Then
+            xtrace_i("Add site init")
+            WTO("set site_conf=%instroot%\bat\%TA_SITE%")
+            WTO("set site_data=%instroot%\data\%TA_SITE%")
+            WTO("call '%site_conf%\site_init'")
+            WTO("")
+        End If
+
         If (ContentInit = "") Or (ContentInit Is Nothing) Then
             WTO(":: Add initialization content here")
         Else
             WTO(ContentInit)    ' Optional Wizzard Content
         End If
-        WTO("")
 
         ' Add footer and write
         If SeparateFile Then
@@ -184,6 +202,42 @@
         End If
 
         xtrace_sube("Add_Installation_Init")
+    End Sub
+
+    '==== Write Dept Config =============================================================
+
+    Sub Add_DeptConfig()
+        xtrace_subs("Add_DeptConfig")
+
+        Dim Dept As String
+        Dim Content As String
+        ' Write call in install
+        WTI("call ""%instroot%" & OutFile & """")
+
+        ' Create Dept-Dirs
+        For Each Dept In Form1.TextBox1.Lines
+            xtrace_i("Dept : " & Dept)
+            CreateDirectory(InstBat & "\" & Dept, 0, "", "Please check your directory access rights", True, True)
+            CreateDirectory(InstData & "\" & Dept, 0, "", "Please check your directory access rights", True, True)
+
+            ' Create Dept-Scripts
+            Content = BatFileHeader & vbCrLf &
+                "echo  * " & Dept & " site init >>%ICL%" & vbCrLf &
+                vbCrLf &
+                BatFileFooter & vbCrLf
+            WriteTxtToFile(InstBat & "\" & Dept & "\site_init.bat", Content, False, 0, "", "", True, True)
+
+            If Form1.CheckBoxBatSeparatePost.Checked Then
+                Content = BatFileHeader & vbCrLf &
+                    "echo  * " & Dept & " site post inst >>%ICL%" & vbCrLf &
+                    vbCrLf &
+                    BatFileFooter & vbCrLf
+                WriteTxtToFile(InstBat & "\" & Dept & "\site_post_inst.bat", Content, False, 0, "", "", True, True)
+            End If
+        Next
+        ' Create Select Config
+
+        xtrace_sube("Add_DeptConfig")
     End Sub
 
     '==== Write Application Installation ================================================

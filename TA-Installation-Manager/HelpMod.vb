@@ -23,19 +23,38 @@
             WriteHelp("")
             WriteHelp("</head>")
             WriteHelp("<H2>" & AppName & " V" & AppVer & " Help Page</H2>")
-            WriteHelp("<br>")
-            WriteHelp("<H3>Using Templates and Wizzards</H3>")
-            WriteHelp("Some installations contain an installation wizzard that delivers and (almost) complete installation.<br>")
-            WriteHelp("If you select your own application name, then the installation manager will create an installation framework (or template).<br>")
-            WriteHelp("But you can also use the settings of an existing wizzard for another application: <br>")
-            WriteHelp("<UL>")
-            WriteHelp(" <LI>For instance, you can select the (older) NX12 application.</LI>")
-            WriteHelp(" <LI>Then press [Check Settings]. This will set all the settings in the application wizzard.</LI>")
-            WriteHelp(" <LI>Then enter you own application name, for instance NX1926</LI>")
-            WriteHelp(" <LI>And then create the installation</LI>")
-            WriteHelp("</UL>")
-            WriteHelp("<br>")
-            WriteHelp("<br>")
+
+            Dim HelpTxt As String = "<h3 class='western'>No unnecessary scrip code</h3>
+<p style='line-height: 100%; margin-bottom: 0cm'>Because the
+TA-Installation Manager generates only functionality that you
+request, the result does not contain any unnecessary script code and
+consequently avoids unnecessary complexity. This in contrast to using
+an installation template, which is static.</p>
+<h3 class='western'>Using Templates and Wizards</h3>
+<p>Some installations contain an installation wizard that delivers
+and (almost) complete installation.<br/>
+If you select your own
+application name, then the installation manager will create an
+installation framework (or template).<br/>
+But you can also use the
+settings of an existing wizard for another application: 
+</p>
+<ul>
+	<li><p style='margin-bottom: 0cm'>For instance, you can select the
+	(older) NX12 application. 
+	</p>
+	<li><p style='margin-bottom: 0cm'>Then press [Check Settings]. This
+	will set all the settings in the application wizard. 
+	</p>
+	<li><p style='margin-bottom: 0cm'>Then enter you own application
+	name, for instance NX1926 
+	</p>
+	<li><p>And then create the installation 
+	</p>
+</ul>"
+            WriteHelp(HelpTxt.Replace("'", """"))
+
+
             WriteHelp("<br>")
             WriteHelp("<br>")
             WriteHelp("The " & AppName & " log can be found here: " & LogFile & "<br>")

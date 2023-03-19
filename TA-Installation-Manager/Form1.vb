@@ -422,8 +422,10 @@
     Private Sub CheckBoxDeptConfigs_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxDeptConfigs.CheckedChanged
         If CheckBoxDeptConfigs.Checked Then
             GroupBoxDeptList.Visible = True
+            CheckBoxTASelect.Checked = True
         Else
             GroupBoxDeptList.Visible = False
+            CheckBoxTASelect.Checked = False
         End If
     End Sub
 
