@@ -170,6 +170,12 @@
         xtrace_sube("Help, About")
     End Sub
 
+    Private Sub SupportThisAppToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SupportThisAppToolStripMenuItem.Click
+        xtrace_subs("Menu, Help, Support")
+        ShowSupport()
+        xtrace_sube("Help, Support")
+    End Sub
+
     '==== Select Script-type ==========================================================
     Dim ScryptTypeSelectColor As Color = Color.AliceBlue
     Dim ButtonHighLite As Color = Color.LightYellow
@@ -420,4 +426,5 @@
             GroupBoxDeptList.Visible = False
         End If
     End Sub
+
 End Class

@@ -79,6 +79,7 @@ Partial Class Form1
         Me.CheckBoxDeptConfigs = New System.Windows.Forms.CheckBox()
         Me.GroupBoxDeptList = New System.Windows.Forms.GroupBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.SupportThisAppToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -153,22 +154,22 @@ Partial Class Form1
         '
         'HelpToolStripMenuItem
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpToolStripMenuItem1, Me.AboutToolStripMenuItem})
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpToolStripMenuItem1, Me.AboutToolStripMenuItem, Me.SupportThisAppToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.HelpToolStripMenuItem.Text = "Help"
+        Me.HelpToolStripMenuItem.Text = "&Help"
         '
         'HelpToolStripMenuItem1
         '
         Me.HelpToolStripMenuItem1.Name = "HelpToolStripMenuItem1"
-        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(107, 22)
-        Me.HelpToolStripMenuItem1.Text = "Help"
+        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.HelpToolStripMenuItem1.Text = "&Help"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.AboutToolStripMenuItem.Text = "About"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Text = "&About"
         '
         'SplitContainerBase
         '
@@ -688,6 +689,12 @@ Partial Class Form1
         Me.TextBox1.TabIndex = 0
         Me.TextBox1.Text = "Dept1" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Dept2"
         '
+        'SupportThisAppToolStripMenuItem
+        '
+        Me.SupportThisAppToolStripMenuItem.Name = "SupportThisAppToolStripMenuItem"
+        Me.SupportThisAppToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SupportThisAppToolStripMenuItem.Text = "Support this app"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -787,4 +794,5 @@ Partial Class Form1
     Friend WithEvents GroupBoxDeptList As GroupBox
     Friend WithEvents CheckBoxDeptConfigs As CheckBox
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents SupportThisAppToolStripMenuItem As ToolStripMenuItem
 End Class
