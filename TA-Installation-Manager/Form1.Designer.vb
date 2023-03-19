@@ -76,6 +76,9 @@ Partial Class Form1
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.AdvancedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ResetLicenseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckBoxDeptConfigs = New System.Windows.Forms.CheckBox()
+        Me.GroupBoxDeptList = New System.Windows.Forms.GroupBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -94,6 +97,7 @@ Partial Class Form1
         Me.TabPageWinBat.SuspendLayout()
         Me.GroupBoxRem.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        Me.GroupBoxDeptList.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -374,6 +378,8 @@ Partial Class Form1
         Me.ComboBoxDevDepo.Name = "ComboBoxDevDepo"
         Me.ComboBoxDevDepo.Size = New System.Drawing.Size(121, 21)
         Me.ComboBoxDevDepo.TabIndex = 0
+        Me.ToolTip1.SetToolTip(Me.ComboBoxDevDepo, "This is the location where your installations are stored." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This can be a shared d" &
+        "rive on a server, a UNC path" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "or a local drive that you may have shared.")
         '
         'SplitContainer2V
         '
@@ -470,6 +476,8 @@ Partial Class Form1
         '
         'TabPageWinBat
         '
+        Me.TabPageWinBat.Controls.Add(Me.GroupBoxDeptList)
+        Me.TabPageWinBat.Controls.Add(Me.CheckBoxDeptConfigs)
         Me.TabPageWinBat.Controls.Add(Me.GroupBoxRem)
         Me.TabPageWinBat.Controls.Add(Me.Label5)
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparatePost)
@@ -645,6 +653,41 @@ Partial Class Form1
         Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ResetLicenseToolStripMenuItem.Text = "Reset License"
         '
+        'CheckBoxDeptConfigs
+        '
+        Me.CheckBoxDeptConfigs.AutoSize = True
+        Me.CheckBoxDeptConfigs.Location = New System.Drawing.Point(376, 128)
+        Me.CheckBoxDeptConfigs.Name = "CheckBoxDeptConfigs"
+        Me.CheckBoxDeptConfigs.Size = New System.Drawing.Size(144, 19)
+        Me.CheckBoxDeptConfigs.TabIndex = 5
+        Me.CheckBoxDeptConfigs.Text = "Add Dept/Site Configs"
+        Me.CheckBoxDeptConfigs.UseVisualStyleBackColor = True
+        '
+        'GroupBoxDeptList
+        '
+        Me.GroupBoxDeptList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBoxDeptList.Controls.Add(Me.TextBox1)
+        Me.GroupBoxDeptList.Location = New System.Drawing.Point(373, 153)
+        Me.GroupBoxDeptList.Name = "GroupBoxDeptList"
+        Me.GroupBoxDeptList.Size = New System.Drawing.Size(156, 210)
+        Me.GroupBoxDeptList.TabIndex = 6
+        Me.GroupBoxDeptList.TabStop = False
+        Me.GroupBoxDeptList.Text = "Dept/Site List"
+        Me.GroupBoxDeptList.Visible = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox1.Location = New System.Drawing.Point(3, 17)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.TextBox1.Size = New System.Drawing.Size(150, 190)
+        Me.TextBox1.TabIndex = 0
+        Me.TextBox1.Text = "Dept1" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Dept2"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -683,6 +726,8 @@ Partial Class Form1
         Me.GroupBoxRem.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        Me.GroupBoxDeptList.ResumeLayout(False)
+        Me.GroupBoxDeptList.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -739,4 +784,7 @@ Partial Class Form1
     Friend WithEvents TextBoxAutoRun As TextBox
     Friend WithEvents AdvancedToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ResetLicenseToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GroupBoxDeptList As GroupBox
+    Friend WithEvents CheckBoxDeptConfigs As CheckBox
+    Friend WithEvents TextBox1 As TextBox
 End Class

@@ -413,4 +413,11 @@
         xtrace_i("Set RemType = " & RemType)
     End Sub
 
+    Private Sub CheckBoxDeptConfigs_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxDeptConfigs.CheckedChanged
+        If CheckBoxDeptConfigs.Checked Then
+            GroupBoxDeptList.Visible = True
+        Else
+            GroupBoxDeptList.Visible = False
+        End If
+    End Sub
 End Class
