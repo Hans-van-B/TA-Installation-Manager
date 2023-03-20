@@ -20,20 +20,29 @@ Module InstallationWizzardBat
             Dim Index As Integer = Val(EData(1))
             Dim DData() As String = DownloadData(Downloads(Index))
             Dim ArchName As String = DData(2)
-            xtrace_i("Add Extract " & ArchName)
+            Dim ArchSubD As String = DData(1).Replace("Source", "")
+            Dim ArchDir As String = "%ARCHIVES%" & ArchSubD
+
+            xtrace_i("Add Extract ")
+            xtrace("   ArchName = " & ArchName)
+            xtrace("   ArchDir  = " & ArchDir)
 
             If EData(0) = "INST" Then
-                ContentAIExtr = "set INST1=%INSTTMP%\INST1" & vbCrLf &
-                    "if not exist '%INST1%' md '%INST1%'" & vbCrLf
+                xtrace_i("Extract towards INSTTMP\INST1")
 
-                ' Add extract command
-                ContentAIExtr = ContentAIExtr & "'%InstLibExe%\unzip' -od %INST1% '%ARCHIVES%\" & ArchName & "'"
+                ContentAIExtr = "set INST1=%INSTTMP%\INST1" & vbCrLf &
+                                "if not exist '%INST1%' md '%INST1%'" & vbCrLf &
+                                 vbCrLf &
+                                "'%InstLibExe%\unzip' -od %INST1% '" & ArchDir & "\" & ArchName & "'"
+
 
             ElseIf EData(0) = "InstTarget" Then
+                xtrace_i("Extract directly towards the installation target")
+
                 ContentAIExtr = "if not exist '%InstTarget%' md '%InstTarget%'" & vbCrLf
 
                 ' Add extract command
-                ContentAIExtr = ContentAIExtr & "'%InstLibExe%\unzip' -od '%InstTarget%' '%ARCHIVES%\" & ArchName & "'"
+                ContentAIExtr = ContentAIExtr & "'%InstLibExe%\unzip' -od '%InstTarget%' '" & ArchDir & "\" & ArchName & "'"
             End If
 
         End If

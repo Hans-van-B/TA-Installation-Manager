@@ -47,12 +47,24 @@
     End Sub
 
     Sub AddInstFile(CheckBox As Boolean, FileName As String, SubPath As String)
+        xtrace_subs("AddInstFile " & FileName)
+
+        Dim Target As String = DepoPath & "\" & SubPath
+        Dim FTarget As String = Target & "\" & FileName
+        xtrace_i("File Target = " & FTarget)
+        xtrace_i("CheckBox = " & CheckBox.ToString)
+
         If CheckBox Then
-            Dim Target As String = DepoPath & "\" & SubPath
             xtrace_i("Add: " & SubPath & "\" & FileName)
             GetFile(FileName, Target)
         Else
             xtrace_i("Off: " & SubPath & "\" & FileName)
+            If My.Computer.FileSystem.FileExists(FTarget) Then
+                xtrace_i("Remove " & FTarget)
+                My.Computer.FileSystem.DeleteFile(FTarget)
+            End If
         End If
+
+        xtrace_sube("AddInstFile")
     End Sub
 End Module

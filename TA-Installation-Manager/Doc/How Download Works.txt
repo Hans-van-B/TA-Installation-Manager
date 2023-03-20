@@ -1,0 +1,19 @@
+
+How download works
+
+C:\Cloud1\VB.Net-Dev\TA-Inst\TA-Installation-Manager\TA-Installation-Manager\InstallationWizzardStart.vb
+
+Sub InitWizzard
+DownLoadIndex += 1                        Public
+Downloads(DownLoadIndex) = DVal           Public
+
+DownloadData                              Function
+DownloadData = {URL, Target, Name}
+
+C:\Cloud1\VB.Net-Dev\TA-Inst\TA-Installation-Manager\TA-Installation-Manager\InstallationWizzardBat.vb
+Dim DData() As String = DownloadData(Downloads(Nr))
+GetUrl(DData)
+
+------------------------
+Extract=Inst;0
+The zero points to the index of the download

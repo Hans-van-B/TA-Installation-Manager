@@ -46,6 +46,7 @@ Module Web
 
         If GetFile Then
             Try
+                Form1.SetStatus("Downloading...")
                 Dim Cmd As String
                 'md = "curl -v --output """ & FPath & """ """ & Url & """ >>" & LogFile & " 2>>&1"
                 'md = "curl -v --user ""anonymous:"" --output """ & FPath & """ """ & Url & """ >>" & LogFile & " 2>>&1"
@@ -58,8 +59,10 @@ Module Web
                 Proc.StartInfo = ProcStartInfo
                 Proc.Start()
                 Proc.WaitForExit()
+                Form1.SetStatus("Download Finished.")
             Catch ex As Exception
                 xtrace("   " & ex.Message)
+                Form1.SetStatus("Download Failed.")
             End Try
         End If
 

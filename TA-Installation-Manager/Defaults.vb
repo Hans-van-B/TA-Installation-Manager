@@ -193,6 +193,15 @@
             xtrace_i("Set UseTADeinstall = " & UseTADeinstall.ToString)
         End If
 
+        If DName = "AppNameList" Then
+            Dim AppNameList() As String = DVal.Split(";")
+            Dim AppName As String
+            For Each AppName In AppNameList
+                xtrace_i("Add AppName: " & AppName)
+                Form1.ComboBoxInstName.Items.Add(AppName)
+            Next
+        End If
+
         xtrace_sube("SharedDefaults", LT)
     End Sub
 

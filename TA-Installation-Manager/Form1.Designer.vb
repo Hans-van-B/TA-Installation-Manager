@@ -31,9 +31,12 @@ Partial Class Form1
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdvancedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ResetLicenseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SupportThisAppToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainerBase = New System.Windows.Forms.SplitContainer()
         Me.GroupBoxAutoRun = New System.Windows.Forms.GroupBox()
         Me.TextBoxAutoRun = New System.Windows.Forms.TextBox()
@@ -59,6 +62,9 @@ Partial Class Form1
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPageWinBat = New System.Windows.Forms.TabPage()
+        Me.GroupBoxDeptList = New System.Windows.Forms.GroupBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.CheckBoxDeptConfigs = New System.Windows.Forms.CheckBox()
         Me.GroupBoxRem = New System.Windows.Forms.GroupBox()
         Me.RadioButtonRemHash = New System.Windows.Forms.RadioButton()
         Me.RadioButtonRemEcho = New System.Windows.Forms.RadioButton()
@@ -74,12 +80,6 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.AdvancedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ResetLicenseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CheckBoxDeptConfigs = New System.Windows.Forms.CheckBox()
-        Me.GroupBoxDeptList = New System.Windows.Forms.GroupBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.SupportThisAppToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -96,9 +96,9 @@ Partial Class Form1
         Me.SplitContainer2V.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPageWinBat.SuspendLayout()
+        Me.GroupBoxDeptList.SuspendLayout()
         Me.GroupBoxRem.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
-        Me.GroupBoxDeptList.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -143,14 +143,27 @@ Partial Class Form1
         '
         Me.ShowSettingsToolStripMenuItem.CheckOnClick = True
         Me.ShowSettingsToolStripMenuItem.Name = "ShowSettingsToolStripMenuItem"
-        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.ShowSettingsToolStripMenuItem.Text = "Show settings"
         '
         'ShowLogToolStripMenuItem
         '
         Me.ShowLogToolStripMenuItem.Name = "ShowLogToolStripMenuItem"
-        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.ShowLogToolStripMenuItem.Text = "Show &Log"
+        '
+        'AdvancedToolStripMenuItem
+        '
+        Me.AdvancedToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetLicenseToolStripMenuItem})
+        Me.AdvancedToolStripMenuItem.Name = "AdvancedToolStripMenuItem"
+        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.AdvancedToolStripMenuItem.Text = "Advanced"
+        '
+        'ResetLicenseToolStripMenuItem
+        '
+        Me.ResetLicenseToolStripMenuItem.Name = "ResetLicenseToolStripMenuItem"
+        Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.ResetLicenseToolStripMenuItem.Text = "Reset License"
         '
         'HelpToolStripMenuItem
         '
@@ -162,14 +175,20 @@ Partial Class Form1
         'HelpToolStripMenuItem1
         '
         Me.HelpToolStripMenuItem1.Name = "HelpToolStripMenuItem1"
-        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(161, 22)
         Me.HelpToolStripMenuItem1.Text = "&Help"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
+        '
+        'SupportThisAppToolStripMenuItem
+        '
+        Me.SupportThisAppToolStripMenuItem.Name = "SupportThisAppToolStripMenuItem"
+        Me.SupportThisAppToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.SupportThisAppToolStripMenuItem.Text = "Support this app"
         '
         'SplitContainerBase
         '
@@ -348,7 +367,6 @@ Partial Class Form1
         'ComboBoxInstName
         '
         Me.ComboBoxInstName.FormattingEnabled = True
-        Me.ComboBoxInstName.Items.AddRange(New Object() {"NX12", "NX1926", "Creo4", "Creo8", "Notepad_pp", "WinSysinternals", "VirtualDesktopManager"})
         Me.ComboBoxInstName.Location = New System.Drawing.Point(84, 31)
         Me.ComboBoxInstName.Name = "ComboBoxInstName"
         Me.ComboBoxInstName.Size = New System.Drawing.Size(200, 21)
@@ -491,6 +509,41 @@ Partial Class Form1
         Me.TabPageWinBat.TabIndex = 0
         Me.TabPageWinBat.Text = "Windows Batch"
         Me.TabPageWinBat.UseVisualStyleBackColor = True
+        '
+        'GroupBoxDeptList
+        '
+        Me.GroupBoxDeptList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBoxDeptList.Controls.Add(Me.TextBox1)
+        Me.GroupBoxDeptList.Location = New System.Drawing.Point(373, 153)
+        Me.GroupBoxDeptList.Name = "GroupBoxDeptList"
+        Me.GroupBoxDeptList.Size = New System.Drawing.Size(156, 210)
+        Me.GroupBoxDeptList.TabIndex = 6
+        Me.GroupBoxDeptList.TabStop = False
+        Me.GroupBoxDeptList.Text = "Dept/Site List"
+        Me.GroupBoxDeptList.Visible = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox1.Location = New System.Drawing.Point(3, 17)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.TextBox1.Size = New System.Drawing.Size(150, 190)
+        Me.TextBox1.TabIndex = 0
+        Me.TextBox1.Text = "Dept1" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Dept2"
+        '
+        'CheckBoxDeptConfigs
+        '
+        Me.CheckBoxDeptConfigs.AutoSize = True
+        Me.CheckBoxDeptConfigs.Location = New System.Drawing.Point(376, 128)
+        Me.CheckBoxDeptConfigs.Name = "CheckBoxDeptConfigs"
+        Me.CheckBoxDeptConfigs.Size = New System.Drawing.Size(144, 19)
+        Me.CheckBoxDeptConfigs.TabIndex = 5
+        Me.CheckBoxDeptConfigs.Text = "Add Dept/Site Configs"
+        Me.CheckBoxDeptConfigs.UseVisualStyleBackColor = True
         '
         'GroupBoxRem
         '
@@ -641,60 +694,6 @@ Partial Class Form1
         'TimerInit
         '
         '
-        'AdvancedToolStripMenuItem
-        '
-        Me.AdvancedToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetLicenseToolStripMenuItem})
-        Me.AdvancedToolStripMenuItem.Name = "AdvancedToolStripMenuItem"
-        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.AdvancedToolStripMenuItem.Text = "Advanced"
-        '
-        'ResetLicenseToolStripMenuItem
-        '
-        Me.ResetLicenseToolStripMenuItem.Name = "ResetLicenseToolStripMenuItem"
-        Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ResetLicenseToolStripMenuItem.Text = "Reset License"
-        '
-        'CheckBoxDeptConfigs
-        '
-        Me.CheckBoxDeptConfigs.AutoSize = True
-        Me.CheckBoxDeptConfigs.Location = New System.Drawing.Point(376, 128)
-        Me.CheckBoxDeptConfigs.Name = "CheckBoxDeptConfigs"
-        Me.CheckBoxDeptConfigs.Size = New System.Drawing.Size(144, 19)
-        Me.CheckBoxDeptConfigs.TabIndex = 5
-        Me.CheckBoxDeptConfigs.Text = "Add Dept/Site Configs"
-        Me.CheckBoxDeptConfigs.UseVisualStyleBackColor = True
-        '
-        'GroupBoxDeptList
-        '
-        Me.GroupBoxDeptList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBoxDeptList.Controls.Add(Me.TextBox1)
-        Me.GroupBoxDeptList.Location = New System.Drawing.Point(373, 153)
-        Me.GroupBoxDeptList.Name = "GroupBoxDeptList"
-        Me.GroupBoxDeptList.Size = New System.Drawing.Size(156, 210)
-        Me.GroupBoxDeptList.TabIndex = 6
-        Me.GroupBoxDeptList.TabStop = False
-        Me.GroupBoxDeptList.Text = "Dept/Site List"
-        Me.GroupBoxDeptList.Visible = False
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox1.Location = New System.Drawing.Point(3, 17)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox1.Size = New System.Drawing.Size(150, 190)
-        Me.TextBox1.TabIndex = 0
-        Me.TextBox1.Text = "Dept1" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Dept2"
-        '
-        'SupportThisAppToolStripMenuItem
-        '
-        Me.SupportThisAppToolStripMenuItem.Name = "SupportThisAppToolStripMenuItem"
-        Me.SupportThisAppToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.SupportThisAppToolStripMenuItem.Text = "Support this app"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -729,12 +728,12 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPageWinBat.ResumeLayout(False)
         Me.TabPageWinBat.PerformLayout()
+        Me.GroupBoxDeptList.ResumeLayout(False)
+        Me.GroupBoxDeptList.PerformLayout()
         Me.GroupBoxRem.ResumeLayout(False)
         Me.GroupBoxRem.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        Me.GroupBoxDeptList.ResumeLayout(False)
-        Me.GroupBoxDeptList.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

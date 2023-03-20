@@ -285,6 +285,7 @@
             WTO("")
             WTO("set ARCHIVES=%INSTTMP%\Archives")
             WTO("robocopy '%SOURCEPATH%' '%ARCHIVES%' /mir /r:3 /w:10 /FFT")
+            WTO("set CRESULT=%ERRORLEVEL%")
             WTO("")
         End If
 
@@ -292,6 +293,7 @@
             WTO(CreRemLine("Extract Installation Archive"))
             WTO("")
             WTO(ContentAIExtr)
+            WTO("SET ERESULT=%ERRORLEVEL%")
             WTO("")
             WTO("if /i not '%TA_INST_KEEP_ARCHIVES%'=='TRUE' rd /s/q '%ARCHIVES%'")
             WTO("")
@@ -299,8 +301,12 @@
 
         WTO(CreRemLine("Start the App installation."))
         WTO("")
-        WTO(":: Add the installation command here")
-        WTO("@echo Result = %ERRORLEVEL%")
+        If ContentInstCmd = "" Then
+            WTO(":: Add the installation command here")
+        Else
+            WTO(ContentInstCmd)
+        End If
+        WTO("SET IRESULT=%ERRORLEVEL%")
         WTO("")
         WTO(CreRemLine("App Settings"))
         WTO(":APPSET")
@@ -354,6 +360,8 @@
             WTI(CreRemLine("Start Post Installation"))
             WTI(BatTimeStamp)
             WTI("")
+
+            OutFile = InstallStartFile
         End If
 
         ' Set Application Install body txt

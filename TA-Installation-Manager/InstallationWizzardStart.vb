@@ -7,6 +7,7 @@ Module InstallationWizzardStart
 
     Public ContentInit As String = ""
     Public ContentAIExtr As String = ""  ' Application Installation Extract
+    Public ContentInstCmd As String = "" ' Installation Command
     Public ContentReadme As String = ""
     Public Downloads(10) As String
     'Public DownloadFileNames(10) As String
@@ -70,6 +71,7 @@ Module InstallationWizzardStart
         xtrace_i("Reset content")
         ContentInit = ""
         ContentAIExtr = ""
+        ContentInstCmd = ""
         ContentReadme = ""
         DownLoadIndex = -1
 
@@ -106,8 +108,8 @@ Module InstallationWizzardStart
                 DVal = Mid(Line, P1 + 1)
                 xtrace("Default " & DName & "=" & DVal)
 
-                If Group = WizzardName Then
-                    If Not WizzardExists Then xtrace_i("Group Matches")
+                If Group.ToUpper = WizzardName.ToUpper Then
+                    If Not WizzardExists Then xtrace_i("Group Matches")   ' Only log once
                     WizzardExists = True
 
                     If DName = "DownloadURL" Then
@@ -135,6 +137,11 @@ Module InstallationWizzardStart
                         End If
                         xtrace_i("Add Readme Line: " & RLine)
                         ContentReadme = ContentReadme & RLine & vbCrLf
+                    End If
+
+                    If DName = "InstCmd" Then
+                        xtrace_i("Add Installation Command: " & DVal)
+                        ContentInstCmd = DVal
                     End If
 
 
