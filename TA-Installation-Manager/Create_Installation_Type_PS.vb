@@ -3,6 +3,8 @@
         xtrace_line()
         xtrace_subs("Add_Installation_Components_PS")
 
+        InstBackup()
+
         Dim StartFile As String = "# Created by " & AppName & " V" & AppVer
         WriteTxtToFile(InstRoot & "\bat\Install.ps1", StartFile, False, 0, "", "", True, True)
 

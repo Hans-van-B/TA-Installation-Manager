@@ -48,6 +48,11 @@
         End If
 
         Log.xtrace_sube("Form1_Load2")
+
+        ' Inserted also in exit_program, leave it that way.
+        ' It looks like no new procedures are started after Application.Exit()
+        ' If CVL Then CreateValidateLogs(True)
+
         Log.xtrace_line()
     End Sub
 
@@ -361,7 +366,7 @@
         CheckResultPath()
     End Sub
 
-    Dim ResultPathExist As Boolean = False
+    Public ResultPathExist As Boolean = False
     Dim MyDepoPath As String
     Sub CheckResultPath()
         Dim MyDepo As String
@@ -400,6 +405,8 @@
                 ResultPathExist = False
             End If
         End If
+        InstBckInit(MyDepoPath, ResultPathExist)
+
         xtrace_i("Result = " & ResultPathExist.ToString)
         ButtonDeleteResult.Enabled = ResultPathExist
     End Sub

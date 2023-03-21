@@ -46,13 +46,18 @@
                     ShowHelp()
                     ExitProgram = True
                 End If
-            
-            If SwName = "ip" Then
-                IncreasePerformance = True
-                xtrace_i("Set IncreasePerformance = " & IncreasePerformance.ToString)
-                    ' ToDo Lower the trace level
+
+                If SwName = "ip" Then
+                    IncreasePerformance = True
+                    xtrace_i("Set IncreasePerformance = " & IncreasePerformance.ToString)
+                    xtrace("   Logging hereafter is limited to trace level 1!")
                     SharedDefaultsTraceValue = 3
                     LTrace = 1
+                End If
+
+                If SwName = "cvl" Then
+                    xtrace_i("Set CVL = True")
+                    CVL = True
                 End If
 
                 Continue For

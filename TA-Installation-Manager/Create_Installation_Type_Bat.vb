@@ -86,6 +86,8 @@
         xtrace_line()
         xtrace_subs("Add_Installation_Components_Bat")
 
+        InstBackup()
+
         Form1.SetStatus("Create Installation (Bat)")
         '---- Create directories for InstType .bat
 

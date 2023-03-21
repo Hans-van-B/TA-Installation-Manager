@@ -20,6 +20,7 @@
     '---- Exit Program --------------------------------------------------------
     Sub exit_program()
         xtrace_subs("exit_program")
+
         If (ErrorCount > 0) Or (WarningCount > 0) Then
             xtrace("Found " & ErrorCount.ToString & " Errors", 2)
             xtrace("Found " & WarningCount.ToString & " Warnings", 2)
@@ -36,6 +37,9 @@
 
         ExitProgram = True
         xtrace_TimeStamp()
+
+        If CVL Then CreateValidateLogs()
+
         Application.Exit()
         xtrace_sube("exit_program")
     End Sub

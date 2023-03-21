@@ -92,6 +92,7 @@
     <Compile Include="HelpMod.vb" />
     <Compile Include="InstallationWizzardBat.vb" />
     <Compile Include="InstallationWizzardStart.vb" />
+    <Compile Include="InstBck.vb" />
     <Compile Include="LicC.vb" />
     <Compile Include="Log.vb" />
     <Compile Include="ModFileSystem.vb" />
@@ -113,6 +114,7 @@
     </Compile>
     <Compile Include="NetworkInformation.vb" />
     <Compile Include="Util.vb" />
+    <Compile Include="ValidateSupport.vb" />
     <Compile Include="Web.vb" />
   </ItemGroup>
   <ItemGroup>
