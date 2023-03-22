@@ -61,6 +61,7 @@
     ' This is an Undocumented development feature, so no hiding or disabeling of the user-interface is done.
     Sub StartAutoRun()
         xtrace_subs("StartAutoRun")
+        GroupBoxAutoRun.Visible = True
 
         Dim ARData() As String = AutoRun.Split(";")
         Dim ARDCount As Integer = ARData.Length
@@ -70,6 +71,8 @@
         For Nr As Integer = 0 To ARDCount - 1
             ArStep = ARData(Nr)
             TextBoxAutoRun.Text = ArStep
+            Do_Events()
+
             xtrace_i("Step " & Nr.ToString & ": " & ArStep)
 
             If Nr = 0 Then
@@ -251,8 +254,9 @@
         If ScriptTypeSelect = "BAT" Then
             SetStatus("Create TA-Installation type .bat")
             Create_Depo()
-            Create_Installation_Base()
             InstallationWizzard()
+            Do_Events()
+            Create_Installation_Base()
             Add_Installation_Components_Bat()
             Finalize_Installation()
 
@@ -263,8 +267,9 @@
         ElseIf ScriptTypeSelect = "PS" Then
             SetStatus("Create TA-Installation type .ps2")
             Create_Depo()
-            Create_Installation_Base()
             InstallationWizzard()
+            Do_Events()
+            Create_Installation_Base()
             Add_Installation_Components_PS()
             Finalize_Installation()
 
@@ -427,13 +432,17 @@
     End Sub
 
     Private Sub CheckBoxDeptConfigs_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxDeptConfigs.CheckedChanged
+        xtrace_subs("CheckBoxDeptConfigs_CheckedChanged")
         If CheckBoxDeptConfigs.Checked Then
             GroupBoxDeptList.Visible = True
             CheckBoxTASelect.Checked = True
+            xtrace_i("DeptList = True")
         Else
             GroupBoxDeptList.Visible = False
             CheckBoxTASelect.Checked = False
+            xtrace_i("DeptList = False")
         End If
+        xtrace_sube("CheckBoxDeptConfigs_CheckedChanged")
     End Sub
 
 End Class

@@ -63,7 +63,7 @@ Partial Class Form1
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPageWinBat = New System.Windows.Forms.TabPage()
         Me.GroupBoxDeptList = New System.Windows.Forms.GroupBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBoxDept = New System.Windows.Forms.TextBox()
         Me.CheckBoxDeptConfigs = New System.Windows.Forms.CheckBox()
         Me.GroupBoxRem = New System.Windows.Forms.GroupBox()
         Me.RadioButtonRemHash = New System.Windows.Forms.RadioButton()
@@ -217,8 +217,10 @@ Partial Class Form1
         '
         'GroupBoxAutoRun
         '
+        Me.GroupBoxAutoRun.BackColor = System.Drawing.SystemColors.Info
         Me.GroupBoxAutoRun.Controls.Add(Me.TextBoxAutoRun)
         Me.GroupBoxAutoRun.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBoxAutoRun.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxAutoRun.Location = New System.Drawing.Point(0, 476)
         Me.GroupBoxAutoRun.Name = "GroupBoxAutoRun"
         Me.GroupBoxAutoRun.Size = New System.Drawing.Size(195, 43)
@@ -229,12 +231,13 @@ Partial Class Form1
         '
         'TextBoxAutoRun
         '
+        Me.TextBoxAutoRun.BackColor = System.Drawing.SystemColors.Info
         Me.TextBoxAutoRun.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TextBoxAutoRun.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxAutoRun.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxAutoRun.ForeColor = System.Drawing.Color.Crimson
-        Me.TextBoxAutoRun.Location = New System.Drawing.Point(3, 17)
+        Me.TextBoxAutoRun.Location = New System.Drawing.Point(3, 14)
         Me.TextBoxAutoRun.Name = "TextBoxAutoRun"
-        Me.TextBoxAutoRun.Size = New System.Drawing.Size(189, 23)
+        Me.TextBoxAutoRun.Size = New System.Drawing.Size(189, 26)
         Me.TextBoxAutoRun.TabIndex = 0
         Me.TextBoxAutoRun.Text = "XX"
         '
@@ -515,7 +518,7 @@ Partial Class Form1
         Me.GroupBoxDeptList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBoxDeptList.Controls.Add(Me.TextBox1)
+        Me.GroupBoxDeptList.Controls.Add(Me.TextBoxDept)
         Me.GroupBoxDeptList.Location = New System.Drawing.Point(373, 153)
         Me.GroupBoxDeptList.Name = "GroupBoxDeptList"
         Me.GroupBoxDeptList.Size = New System.Drawing.Size(156, 210)
@@ -524,16 +527,16 @@ Partial Class Form1
         Me.GroupBoxDeptList.Text = "Dept/Site List"
         Me.GroupBoxDeptList.Visible = False
         '
-        'TextBox1
+        'TextBoxDept
         '
-        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox1.Location = New System.Drawing.Point(3, 17)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox1.Size = New System.Drawing.Size(150, 190)
-        Me.TextBox1.TabIndex = 0
-        Me.TextBox1.Text = "Dept1" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Dept2"
+        Me.TextBoxDept.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBoxDept.Location = New System.Drawing.Point(3, 17)
+        Me.TextBoxDept.Multiline = True
+        Me.TextBoxDept.Name = "TextBoxDept"
+        Me.TextBoxDept.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.TextBoxDept.Size = New System.Drawing.Size(150, 190)
+        Me.TextBoxDept.TabIndex = 0
+        Me.TextBoxDept.Text = "Default_Site" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Site1" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Site2"
         '
         'CheckBoxDeptConfigs
         '
@@ -792,6 +795,6 @@ Partial Class Form1
     Friend WithEvents ResetLicenseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GroupBoxDeptList As GroupBox
     Friend WithEvents CheckBoxDeptConfigs As CheckBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TextBoxDept As TextBox
     Friend WithEvents SupportThisAppToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -214,10 +214,10 @@
         Dim Dept As String
         Dim Content As String
         ' Write call in install
-        WTI("call ""%instroot%" & OutFile & """")
+        WTI("call ""%site_conf%\site_init.bat""")
 
         ' Create Dept-Dirs
-        For Each Dept In Form1.TextBox1.Lines
+        For Each Dept In Form1.TextBoxDept.Lines
             xtrace_i("Dept : " & Dept)
             CreateDirectory(InstBat & "\" & Dept, 0, "", "Please check your directory access rights", True, True)
             CreateDirectory(InstData & "\" & Dept, 0, "", "Please check your directory access rights", True, True)
@@ -369,6 +369,11 @@
         ' Set Application Install body txt
         WTO(":: Add Post Installation Content Here")
         WTO("")
+
+        If Form1.CheckBoxDeptConfigs.Checked Then
+            WTO("call ""%site_conf%\site_post_inst.bat""")
+            WTO("")
+        End If
 
         ' Add footer and write
         If SeparateFile Then

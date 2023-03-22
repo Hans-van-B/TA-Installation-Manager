@@ -2,7 +2,7 @@
     Public Inifile As String = IniFile1
 
     Dim XX As String ' Dummy
-    Dim UseTASetup, UseTASelect, UseTADeinstall As Boolean
+    Dim UseTASetup, UseTASelect, UseTADeinstall, UseDept As Boolean
     Sub ReadDefaults()
         xtrace_subs("ReadDefaults")
         Dim ReadFile
@@ -199,6 +199,23 @@
             For Each AppName In AppNameList
                 xtrace_i("Add AppName: " & AppName)
                 Form1.ComboBoxInstName.Items.Add(AppName)
+            Next
+        End If
+
+        If DName = "UseDept" Then
+            UseDept = StringToBool(DVal)
+            Form1.CheckBoxDeptConfigs.Checked = UseDept
+            xtrace_i("UseDept = " & UseDept.ToString)
+        End If
+
+        If DName = "DeptNameList" Then
+            Dim DeptNameList() As String = DVal.Split(";")
+            Dim DeptName As String
+            Form1.TextBoxDept.ResetText()
+            For Each DeptName In DeptNameList
+                xtrace_i("Add DeptName: " & DeptName)
+                'Form1.TextBoxDept.Lines.Append(DeptName & vbCrLf)
+                Form1.TextBoxDept.Text = Form1.TextBoxDept.Text & DeptName & vbCrLf
             Next
         End If
 
