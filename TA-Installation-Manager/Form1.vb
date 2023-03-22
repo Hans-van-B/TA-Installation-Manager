@@ -234,6 +234,7 @@
             ShowHint("Please enter the name of the new installation")
             ComboBoxInstName.BackColor = ButtonHighLite
         Else
+            WizzardInitialized = False  ' Explicit call, always initialize
             InstallationWizzard()
         End If
         xtrace_sube("ButtonCheckWizzard_Click")
@@ -362,8 +363,12 @@
     Private Sub ComboBoxInstName_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxInstName.TextChanged
         InstName = ComboBoxInstName.Text
         xtrace_i("Set InstName = " & InstName)
+        WizzardInitialized = False
         ComboBoxInstName.BackColor = SystemColors.Control
         CheckResultPath()
+    End Sub
+    Private Sub ComboBoxInstName_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxInstName.SelectedIndexChanged
+
     End Sub
 
     '---- Update Inst version

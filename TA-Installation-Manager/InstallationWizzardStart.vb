@@ -20,7 +20,11 @@ Module InstallationWizzardStart
     Sub InstallationWizzard()
         xtrace_subs("InstallationWizzard")
 
-        If Not WizzardInitialized Then InitWizzard()
+        If WizzardInitialized Then
+            xtrace_i("Don't initialize again")
+        Else
+            InitWizzard()
+        End If
         AddReadme()
 
         xtrace_sube("InstallationWizzard")
@@ -110,7 +114,10 @@ Module InstallationWizzardStart
                 xtrace("Default " & DName & "=" & DVal)
 
                 If Group.ToUpper = WizzardName.ToUpper Then
-                    If Not WizzardExists Then xtrace_i("Group Matches")   ' Only log once
+                    If Not WizzardExists Then
+                        xtrace_i("Group Matches")   ' Only log once
+                        Form1.SetStatus("Wizard found")
+                    End If
                     WizzardExists = True
 
                     If DName = "DownloadURL" Then
