@@ -138,7 +138,15 @@
 
         '---- Add DeInstallation
         If (Form1.CheckBoxTADeinstall.Checked) Or (Form1.CheckBoxTASelect.Checked) Then
+            xtrace_i("TADeinstall Checked = " & Form1.CheckBoxTADeinstall.Checked.ToString)
+            xtrace_i("CheckBoxTASelect Checked = " & Form1.CheckBoxTASelect.Checked.ToString)
             Add_DeinstallationBat()
+        Else
+            Dim CheckFile As String = InstRoot & "\bat\09_After_Install.bat"
+            xtrace_i("Check: " & CheckFile)
+            If My.Computer.FileSystem.FileExists(CheckFile) Then
+                My.Computer.FileSystem.DeleteFile(CheckFile)
+            End If
         End If
 
         '---- Add exe files
@@ -276,6 +284,14 @@
         WTO("")
         WTO(CreRemLine("Check if the installation exists"))
         WTO("")
+        If ContentTestIfExist <> "" Then
+            Dim Test As String
+            For Each Test In ContentTestIfExist.Split(";")
+                WTO("if exist """ & Test & """ goto :EXISTS")
+            Next
+            WTO("")
+        End If
+
         WTO(CreRemLine("Verify"))
         WTO("")
 

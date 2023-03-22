@@ -6,6 +6,7 @@ Module InstallationWizzardStart
     Public WizzardExists As Boolean
 
     Public ContentInit As String = ""
+    Public ContentTestIfExist As String = ""
     Public ContentAIExtr As String = ""  ' Application Installation Extract
     Public ContentInstCmd As String = "" ' Installation Command
     Public ContentReadme As String = ""
@@ -124,6 +125,11 @@ Module InstallationWizzardStart
                     If DName = "ContentInitLine" Then
                         xtrace_i("Add Init Line: " & DVal)
                         ContentInit = ContentInit & DVal & vbCrLf
+                    End If
+
+                    If DName = "TestIfExist" Then
+                        xtrace_i("Set TestIfExist = " & DVal)
+                        ContentTestIfExist = DVal
                     End If
 
                     If DName = "Readme" Then
