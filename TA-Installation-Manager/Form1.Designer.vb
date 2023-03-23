@@ -80,6 +80,8 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.DownloadMethodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -107,8 +109,8 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(873, 24)
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(5, 2, 0, 2)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1164, 24)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -143,26 +145,26 @@ Partial Class Form1
         '
         Me.ShowSettingsToolStripMenuItem.CheckOnClick = True
         Me.ShowSettingsToolStripMenuItem.Name = "ShowSettingsToolStripMenuItem"
-        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShowSettingsToolStripMenuItem.Text = "Show settings"
         '
         'ShowLogToolStripMenuItem
         '
         Me.ShowLogToolStripMenuItem.Name = "ShowLogToolStripMenuItem"
-        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShowLogToolStripMenuItem.Text = "Show &Log"
         '
         'AdvancedToolStripMenuItem
         '
-        Me.AdvancedToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetLicenseToolStripMenuItem})
+        Me.AdvancedToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetLicenseToolStripMenuItem, Me.DownloadMethodToolStripMenuItem})
         Me.AdvancedToolStripMenuItem.Name = "AdvancedToolStripMenuItem"
-        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AdvancedToolStripMenuItem.Text = "Advanced"
         '
         'ResetLicenseToolStripMenuItem
         '
         Me.ResetLicenseToolStripMenuItem.Name = "ResetLicenseToolStripMenuItem"
-        Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ResetLicenseToolStripMenuItem.Text = "Reset License"
         '
         'HelpToolStripMenuItem
@@ -195,6 +197,7 @@ Partial Class Form1
         Me.SplitContainerBase.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.SplitContainerBase.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerBase.Location = New System.Drawing.Point(0, 24)
+        Me.SplitContainerBase.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.SplitContainerBase.Name = "SplitContainerBase"
         '
         'SplitContainerBase.Panel1
@@ -211,8 +214,9 @@ Partial Class Form1
         Me.SplitContainerBase.Panel2.BackColor = System.Drawing.SystemColors.Control
         Me.SplitContainerBase.Panel2.Controls.Add(Me.SplitContainer1H)
         Me.SplitContainerBase.Panel2.Controls.Add(Me.TextBoxInfo)
-        Me.SplitContainerBase.Size = New System.Drawing.Size(873, 519)
-        Me.SplitContainerBase.SplitterDistance = 195
+        Me.SplitContainerBase.Size = New System.Drawing.Size(1164, 644)
+        Me.SplitContainerBase.SplitterDistance = 260
+        Me.SplitContainerBase.SplitterWidth = 5
         Me.SplitContainerBase.TabIndex = 3
         '
         'GroupBoxAutoRun
@@ -221,9 +225,11 @@ Partial Class Form1
         Me.GroupBoxAutoRun.Controls.Add(Me.TextBoxAutoRun)
         Me.GroupBoxAutoRun.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupBoxAutoRun.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBoxAutoRun.Location = New System.Drawing.Point(0, 476)
+        Me.GroupBoxAutoRun.Location = New System.Drawing.Point(0, 591)
+        Me.GroupBoxAutoRun.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBoxAutoRun.Name = "GroupBoxAutoRun"
-        Me.GroupBoxAutoRun.Size = New System.Drawing.Size(195, 43)
+        Me.GroupBoxAutoRun.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBoxAutoRun.Size = New System.Drawing.Size(260, 53)
         Me.GroupBoxAutoRun.TabIndex = 4
         Me.GroupBoxAutoRun.TabStop = False
         Me.GroupBoxAutoRun.Text = "AutoRun"
@@ -235,18 +241,20 @@ Partial Class Form1
         Me.TextBoxAutoRun.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.TextBoxAutoRun.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxAutoRun.ForeColor = System.Drawing.Color.Crimson
-        Me.TextBoxAutoRun.Location = New System.Drawing.Point(3, 14)
+        Me.TextBoxAutoRun.Location = New System.Drawing.Point(4, 23)
+        Me.TextBoxAutoRun.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextBoxAutoRun.Name = "TextBoxAutoRun"
-        Me.TextBoxAutoRun.Size = New System.Drawing.Size(189, 26)
+        Me.TextBoxAutoRun.Size = New System.Drawing.Size(252, 26)
         Me.TextBoxAutoRun.TabIndex = 0
         Me.TextBoxAutoRun.Text = "XX"
         '
         'ButtonCheckWizzard
         '
         Me.ButtonCheckWizzard.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonCheckWizzard.Location = New System.Drawing.Point(10, 31)
+        Me.ButtonCheckWizzard.Location = New System.Drawing.Point(13, 38)
+        Me.ButtonCheckWizzard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonCheckWizzard.Name = "ButtonCheckWizzard"
-        Me.ButtonCheckWizzard.Size = New System.Drawing.Size(163, 33)
+        Me.ButtonCheckWizzard.Size = New System.Drawing.Size(217, 41)
         Me.ButtonCheckWizzard.TabIndex = 3
         Me.ButtonCheckWizzard.Text = "Check Settings"
         Me.ToolTip1.SetToolTip(Me.ButtonCheckWizzard, "Checks if there is a settings wizzard for this application")
@@ -255,9 +263,10 @@ Partial Class Form1
         'ButtonDeleteResult
         '
         Me.ButtonDeleteResult.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonDeleteResult.Location = New System.Drawing.Point(12, 155)
+        Me.ButtonDeleteResult.Location = New System.Drawing.Point(16, 191)
+        Me.ButtonDeleteResult.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonDeleteResult.Name = "ButtonDeleteResult"
-        Me.ButtonDeleteResult.Size = New System.Drawing.Size(161, 36)
+        Me.ButtonDeleteResult.Size = New System.Drawing.Size(215, 44)
         Me.ButtonDeleteResult.TabIndex = 2
         Me.ButtonDeleteResult.Text = "Delete the result"
         Me.ButtonDeleteResult.UseVisualStyleBackColor = True
@@ -266,9 +275,10 @@ Partial Class Form1
         '
         Me.ButtonShowResult.Enabled = False
         Me.ButtonShowResult.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonShowResult.Location = New System.Drawing.Point(12, 114)
+        Me.ButtonShowResult.Location = New System.Drawing.Point(16, 140)
+        Me.ButtonShowResult.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonShowResult.Name = "ButtonShowResult"
-        Me.ButtonShowResult.Size = New System.Drawing.Size(161, 35)
+        Me.ButtonShowResult.Size = New System.Drawing.Size(215, 43)
         Me.ButtonShowResult.TabIndex = 1
         Me.ButtonShowResult.Text = "Show result"
         Me.ButtonShowResult.UseVisualStyleBackColor = True
@@ -276,9 +286,10 @@ Partial Class Form1
         'ButtonStartCreate
         '
         Me.ButtonStartCreate.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonStartCreate.Location = New System.Drawing.Point(10, 74)
+        Me.ButtonStartCreate.Location = New System.Drawing.Point(13, 91)
+        Me.ButtonStartCreate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonStartCreate.Name = "ButtonStartCreate"
-        Me.ButtonStartCreate.Size = New System.Drawing.Size(163, 34)
+        Me.ButtonStartCreate.Size = New System.Drawing.Size(217, 42)
         Me.ButtonStartCreate.TabIndex = 0
         Me.ButtonStartCreate.Text = "Create installation"
         Me.ButtonStartCreate.UseVisualStyleBackColor = True
@@ -288,6 +299,7 @@ Partial Class Form1
         Me.SplitContainer1H.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.SplitContainer1H.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1H.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1H.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.SplitContainer1H.Name = "SplitContainer1H"
         Me.SplitContainer1H.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -309,8 +321,9 @@ Partial Class Form1
         Me.SplitContainer1H.Panel2.BackColor = System.Drawing.SystemColors.Control
         Me.SplitContainer1H.Panel2.Controls.Add(Me.SplitContainer2V)
         Me.SplitContainer1H.Panel2.Controls.Add(Me.StatusStrip1)
-        Me.SplitContainer1H.Size = New System.Drawing.Size(674, 519)
-        Me.SplitContainer1H.SplitterDistance = 101
+        Me.SplitContainer1H.Size = New System.Drawing.Size(899, 644)
+        Me.SplitContainer1H.SplitterDistance = 125
+        Me.SplitContainer1H.SplitterWidth = 5
         Me.SplitContainer1H.TabIndex = 2
         '
         'CheckBoxTADeinstall
@@ -318,9 +331,10 @@ Partial Class Form1
         Me.CheckBoxTADeinstall.AutoSize = True
         Me.CheckBoxTADeinstall.Checked = True
         Me.CheckBoxTADeinstall.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBoxTADeinstall.Location = New System.Drawing.Point(345, 55)
+        Me.CheckBoxTADeinstall.Location = New System.Drawing.Point(460, 68)
+        Me.CheckBoxTADeinstall.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxTADeinstall.Name = "CheckBoxTADeinstall"
-        Me.CheckBoxTADeinstall.Size = New System.Drawing.Size(103, 17)
+        Me.CheckBoxTADeinstall.Size = New System.Drawing.Size(125, 20)
         Me.CheckBoxTADeinstall.TabIndex = 8
         Me.CheckBoxTADeinstall.Text = "TA-Deinstall.exe"
         Me.CheckBoxTADeinstall.UseVisualStyleBackColor = True
@@ -328,9 +342,10 @@ Partial Class Form1
         'CheckBoxTASelect
         '
         Me.CheckBoxTASelect.AutoSize = True
-        Me.CheckBoxTASelect.Location = New System.Drawing.Point(345, 31)
+        Me.CheckBoxTASelect.Location = New System.Drawing.Point(460, 38)
+        Me.CheckBoxTASelect.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxTASelect.Name = "CheckBoxTASelect"
-        Me.CheckBoxTASelect.Size = New System.Drawing.Size(93, 17)
+        Me.CheckBoxTASelect.Size = New System.Drawing.Size(111, 20)
         Me.CheckBoxTASelect.TabIndex = 7
         Me.CheckBoxTASelect.Text = "TA-Select.exe"
         Me.CheckBoxTASelect.UseVisualStyleBackColor = True
@@ -341,9 +356,10 @@ Partial Class Form1
         Me.CheckBoxTASetup.Checked = True
         Me.CheckBoxTASetup.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckBoxTASetup.Enabled = False
-        Me.CheckBoxTASetup.Location = New System.Drawing.Point(345, 7)
+        Me.CheckBoxTASetup.Location = New System.Drawing.Point(460, 9)
+        Me.CheckBoxTASetup.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxTASetup.Name = "CheckBoxTASetup"
-        Me.CheckBoxTASetup.Size = New System.Drawing.Size(91, 17)
+        Me.CheckBoxTASetup.Size = New System.Drawing.Size(108, 20)
         Me.CheckBoxTASetup.TabIndex = 6
         Me.CheckBoxTASetup.Text = "TA-Setup.exe"
         Me.CheckBoxTASetup.UseVisualStyleBackColor = True
@@ -352,53 +368,59 @@ Partial Class Form1
         '
         Me.ComboBoxInstVer.FormattingEnabled = True
         Me.ComboBoxInstVer.Items.AddRange(New Object() {"01", "02", "03", "04", "05"})
-        Me.ComboBoxInstVer.Location = New System.Drawing.Point(84, 59)
+        Me.ComboBoxInstVer.Location = New System.Drawing.Point(112, 73)
+        Me.ComboBoxInstVer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboBoxInstVer.Name = "ComboBoxInstVer"
-        Me.ComboBoxInstVer.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxInstVer.Size = New System.Drawing.Size(160, 24)
         Me.ComboBoxInstVer.TabIndex = 5
         Me.ComboBoxInstVer.Text = "01"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(13, 67)
+        Me.Label3.Location = New System.Drawing.Point(17, 82)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(62, 13)
+        Me.Label3.Size = New System.Drawing.Size(76, 16)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Inst Version"
         '
         'ComboBoxInstName
         '
         Me.ComboBoxInstName.FormattingEnabled = True
-        Me.ComboBoxInstName.Location = New System.Drawing.Point(84, 31)
+        Me.ComboBoxInstName.Location = New System.Drawing.Point(112, 38)
+        Me.ComboBoxInstName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboBoxInstName.Name = "ComboBoxInstName"
-        Me.ComboBoxInstName.Size = New System.Drawing.Size(200, 21)
+        Me.ComboBoxInstName.Size = New System.Drawing.Size(265, 24)
         Me.ComboBoxInstName.TabIndex = 3
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 39)
+        Me.Label2.Location = New System.Drawing.Point(17, 48)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(55, 13)
+        Me.Label2.Size = New System.Drawing.Size(67, 16)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Inst Name"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 11)
+        Me.Label1.Location = New System.Drawing.Point(17, 14)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(56, 13)
+        Me.Label1.Size = New System.Drawing.Size(69, 16)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Dev Depo"
         '
         'ComboBoxDevDepo
         '
         Me.ComboBoxDevDepo.FormattingEnabled = True
-        Me.ComboBoxDevDepo.Location = New System.Drawing.Point(84, 3)
+        Me.ComboBoxDevDepo.Location = New System.Drawing.Point(112, 4)
+        Me.ComboBoxDevDepo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboBoxDevDepo.Name = "ComboBoxDevDepo"
-        Me.ComboBoxDevDepo.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxDevDepo.Size = New System.Drawing.Size(160, 24)
         Me.ComboBoxDevDepo.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.ComboBoxDevDepo, "This is the location where your installations are stored." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This can be a shared d" &
         "rive on a server, a UNC path" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "or a local drive that you may have shared.")
@@ -408,6 +430,7 @@ Partial Class Form1
         Me.SplitContainer2V.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.SplitContainer2V.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer2V.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer2V.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.SplitContainer2V.Name = "SplitContainer2V"
         '
         'SplitContainer2V.Panel1
@@ -423,16 +446,18 @@ Partial Class Form1
         '
         Me.SplitContainer2V.Panel2.BackColor = System.Drawing.SystemColors.Control
         Me.SplitContainer2V.Panel2.Controls.Add(Me.TabControl1)
-        Me.SplitContainer2V.Size = New System.Drawing.Size(674, 392)
-        Me.SplitContainer2V.SplitterDistance = 128
+        Me.SplitContainer2V.Size = New System.Drawing.Size(899, 492)
+        Me.SplitContainer2V.SplitterDistance = 170
+        Me.SplitContainer2V.SplitterWidth = 5
         Me.SplitContainer2V.TabIndex = 2
         '
         'CheckBoxReDownload
         '
         Me.CheckBoxReDownload.AutoSize = True
-        Me.CheckBoxReDownload.Location = New System.Drawing.Point(6, 129)
+        Me.CheckBoxReDownload.Location = New System.Drawing.Point(8, 159)
+        Me.CheckBoxReDownload.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxReDownload.Name = "CheckBoxReDownload"
-        Me.CheckBoxReDownload.Size = New System.Drawing.Size(91, 17)
+        Me.CheckBoxReDownload.Size = New System.Drawing.Size(109, 20)
         Me.CheckBoxReDownload.TabIndex = 4
         Me.CheckBoxReDownload.Text = "Re-Download"
         Me.ToolTip1.SetToolTip(Me.CheckBoxReDownload, "Re-downloading files is only useful if files are downloaded" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "and if (some) of the" &
@@ -443,9 +468,10 @@ Partial Class Form1
         'CheckBoxCopySource
         '
         Me.CheckBoxCopySource.AutoSize = True
-        Me.CheckBoxCopySource.Location = New System.Drawing.Point(6, 25)
+        Me.CheckBoxCopySource.Location = New System.Drawing.Point(8, 31)
+        Me.CheckBoxCopySource.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxCopySource.Name = "CheckBoxCopySource"
-        Me.CheckBoxCopySource.Size = New System.Drawing.Size(132, 17)
+        Me.CheckBoxCopySource.Size = New System.Drawing.Size(160, 20)
         Me.CheckBoxCopySource.TabIndex = 3
         Me.CheckBoxCopySource.Text = "Copy Source To Local"
         Me.CheckBoxCopySource.UseVisualStyleBackColor = True
@@ -453,9 +479,10 @@ Partial Class Form1
         'CheckBoxLogToServer
         '
         Me.CheckBoxLogToServer.AutoSize = True
-        Me.CheckBoxLogToServer.Location = New System.Drawing.Point(6, 105)
+        Me.CheckBoxLogToServer.Location = New System.Drawing.Point(8, 129)
+        Me.CheckBoxLogToServer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxLogToServer.Name = "CheckBoxLogToServer"
-        Me.CheckBoxLogToServer.Size = New System.Drawing.Size(121, 17)
+        Me.CheckBoxLogToServer.Size = New System.Drawing.Size(147, 20)
         Me.CheckBoxLogToServer.TabIndex = 2
         Me.CheckBoxLogToServer.Text = "Copy Log To Server"
         Me.ToolTip1.SetToolTip(Me.CheckBoxLogToServer, "You need to have a log-share configured" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "if you want to use this." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This setting" &
@@ -465,9 +492,10 @@ Partial Class Form1
         'CheckBoxStopUpdates
         '
         Me.CheckBoxStopUpdates.AutoSize = True
-        Me.CheckBoxStopUpdates.Location = New System.Drawing.Point(6, 82)
+        Me.CheckBoxStopUpdates.Location = New System.Drawing.Point(8, 101)
+        Me.CheckBoxStopUpdates.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxStopUpdates.Name = "CheckBoxStopUpdates"
-        Me.CheckBoxStopUpdates.Size = New System.Drawing.Size(91, 17)
+        Me.CheckBoxStopUpdates.Size = New System.Drawing.Size(109, 20)
         Me.CheckBoxStopUpdates.TabIndex = 1
         Me.CheckBoxStopUpdates.Text = "Stop Updates"
         Me.ToolTip1.SetToolTip(Me.CheckBoxStopUpdates, "Stop background installations." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Enable this for installations that are MSI Based" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This setting cannot be set by an application wizzard" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "You need to set this ex" &
@@ -478,7 +506,8 @@ Partial Class Form1
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(14, 5)
+        Me.Label4.Location = New System.Drawing.Point(19, 6)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(55, 15)
         Me.Label4.TabIndex = 0
@@ -491,9 +520,10 @@ Partial Class Form1
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(542, 392)
+        Me.TabControl1.Size = New System.Drawing.Size(724, 492)
         Me.TabControl1.TabIndex = 0
         '
         'TabPageWinBat
@@ -506,9 +536,10 @@ Partial Class Form1
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparateApp)
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparateInit)
         Me.TabPageWinBat.Location = New System.Drawing.Point(4, 24)
+        Me.TabPageWinBat.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabPageWinBat.Name = "TabPageWinBat"
-        Me.TabPageWinBat.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageWinBat.Size = New System.Drawing.Size(534, 364)
+        Me.TabPageWinBat.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPageWinBat.Size = New System.Drawing.Size(716, 464)
         Me.TabPageWinBat.TabIndex = 0
         Me.TabPageWinBat.Text = "Windows Batch"
         Me.TabPageWinBat.UseVisualStyleBackColor = True
@@ -519,9 +550,11 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBoxDeptList.Controls.Add(Me.TextBoxDept)
-        Me.GroupBoxDeptList.Location = New System.Drawing.Point(373, 153)
+        Me.GroupBoxDeptList.Location = New System.Drawing.Point(497, 188)
+        Me.GroupBoxDeptList.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBoxDeptList.Name = "GroupBoxDeptList"
-        Me.GroupBoxDeptList.Size = New System.Drawing.Size(156, 210)
+        Me.GroupBoxDeptList.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBoxDeptList.Size = New System.Drawing.Size(209, 268)
         Me.GroupBoxDeptList.TabIndex = 6
         Me.GroupBoxDeptList.TabStop = False
         Me.GroupBoxDeptList.Text = "Dept/Site List"
@@ -530,18 +563,20 @@ Partial Class Form1
         'TextBoxDept
         '
         Me.TextBoxDept.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBoxDept.Location = New System.Drawing.Point(3, 17)
+        Me.TextBoxDept.Location = New System.Drawing.Point(4, 18)
+        Me.TextBoxDept.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextBoxDept.Multiline = True
         Me.TextBoxDept.Name = "TextBoxDept"
         Me.TextBoxDept.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBoxDept.Size = New System.Drawing.Size(150, 190)
+        Me.TextBoxDept.Size = New System.Drawing.Size(201, 246)
         Me.TextBoxDept.TabIndex = 0
         Me.TextBoxDept.Text = "Default_Site" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Site1" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Site2"
         '
         'CheckBoxDeptConfigs
         '
         Me.CheckBoxDeptConfigs.AutoSize = True
-        Me.CheckBoxDeptConfigs.Location = New System.Drawing.Point(376, 128)
+        Me.CheckBoxDeptConfigs.Location = New System.Drawing.Point(501, 158)
+        Me.CheckBoxDeptConfigs.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxDeptConfigs.Name = "CheckBoxDeptConfigs"
         Me.CheckBoxDeptConfigs.Size = New System.Drawing.Size(144, 19)
         Me.CheckBoxDeptConfigs.TabIndex = 5
@@ -555,11 +590,11 @@ Partial Class Form1
         Me.GroupBoxRem.Controls.Add(Me.RadioButtonRemEcho)
         Me.GroupBoxRem.Controls.Add(Me.RadioButtonRemDots)
         Me.GroupBoxRem.Controls.Add(Me.RadioButtonRemRem)
-        Me.GroupBoxRem.Location = New System.Drawing.Point(380, 6)
-        Me.GroupBoxRem.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBoxRem.Location = New System.Drawing.Point(508, 7)
+        Me.GroupBoxRem.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBoxRem.Name = "GroupBoxRem"
-        Me.GroupBoxRem.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBoxRem.Size = New System.Drawing.Size(150, 102)
+        Me.GroupBoxRem.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBoxRem.Size = New System.Drawing.Size(200, 126)
         Me.GroupBoxRem.TabIndex = 4
         Me.GroupBoxRem.TabStop = False
         Me.GroupBoxRem.Text = "Bat Remark Method"
@@ -567,8 +602,8 @@ Partial Class Form1
         'RadioButtonRemHash
         '
         Me.RadioButtonRemHash.AutoSize = True
-        Me.RadioButtonRemHash.Location = New System.Drawing.Point(5, 80)
-        Me.RadioButtonRemHash.Margin = New System.Windows.Forms.Padding(2)
+        Me.RadioButtonRemHash.Location = New System.Drawing.Point(7, 98)
+        Me.RadioButtonRemHash.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.RadioButtonRemHash.Name = "RadioButtonRemHash"
         Me.RadioButtonRemHash.Size = New System.Drawing.Size(32, 19)
         Me.RadioButtonRemHash.TabIndex = 3
@@ -579,8 +614,8 @@ Partial Class Form1
         'RadioButtonRemEcho
         '
         Me.RadioButtonRemEcho.AutoSize = True
-        Me.RadioButtonRemEcho.Location = New System.Drawing.Point(5, 59)
-        Me.RadioButtonRemEcho.Margin = New System.Windows.Forms.Padding(2)
+        Me.RadioButtonRemEcho.Location = New System.Drawing.Point(7, 73)
+        Me.RadioButtonRemEcho.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.RadioButtonRemEcho.Name = "RadioButtonRemEcho"
         Me.RadioButtonRemEcho.Size = New System.Drawing.Size(64, 19)
         Me.RadioButtonRemEcho.TabIndex = 2
@@ -591,8 +626,8 @@ Partial Class Form1
         'RadioButtonRemDots
         '
         Me.RadioButtonRemDots.AutoSize = True
-        Me.RadioButtonRemDots.Location = New System.Drawing.Point(5, 38)
-        Me.RadioButtonRemDots.Margin = New System.Windows.Forms.Padding(2)
+        Me.RadioButtonRemDots.Location = New System.Drawing.Point(7, 47)
+        Me.RadioButtonRemDots.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.RadioButtonRemDots.Name = "RadioButtonRemDots"
         Me.RadioButtonRemDots.Size = New System.Drawing.Size(31, 19)
         Me.RadioButtonRemDots.TabIndex = 1
@@ -603,8 +638,8 @@ Partial Class Form1
         'RadioButtonRemRem
         '
         Me.RadioButtonRemRem.AutoSize = True
-        Me.RadioButtonRemRem.Location = New System.Drawing.Point(5, 17)
-        Me.RadioButtonRemRem.Margin = New System.Windows.Forms.Padding(2)
+        Me.RadioButtonRemRem.Location = New System.Drawing.Point(7, 21)
+        Me.RadioButtonRemRem.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.RadioButtonRemRem.Name = "RadioButtonRemRem"
         Me.RadioButtonRemRem.Size = New System.Drawing.Size(53, 19)
         Me.RadioButtonRemRem.TabIndex = 0
@@ -615,7 +650,8 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(7, 329)
+        Me.Label5.Location = New System.Drawing.Point(9, 405)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(110, 15)
         Me.Label5.TabIndex = 3
@@ -625,7 +661,8 @@ Partial Class Form1
         'CheckBoxBatSeparatePost
         '
         Me.CheckBoxBatSeparatePost.AutoSize = True
-        Me.CheckBoxBatSeparatePost.Location = New System.Drawing.Point(6, 59)
+        Me.CheckBoxBatSeparatePost.Location = New System.Drawing.Point(8, 73)
+        Me.CheckBoxBatSeparatePost.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxBatSeparatePost.Name = "CheckBoxBatSeparatePost"
         Me.CheckBoxBatSeparatePost.Size = New System.Drawing.Size(165, 19)
         Me.CheckBoxBatSeparatePost.TabIndex = 2
@@ -635,8 +672,8 @@ Partial Class Form1
         'CheckBoxBatSeparateApp
         '
         Me.CheckBoxBatSeparateApp.AutoSize = True
-        Me.CheckBoxBatSeparateApp.Location = New System.Drawing.Point(6, 35)
-        Me.CheckBoxBatSeparateApp.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBoxBatSeparateApp.Location = New System.Drawing.Point(8, 43)
+        Me.CheckBoxBatSeparateApp.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.CheckBoxBatSeparateApp.Name = "CheckBoxBatSeparateApp"
         Me.CheckBoxBatSeparateApp.Size = New System.Drawing.Size(187, 19)
         Me.CheckBoxBatSeparateApp.TabIndex = 1
@@ -646,8 +683,8 @@ Partial Class Form1
         'CheckBoxBatSeparateInit
         '
         Me.CheckBoxBatSeparateInit.AutoSize = True
-        Me.CheckBoxBatSeparateInit.Location = New System.Drawing.Point(6, 11)
-        Me.CheckBoxBatSeparateInit.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBoxBatSeparateInit.Location = New System.Drawing.Point(8, 14)
+        Me.CheckBoxBatSeparateInit.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.CheckBoxBatSeparateInit.Name = "CheckBoxBatSeparateInit"
         Me.CheckBoxBatSeparateInit.Size = New System.Drawing.Size(95, 19)
         Me.CheckBoxBatSeparateInit.TabIndex = 0
@@ -657,9 +694,10 @@ Partial Class Form1
         'TabPagePS
         '
         Me.TabPagePS.Location = New System.Drawing.Point(4, 24)
+        Me.TabPagePS.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabPagePS.Name = "TabPagePS"
-        Me.TabPagePS.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPagePS.Size = New System.Drawing.Size(534, 364)
+        Me.TabPagePS.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPagePS.Size = New System.Drawing.Size(715, 454)
         Me.TabPagePS.TabIndex = 1
         Me.TabPagePS.Text = "Power Shell"
         Me.TabPagePS.UseVisualStyleBackColor = True
@@ -668,9 +706,10 @@ Partial Class Form1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 392)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 492)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(674, 22)
+        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
+        Me.StatusStrip1.Size = New System.Drawing.Size(899, 22)
         Me.StatusStrip1.TabIndex = 1
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -684,11 +723,12 @@ Partial Class Form1
         '
         Me.TextBoxInfo.AcceptsReturn = True
         Me.TextBoxInfo.Font = New System.Drawing.Font("Liberation Mono", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxInfo.Location = New System.Drawing.Point(228, 227)
+        Me.TextBoxInfo.Location = New System.Drawing.Point(304, 279)
+        Me.TextBoxInfo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextBoxInfo.Multiline = True
         Me.TextBoxInfo.Name = "TextBoxInfo"
         Me.TextBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBoxInfo.Size = New System.Drawing.Size(123, 64)
+        Me.TextBoxInfo.Size = New System.Drawing.Size(163, 78)
         Me.TextBoxInfo.TabIndex = 1
         Me.TextBoxInfo.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.TextBoxInfo.Visible = False
@@ -697,15 +737,30 @@ Partial Class Form1
         'TimerInit
         '
         '
+        'DownloadMethodToolStripMenuItem
+        '
+        Me.DownloadMethodToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripComboBox1})
+        Me.DownloadMethodToolStripMenuItem.Name = "DownloadMethodToolStripMenuItem"
+        Me.DownloadMethodToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DownloadMethodToolStripMenuItem.Text = "Download Method"
+        '
+        'ToolStripComboBox1
+        '
+        Me.ToolStripComboBox1.Items.AddRange(New Object() {"VBWebClient", "CURL", "VBDownloadFile"})
+        Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
+        Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 23)
+        Me.ToolStripComboBox1.Text = "VBDownloadFile"
+        '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(873, 543)
+        Me.ClientSize = New System.Drawing.Size(1164, 668)
         Me.Controls.Add(Me.SplitContainerBase)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.MenuStrip1.ResumeLayout(False)
@@ -797,4 +852,6 @@ Partial Class Form1
     Friend WithEvents CheckBoxDeptConfigs As CheckBox
     Friend WithEvents TextBoxDept As TextBox
     Friend WithEvents SupportThisAppToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DownloadMethodToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripComboBox1 As ToolStripComboBox
 End Class

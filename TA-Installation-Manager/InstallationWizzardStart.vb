@@ -202,30 +202,6 @@ QUIT:
         xtrace_sube("DownloadData")
     End Function
 
-    '---- Download ----------------------------------------------------------------------
-    Sub GetUrl(DData() As String)
-        xtrace_subs("GetUrl")
 
-        Dim Url As String = DData(0)
-        Dim Target As String = DData(1)
-        Dim FName As String = DData(2)
-        'Dim wclient As WebClient = New WebClient()
-
-        xtrace_i("FName = " & FName)
-
-        ' Set the target path
-        Dim FPath = DepoPath & "\" & Target & "\" & FName
-        GetUrl4(Url, FPath)
-
-        xtrace_sube("GetUrl")
-    End Sub
-
-
-    'Sub unzip(ZipFile As String, OutputD As String)
-    '    Dim sc As New Shell32.Shell()
-    '    Dim output As Shell32.Folder = sc.NameSpace(OutputD)
-    '    Dim input As Shell32.Folder = sc.NameSpace(ZipFile)
-    '    output.CopyHere(input.Items, 4)
-    'End Sub
 
 End Module

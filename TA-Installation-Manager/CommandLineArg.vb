@@ -29,6 +29,11 @@
                         xtrace_i("Set AutoRun = '" & AutoRun & "'")
                     End If
 
+                    If Name = "DownloadMethod" Then
+                        DownloadMethod = ValS
+                        xtrace_i("Set DownloadMethod = '" & DownloadMethod & "'")
+                    End If
+
                     If Name = "??" Then
 
                     End If

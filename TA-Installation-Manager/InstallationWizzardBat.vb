@@ -58,7 +58,7 @@ Module InstallationWizzardBat
             For Nr = 0 To DownLoadIndex
                 DData = DownloadData(Downloads(Nr))
 
-                GetUrl(DData)
+                GetUrlD(DData)
             Next
         End If
 

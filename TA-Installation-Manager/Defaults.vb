@@ -123,6 +123,11 @@
         Dim LT As Integer = SharedDefaultsTraceValue
         xtrace_subs("SharedDefaults", LT)
 
+        If DName = "DownloadMethod" Then
+            DownloadMethod = DVal
+            xtrace_i("Set DownloadMethod = " & DownloadMethod)
+        End If
+
         If DName = "ScriptTypeSelect" Then
             ScriptTypeSelect = DVal.ToUpper
             xtrace("Set ScriptTypeSelect = " & ScriptTypeSelect)
