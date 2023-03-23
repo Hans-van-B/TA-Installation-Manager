@@ -44,7 +44,7 @@ Module Web
             If DownloadMethod = "VBWebClient" Then
                 GetUrl2(URL, FPath)
             ElseIf DownloadMethod.ToUpper = "CURL" Then
-                GetUrl3(URL, FPath)
+                GetUrlCurl(URL, FPath)
             ElseIf DownloadMethod = "VBDownloadFile" Then
                 GetUrl4(URL, FPath)
             Else
@@ -75,9 +75,32 @@ Module Web
         xtrace_sube("GetUrl2")
     End Sub
 
+    '---- Get URL Uses VB DownloadFile
+    Sub GetUrl4(Url As String, FPath As String)
+        xtrace_subs("GetUrl4")
+
+        Try
+            xtrace_i("DownloadData = " & Url & " -> " & FPath)
+            My.Computer.Network.DownloadFile(Url, FPath)
+        Catch ex As Exception
+            xtrace("   " & ex.Message)
+        End Try
+
+        xtrace_sube("GetUrl4")
+    End Sub
+
     '---- Get URL Uses curl
-    Sub GetUrl3(Url As String, FPath As String)
-        xtrace_subs("GetUrl3")
+    Sub GetUrlCurl(Url As String, FPath As String)
+        xtrace_subs("GetUrlCurl")
+        Dim CurlExe As String = "curl"
+        Dim CurlExe2 As String = BinLib & "\CURL.EXE"
+        Dim CurlMode As String = "win"
+
+        If My.Computer.FileSystem.FileExists(CurlExe2) Then
+            xtrace_i("CurlExe2 exists")
+            CurlExe = CurlExe2
+            CurlMode = "Enhanced"
+        End If
 
         Try
             Form1.SetStatus("Downloading...")
@@ -85,7 +108,7 @@ Module Web
             'md = "curl -v --output """ & FPath & """ """ & Url & """ >>" & LogFile & " 2>>&1"
             'md = "curl -v --user ""anonymous:"" --output """ & FPath & """ """ & Url & """ >>" & LogFile & " 2>>&1"
             'md = "curl -v --get --user ""anonymous:"" --output """ & FPath & """ """ & Url & """ >>" & LogFile & " 2>>&1"
-            Cmd = "curl -v --get --ssl --user ""anonymous:"" --output """ & FPath & """ """ & Url & """ >>" & LogFile & " 2>>&1"
+            Cmd = CurlExe & " --get --ssl --user ""anonymous:"" --output """ & FPath & """ """ & Url & """ >>" & LogFile & " 2>>&1"
             xtrace_i("Cmd = " & Cmd)
 
             Dim Proc As New Process()
@@ -100,21 +123,7 @@ Module Web
             Form1.SetStatus("Download Failed.")
         End Try
 
-        xtrace_sube("GetUrl3")
-    End Sub
-
-    '---- Get URL Uses VB DownloadFile
-    Sub GetUrl4(Url As String, FPath As String)
-        xtrace_subs("GetUrl4")
-
-        Try
-            xtrace_i("DownloadData = " & Url & " -> " & FPath)
-            My.Computer.Network.DownloadFile(Url, FPath)
-        Catch ex As Exception
-            xtrace("   " & ex.Message)
-        End Try
-
-        xtrace_sube("GetUrl4")
+        xtrace_sube("GetUrlCurl")
     End Sub
 
 End Module
