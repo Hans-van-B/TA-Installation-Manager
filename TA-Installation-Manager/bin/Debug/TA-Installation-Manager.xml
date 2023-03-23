@@ -22,5 +22,15 @@ TA-Installation-Manager
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:TA_Installation_Manager.My.Resources.Resources.Logo">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:TA_Installation_Manager.My.Resources.Resources.Logo_T">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

@@ -61,6 +61,14 @@ Partial Class Form1
         Me.CheckBoxStopUpdates = New System.Windows.Forms.CheckBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPagePS = New System.Windows.Forms.TabPage()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.TextBoxInfo = New System.Windows.Forms.TextBox()
+        Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.DownloadMethodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
         Me.TabPageWinBat = New System.Windows.Forms.TabPage()
         Me.GroupBoxDeptList = New System.Windows.Forms.GroupBox()
         Me.TextBoxDept = New System.Windows.Forms.TextBox()
@@ -74,14 +82,7 @@ Partial Class Form1
         Me.CheckBoxBatSeparatePost = New System.Windows.Forms.CheckBox()
         Me.CheckBoxBatSeparateApp = New System.Windows.Forms.CheckBox()
         Me.CheckBoxBatSeparateInit = New System.Windows.Forms.CheckBox()
-        Me.TabPagePS = New System.Windows.Forms.TabPage()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.TextBoxInfo = New System.Windows.Forms.TextBox()
-        Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.DownloadMethodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -97,10 +98,10 @@ Partial Class Form1
         Me.SplitContainer2V.Panel2.SuspendLayout()
         Me.SplitContainer2V.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
         Me.TabPageWinBat.SuspendLayout()
         Me.GroupBoxDeptList.SuspendLayout()
         Me.GroupBoxRem.SuspendLayout()
-        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -145,26 +146,26 @@ Partial Class Form1
         '
         Me.ShowSettingsToolStripMenuItem.CheckOnClick = True
         Me.ShowSettingsToolStripMenuItem.Name = "ShowSettingsToolStripMenuItem"
-        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.ShowSettingsToolStripMenuItem.Text = "Show settings"
         '
         'ShowLogToolStripMenuItem
         '
         Me.ShowLogToolStripMenuItem.Name = "ShowLogToolStripMenuItem"
-        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.ShowLogToolStripMenuItem.Text = "Show &Log"
         '
         'AdvancedToolStripMenuItem
         '
         Me.AdvancedToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetLicenseToolStripMenuItem, Me.DownloadMethodToolStripMenuItem})
         Me.AdvancedToolStripMenuItem.Name = "AdvancedToolStripMenuItem"
-        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.AdvancedToolStripMenuItem.Text = "Advanced"
         '
         'ResetLicenseToolStripMenuItem
         '
         Me.ResetLicenseToolStripMenuItem.Name = "ResetLicenseToolStripMenuItem"
-        Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.ResetLicenseToolStripMenuItem.Text = "Reset License"
         '
         'HelpToolStripMenuItem
@@ -436,6 +437,7 @@ Partial Class Form1
         'SplitContainer2V.Panel1
         '
         Me.SplitContainer2V.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.Panel1)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxReDownload)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxCopySource)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxLogToServer)
@@ -526,8 +528,69 @@ Partial Class Form1
         Me.TabControl1.Size = New System.Drawing.Size(724, 492)
         Me.TabControl1.TabIndex = 0
         '
+        'TabPagePS
+        '
+        Me.TabPagePS.Location = New System.Drawing.Point(4, 24)
+        Me.TabPagePS.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPagePS.Name = "TabPagePS"
+        Me.TabPagePS.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPagePS.Size = New System.Drawing.Size(716, 464)
+        Me.TabPagePS.TabIndex = 1
+        Me.TabPagePS.Text = "Power Shell"
+        Me.TabPagePS.UseVisualStyleBackColor = True
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 492)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
+        Me.StatusStrip1.Size = New System.Drawing.Size(899, 22)
+        Me.StatusStrip1.TabIndex = 1
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(238, 17)
+        Me.ToolStripStatusLabel1.Text = "Select the installation type and components"
+        '
+        'TextBoxInfo
+        '
+        Me.TextBoxInfo.AcceptsReturn = True
+        Me.TextBoxInfo.Font = New System.Drawing.Font("Liberation Mono", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxInfo.Location = New System.Drawing.Point(304, 279)
+        Me.TextBoxInfo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBoxInfo.Multiline = True
+        Me.TextBoxInfo.Name = "TextBoxInfo"
+        Me.TextBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.TextBoxInfo.Size = New System.Drawing.Size(163, 78)
+        Me.TextBoxInfo.TabIndex = 1
+        Me.TextBoxInfo.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.TextBoxInfo.Visible = False
+        Me.TextBoxInfo.WordWrap = False
+        '
+        'TimerInit
+        '
+        '
+        'DownloadMethodToolStripMenuItem
+        '
+        Me.DownloadMethodToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripComboBox1})
+        Me.DownloadMethodToolStripMenuItem.Name = "DownloadMethodToolStripMenuItem"
+        Me.DownloadMethodToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DownloadMethodToolStripMenuItem.Text = "Download Method"
+        '
+        'ToolStripComboBox1
+        '
+        Me.ToolStripComboBox1.Items.AddRange(New Object() {"VBWebClient", "CURL", "VBDownloadFile"})
+        Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
+        Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 23)
+        Me.ToolStripComboBox1.Text = "VBDownloadFile"
+        '
         'TabPageWinBat
         '
+        Me.TabPageWinBat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.TabPageWinBat.Controls.Add(Me.GroupBoxDeptList)
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxDeptConfigs)
         Me.TabPageWinBat.Controls.Add(Me.GroupBoxRem)
@@ -536,9 +599,9 @@ Partial Class Form1
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparateApp)
         Me.TabPageWinBat.Controls.Add(Me.CheckBoxBatSeparateInit)
         Me.TabPageWinBat.Location = New System.Drawing.Point(4, 24)
-        Me.TabPageWinBat.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPageWinBat.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPageWinBat.Name = "TabPageWinBat"
-        Me.TabPageWinBat.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPageWinBat.Padding = New System.Windows.Forms.Padding(4)
         Me.TabPageWinBat.Size = New System.Drawing.Size(716, 464)
         Me.TabPageWinBat.TabIndex = 0
         Me.TabPageWinBat.Text = "Windows Batch"
@@ -551,9 +614,9 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBoxDeptList.Controls.Add(Me.TextBoxDept)
         Me.GroupBoxDeptList.Location = New System.Drawing.Point(497, 188)
-        Me.GroupBoxDeptList.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBoxDeptList.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBoxDeptList.Name = "GroupBoxDeptList"
-        Me.GroupBoxDeptList.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBoxDeptList.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBoxDeptList.Size = New System.Drawing.Size(209, 268)
         Me.GroupBoxDeptList.TabIndex = 6
         Me.GroupBoxDeptList.TabStop = False
@@ -564,7 +627,7 @@ Partial Class Form1
         '
         Me.TextBoxDept.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBoxDept.Location = New System.Drawing.Point(4, 18)
-        Me.TextBoxDept.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBoxDept.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxDept.Multiline = True
         Me.TextBoxDept.Name = "TextBoxDept"
         Me.TextBoxDept.ScrollBars = System.Windows.Forms.ScrollBars.Both
@@ -576,7 +639,7 @@ Partial Class Form1
         '
         Me.CheckBoxDeptConfigs.AutoSize = True
         Me.CheckBoxDeptConfigs.Location = New System.Drawing.Point(501, 158)
-        Me.CheckBoxDeptConfigs.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBoxDeptConfigs.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBoxDeptConfigs.Name = "CheckBoxDeptConfigs"
         Me.CheckBoxDeptConfigs.Size = New System.Drawing.Size(144, 19)
         Me.CheckBoxDeptConfigs.TabIndex = 5
@@ -662,7 +725,7 @@ Partial Class Form1
         '
         Me.CheckBoxBatSeparatePost.AutoSize = True
         Me.CheckBoxBatSeparatePost.Location = New System.Drawing.Point(8, 73)
-        Me.CheckBoxBatSeparatePost.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBoxBatSeparatePost.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBoxBatSeparatePost.Name = "CheckBoxBatSeparatePost"
         Me.CheckBoxBatSeparatePost.Size = New System.Drawing.Size(165, 19)
         Me.CheckBoxBatSeparatePost.TabIndex = 2
@@ -691,65 +754,15 @@ Partial Class Form1
         Me.CheckBoxBatSeparateInit.Text = "Separate Init"
         Me.CheckBoxBatSeparateInit.UseVisualStyleBackColor = True
         '
-        'TabPagePS
+        'Panel1
         '
-        Me.TabPagePS.Location = New System.Drawing.Point(4, 24)
-        Me.TabPagePS.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.TabPagePS.Name = "TabPagePS"
-        Me.TabPagePS.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.TabPagePS.Size = New System.Drawing.Size(715, 454)
-        Me.TabPagePS.TabIndex = 1
-        Me.TabPagePS.Text = "Power Shell"
-        Me.TabPagePS.UseVisualStyleBackColor = True
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 492)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(899, 22)
-        Me.StatusStrip1.TabIndex = 1
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'ToolStripStatusLabel1
-        '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(238, 17)
-        Me.ToolStripStatusLabel1.Text = "Select the installation type and components"
-        '
-        'TextBoxInfo
-        '
-        Me.TextBoxInfo.AcceptsReturn = True
-        Me.TextBoxInfo.Font = New System.Drawing.Font("Liberation Mono", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxInfo.Location = New System.Drawing.Point(304, 279)
-        Me.TextBoxInfo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.TextBoxInfo.Multiline = True
-        Me.TextBoxInfo.Name = "TextBoxInfo"
-        Me.TextBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBoxInfo.Size = New System.Drawing.Size(163, 78)
-        Me.TextBoxInfo.TabIndex = 1
-        Me.TextBoxInfo.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        Me.TextBoxInfo.Visible = False
-        Me.TextBoxInfo.WordWrap = False
-        '
-        'TimerInit
-        '
-        '
-        'DownloadMethodToolStripMenuItem
-        '
-        Me.DownloadMethodToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripComboBox1})
-        Me.DownloadMethodToolStripMenuItem.Name = "DownloadMethodToolStripMenuItem"
-        Me.DownloadMethodToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.DownloadMethodToolStripMenuItem.Text = "Download Method"
-        '
-        'ToolStripComboBox1
-        '
-        Me.ToolStripComboBox1.Items.AddRange(New Object() {"VBWebClient", "CURL", "VBDownloadFile"})
-        Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
-        Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 23)
-        Me.ToolStripComboBox1.Text = "VBDownloadFile"
+        Me.Panel1.BackgroundImage = Global.TA_Installation_Manager.My.Resources.Resources.Logo_T
+        Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel1.Location = New System.Drawing.Point(0, 259)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(170, 233)
+        Me.Panel1.TabIndex = 5
         '
         'Form1
         '
@@ -784,14 +797,14 @@ Partial Class Form1
         CType(Me.SplitContainer2V, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2V.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.TabPageWinBat.ResumeLayout(False)
         Me.TabPageWinBat.PerformLayout()
         Me.GroupBoxDeptList.ResumeLayout(False)
         Me.GroupBoxDeptList.PerformLayout()
         Me.GroupBoxRem.ResumeLayout(False)
         Me.GroupBoxRem.PerformLayout()
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -854,4 +867,5 @@ Partial Class Form1
     Friend WithEvents SupportThisAppToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DownloadMethodToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripComboBox1 As ToolStripComboBox
+    Friend WithEvents Panel1 As Panel
 End Class
