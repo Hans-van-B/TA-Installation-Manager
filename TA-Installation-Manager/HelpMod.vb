@@ -88,7 +88,7 @@ settings of an existing wizard for another application:
         WriteHelp(" Inst.: " & AppRoot & "<br>")
         LicC.GetLic()
         WriteHelp(" License ID: " & LicC.LicID & "<br>")
-        WriteHelp(" License text: " & LicC.LicString & "<br>")
+        WriteHelp(" License text: " & LicC.LicString & " For more info. see <a href=""file:///" & AppRoot & "\LICENSE.txt"">LICENSE.txt</a> <br>")
         WriteHelp(" The " & AppName & " log can be found here: " & Log.LogFile & "<br>")
         WriteHelp("</font>")
         WriteHelp("</body>")

@@ -7,28 +7,32 @@ Copyright (c) 2023 Hans van Buitenen
 	"Licensor" shall mean the copyright owner or entity authorized by
 	the copyright owner that is granting the License.
 	
-	"User" is referring to a person or company that is using the software.
+	"User" is referring to a person or company that is using the software unmodified.
+	It is not referring to someone "using" the software outside the scope
+	of this License. (Modifying or selling it.)
 	
-	"the Software" this software and associated documentation files.
+	"the Software" shall mean this software and associated documentation files.
 
 2. Copyright License.
 
-	Permission is hereby granted,
+	Permission is hereby granted:
 	 - Free of charge for non-commercial use
 	 - Free to evaluate for commercial use (no time restriction)
+	 - To any person obtaining a copy of this software,
+	   to use the Software without restriction, including without limitation
+	   the rights to use, copy or distribute copies of the Software
+	Further indications:
 	 - For commercial use, a support fee is requested, but not enforced,
 	   to the amount that matches a realistic compensation for the value
-	   that the software delivers to the user, this determined by the user.
+	   that the software delivers to the user and that is within his/her
+	   capability. The amount is determined by the user.
 	 - The Licensor will hereby explicitly refrain from any legal actions
 	   towards the user.
 	 - By using the software the user agrees to refrain from any legal
 	   actions towards the Licensor
-	 - To any person obtaining a copy of this software,
-	   to use the Software without restriction, including without limitation
-	   the rights to use, copy or distribute copies of the Software
 	   
-	But not:
-	 - to change or sell without explicit written permission
+	Not allowed is:
+	 - To change or sell without explicit written permission
 	   from the Licensor.
 	
 	subject to the following conditions:
