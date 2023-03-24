@@ -25,7 +25,8 @@ Copyright (c) 2023 Hans van Buitenen
 	   actions towards the Licensor
 	 - To any person obtaining a copy of this software,
 	   to use the Software without restriction, including without limitation
-	   the rights to use, copy or distribute copies of the Software,
+	   the rights to use, copy or distribute copies of the Software
+	   
 	But not:
 	 - to change or sell without explicit written permission
 	   from the Licensor.
