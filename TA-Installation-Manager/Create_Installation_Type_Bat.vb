@@ -334,7 +334,7 @@
         WTO(CreRemLine("Messages"))
         WTO("")
         WTO(":EXISTS")
-        WTO("   echo  * %appname% Already exists >> %ICL%")
+        WTO("   %WRITE% ' * %appname% Already exists'")
         WTO("   goto APPSET")
         WTO("")
         WTO(CreRemLine("End Inst"))
@@ -387,8 +387,11 @@
         WTO("")
 
         If ContentAutoStart <> "" Then
+            WTO(":: Auto start " & AppName)
             Dim RegKeyAutoStart As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
-            Dim Line As String = "reg /add " & RegKeyAutoStart & " /v %AppName% /d '%InstTarget%\" & ContentAutoStart "'"
+            Dim Line As String = "reg add " & RegKeyAutoStart & " /v %AppName% /d '%InstTarget%\" & ContentAutoStart & "'"
+            WTO(Line)
+            WTO("")
         End If
 
         If Form1.CheckBoxDeptConfigs.Checked Then

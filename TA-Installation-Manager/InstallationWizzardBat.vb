@@ -1,7 +1,4 @@
-﻿'Imports System.IO
-'Imports System.Net
-'Imports System.Text
-
+﻿
 ' Read defaults that interprets towards language dependent output
 Module InstallationWizzardBat
 
@@ -12,7 +9,7 @@ Module InstallationWizzardBat
         If DName = "InstTarget" Then
             ALine = "set InstTarget=" & DVal
             xtrace_i("Add: " & ALine)
-            ContentInit = ContentInit & ALine
+            ContentInit = ContentInit & ALine & vbCrLf
         End If
 
         If DName = "Extract" Then
