@@ -113,6 +113,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="NetworkInformation.vb" />
+    <Compile Include="UpdateWizard.vb" />
     <Compile Include="Util.vb" />
     <Compile Include="ValidateSupport.vb" />
     <Compile Include="Web.vb" />

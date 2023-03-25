@@ -65,6 +65,11 @@
                     CVL = True
                 End If
 
+                If SwName = "LicTraceVisible" Then
+                    LicC.LicTraceLevel = 2
+                    xtrace_i(" Set LicTraceLevel = " & LicC.LicTraceLevel.ToString)
+                End If
+
                 Continue For
             End If
 

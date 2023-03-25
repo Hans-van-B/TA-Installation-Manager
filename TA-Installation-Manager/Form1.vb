@@ -132,6 +132,11 @@
         Log.xtrace_sube("File, Save")
     End Sub
 
+    '---- Update / Create Wizard ----------------------------------------------
+    Private Sub ToolStripMenuUpdateWizard_Click(sender As Object, e As EventArgs) Handles ToolStripMenuUpdateWizard.Click
+        WriteWizard()
+    End Sub
+
     '---- File, Exit
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Log.xtrace_subs("Menu, File, Exit")

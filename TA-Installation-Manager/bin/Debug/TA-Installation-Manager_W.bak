@@ -22,20 +22,10 @@ Readme=Status: Almost complete, but no icons in the start menu;
 Readme=URL;0
 
 [W_WindowsVirtualDesktopHelper]
-ScriptTypeSelect=BAT
 UseTASetup=True
 UseTASelect=False
 UseTADeinstall=False
-BatSeparateInit=False
-BatSeparateApp=False
-BatSeparatePost=False
-CopySourceToLocal=True
-UseDept=False
-RemType=#
 InstTarget=C:\Apps\WindowsVirtualDesktopHelper
-ContentInitLine=::
-TestIfExist=%ProgramFiles%\xx\xx.xxx
-# Extract=<InstTarget|INST>;<DownloadNr>
 
 [W_Creo4]
 ScriptTypeSelect=BAT
