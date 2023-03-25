@@ -32,7 +32,7 @@ Copyright (c) 2023 Hans van Buitenen
 	   actions towards the Licensor
 	   
 	Not allowed is:
-	 - To change or sell without explicit written permission
+	 - To change or sell the software without explicit written permission
 	   from the Licensor.
 	
 	subject to the following conditions:
