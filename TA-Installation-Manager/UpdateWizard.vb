@@ -27,8 +27,11 @@ Module UpdateWizard
         Dim TestIfExist As String = ""
         Dim DownloadURL As String = ""
         Dim Extract As String = ""
+        Dim InstCmd As String = ""
         Dim DeptNameList As String = ""
         Dim Readme As New List(Of String)
+        Dim AutoStart As String = ""
+        Dim MsiDeinstall As String = ""
 
         While Not ReadFile.EndOfStream
             Line = ReadFile.ReadLine()
@@ -67,7 +70,10 @@ Module UpdateWizard
                     If DName = "TestIfExist" Then TestIfExist = DVal
                     If DName = "DownloadURL" Then DownloadURL = DVal
                     If DName = "Extract" Then Extract = DVal
+                    If DName = "InstCmd" Then InstCmd = DVal
                     If DName = "Readme" Then Readme.Add(DVal)
+                    If DName = "AutoStart" Then AutoStart = DVal
+                    If DName = "MsiDeinstall" Then MsiDeinstall = DVal
                 End If
 
             ElseIf WizStatus = 2 Then
@@ -79,6 +85,7 @@ Module UpdateWizard
         WizOut = AppRoot & "\" & AppName & "_W.tmp"
         Form1.WriteInfo("Write Wizards " & WizOut)
 
+        '---- Top of file ----
         My.Computer.FileSystem.WriteAllText(WizOut, "# Updated" & vbCrLf, False, Encoding.ASCII)
 
         xtrace_i("Write top of file (" & WizIniStart.Count.ToString & ")")
@@ -86,6 +93,7 @@ Module UpdateWizard
             WriteWiz(Line)
         Next
 
+        '---- Write Updated Wizard ----
         xtrace_i("Compile lines")
         ' Compile Dept Name List
         For Each Line In Form1.TextBoxDept.Lines
@@ -117,22 +125,44 @@ Module UpdateWizard
         WriteWiz("InstTarget=" & InstTarget)
         WriteWiz("ContentInitLine=" & ContentInitLine)
         WriteWiz("TestIfExist=" & TestIfExist)
-        If DownloadURL <> "" Then WriteWiz("DownloadURL=" & DownloadURL)
+
+        If DownloadURL <> "" Then
+            WriteWiz("DownloadURL=" & DownloadURL)
+        Else
+            WriteWiz("# DownloadURL=<URL>;Source\W64")
+        End If
+
         If Extract <> "" Then
             WriteWiz("Extract=" & Extract)
         Else
             WriteWiz("# Extract=<InstTarget|INST>;<DownloadNr>")
         End If
 
+        If InstCmd <> "" Then
+            WriteWiz("InstCmd=" & InstCmd)
+        Else
+            WriteWiz("# InstCmd=msiexec /q /i '%Archives%\%AppName%_v0.0.msi' /l* %InstTmp%\%AppName%Msi.log")
+        End If
+
         For Each Line In Readme
             WriteWiz("Readme=" & Line)
         Next
 
+        If AutoStart <> "" Then
+            WriteWiz("AutoStart=" & AutoStart)
+        End If
+
+        If MsiDeinstall <> "" Then
+            WriteWiz("MsiDeinstall=" & MsiDeinstall)
+        End If
+
+        '---- End of file ----
         xtrace_i("Write to end of file (" & WizIniEnd.Count.ToString & ")")
         For Each Line In WizIniEnd
             WriteWiz(Line)
         Next
 
+        '---- Rename to Wizard ini ----
         xtrace_i("Finalize")
         Dim BakFile As String = AppRoot & "\" & AppName & "_W.bak"
         If My.Computer.FileSystem.FileExists(BakFile) Then

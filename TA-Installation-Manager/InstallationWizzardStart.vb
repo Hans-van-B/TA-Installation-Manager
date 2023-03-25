@@ -10,6 +10,8 @@ Module InstallationWizzardStart
     Public ContentAIExtr As String = ""  ' Application Installation Extract
     Public ContentInstCmd As String = "" ' Installation Command
     Public ContentReadme As String = ""
+    Public ContentAutoStart As String = ""
+    Public ContentMsiDeinstall As String = ""
     Public Downloads(10) As String
     'Public DownloadFileNames(10) As String
     Public DownLoadIndex As Integer
@@ -79,6 +81,7 @@ Module InstallationWizzardStart
         ContentInstCmd = ""
         ContentReadme = ""
         DownLoadIndex = -1
+        ContentMsiDeinstall = ""
 
         '---- Start
         Dim ReadFile
@@ -155,6 +158,14 @@ Module InstallationWizzardStart
                     If DName = "InstCmd" Then
                         xtrace_i("Add Installation Command: " & DVal)
                         ContentInstCmd = DVal
+                    End If
+
+                    If DName = "AutoStart" Then
+                        ContentAutoStart = DVal
+                    End If
+
+                    If DName = "MsiDeinstall" Then
+                        ContentMsiDeinstall = "MsiExec.exe /X" & DVal & " /q"
                     End If
 
 

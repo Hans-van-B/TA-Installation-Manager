@@ -386,6 +386,11 @@
         WTO(":: Add Post Installation Content Here")
         WTO("")
 
+        If ContentAutoStart <> "" Then
+            Dim RegKeyAutoStart As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
+            Dim Line As String = "reg /add " & RegKeyAutoStart & " /v %AppName% /d '%InstTarget%\" & ContentAutoStart "'"
+        End If
+
         If Form1.CheckBoxDeptConfigs.Checked Then
             WTO("call ""%site_conf%\site_post_inst.bat""")
             WTO("")
@@ -460,6 +465,8 @@
         DeinstallationFile = "\bat\DeInstall.bat"
         xtrace_i("Create " & DeinstallationFile)
 
+        If ContentMsiDeinstall = "" Then ContentMsiDeinstall = "# MsiExec.exe /X{XX} /q"
+
         DeinstallationFileTxt = BatFileHeader & BatTimeStamp & "
 if ""%ICL%""==""""     set ICL=%TEMP%\Remove_%AppName%.log
 if ""%INSTTMP%""=="""" set INSTTMP=C:\Temp
@@ -478,8 +485,9 @@ if exist ""%ProgramFiles%\XX""  SET APPL_BASE_DIR=%ProgramFiles%\XX
 @echo ---- Start the de-installation ----------------------
 :START
 %WRITE% "" * Start de-installation""
-
-MsiExec.exe /X{XX} /q
+ " &
+ ContentMsiDeinstall & vbCrLf &
+"
 
 echo  * De-installation finished >>%ICL%
 
