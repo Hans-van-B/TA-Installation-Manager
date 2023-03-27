@@ -130,6 +130,7 @@ Module InstallationWizzardStart
                     End If
 
                     SharedDefaults(DName, DVal)
+
                     BatWDefaults(DName, DVal)
 
                     If DName = "ContentInitLine" Then

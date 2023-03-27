@@ -470,7 +470,8 @@
 
         If ContentMsiDeinstall = "" Then ContentMsiDeinstall = "# MsiExec.exe /X{XX} /q"
 
-        DeinstallationFileTxt = BatFileHeader & BatTimeStamp & "
+        DeinstallationFileTxt = BatFileHeader & vbCrLf &
+            BatTimeStamp & "
 if ""%ICL%""==""""     set ICL=%TEMP%\Remove_%AppName%.log
 if ""%INSTTMP%""=="""" set INSTTMP=C:\Temp
 title %InstTitle%

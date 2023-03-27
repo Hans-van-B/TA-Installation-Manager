@@ -32,6 +32,7 @@ Module UpdateWizard
         Dim Readme As New List(Of String)
         Dim AutoStart As String = ""
         Dim MsiDeinstall As String = ""
+        Dim MyCopyLogToServer As String = ""
 
         While Not ReadFile.EndOfStream
             Line = ReadFile.ReadLine()
@@ -74,6 +75,7 @@ Module UpdateWizard
                     If DName = "Readme" Then Readme.Add(DVal)
                     If DName = "AutoStart" Then AutoStart = DVal
                     If DName = "MsiDeinstall" Then MsiDeinstall = DVal
+                    If DName = "CopyLogToServer" Then MyCopyLogToServer = DVal
                 End If
 
             ElseIf WizStatus = 2 Then
@@ -148,13 +150,11 @@ Module UpdateWizard
             WriteWiz("Readme=" & Line)
         Next
 
-        If AutoStart <> "" Then
-            WriteWiz("AutoStart=" & AutoStart)
-        End If
+        If AutoStart <> "" Then WriteWiz("AutoStart=" & AutoStart)
 
-        If MsiDeinstall <> "" Then
-            WriteWiz("MsiDeinstall=" & MsiDeinstall)
-        End If
+        If MsiDeinstall <> "" Then WriteWiz("MsiDeinstall=" & MsiDeinstall)
+
+        If MyCopyLogToServer <> "" Then WriteWiz("CopyLogToServer=" & MyCopyLogToServer)
 
         '---- End of file ----
         xtrace_i("Write to end of file (" & WizIniEnd.Count.ToString & ")")

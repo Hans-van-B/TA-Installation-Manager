@@ -85,11 +85,6 @@
                         xtrace("Set StopUpdates = " & StopUpdates)
                     End If
 
-                    If DName = "CopyLogToServer" Then
-                        CopyLogToServer = DVal
-                        xtrace("Set CopyLogToServer = " & CopyLogToServer)
-                    End If
-
                     If DName = "Redownload" Then
                         If DVal = "True" Then
                             ReDownload = True
@@ -224,7 +219,14 @@
             Next
         End If
 
-        xtrace_sube("SharedDefaults", LT)
+        If DName = "CopyLogToServer" Then
+            CopyLogToServer = DVal
+            xtrace("Set CopyLogToServer = " & CopyLogToServer)
+
+            Form1.CheckBoxLogToServer.Checked = StringToBool(DVal)
+        End If
+
+            xtrace_sube("SharedDefaults", LT)
     End Sub
 
     Function StringToBoolean(Val As String) As Boolean
