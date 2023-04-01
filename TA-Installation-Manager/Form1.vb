@@ -14,6 +14,7 @@
         LicC.CheckLicDate()
 
         Me.Text = AppName.Replace("-", " ") & " V" & AppVer
+        Me.Width = 1100
 
         SplitContainerBase.SplitterDistance = 200
         TimerInit.Start()
@@ -30,6 +31,7 @@
 
         Set_TAISDevDepo()
         ButtonCheckWizzard.Left = 10
+        TabControl1.SelectTab(0)
 
         SetGUIScryptType(Glob.ScriptTypeSelect)
 
@@ -456,4 +458,15 @@
         xtrace_sube("CheckBoxDeptConfigs_CheckedChanged")
     End Sub
 
+    '---- Create Local Depo ---------------------------------------------------------------------
+    Private Sub CreateDepoShareToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreateDepoShareToolStripMenuItem.Click
+        TabControl1.SelectTab(2)
+        TabPageCreateShare.Text = "Create Depo"
+        TextBoxNewDepo.Text = Deflt_Depo_Path
+        GroupBoxCreateDepo.Visible = True
+    End Sub
+
+    Private Sub ButtonCreateDepo_Click(sender As Object, e As EventArgs)
+        Create_Local_Depo_Share()
+    End Sub
 End Class

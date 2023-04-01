@@ -74,4 +74,24 @@
         xtrace_i("StringToBool returns " & Result.ToString)
         StringToBool = Result
     End Function
+
+    '----- Start Elevated
+    Sub StartElevated(Exe As String)
+        StartElevated(Exe, "")
+    End Sub
+
+    Sub StartElevated(Exe As String,
+                          Arg As String)
+        Dim Proc As New Process()
+        Dim ProcStartInfo As New ProcessStartInfo(Exe, Arg)
+
+        xtrace_i("Proces Start")
+        Try
+            Proc.StartInfo = ProcStartInfo
+            Proc.StartInfo.Verb = "runas"
+            Proc.Start()
+        Catch ex As Exception
+            xtrace_err({"Failed to start the process!", ex.Message.ToString})
+        End Try
+    End Sub
 End Module

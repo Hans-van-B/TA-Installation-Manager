@@ -106,6 +106,10 @@ Module Create_Installation_Depo
         Form1.ComboBoxDevDepo.Text = TAISDevDepo
         Form1.ComboBoxDevDepo.Items.Add(TAISDevDepo)
         Form1.ComboBoxDevDepo.Items.Add(TAISDevDepo & "Test")
+        If (My.Computer.FileSystem.DirectoryExists(Deflt_Depo_Path)) _
+        And TAISDevDepo <> Deflt_Depo_Path Then
+            Form1.ComboBoxDevDepo.Items.Add(Deflt_Depo_Path)
+        End If
         xtrace_i("TAISDevDepo = " & TAISDevDepo)
         xtrace_sube("Set_TAISDevDepo")
     End Sub

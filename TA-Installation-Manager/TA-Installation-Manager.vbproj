@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLineArg.vb" />
+    <Compile Include="Create_Depo_Mod.vb" />
     <Compile Include="Create_Installation_Depo.vb" />
     <Compile Include="Create_Installation_Type_All.vb" />
     <Compile Include="Create_Installation_Type_Bat.vb" />

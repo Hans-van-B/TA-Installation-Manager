@@ -389,7 +389,7 @@
         If ContentAutoStart <> "" Then
             WTO(":: Auto start " & AppName)
             Dim RegKeyAutoStart As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
-            Dim Line As String = "reg add " & RegKeyAutoStart & " /v %AppName% /d '%InstTarget%\" & ContentAutoStart & "'"
+            Dim Line As String = "reg add " & RegKeyAutoStart & " /v %AppName% /d '%InstTarget%\" & ContentAutoStart & "' /f"
             WTO(Line)
             WTO("")
         End If
