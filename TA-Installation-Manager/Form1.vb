@@ -476,15 +476,18 @@
     End Sub
 
     Private Sub CheckLocDepoDir()
+        xtrace_subs("CheckLocDepoDir")
         If My.Computer.FileSystem.DirectoryExists(TextBoxNewDepo.Text) Then
             LabelLocDepoDirExists.Text = "Loc Depo Dir: Exists"
             EnableDeleteButton = True
         Else
             LabelLocDepoDirExists.Text = "Loc Depo Dir: Does not exist"
         End If
+        xtrace_sube("CheckLocDepoDir")
     End Sub
 
     Private Sub CheckLocDepoShare()
+        xtrace_subs("CheckLocDepoShare")
         Dim ShareLoc = "\\" & Environment.MachineName & "\Depo"
         xtrace_i("Check: " & ShareLoc)
         If My.Computer.FileSystem.DirectoryExists(ShareLoc) Then
@@ -492,14 +495,18 @@
             LabelLocDepoShareExists.ForeColor = Color.Red
             ButtonCreateDepo.Enabled = False
             EnableDeleteButton = True
+            xtrace_i("Depo " & ShareLoc & " exists")
         Else
             LabelLocDepoShareExists.Text = "Loc Depo Share: Does not exist"
             LabelLocDepoShareExists.ForeColor = SystemColors.ControlText
             ButtonCreateDepo.Enabled = True
+            xtrace_i("Depo " & ShareLoc & " does not exist")
         End If
+        xtrace_sube("CheckLocDepoShare")
     End Sub
 
     Private Sub CheckLocDepoDeleteProc()
+        xtrace_subs("CheckLocDepoDeleteProc")
         If EnableDeleteButton Then
             If My.Computer.FileSystem.FileExists(LocDepoDeleteProcFileName) Then
                 xtrace_i("Found " & LocDepoDeleteProcFileName)
@@ -512,7 +519,7 @@
             xtrace_i("Local Depo does not exist")
             ButtonDeleteDepo.Enabled = False
         End If
-
+        xtrace_sube("CheckLocDepoDeleteProc")
     End Sub
 
     Private Sub ButtonCreateDepo_Click(sender As Object, e As EventArgs) Handles ButtonCreateDepo.Click

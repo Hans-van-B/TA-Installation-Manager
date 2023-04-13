@@ -18,5 +18,5 @@ if /i "%RSP%"=="Y" rd /s /q "%SHARE_DIR%"
 
 :END
 echo Finished
-timeout /t 10
+timeout /t 4
         

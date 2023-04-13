@@ -20,11 +20,11 @@ Module Create_Depo_Mod
             End If
         Next
 
-
+        Dim ShareDir As String = Form1.TextBoxNewDepo.Text
         Dim ProcContent As String = "@If not '%DEBUG%'=='TRUE' echo Off
 TITLE Create Local Depo Share
 
-set SHARE_DIR=" & Form1.TextBoxNewDepo.Text & "
+set SHARE_DIR=" & ShareDir & "
 set SHARENAME=Depo
 set DEPODRV=" & DriveLetter & "
 
@@ -34,7 +34,11 @@ if exist \\%COMPUTERNAME%\%SHARENAME% goto MAPDRIVE
         If Form1.CheckBoxLocalGroups.Checked Then
             ProcContent = ProcContent & "
 if not exist '%SHARE_DIR%' md '%SHARE_DIR%'
-if not exist '%SHARE_DIR%\TA_InstLib' md '%SHARE_DIR%\TA_InstLib'
+if not exist '%SHARE_DIR%\TA_InstLib' (
+    md '%SHARE_DIR%\TA_InstLib\04\Inst\bat'
+    md '%SHARE_DIR%\TA_InstLib\04\Inst\data'
+    md '%SHARE_DIR%\TA_InstLib\04\Inst\exe'
+    )
 
 NET LOCALGROUP TA_DEPO_Admin /ADD /COMMENT:'Provides Admin access to the TA Inst Depo'
 NET LOCALGROUP TA_DEPO_Install /ADD /COMMENT:'Provides Read access to the TA Inst Depo for users that need to install software'
@@ -56,7 +60,7 @@ NET SHARE %SHARENAME%='%SHARE_DIR%' /GRANT:Administrators,FULL /REMARK:'Technica
 NET USE %DEPODRV% \\%COMPUTERNAME%\%SHARENAME% /PERSISTENT:YES
 
 echo Finished
-timeout /t 10
+timeout /t 4
 "
         ProcContent = ProcContent.Replace("'", """")
 
@@ -74,11 +78,14 @@ timeout /t 10
         ProcContent = "@If not '%DEBUG%'=='TRUE' echo Off
 TITLE Check current user drive mount
 
+set SHARENAME=Depo
+set DEPODRV=" & DriveLetter & "
+
 :MAPDRIVE
 IF NOT EXIST %DEPODRV% NET USE %DEPODRV% \\%COMPUTERNAME%\%SHARENAME% /PERSISTENT:YES
 
 echo Finished
-timeout /t 10
+timeout /t 4
 
         "
         If WriteTxtToFile(MyProc, ProcContent, False, 0, "", "", True, False) Then
@@ -108,7 +115,7 @@ if /i '%RSP%'=='Y' rd /s /q '%SHARE_DIR%'
 
 :END
 echo Finished
-timeout /t 10
+timeout /t 4
         "
         ProcContent = ProcContent.Replace("'", """")
 
@@ -118,7 +125,10 @@ timeout /t 10
         TAISLocDepo = DriveLetter
 
         LocalDepoTabReset()
-
+        MsgBox("You new Local Depo has been created.
+You can access it via " & ShareDir & " directly,
+but You may not yet have access to the new shared drive " & DriveLetter & ",
+untill you have logged off and on again!", vbExclamation, "You may not yet have access to " & DriveLetter & "!")
 
         xtrace_sube("Create_Local_Depo_Share")
     End Sub

@@ -90,9 +90,11 @@
             Proc.StartInfo = ProcStartInfo
             Proc.StartInfo.Verb = "runas"
             Proc.Start()
+            Proc.WaitForExit()
         Catch ex As Exception
             xtrace_err({"Failed to start the process!", ex.Message.ToString})
         End Try
+        Proc.Close()
     End Sub
     Sub StartNormal(Exe As String)
         StartNormal(Exe, "")
@@ -107,8 +109,10 @@
         Try
             Proc.StartInfo = ProcStartInfo
             Proc.Start()
+            Proc.WaitForExit()
         Catch ex As Exception
             xtrace_err({"Failed to start the process!", ex.Message.ToString})
         End Try
+        Proc.Close()
     End Sub
 End Module
