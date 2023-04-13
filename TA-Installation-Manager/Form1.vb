@@ -459,14 +459,67 @@
     End Sub
 
     '---- Create Local Depo ---------------------------------------------------------------------
+    Dim EnableDeleteButton As Boolean
     Private Sub CreateDepoShareToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreateDepoShareToolStripMenuItem.Click
         TabControl1.SelectTab(2)
         TabPageCreateShare.Text = "Create Depo"
         TextBoxNewDepo.Text = Deflt_Depo_Path
         GroupBoxCreateDepo.Visible = True
+
+        EnableDeleteButton = False
+        CheckLocDepoDir()
+        CheckLocDepoShare()
+        CheckLocDepoDeleteProc()
+    End Sub
+    Private Sub TextBoxNewDepo_TextChanged(sender As Object, e As EventArgs) Handles TextBoxNewDepo.TextChanged
+        CheckLocDepoDir()
     End Sub
 
-    Private Sub ButtonCreateDepo_Click(sender As Object, e As EventArgs)
+    Private Sub CheckLocDepoDir()
+        If My.Computer.FileSystem.DirectoryExists(TextBoxNewDepo.Text) Then
+            LabelLocDepoDirExists.Text = "Loc Depo Dir: Exists"
+            EnableDeleteButton = True
+        Else
+            LabelLocDepoDirExists.Text = "Loc Depo Dir: Does not exist"
+        End If
+    End Sub
+
+    Private Sub CheckLocDepoShare()
+        Dim ShareLoc = "\\" & Environment.MachineName & "\Depo"
+        xtrace_i("Check: " & ShareLoc)
+        If My.Computer.FileSystem.DirectoryExists(ShareLoc) Then
+            LabelLocDepoShareExists.Text = "Loc Depo Share: exists"
+            LabelLocDepoShareExists.ForeColor = Color.Red
+            ButtonCreateDepo.Enabled = False
+            EnableDeleteButton = True
+        Else
+            LabelLocDepoShareExists.Text = "Loc Depo Share: Does not exist"
+            LabelLocDepoShareExists.ForeColor = SystemColors.ControlText
+            ButtonCreateDepo.Enabled = True
+        End If
+    End Sub
+
+    Private Sub CheckLocDepoDeleteProc()
+        If EnableDeleteButton Then
+            If My.Computer.FileSystem.FileExists(LocDepoDeleteProcFileName) Then
+                xtrace_i("Found " & LocDepoDeleteProcFileName)
+                ButtonDeleteDepo.Enabled = True
+            Else
+                xtrace_i(LocDepoDeleteProcFileName & " does not exist")
+                ButtonDeleteDepo.Enabled = False
+            End If
+        Else
+            xtrace_i("Local Depo does not exist")
+            ButtonDeleteDepo.Enabled = False
+        End If
+
+    End Sub
+
+    Private Sub ButtonCreateDepo_Click(sender As Object, e As EventArgs) Handles ButtonCreateDepo.Click
         Create_Local_Depo_Share()
+    End Sub
+
+    Private Sub ButtonDeleteDepo_Click(sender As Object, e As EventArgs) Handles ButtonDeleteDepo.Click
+        Delete_Local_Depo_Share()
     End Sub
 End Class

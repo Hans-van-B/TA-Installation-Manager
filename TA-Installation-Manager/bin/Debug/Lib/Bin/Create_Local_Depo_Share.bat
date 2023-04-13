@@ -9,6 +9,8 @@ set DEPODRV=I:
 if exist \\%COMPUTERNAME%\%SHARENAME% goto MAPDRIVE
 
 if not exist "%SHARE_DIR%" md "%SHARE_DIR%"
+if not exist "%SHARE_DIR%\TA_InstLib" md "%SHARE_DIR%\TA_InstLib"
+
 NET LOCALGROUP TA_DEPO_Admin /ADD /COMMENT:"Provides Admin access to the TA Inst Depo"
 NET LOCALGROUP TA_DEPO_Install /ADD /COMMENT:"Provides Read access to the TA Inst Depo for users that need to install software"
 

@@ -85,10 +85,27 @@
         Dim Proc As New Process()
         Dim ProcStartInfo As New ProcessStartInfo(Exe, Arg)
 
-        xtrace_i("Proces Start")
+        xtrace_i("Proces Start (Elevated)")
         Try
             Proc.StartInfo = ProcStartInfo
             Proc.StartInfo.Verb = "runas"
+            Proc.Start()
+        Catch ex As Exception
+            xtrace_err({"Failed to start the process!", ex.Message.ToString})
+        End Try
+    End Sub
+    Sub StartNormal(Exe As String)
+        StartNormal(Exe, "")
+    End Sub
+
+    Sub StartNormal(Exe As String,
+                          Arg As String)
+        Dim Proc As New Process()
+        Dim ProcStartInfo As New ProcessStartInfo(Exe, Arg)
+
+        xtrace_i("Proces Start")
+        Try
+            Proc.StartInfo = ProcStartInfo
             Proc.Start()
         Catch ex As Exception
             xtrace_err({"Failed to start the process!", ex.Message.ToString})

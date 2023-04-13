@@ -1,6 +1,8 @@
 ﻿Imports System.Windows.Forms.VisualStyles
 
 Module Create_Depo_Mod
+    Public LocDepoCreateProcFileName As String = BinLib & "\Create_Local_Depo_Share.bat"
+    Public LocDepoDeleteProcFileName As String = BinLib & "\Undo_Local_Depo_Share.bat"
 
     Dim RegKey As String = "HKEY_CURRENT_USER\Software\TA\TA-Installation-Manager"
     Sub Create_Local_Depo_Share()
@@ -19,7 +21,6 @@ Module Create_Depo_Mod
         Next
 
 
-        Dim ProcFileName As String = BinLib & "\Create_Local_Depo_Share.bat"
         Dim ProcContent As String = "@If not '%DEBUG%'=='TRUE' echo Off
 TITLE Create Local Depo Share
 
@@ -62,14 +63,31 @@ timeout /t 10
         If Not My.Computer.FileSystem.DirectoryExists(BinLib) Then
             My.Computer.FileSystem.CreateDirectory(BinLib)
         End If
-        If WriteTxtToFile(ProcFileName, ProcContent, False, 0, "", "", True, False) Then
+        If WriteTxtToFile(LocDepoCreateProcFileName, ProcContent, False, 0, "", "", True, False) Then
             xtrace_i("Execute: ")
-            StartElevated(ProcFileName)
+            StartElevated(LocDepoCreateProcFileName)
+        End If
+
+        '---- Mount for the current user (not elevated) --------------------------
+
+        Dim MyProc As String = BinLib & "\Check_CU_Share.bat"
+        ProcContent = "@If not '%DEBUG%'=='TRUE' echo Off
+TITLE Check current user drive mount
+
+:MAPDRIVE
+IF NOT EXIST %DEPODRV% NET USE %DEPODRV% \\%COMPUTERNAME%\%SHARENAME% /PERSISTENT:YES
+
+echo Finished
+timeout /t 10
+
+        "
+        If WriteTxtToFile(MyProc, ProcContent, False, 0, "", "", True, False) Then
+            xtrace_i("Execute: ")
+            StartNormal(MyProc)
         End If
 
         '---- Undo ---------------------------------------------------------------
         Form1.SetStatus("Create undo procedure")
-        ProcFileName = BinLib & "\Undo_Local_Depo_Share.bat"
         ProcContent = "@If not '%DEBUG%'=='TRUE' echo Off
 TITLE Undo Local Depo Share and settings
 
@@ -94,13 +112,34 @@ timeout /t 10
         "
         ProcContent = ProcContent.Replace("'", """")
 
-        WriteTxtToFile(ProcFileName, ProcContent, False, 0, "", "", True, False)
+        WriteTxtToFile(LocDepoDeleteProcFileName, ProcContent, False, 0, "", "", True, False)
 
         My.Computer.Registry.SetValue(RegKey, "LocalDepoLocation", Form1.TextBoxNewDepo.Text)
+        TAISLocDepo = DriveLetter
 
+        LocalDepoTabReset()
+
+
+        xtrace_sube("Create_Local_Depo_Share")
+    End Sub
+
+    Sub Delete_Local_Depo_Share()
+        xtrace_subs("Delete_Local_Depo_Share")
+
+        xtrace_i("Execute: ")
+        StartElevated(LocDepoDeleteProcFileName)
+
+        LocalDepoTabReset()
+
+        xtrace_sube("Delete_Local_Depo_Share")
+    End Sub
+
+    Sub LocalDepoTabReset()
         Form1.SetStatus("Finished")
         Form1.GroupBoxCreateDepo.Visible = False
 
-        xtrace_sube("Create_Local_Depo_Share")
+        Form1.TabControl1.SelectTab(0)
+        Form1.TabPageCreateShare.Text = "-"
+
     End Sub
 End Module

@@ -23,6 +23,7 @@
     Public BatSeparateApp As String = "False"
     Public BatSeparatePost As Boolean = False
     Public IniDevDepo As String = "<Undefined>"
+    Public TAISLocDepo As String = ""
     Public ReDownload As Boolean = False
     Public RemType As String = "REM"    ' REM|::|echo|#
     Public AutoRun As String = ""

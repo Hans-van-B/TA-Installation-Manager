@@ -10,6 +10,7 @@ Module ModFileSystem
                        Hint As String,
                        ShowDialog As Boolean,
                        Fatal As Boolean) As Boolean
+        ' Don't xtrace here!!
         Dim Result As Boolean = True
         Try
             My.Computer.FileSystem.WriteAllText(FileName, Msg, Append, Encoding.ASCII)

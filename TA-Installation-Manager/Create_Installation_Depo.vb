@@ -24,6 +24,7 @@ Module Create_Installation_Depo
         TAISDevDepo = Form1.ComboBoxDevDepo.Text
         DepoRoot = TAISDevDepo
         xtrace_i("TAISDevDepo      = " & TAISDevDepo)
+
         ' ToDo If Not exist
         If Not My.Computer.FileSystem.DirectoryExists(TAISDevDepo) Then
 
@@ -103,9 +104,19 @@ Module Create_Installation_Depo
         Else
             TAISDevDepo = IniDevDepo
         End If
+
         Form1.ComboBoxDevDepo.Text = TAISDevDepo
         Form1.ComboBoxDevDepo.Items.Add(TAISDevDepo)
         Form1.ComboBoxDevDepo.Items.Add(TAISDevDepo & "Test")
+
+        If Environment.GetEnvironmentVariable("TAIS_LOC_DEPO") <> "" Then
+            TAISLocDepo = Environment.GetEnvironmentVariable("TAIS_LOC_DEPO")
+        End If
+        If TAISLocDepo <> "" Then
+            xtrace_i("Add TAISLocDepo: " & TAISLocDepo)
+            Form1.ComboBoxDevDepo.Items.Add(TAISLocDepo)
+        End If
+
         If (My.Computer.FileSystem.DirectoryExists(Deflt_Depo_Path)) _
         And TAISDevDepo <> Deflt_Depo_Path Then
             Form1.ComboBoxDevDepo.Items.Add(Deflt_Depo_Path)

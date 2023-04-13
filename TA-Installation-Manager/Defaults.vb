@@ -97,6 +97,11 @@
                         xtrace("Set TAISDevDepo = " & IniDevDepo)
                     End If
 
+                    If DName = "TAISLocDepo" Then
+                        TAISLocDepo = DVal
+                        xtrace("Set TAISLocDepo = " & TAISLocDepo)
+                    End If
+
 
                     If DName = "XX" Then
                         XX = DVal
@@ -260,10 +265,15 @@
             "ReDownload=" & Form1.CheckBoxReDownload.Checked.ToString & vbCrLf &
             "" & vbCrLf &
             "# Only used if the environment var. is missing" & vbCrLf &
-            "TAISDevDepo=" & TAISDevDepo & vbCrLf &
+            "TAISDevDepo=" & TAISDevDepo & vbCrLf
+        WriteTxtToFile(Inifile, IniTxt, False, 0, "", "", False, False)
+
+        If TAISLocDepo <> "" Then WriteTxtToFile(Inifile, "TAISLocDepo=" & TAISLocDepo & vbCrLf, True, 0, "", "", True, False)
+
+        IniTxt =
             "" & vbCrLf &
             ""
-        WriteTxtToFile(Inifile, IniTxt, False, 0, "", "", True, False)
+        WriteTxtToFile(Inifile, IniTxt, True, 0, "", "", True, False)
 
         xtrace_sube("WriteIniFile")
     End Sub
