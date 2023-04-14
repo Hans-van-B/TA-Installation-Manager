@@ -48,6 +48,7 @@
             Log.xtrace_line()
             StartAutoRun()
         End If
+        SetReconnectEnable()
 
         Log.xtrace_sube("Form1_Load2")
 
@@ -532,5 +533,39 @@
 
     Private Sub ReconnectToLocalDepoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReconnectToLocalDepoToolStripMenuItem.Click
         LocalDepoReconnect()
+    End Sub
+
+    Private Sub SetReconnectEnable()
+        xtrace_subs("SetReconnectEnable")
+
+        Dim Result As Boolean = True
+        If Not My.Computer.FileSystem.FileExists(LocDepoReconnect_FileName) Then
+            xtrace(" x Procedure not available")
+            Result = False
+        Else
+            xtrace(" v The procedure exists")
+        End If
+
+        If TAISLocDepo = "" Then
+            xtrace(" x Loc Depo Drive Unknown")
+            Result = False
+        ElseIf My.Computer.FileSystem.DirectoryExists(TAISLocDepo & "\.") Then
+            xtrace(" x LocDepoDrive already exists")
+            Result = False
+        End If
+
+        Dim LocalDepoUNC As String = "\\" & Environment.MachineName & "\Depo"
+        If Not My.Computer.FileSystem.DirectoryExists(LocalDepoUNC) Then
+            xtrace(" x The Local Depo UNC " & LocalDepoUNC & " does not exist or cannot be accessed")
+            Result = False
+        Else
+            xtrace(" v The Local Depo UNC exists")
+        End If
+
+        ReconnectToLocalDepoToolStripMenuItem.Enabled = Result
+        If Not Result Then ReconnectToLocalDepoToolStripMenuItem.ToolTipText = "If you want to know why this option is not available" & vbCrLf &
+            "then search the log file for SetReconnectEnable"
+
+        xtrace_sube("SetReconnectEnable")
     End Sub
 End Class

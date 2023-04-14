@@ -1,9 +1,5 @@
-@If not "%DEBUG%"=="TRUE" echo Off
+@call %~dp0Init
 TITLE Undo Local Depo Share and settings
-
-set SHARE_DIR=C:\Data\Depo
-set SHARENAME=Depo
-set DEPODRV=I:
 
 NET USE %DEPODRV% /D
 NET SHARE %SHARENAME% /D

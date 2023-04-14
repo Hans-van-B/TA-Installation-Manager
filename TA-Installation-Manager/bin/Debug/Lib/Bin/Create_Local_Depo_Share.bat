@@ -1,9 +1,5 @@
-@If not "%DEBUG%"=="TRUE" echo Off
+@call %~dp0Init
 TITLE Create Local Depo Share
-
-set SHARE_DIR=C:\Data\Depo
-set SHARENAME=Depo
-set DEPODRV=I:
 
 :CREATESHARE
 if exist \\%COMPUTERNAME%\%SHARENAME% goto MAPDRIVE
@@ -14,6 +10,7 @@ if not exist "%SHARE_DIR%\TA_InstLib" (
     md "%SHARE_DIR%\TA_InstLib\04\Inst\data"
     md "%SHARE_DIR%\TA_InstLib\04\Inst\exe"
     )
+
 
 NET LOCALGROUP TA_DEPO_Admin /ADD /COMMENT:"Provides Admin access to the TA Inst Depo"
 NET LOCALGROUP TA_DEPO_Install /ADD /COMMENT:"Provides Read access to the TA Inst Depo for users that need to install software"
