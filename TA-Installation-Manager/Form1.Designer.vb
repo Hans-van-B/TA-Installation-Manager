@@ -82,6 +82,9 @@ Partial Class Form1
         Me.TabPagePS = New System.Windows.Forms.TabPage()
         Me.TabPageCreateShare = New System.Windows.Forms.TabPage()
         Me.GroupBoxCreateDepo = New System.Windows.Forms.GroupBox()
+        Me.ButtonDeleteDepo = New System.Windows.Forms.Button()
+        Me.LabelLocDepoShareExists = New System.Windows.Forms.Label()
+        Me.LabelLocDepoDirExists = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ButtonCreateDepo = New System.Windows.Forms.Button()
@@ -93,9 +96,7 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.LabelLocDepoDirExists = New System.Windows.Forms.Label()
-        Me.LabelLocDepoShareExists = New System.Windows.Forms.Label()
-        Me.ButtonDeleteDepo = New System.Windows.Forms.Button()
+        Me.ReconnectToLocalDepoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -158,7 +159,7 @@ Partial Class Form1
         '
         'SettingsToolStripMenuItem
         '
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowSettingsToolStripMenuItem, Me.ShowLogToolStripMenuItem, Me.AdvancedToolStripMenuItem, Me.CreateDepoShareToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowSettingsToolStripMenuItem, Me.ShowLogToolStripMenuItem, Me.AdvancedToolStripMenuItem, Me.CreateDepoShareToolStripMenuItem, Me.ReconnectToLocalDepoToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.SettingsToolStripMenuItem.Text = "Settings"
@@ -167,20 +168,20 @@ Partial Class Form1
         '
         Me.ShowSettingsToolStripMenuItem.CheckOnClick = True
         Me.ShowSettingsToolStripMenuItem.Name = "ShowSettingsToolStripMenuItem"
-        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ShowSettingsToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.ShowSettingsToolStripMenuItem.Text = "Show settings"
         '
         'ShowLogToolStripMenuItem
         '
         Me.ShowLogToolStripMenuItem.Name = "ShowLogToolStripMenuItem"
-        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.ShowLogToolStripMenuItem.Text = "Show &Log"
         '
         'AdvancedToolStripMenuItem
         '
         Me.AdvancedToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetLicenseToolStripMenuItem, Me.DownloadMethodToolStripMenuItem})
         Me.AdvancedToolStripMenuItem.Name = "AdvancedToolStripMenuItem"
-        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.AdvancedToolStripMenuItem.Text = "Advanced"
         '
         'ResetLicenseToolStripMenuItem
@@ -206,7 +207,7 @@ Partial Class Form1
         'CreateDepoShareToolStripMenuItem
         '
         Me.CreateDepoShareToolStripMenuItem.Name = "CreateDepoShareToolStripMenuItem"
-        Me.CreateDepoShareToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CreateDepoShareToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.CreateDepoShareToolStripMenuItem.Text = "Create Depo Share"
         Me.CreateDepoShareToolStripMenuItem.ToolTipText = resources.GetString("CreateDepoShareToolStripMenuItem.ToolTipText")
         '
@@ -567,7 +568,7 @@ Partial Class Form1
         Me.TabPageWinBat.Location = New System.Drawing.Point(4, 24)
         Me.TabPageWinBat.Name = "TabPageWinBat"
         Me.TabPageWinBat.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageWinBat.Size = New System.Drawing.Size(518, 367)
+        Me.TabPageWinBat.Size = New System.Drawing.Size(622, 367)
         Me.TabPageWinBat.TabIndex = 0
         Me.TabPageWinBat.Text = "Windows Batch"
         Me.TabPageWinBat.UseVisualStyleBackColor = True
@@ -718,7 +719,7 @@ Partial Class Form1
         Me.TabPagePS.Location = New System.Drawing.Point(4, 24)
         Me.TabPagePS.Name = "TabPagePS"
         Me.TabPagePS.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPagePS.Size = New System.Drawing.Size(518, 367)
+        Me.TabPagePS.Size = New System.Drawing.Size(622, 367)
         Me.TabPagePS.TabIndex = 1
         Me.TabPagePS.Text = "Power Shell"
         Me.TabPagePS.UseVisualStyleBackColor = True
@@ -757,6 +758,37 @@ Partial Class Form1
         Me.GroupBoxCreateDepo.TabStop = False
         Me.GroupBoxCreateDepo.Text = "Create a shared directory for installation files:"
         Me.GroupBoxCreateDepo.Visible = False
+        '
+        'ButtonDeleteDepo
+        '
+        Me.ButtonDeleteDepo.Enabled = False
+        Me.ButtonDeleteDepo.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonDeleteDepo.Location = New System.Drawing.Point(221, 80)
+        Me.ButtonDeleteDepo.Name = "ButtonDeleteDepo"
+        Me.ButtonDeleteDepo.Size = New System.Drawing.Size(104, 24)
+        Me.ButtonDeleteDepo.TabIndex = 15
+        Me.ButtonDeleteDepo.Text = "Delete Depo"
+        Me.ButtonDeleteDepo.UseVisualStyleBackColor = True
+        '
+        'LabelLocDepoShareExists
+        '
+        Me.LabelLocDepoShareExists.AutoSize = True
+        Me.LabelLocDepoShareExists.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelLocDepoShareExists.Location = New System.Drawing.Point(17, 139)
+        Me.LabelLocDepoShareExists.Name = "LabelLocDepoShareExists"
+        Me.LabelLocDepoShareExists.Size = New System.Drawing.Size(50, 17)
+        Me.LabelLocDepoShareExists.TabIndex = 14
+        Me.LabelLocDepoShareExists.Text = "Share:"
+        '
+        'LabelLocDepoDirExists
+        '
+        Me.LabelLocDepoDirExists.AutoSize = True
+        Me.LabelLocDepoDirExists.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelLocDepoDirExists.Location = New System.Drawing.Point(17, 119)
+        Me.LabelLocDepoDirExists.Name = "LabelLocDepoDirExists"
+        Me.LabelLocDepoDirExists.Size = New System.Drawing.Size(95, 17)
+        Me.LabelLocDepoDirExists.TabIndex = 13
+        Me.LabelLocDepoDirExists.Text = "Loc Depo Dir:"
         '
         'Label9
         '
@@ -859,36 +891,11 @@ Partial Class Form1
         'TimerInit
         '
         '
-        'LabelLocDepoDirExists
+        'ReconnectToLocalDepoToolStripMenuItem
         '
-        Me.LabelLocDepoDirExists.AutoSize = True
-        Me.LabelLocDepoDirExists.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelLocDepoDirExists.Location = New System.Drawing.Point(17, 119)
-        Me.LabelLocDepoDirExists.Name = "LabelLocDepoDirExists"
-        Me.LabelLocDepoDirExists.Size = New System.Drawing.Size(95, 17)
-        Me.LabelLocDepoDirExists.TabIndex = 13
-        Me.LabelLocDepoDirExists.Text = "Loc Depo Dir:"
-        '
-        'LabelLocDepoShareExists
-        '
-        Me.LabelLocDepoShareExists.AutoSize = True
-        Me.LabelLocDepoShareExists.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelLocDepoShareExists.Location = New System.Drawing.Point(17, 139)
-        Me.LabelLocDepoShareExists.Name = "LabelLocDepoShareExists"
-        Me.LabelLocDepoShareExists.Size = New System.Drawing.Size(50, 17)
-        Me.LabelLocDepoShareExists.TabIndex = 14
-        Me.LabelLocDepoShareExists.Text = "Share:"
-        '
-        'ButtonDeleteDepo
-        '
-        Me.ButtonDeleteDepo.Enabled = False
-        Me.ButtonDeleteDepo.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonDeleteDepo.Location = New System.Drawing.Point(221, 80)
-        Me.ButtonDeleteDepo.Name = "ButtonDeleteDepo"
-        Me.ButtonDeleteDepo.Size = New System.Drawing.Size(104, 24)
-        Me.ButtonDeleteDepo.TabIndex = 15
-        Me.ButtonDeleteDepo.Text = "Delete Depo"
-        Me.ButtonDeleteDepo.UseVisualStyleBackColor = True
+        Me.ReconnectToLocalDepoToolStripMenuItem.Name = "ReconnectToLocalDepoToolStripMenuItem"
+        Me.ReconnectToLocalDepoToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.ReconnectToLocalDepoToolStripMenuItem.Text = "Reconnect to local Depo"
         '
         'Form1
         '
@@ -1009,4 +1016,5 @@ Partial Class Form1
     Friend WithEvents LabelLocDepoShareExists As Label
     Friend WithEvents LabelLocDepoDirExists As Label
     Friend WithEvents ButtonDeleteDepo As Button
+    Friend WithEvents ReconnectToLocalDepoToolStripMenuItem As ToolStripMenuItem
 End Class

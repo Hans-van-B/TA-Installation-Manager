@@ -529,4 +529,8 @@
     Private Sub ButtonDeleteDepo_Click(sender As Object, e As EventArgs) Handles ButtonDeleteDepo.Click
         Delete_Local_Depo_Share()
     End Sub
+
+    Private Sub ReconnectToLocalDepoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReconnectToLocalDepoToolStripMenuItem.Click
+        LocalDepoReconnect()
+    End Sub
 End Class
