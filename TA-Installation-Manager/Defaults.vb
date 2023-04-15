@@ -2,7 +2,7 @@
     Public Inifile As String = IniFile1
 
     Dim XX As String ' Dummy
-    Dim UseTASetup, UseTASelect, UseTADeinstall, UseDept As Boolean
+    Dim StrNothing As String = "<Nothing>"
     Sub ReadDefaults()
         xtrace_subs("ReadDefaults")
         Dim ReadFile
@@ -64,6 +64,8 @@
                 DName = Left(Line, P1 - 1)
                 DVal = Mid(Line, P1 + 1)
                 xtrace("Default " & DName & "=" & DVal)
+
+                If DVal = StrNothing Then Continue While
 
                 If Group = "INIT" Then
                     If DName = "LicID" Then
@@ -181,19 +183,19 @@
         End If
 
         If DName = "UseTASetup" Then
-            UseTASetup = StringToBool(DVal)
+            Dim UseTASetup As Boolean = StringToBool(DVal)
             Form1.CheckBoxTASetup.Checked = UseTASetup
             xtrace_i("Set UseTASetup = " & UseTASetup.ToString)
         End If
 
         If DName = "UseTASelect" Then
-            UseTASelect = StringToBool(DVal)
+            Dim UseTASelect As Boolean = StringToBool(DVal)
             Form1.CheckBoxTASelect.Checked = UseTASelect
             xtrace_i("Set UseTASelect = " & UseTASelect.ToString)
         End If
 
         If DName = "UseTADeinstall" Then
-            UseTADeinstall = StringToBool(DVal)
+            Dim UseTADeinstall As Boolean = StringToBool(DVal)
             Form1.CheckBoxTADeinstall.Checked = UseTADeinstall
             xtrace_i("Set UseTADeinstall = " & UseTADeinstall.ToString)
         End If
@@ -208,7 +210,7 @@
         End If
 
         If DName = "UseDept" Then
-            UseDept = StringToBool(DVal)
+            Dim UseDept As Boolean = StringToBool(DVal)
             Form1.CheckBoxDeptConfigs.Checked = UseDept
             xtrace_i("UseDept = " & UseDept.ToString)
         End If
@@ -247,34 +249,134 @@
     End Function
 
     '---- Create ini file -----------------------------------------------------
+    ' Write each default that applies to the default file
+    ' Do not write values that are intended for the wizards only (SharedDefaults)
     Sub WriteIniFile()
         xtrace_subs("WriteIniFile")
         If Glob.ScriptTypeSelect = "" Then Glob.ScriptTypeSelect = "Bat"
 
-        Dim IniTxt As String = "[INIT]" & vbCrLf &
-            "LicID=" & LicC.LicID & vbCrLf &
-            "ScriptTypeSelect=" & Glob.ScriptTypeSelect & vbCrLf &
-            "BatSeparateInit=" & Form1.CheckBoxBatSeparateInit.Checked.ToString & vbCrLf &
-            "CopySourceToLocal=" & Form1.CheckBoxCopySource.Checked.ToString & vbCrLf &
-            "BatSeparateApp=" & Form1.CheckBoxBatSeparateApp.Checked.ToString & vbCrLf &
-            "BatSeparatePost=" & Form1.CheckBoxBatSeparatePost.Checked.ToString & vbCrLf &
-            "BatRemarkMethod=" & RemType & vbCrLf &
-            "" & vbCrLf &
-            "StopUpdates=" & Form1.CheckBoxStopUpdates.Checked.ToString & vbCrLf &
-            "CopyLogToServer=" & Form1.CheckBoxLogToServer.Checked.ToString & vbCrLf &
-            "ReDownload=" & Form1.CheckBoxReDownload.Checked.ToString & vbCrLf &
-            "" & vbCrLf &
-            "# Only used if the environment var. is missing" & vbCrLf &
-            "TAISDevDepo=" & TAISDevDepo & vbCrLf
-        WriteTxtToFile(Inifile, IniTxt, False, 0, "", "", False, False)
+        StartIniFile()
+        WriteIniLine("[INIT]")
+        WriteIniLine("LicID", LicC.LicID)
+        WriteIniLine("UseTASetup", Form1.CheckBoxTASetup.Checked)
+        WriteIniLine("UseTASelect", Form1.CheckBoxTASelect.Checked)
+        WriteIniLine("UseTADeinstall", Form1.CheckBoxTADeinstall.Checked)
+        WriteIniLine("ScriptTypeSelect", Glob.ScriptTypeSelect)
+        WriteIniLine("BatSeparateInit", Form1.CheckBoxBatSeparateInit.Checked)
+        WriteIniLine("CopySourceToLocal", Form1.CheckBoxCopySource.Checked)
+        WriteIniLine("BatSeparateApp", Form1.CheckBoxBatSeparateApp.Checked)
+        WriteIniLine("BatSeparatePost", Form1.CheckBoxBatSeparatePost.Checked)
+        WriteIniLine("BatRemarkMethod", RemType)
+        WriteIniLine("AppNameList", Form1.ComboBoxInstName.Items)
+        WriteIniLine("UseDept", Form1.CheckBoxDeptConfigs.Checked)
+        WriteIniLine("")
+        WriteIniLine("StopUpdates", Form1.CheckBoxStopUpdates.Checked)
+        WriteIniLine("CopyLogToServer", Form1.CheckBoxLogToServer.Checked)
+        WriteIniLine("ReDownload", Form1.CheckBoxReDownload.Checked)
+        WriteIniLine("")
+        WriteIniLine("# Only used if the environment var. is missing")
+        WriteIniLine("TAISDevDepo", TAISDevDepo)
 
-        If TAISLocDepo <> "" Then WriteTxtToFile(Inifile, "TAISLocDepo=" & TAISLocDepo & vbCrLf, True, 0, "", "", True, False)
-
-        IniTxt =
-            "" & vbCrLf &
-            ""
-        WriteTxtToFile(Inifile, IniTxt, True, 0, "", "", True, False)
+        If TAISLocDepo = "" Then TAISLocDepo = StrNothing   ' Nothing will not be read
+        WriteIniLine("TAISLocDepo", TAISLocDepo)
+        WriteIniLine("")
 
         xtrace_sube("WriteIniFile")
     End Sub
+
+    '---- StartIniFile
+
+    Sub StartIniFile()
+        WriteTxtToFile(Inifile, "# Saved by " & AppName & " - V" & AppVer & vbCrLf & vbCrLf, False, 0, "", "", True, False)
+    End Sub
+
+    '---- Write a group, empty line or remark
+    Sub WriteIniLine(Line As String)
+        Dim IniTxt As String
+
+        If Line = Nothing Then
+            Line = ""
+        End If
+
+        IniTxt = Line & vbCrLf
+        WriteTxtToFile(Inifile, IniTxt, True, 0, "", "", True, False)
+    End Sub
+
+    '---- Write a string value
+    Sub WriteIniLine(Name As String, SVal As String)
+        Dim IniTxt As String
+
+        If SVal Is Nothing Then SVal = StrNothing
+
+        IniTxt = Name & "=" & SVal & vbCrLf
+        WriteTxtToFile(Inifile, IniTxt, True, 0, "", "", True, False)
+    End Sub
+
+    '---- Write a string list
+    Sub WriteIniLine(Name As String, List() As String)
+        Dim SVal As String
+        Dim IniTxt As String
+
+        If List Is Nothing Then
+            SVal = StrNothing
+        Else
+            SVal = Join(List, ";")
+        End If
+
+        IniTxt = Name & "=" & SVal & vbCrLf
+        WriteTxtToFile(Inifile, IniTxt, True, 0, "", "", True, False)
+    End Sub
+
+    '---- Write Object list
+    Sub WriteIniLine(Name As String, List() As Object)
+        Dim SVal As String = ""
+        Dim OVal As Object
+        Dim IniTxt As String
+
+        For Each OVal In List
+            If SVal = "" Then
+                SVal = OVal.ToString
+            Else
+                SVal = SVal & ";" & OVal.ToString
+            End If
+        Next
+
+        IniTxt = Name & "=" & SVal & vbCrLf
+        WriteTxtToFile(Inifile, IniTxt, True, 0, "", "", True, False)
+    End Sub
+
+    Sub WriteIniLine(Name As String, List As ComboBox.ObjectCollection)
+        Dim SVal As String = ""
+        Dim OVal As Object
+        Dim IniTxt As String
+
+        For Each OVal In List
+            If SVal = "" Then
+                SVal = OVal.ToString
+            Else
+                SVal = SVal & ";" & OVal.ToString
+            End If
+        Next
+
+        IniTxt = Name & "=" & SVal & vbCrLf
+        WriteTxtToFile(Inifile, IniTxt, True, 0, "", "", True, False)
+    End Sub
+
+    '---- Write a boolean value
+    ' False and nothing are the same, so you cannot test for nothing!
+    Sub WriteIniLine(Name As String, BVal As Boolean)
+        Dim SVal As String
+        Dim IniTxt As String
+
+        SVal = BVal.ToString
+
+        IniTxt = Name & "=" & SVal & vbCrLf
+        WriteTxtToFile(Inifile, IniTxt, True, 0, "", "", True, False)
+    End Sub
+
+    '---- Dummy supports "Template lines"
+    Sub WriteIniLine()
+
+    End Sub
+
 End Module

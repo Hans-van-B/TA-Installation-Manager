@@ -37,6 +37,7 @@ Partial Class Form1
         Me.DownloadMethodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
         Me.CreateDepoShareToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReconnectToLocalDepoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -96,7 +97,6 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ReconnectToLocalDepoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -136,13 +136,13 @@ Partial Class Form1
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSave, Me.ToolStripMenuUpdateWizard, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
-        Me.FileToolStripMenuItem.Text = "File"
+        Me.FileToolStripMenuItem.Text = "&File"
         '
         'ToolStripSave
         '
         Me.ToolStripSave.Name = "ToolStripSave"
         Me.ToolStripSave.Size = New System.Drawing.Size(196, 22)
-        Me.ToolStripSave.Text = "Save"
+        Me.ToolStripSave.Text = "&Save"
         Me.ToolStripSave.ToolTipText = "Save settings"
         '
         'ToolStripMenuUpdateWizard
@@ -155,7 +155,7 @@ Partial Class Form1
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
-        Me.ExitToolStripMenuItem.Text = "Exit"
+        Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'SettingsToolStripMenuItem
         '
@@ -210,6 +210,12 @@ Partial Class Form1
         Me.CreateDepoShareToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.CreateDepoShareToolStripMenuItem.Text = "Create Depo Share"
         Me.CreateDepoShareToolStripMenuItem.ToolTipText = resources.GetString("CreateDepoShareToolStripMenuItem.ToolTipText")
+        '
+        'ReconnectToLocalDepoToolStripMenuItem
+        '
+        Me.ReconnectToLocalDepoToolStripMenuItem.Name = "ReconnectToLocalDepoToolStripMenuItem"
+        Me.ReconnectToLocalDepoToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.ReconnectToLocalDepoToolStripMenuItem.Text = "Reconnect to local Depo"
         '
         'HelpToolStripMenuItem
         '
@@ -890,12 +896,6 @@ Partial Class Form1
         '
         'TimerInit
         '
-        '
-        'ReconnectToLocalDepoToolStripMenuItem
-        '
-        Me.ReconnectToLocalDepoToolStripMenuItem.Name = "ReconnectToLocalDepoToolStripMenuItem"
-        Me.ReconnectToLocalDepoToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
-        Me.ReconnectToLocalDepoToolStripMenuItem.Text = "Reconnect to local Depo"
         '
         'Form1
         '
