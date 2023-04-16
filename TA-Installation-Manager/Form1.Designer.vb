@@ -45,7 +45,7 @@ Partial Class Form1
         Me.SplitContainerBase = New System.Windows.Forms.SplitContainer()
         Me.GroupBoxAutoRun = New System.Windows.Forms.GroupBox()
         Me.TextBoxAutoRun = New System.Windows.Forms.TextBox()
-        Me.ButtonCheckWizzard = New System.Windows.Forms.Button()
+        Me.ButtonCheckWizard = New System.Windows.Forms.Button()
         Me.ButtonDeleteResult = New System.Windows.Forms.Button()
         Me.ButtonShowResult = New System.Windows.Forms.Button()
         Me.ButtonStartCreate = New System.Windows.Forms.Button()
@@ -253,7 +253,7 @@ Partial Class Form1
         '
         Me.SplitContainerBase.Panel1.BackColor = System.Drawing.SystemColors.Control
         Me.SplitContainerBase.Panel1.Controls.Add(Me.GroupBoxAutoRun)
-        Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonCheckWizzard)
+        Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonCheckWizard)
         Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonDeleteResult)
         Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonShowResult)
         Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonStartCreate)
@@ -293,16 +293,16 @@ Partial Class Form1
         Me.TextBoxAutoRun.TabIndex = 0
         Me.TextBoxAutoRun.Text = "XX"
         '
-        'ButtonCheckWizzard
+        'ButtonCheckWizard
         '
-        Me.ButtonCheckWizzard.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonCheckWizzard.Location = New System.Drawing.Point(10, 31)
-        Me.ButtonCheckWizzard.Name = "ButtonCheckWizzard"
-        Me.ButtonCheckWizzard.Size = New System.Drawing.Size(163, 33)
-        Me.ButtonCheckWizzard.TabIndex = 3
-        Me.ButtonCheckWizzard.Text = "Check Settings"
-        Me.ToolTip1.SetToolTip(Me.ButtonCheckWizzard, "Checks if there is a settings wizzard for this application")
-        Me.ButtonCheckWizzard.UseVisualStyleBackColor = True
+        Me.ButtonCheckWizard.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonCheckWizard.Location = New System.Drawing.Point(10, 31)
+        Me.ButtonCheckWizard.Name = "ButtonCheckWizard"
+        Me.ButtonCheckWizard.Size = New System.Drawing.Size(163, 33)
+        Me.ButtonCheckWizard.TabIndex = 3
+        Me.ButtonCheckWizard.Text = "Check Settings"
+        Me.ToolTip1.SetToolTip(Me.ButtonCheckWizard, "Checks if there is a settings Wizard for this application")
+        Me.ButtonCheckWizard.UseVisualStyleBackColor = True
         '
         'ButtonDeleteResult
         '
@@ -523,7 +523,7 @@ Partial Class Form1
         Me.CheckBoxLogToServer.TabIndex = 2
         Me.CheckBoxLogToServer.Text = "Copy Log To Server"
         Me.ToolTip1.SetToolTip(Me.CheckBoxLogToServer, "You need to have a log-share configured" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "if you want to use this." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This setting" &
-        " cannot be set by an application wizzard" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "You need to set this explicitly.")
+        " cannot be set by an application Wizard" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "You need to set this explicitly.")
         Me.CheckBoxLogToServer.UseVisualStyleBackColor = True
         '
         'CheckBoxStopUpdates
@@ -534,7 +534,7 @@ Partial Class Form1
         Me.CheckBoxStopUpdates.Size = New System.Drawing.Size(91, 17)
         Me.CheckBoxStopUpdates.TabIndex = 1
         Me.CheckBoxStopUpdates.Text = "Stop Updates"
-        Me.ToolTip1.SetToolTip(Me.CheckBoxStopUpdates, "Stop background installations." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Enable this for installations that are MSI Based" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This setting cannot be set by an application wizzard" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "You need to set this ex" &
+        Me.ToolTip1.SetToolTip(Me.CheckBoxStopUpdates, "Stop background installations." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Enable this for installations that are MSI Based" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This setting cannot be set by an application Wizard" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "You need to set this ex" &
         "plicitly.")
         Me.CheckBoxStopUpdates.UseVisualStyleBackColor = True
         '
@@ -685,7 +685,7 @@ Partial Class Form1
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(110, 15)
         Me.Label5.TabIndex = 3
-        Me.Label5.Text = "InstallationWizzard"
+        Me.Label5.Text = "InstallationWizard"
         Me.Label5.Visible = False
         '
         'CheckBoxBatSeparatePost
@@ -990,7 +990,7 @@ Partial Class Form1
     Friend WithEvents RadioButtonRemDots As RadioButton
     Friend WithEvents RadioButtonRemRem As RadioButton
     Friend WithEvents RadioButtonRemHash As RadioButton
-    Friend WithEvents ButtonCheckWizzard As Button
+    Friend WithEvents ButtonCheckWizard As Button
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents GroupBoxAutoRun As GroupBox
     Friend WithEvents TextBoxAutoRun As TextBox

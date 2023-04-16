@@ -51,7 +51,7 @@ QUIT:
         Dim P1 As Integer
         Dim DName, DVal As String
         Dim Result = ""
-        If Not WizzardInitialized Then InitWizzard()
+        If Not WizardInitialized Then InitWizard()
 
         xtrace_i("Read GetFileData")
         For Each Line In GetFileData

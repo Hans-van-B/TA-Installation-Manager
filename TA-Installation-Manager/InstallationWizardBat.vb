@@ -1,6 +1,6 @@
 ﻿
 ' Read defaults that interprets towards language dependent output
-Module InstallationWizzardBat
+Module InstallationWizardBat
 
     Sub BatWDefaults(DName As String, DVal As String)
         Dim ALine As String

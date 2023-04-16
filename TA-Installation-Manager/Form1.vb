@@ -30,13 +30,13 @@
         WriteInfo("Bin Library = " & BinLib)
 
         Set_TAISDevDepo()
-        ButtonCheckWizzard.Left = 10
+        ButtonCheckWizard.Left = 10
         TabControl1.SelectTab(0)
 
         SetGUIScryptType(Glob.ScriptTypeSelect)
 
         ' Shared defaults can be changed ad execution time and are therefore set after reading the default
-        ' But also by a wizzard, therefore move them to the shared defaults
+        ' But also by a Wizard, therefore move them to the shared defaults
         ' CheckBoxCopySource.Checked: See SharedDefaults
 
         ' No shared defaults (Only manual selection)
@@ -237,16 +237,16 @@
 
     '==== Buttons =============================================================================
 
-    Private Sub ButtonCheckWizzard_Click(sender As Object, e As EventArgs) Handles ButtonCheckWizzard.Click
-        xtrace_subs("ButtonCheckWizzard_Click")
+    Private Sub ButtonCheckWizard_Click(sender As Object, e As EventArgs) Handles ButtonCheckWizard.Click
+        xtrace_subs("ButtonCheckWizard_Click")
         If ComboBoxInstName.Text = "" Then
             ShowHint("Please enter the name of the new installation")
             ComboBoxInstName.BackColor = ButtonHighLite
         Else
-            WizzardInitialized = False  ' Explicit call, always initialize
-            InstallationWizzard()
+            WizardInitialized = False  ' Explicit call, always initialize
+            InstallationWizard()
         End If
-        xtrace_sube("ButtonCheckWizzard_Click")
+        xtrace_sube("ButtonCheckWizard_Click")
     End Sub
 
     '---- Create the installation
@@ -264,7 +264,7 @@
         If ScriptTypeSelect = "BAT" Then
             SetStatus("Create TA-Installation type .bat")
             Create_Depo()
-            InstallationWizzard()
+            InstallationWizard()
             Do_Events()
             Create_Installation_Base()
             Add_Installation_Components_Bat()
@@ -277,7 +277,7 @@
         ElseIf ScriptTypeSelect = "PS" Then
             SetStatus("Create TA-Installation type .ps2")
             Create_Depo()
-            InstallationWizzard()
+            InstallationWizard()
             Do_Events()
             Create_Installation_Base()
             Add_Installation_Components_PS()
@@ -372,12 +372,14 @@
     Private Sub ComboBoxInstName_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxInstName.TextChanged
         InstName = ComboBoxInstName.Text
         xtrace_i("Set InstName = " & InstName)
-        WizzardInitialized = False
+        WizardInitialized = False
         ComboBoxInstName.BackColor = SystemColors.Control
         CheckResultPath()
     End Sub
     Private Sub ComboBoxInstName_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxInstName.SelectedIndexChanged
-
+        xtrace_subs("ComboBoxInstName_SelectedIndexChanged")
+        xtrace_i("InstName = " & ComboBoxInstName.Text)
+        xtrace_sube("ComboBoxInstName_SelectedIndexChanged")
     End Sub
 
     '---- Update Inst version

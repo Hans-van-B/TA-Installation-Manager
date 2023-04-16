@@ -91,8 +91,8 @@
     <Compile Include="GetFileMod.vb" />
     <Compile Include="Glob.vb" />
     <Compile Include="HelpMod.vb" />
-    <Compile Include="InstallationWizzardBat.vb" />
-    <Compile Include="InstallationWizzardStart.vb" />
+    <Compile Include="InstallationWizardBat.vb" />
+    <Compile Include="InstallationWizardStart.vb" />
     <Compile Include="InstBck.vb" />
     <Compile Include="LicC.vb" />
     <Compile Include="Log.vb" />

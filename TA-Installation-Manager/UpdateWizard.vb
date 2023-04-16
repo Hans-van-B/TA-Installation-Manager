@@ -17,8 +17,8 @@ Module UpdateWizard
         Dim WizIniStart As New List(Of String)
         Dim WizIniEnd As New List(Of String)
         Dim WizStatus As Integer = 0
-        Dim WizzardName As String = "W_" & Form1.ComboBoxInstName.Text
-        xtrace_i("Wizzard Name = " & WizzardName)
+        Dim WizardName As String = "W_" & Form1.ComboBoxInstName.Text
+        xtrace_i("Wizard Name = " & WizardName)
         Dim DName, DVal As String
 
         Dim DepoSubDirIfExist As String = ""    ' ZZ_Non_TA (ToDo!!)
@@ -49,7 +49,7 @@ Module UpdateWizard
             If P1 = 1 And P2 > 2 Then
                 Group = Mid(Line, 2, P2 - 2)
                 xtrace("Group = " & Group)
-                If Group = WizzardName Then  ' Wizard to update
+                If Group = WizardName Then  ' Wizard to update
                     WizStatus = 1
                 ElseIf WizStatus = 1 Then    ' Next Wizard
                     WizStatus = 2

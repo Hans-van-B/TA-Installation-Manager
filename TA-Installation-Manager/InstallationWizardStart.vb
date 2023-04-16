@@ -1,9 +1,9 @@
 ﻿Imports System.Net
 Imports System.Reflection
 
-Module InstallationWizzardStart
-    Public WizzardName As String
-    Public WizzardExists As Boolean
+Module InstallationWizardStart
+    Public WizardName As String
+    Public WizardExists As Boolean
 
     Public ContentInit As String = ""
     Public ContentTestIfExist As String = ""
@@ -17,26 +17,26 @@ Module InstallationWizzardStart
     Public DownLoadIndex As Integer
     Public WizIniFile As String
     Public GetFileData As New Stack
-    Public WizzardInitialized As Boolean = False
+    Public WizardInitialized As Boolean = False
 
-    Sub InstallationWizzard()
-        xtrace_subs("InstallationWizzard")
+    Sub InstallationWizard()
+        xtrace_subs("InstallationWizard")
 
-        If WizzardInitialized Then
+        If WizardInitialized Then
             xtrace_i("Don't initialize again")
         Else
-            InitWizzard()
+            InitWizard()
         End If
         AddReadme()
 
-        xtrace_sube("InstallationWizzard")
+        xtrace_sube("InstallationWizard")
     End Sub
 
     Sub AddReadme()
 
     End Sub
 
-    '---- Init Wizzard (Read Defaults) --------------------------------------------------
+    '---- Init Wizard (Read Defaults) --------------------------------------------------
     ' Allows the file to be read from elsewhere
     ' The GetFile Data is now pushed on a stack GetFileData so it can be accessed more quickly
     Function AssignWizIniFile() As Boolean
@@ -62,19 +62,19 @@ Module InstallationWizzardStart
         AssignWizIniFile = Result
         xtrace_sube("AssignWizIniFile")
     End Function
-    Sub InitWizzard()
-        xtrace_subs("InitWizzard (Read defaults)")
+    Sub InitWizard()
+        xtrace_subs("InitWizard (Read defaults)")
 
         If WizIniFile Is Nothing Then
             If Not AssignWizIniFile() Then GoTo QUIT
         End If
 
         '---- Initialize
-        WizzardName = "W_" & Form1.ComboBoxInstName.Text
-        xtrace_i("Wizzard Name = " & WizzardName)
-        WizzardExists = False
+        WizardName = "W_" & Form1.ComboBoxInstName.Text
+        xtrace_i("Wizard Name = " & WizardName)
+        WizardExists = False
 
-        '---- Start Wizzard Init
+        '---- Start Wizard Init
         xtrace_i("Reset content")
         ContentInit = ""
         ContentAIExtr = ""
@@ -107,6 +107,12 @@ Module InstallationWizzardStart
                 If P1 = 1 And P2 > 2 Then
                     Group = Mid(Line, 2, P2 - 2)
                     xtrace("Group = " & Group)
+
+                    If Group.ToUpper = Form1.ComboBoxInstName.Text.ToUpper Then
+                        'xtrace_warn("Found wizard group name without preceeding 'W_'")
+                        Form1.WriteInfo("Warning: Found wizard group name " & Group & " without preceeding 'W_'")
+                    End If
+
                     Continue While
                 End If
 
@@ -116,12 +122,12 @@ Module InstallationWizzardStart
                 DVal = Mid(Line, P1 + 1)
                 xtrace("Default " & DName & "=" & DVal)
 
-                If Group.ToUpper = WizzardName.ToUpper Then
-                    If Not WizzardExists Then
+                If Group.ToUpper = WizardName.ToUpper Then
+                    If Not WizardExists Then
                         xtrace_i("Group Matches")   ' Only log once
                         Form1.SetStatus("Wizard found")
                     End If
-                    WizzardExists = True
+                    WizardExists = True
 
                     If DName = "DownloadURL" Then
                         DownLoadIndex += 1
@@ -182,11 +188,11 @@ Module InstallationWizzardStart
             End Try
         End While
         ReadFile.Dispose()
-        WizzardInitialized = True
+        WizardInitialized = True
         xtrace("GetFileData Length = " & GetFileData.Count.ToString)
 
 QUIT:
-        xtrace_sube("InitWizzard")
+        xtrace_sube("InitWizard")
     End Sub
 
     '==== General Purpose routines ======================================================

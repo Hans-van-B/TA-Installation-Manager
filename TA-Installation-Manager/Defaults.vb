@@ -120,7 +120,7 @@
         xtrace_sube("ReadDefaults")
     End Sub
 
-    ' These defaults are used both in the general defaults and also in the wizzard init
+    ' These defaults are used both in the general defaults and also in the Wizard init
     Sub SharedDefaults(DName As String, DVal As String)
         Dim LT As Integer = SharedDefaultsTraceValue
         xtrace_subs("SharedDefaults", LT)

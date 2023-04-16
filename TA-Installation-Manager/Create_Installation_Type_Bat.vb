@@ -200,7 +200,7 @@
         If (ContentInit = "") Or (ContentInit Is Nothing) Then
             WTO(":: Add initialization content here")
         Else
-            WTO(ContentInit)    ' Optional Wizzard Content
+            WTO(ContentInit)    ' Optional Wizard Content
         End If
 
         ' Add footer and write
