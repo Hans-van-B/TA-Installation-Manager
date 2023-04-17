@@ -69,6 +69,8 @@
         Dim ARData() As String = AutoRun.Split(";")
         Dim ARDCount As Integer = ARData.Length
         Dim ArStep As String
+        Dim P1 As Integer
+        Dim Cmd As String
         xtrace_i("ARDCount = " & ARDCount.ToString)
 
         For Nr As Integer = 0 To ARDCount - 1
@@ -86,13 +88,41 @@
             If ArStep = "Start" Then
                 ButtonStartCreate_Click(Nothing, Nothing)
             End If
+
             If ArStep = "Save" Then
                 ToolStripSave_Click(Nothing, Nothing)
             End If
+
             If ArStep = "Exit" Then
                 wait(2)
                 Util.exit_program()
             End If
+
+            P1 = InStr(ArStep, " ")
+            If P1 > 1 Then
+                Cmd = Microsoft.VisualBasic.Left(ArStep, P1 - 1)
+                If Cmd.ToLower = "set" Then
+                    Dim SetStr As String = Mid(ArStep, 4).Trim
+                    xtrace_i("SetStr = " & SetStr)
+                    P1 = InStr(SetStr, "=")
+                    If P1 > 1 Then
+                        Dim Name = Microsoft.VisualBasic.Left(SetStr, P1 - 1)
+                        Dim Val = Mid(SetStr, P1 + 1)
+                        xtrace_i("Set: " & Name & "=" & Val)
+
+                        If Name.ToLower = "deporoot" Then ComboBoxDevDepo.Text = Val
+                        If Name.ToLower = "instname" Then ComboBoxInstName.Text = Val
+
+                        If Name.ToLower = "sepinit" Then CheckBoxBatSeparateInit.Checked = StringToBool(Val)
+                        If Name.ToLower = "sepapp" Then CheckBoxBatSeparateApp.Checked = StringToBool(Val)
+                        If Name.ToLower = "seppost" Then CheckBoxBatSeparatePost.Checked = StringToBool(Val)
+                        If Name.ToLower = "sepdept" Then CheckBoxDeptConfigs.Checked = StringToBool(Val)
+
+                    End If
+                End If
+            End If
+
+            'End If
         Next
         GroupBoxAutoRun.Visible = False
 
