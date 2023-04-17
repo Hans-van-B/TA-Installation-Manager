@@ -8,6 +8,7 @@
 
         Form1.SetStatus("Create Installation")
         InstName = Form1.ComboBoxInstName.Text
+        xtrace_i("TAISDevDepo = " & TAISDevDepo)
 
         xtrace_i("Check DepoSubDir: " & DepoSubDir)
         If DepoSubDir = "" Then

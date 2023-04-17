@@ -4,8 +4,8 @@
     Dim BatFileHeader As String
     Dim BatFileFooter As String
     Dim BatTimeStamp As String
-    Dim InstBat As String = InstRoot & "\bat"
-    Dim InstData As String = InstRoot & "\data"
+    Dim InstBat As String
+    Dim InstData As String
 
     '==== Short notation of write to batch file
     Dim OutFile As String
@@ -85,6 +85,9 @@
     Sub Add_Installation_Components_Bat()
         xtrace_line()
         xtrace_subs("Add_Installation_Components_Bat")
+
+        InstBat = InstRoot & "\bat"
+        InstData = InstRoot & "\data"
 
         InstBackup()
 
@@ -226,6 +229,8 @@
 
         ' Create Dept-Dirs
         For Each Dept In Form1.TextBoxDept.Lines
+            If Dept.Length < 2 Then Continue For
+
             xtrace_i("Dept : " & Dept)
             CreateDirectory(InstBat & "\" & Dept, 0, "", "Please check your directory access rights", True, True)
             CreateDirectory(InstData & "\" & Dept, 0, "", "Please check your directory access rights", True, True)

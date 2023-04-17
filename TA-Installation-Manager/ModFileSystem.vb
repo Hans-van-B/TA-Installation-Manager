@@ -50,7 +50,7 @@ Module ModFileSystem
                         Hint As String,
                         ShowDialog As Boolean,
                         Fatal As Boolean) As Boolean
-        xtrace_i("CreateDirectory: " & DirPath)
+        xtrace_i("CreateDirectory: """ & DirPath & """")
         Dim Result As Boolean = True
         Try
             System.IO.Directory.CreateDirectory(DirPath)
