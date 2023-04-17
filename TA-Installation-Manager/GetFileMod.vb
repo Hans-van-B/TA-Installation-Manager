@@ -69,7 +69,8 @@ QUIT:
         Next
 
         If Result = "" Then
-            xtrace_warn("Defaults for " & FileName & " are missing")
+            xtrace_warn("Defaults for obtaining " & FileName & " are missing")
+            xtrace_i("Set default sources")
             Result = "InstLibExe|BinLib"
         End If
 
