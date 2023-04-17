@@ -120,6 +120,10 @@
         TextBoxInfo.AppendText(Msg & vbNewLine)
         Log.xtrace(Msg)
     End Sub
+    Public Sub WriteInfoWarning(Msg)
+        TextBoxInfo.AppendText("Warning:" & Msg & vbNewLine)
+        Log.xtrace_warn(Msg)
+    End Sub
 
     Public Shared Sub SetStatus(Msg As String)
         Form1.ToolStripStatusLabel1.Text = Msg

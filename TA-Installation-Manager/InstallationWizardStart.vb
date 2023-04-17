@@ -9,6 +9,7 @@ Module InstallationWizardStart
     Public ContentTestIfExist As String = ""
     Public ContentAIExtr As String = ""  ' Application Installation Extract
     Public ContentInstCmd As String = "" ' Installation Command
+    Public DepoSubDir As String
     Public ContentReadme As String = ""
     Public ContentAutoStart As String = ""
     Public ContentMsiDeinstall As String = ""
@@ -76,6 +77,7 @@ Module InstallationWizardStart
 
         '---- Start Wizard Init
         xtrace_i("Reset content")
+        DepoSubDir = ""
         ContentInit = ""
         ContentAIExtr = ""
         ContentInstCmd = ""
@@ -109,8 +111,9 @@ Module InstallationWizardStart
                     xtrace("Group = " & Group)
 
                     If Group.ToUpper = Form1.ComboBoxInstName.Text.ToUpper Then
-                        'xtrace_warn("Found wizard group name without preceeding 'W_'")
-                        Form1.WriteInfo("Warning: Found wizard group name " & Group & " without preceeding 'W_'")
+                        Form1.WriteInfoWarning("Found matching wizard group name " & Group & " without preceeding 'W_'")
+                    ElseIf Left(Group, 2).ToUpper <> "W_" Then
+                        Form1.WriteInfoWarning("Found wizard group name " & Group & " without preceeding 'W_'")
                     End If
 
                     Continue While
@@ -138,6 +141,11 @@ Module InstallationWizardStart
                     SharedDefaults(DName, DVal)
 
                     BatWDefaults(DName, DVal)
+
+                    If DName = "DepoSubDir" Then
+                        DepoSubDir = DVal
+                        xtrace_i("Set DepoSubDir = " & DepoSubDir)
+                    End If
 
                     If DName = "ContentInitLine" Then
                         xtrace_i("Add Init Line: " & DVal)
@@ -207,6 +215,10 @@ QUIT:
         Dim P1 As Integer
 
         DData = DLine.Split(";")
+        If DData.Length < 2 Then
+            MsgBox("Warning: Line " & DLine & vbCrLf & "Missing target field", MsgBoxStyle.Critical, "Missing target field")
+            GoTo QUIT
+        End If
         URL = DData(0)
         Target = DData(1)
 
@@ -216,7 +228,7 @@ QUIT:
 
         xtrace_i("DownloadData = " & URL & " -> " & Target & " (" & Name & ")")
         DownloadData = {URL, Target, Name}
-
+QUIT:
         xtrace_sube("DownloadData")
     End Function
 

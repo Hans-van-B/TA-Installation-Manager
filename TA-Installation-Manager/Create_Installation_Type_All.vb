@@ -8,7 +8,13 @@
 
         Form1.SetStatus("Create Installation")
         InstName = Form1.ComboBoxInstName.Text
-        DepoPath = TAISDevDepo & "\" & InstName & "\" & Form1.ComboBoxInstVer.Text
+
+        xtrace_i("Check DepoSubDir: " & DepoSubDir)
+        If DepoSubDir = "" Then
+            DepoPath = TAISDevDepo & "\" & InstName & "\" & Form1.ComboBoxInstVer.Text
+        Else
+            DepoPath = TAISDevDepo & "\" & DepoSubDir & "\" & InstName & "\" & Form1.ComboBoxInstVer.Text
+        End If
         xtrace_i("DepoPath = " & DepoPath)
         If Not My.Computer.FileSystem.DirectoryExists(DepoPath) Then
             CreateDirectory(DepoPath, 0, "", "Please check your directory access rights", True, True)
