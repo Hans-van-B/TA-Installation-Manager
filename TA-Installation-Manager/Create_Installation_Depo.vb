@@ -91,6 +91,13 @@ Module Create_Installation_Depo
         GetFile("TA-Select.exe", TA_Template_Inst)
         GetFile("TA-Deinstall.exe", TA_Template_Inst)
 
+        Dim NewFile As String = TA_InstLib_Inst & "\Bat\TAI_Write.bat"
+        If Not My.Computer.FileSystem.FileExists(NewFile) Then
+            xtrace_i("Create " & NewFile)
+            Dim Content As String = "@echo %~1" & vbCrLf & "@echo %~1>>%ICL%" & vbCrLf & "@echo %~1>con" & vbCrLf
+            WriteTxtToFile(NewFile, Content, False, 0, "", "", True, False)
+        End If
+
         xtrace_sube("Create_Depo")
     End Sub
 

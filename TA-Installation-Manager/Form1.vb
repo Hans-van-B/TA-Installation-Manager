@@ -118,6 +118,7 @@
                         If Name.ToLower = "seppost" Then CheckBoxBatSeparatePost.Checked = StringToBool(Val)
                         If Name.ToLower = "sepdept" Then CheckBoxDeptConfigs.Checked = StringToBool(Val)
 
+                        If Name.ToLower = "adddebugprompt" Then AddDebugPromptToolStripMenuItem.Checked = StringToBool(Val)
                     End If
                 End If
             End If
@@ -340,21 +341,21 @@
     '---- List Settings ---------------------------------------------------
     Sub ListGUISettings()
         xtrace("ListGUISettings", 2)
-        xtrace_i("Dev Depo      = " & ComboBoxDevDepo.Text)
-        xtrace_i("Inst name     = " & ComboBoxInstName.Text)
-        xtrace_i("Inst Version  = " & ComboBoxInstVer.Text)
-        xtrace_i("TA-Setup      = " & CheckBoxTASetup.Checked.ToString)
-        xtrace_i("TA-Select     = " & CheckBoxTASelect.Checked.ToString)
-        xtrace_i("TA-Deinstall  = " & CheckBoxTADeinstall.Checked.ToString)
-        xtrace_i("Copy to local = " & CheckBoxCopySource.Checked.ToString)
-        xtrace_i("RemTyp        = " & RemType)
+        xtrace_i("Dev Depo       = " & ComboBoxDevDepo.Text)
+        xtrace_i("Inst name      = " & ComboBoxInstName.Text)
+        xtrace_i("Inst Version   = " & ComboBoxInstVer.Text)
+        xtrace_i("TA-Setup       = " & CheckBoxTASetup.Checked.ToString)
+        xtrace_i("TA-Select      = " & CheckBoxTASelect.Checked.ToString)
+        xtrace_i("TA-Deinstall   = " & CheckBoxTADeinstall.Checked.ToString)
+        xtrace_i("Copy to local  = " & CheckBoxCopySource.Checked.ToString)
+        xtrace_i("RemTyp         = " & RemType)
+        xtrace_i("AddDebugPrompt = " & AddDebugPromptToolStripMenuItem.Checked.ToString)
         'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
-        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
-        xtrace_i("Re-Download   = " & CheckBoxReDownload.Checked.ToString)
-        xtrace_i("Saparate Init = " & CheckBoxBatSeparateInit.Checked.ToString)
-        xtrace_i("Separate App  = " & CheckBoxBatSeparateApp.Checked.ToString)
-        xtrace_i("Separate Post = " & CheckBoxBatSeparatePost.Checked.ToString)
-        xtrace_i("Sep Dept Conf = " & CheckBoxDeptConfigs.Checked.ToString)
+        xtrace_i("Re-Download    = " & CheckBoxReDownload.Checked.ToString)
+        xtrace_i("Saparate Init  = " & CheckBoxBatSeparateInit.Checked.ToString)
+        xtrace_i("Separate App   = " & CheckBoxBatSeparateApp.Checked.ToString)
+        xtrace_i("Separate Post  = " & CheckBoxBatSeparatePost.Checked.ToString)
+        xtrace_i("Sep Dept Conf  = " & CheckBoxDeptConfigs.Checked.ToString)
     End Sub
     '---- Show the resuly
     Private Sub ButtonShowResult_Click(sender As Object, e As EventArgs) Handles ButtonShowResult.Click

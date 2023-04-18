@@ -154,6 +154,8 @@
 
         '---- Add exe files
         AddInstFile(True, "wait.exe", "Inst\Exe")
+        AddInstFile(Form1.RadioButtonRemHash.Checked, "#.exe", "Inst\Exe")  ' 2023-04-18
+
 
         xtrace_sube("Add_Installation_Components_Bat")
     End Sub
@@ -324,6 +326,11 @@
 
         WTO(CreRemLine("Start the App installation."))
         WTO("")
+
+        If Form1.AddDebugPromptToolStripMenuItem.Checked Then
+            WTO("Start ""Debug Prompt"" cmd")
+        End If
+
         If ContentInstCmd = "" Then
             WTO(":: Add the installation command here")
         Else

@@ -97,6 +97,7 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.AddDebugPromptToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -179,7 +180,7 @@ Partial Class Form1
         '
         'AdvancedToolStripMenuItem
         '
-        Me.AdvancedToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetLicenseToolStripMenuItem, Me.DownloadMethodToolStripMenuItem})
+        Me.AdvancedToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetLicenseToolStripMenuItem, Me.DownloadMethodToolStripMenuItem, Me.AddDebugPromptToolStripMenuItem})
         Me.AdvancedToolStripMenuItem.Name = "AdvancedToolStripMenuItem"
         Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.AdvancedToolStripMenuItem.Text = "Advanced"
@@ -187,14 +188,14 @@ Partial Class Form1
         'ResetLicenseToolStripMenuItem
         '
         Me.ResetLicenseToolStripMenuItem.Name = "ResetLicenseToolStripMenuItem"
-        Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
         Me.ResetLicenseToolStripMenuItem.Text = "Reset License"
         '
         'DownloadMethodToolStripMenuItem
         '
         Me.DownloadMethodToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripComboBox1})
         Me.DownloadMethodToolStripMenuItem.Name = "DownloadMethodToolStripMenuItem"
-        Me.DownloadMethodToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DownloadMethodToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
         Me.DownloadMethodToolStripMenuItem.Text = "Download Method"
         '
         'ToolStripComboBox1
@@ -534,8 +535,8 @@ Partial Class Form1
         Me.CheckBoxStopUpdates.Size = New System.Drawing.Size(91, 17)
         Me.CheckBoxStopUpdates.TabIndex = 1
         Me.CheckBoxStopUpdates.Text = "Stop Updates"
-        Me.ToolTip1.SetToolTip(Me.CheckBoxStopUpdates, "Stop background installations." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Enable this for installations that are MSI Based" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This setting cannot be set by an application Wizard" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "You need to set this ex" &
-        "plicitly.")
+        Me.ToolTip1.SetToolTip(Me.CheckBoxStopUpdates, "Stop background installations." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Enable this for installations that are MSI Based" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This setting cannot be set by an application Wizard" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "You need to set this exp" &
+        "licitly.")
         Me.CheckBoxStopUpdates.UseVisualStyleBackColor = True
         '
         'Label4
@@ -683,7 +684,7 @@ Partial Class Form1
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(7, 329)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(110, 15)
+        Me.Label5.Size = New System.Drawing.Size(104, 15)
         Me.Label5.TabIndex = 3
         Me.Label5.Text = "InstallationWizard"
         Me.Label5.Visible = False
@@ -897,6 +898,12 @@ Partial Class Form1
         'TimerInit
         '
         '
+        'AddDebugPromptToolStripMenuItem
+        '
+        Me.AddDebugPromptToolStripMenuItem.Name = "AddDebugPromptToolStripMenuItem"
+        Me.AddDebugPromptToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
+        Me.AddDebugPromptToolStripMenuItem.Text = "Add Debug Prompt to Inst."
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1017,4 +1024,5 @@ Partial Class Form1
     Friend WithEvents LabelLocDepoDirExists As Label
     Friend WithEvents ButtonDeleteDepo As Button
     Friend WithEvents ReconnectToLocalDepoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddDebugPromptToolStripMenuItem As ToolStripMenuItem
 End Class
