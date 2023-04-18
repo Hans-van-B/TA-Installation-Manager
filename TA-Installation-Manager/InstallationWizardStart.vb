@@ -197,6 +197,8 @@ Module InstallationWizardStart
         End While
         ReadFile.Dispose()
         WizardInitialized = True
+
+        xtrace_i("Wizard found = " & WizardExists.ToString)
         xtrace("GetFileData Length = " & GetFileData.Count.ToString)
 
 QUIT:
