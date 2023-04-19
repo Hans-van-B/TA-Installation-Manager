@@ -1,7 +1,7 @@
 ﻿Module Glob
     ' Template Windows Forms
     Public AppName As String = "TA-Installation-Manager"
-    Public AppVer As String = "0.01.24"
+    Public AppVer As String = "0.01.25a"
 
     Public AppRoot As String = Application.StartupPath
     Public CD As String = My.Computer.FileSystem.CurrentDirectory
@@ -30,6 +30,7 @@
     Public IncreasePerformance As Boolean = False
     Public CVL As Boolean = False
     Public Deflt_Depo_Path As String = "C:\Data\Depo"
+    Public Disable_Wizard As Boolean = False
 
     Public StopUpdates As String = "False"
     Public CopyLogToServer As String = "False"

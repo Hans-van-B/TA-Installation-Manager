@@ -227,13 +227,41 @@
         End If
 
         If DName = "CopyLogToServer" Then
-            CopyLogToServer = DVal
-            xtrace("Set CopyLogToServer = " & CopyLogToServer)
-
+            ' CopyLogToServer = DVal    Only used to read the default
             Form1.CheckBoxLogToServer.Checked = StringToBool(DVal)
+            xtrace("Set CopyLogToServer = " & Form1.CheckBoxLogToServer.Checked.ToString)
         End If
 
-            xtrace_sube("SharedDefaults", LT)
+        If DName = "AddDebugPrompt" Then
+            Form1.AddDebugPromptToolStripMenuItem.Checked = StringToBool(DVal)
+            xtrace("Set AddDebugPrompt = " & Form1.AddDebugPromptToolStripMenuItem.Checked.ToString)
+
+        End If
+
+        If DName = "StopUpdates" Then
+            Form1.CheckBoxStopUpdates.Checked = StringToBool(DVal)
+            xtrace("Set StopUpdates = " & Form1.CheckBoxStopUpdates.Checked.ToString)
+
+        End If
+
+        If DName = "LogToServer" Then
+            Form1.CheckBoxLogToServer.Checked = StringToBool(DVal)
+            xtrace("Set LogToServer = " & Form1.CheckBoxLogToServer.Checked.ToString)
+        End If
+
+        If DName = "xx" Then
+            XX = DVal
+            xtrace("Set XX = " & XX)
+
+        End If
+
+        If DName = "xx" Then
+            XX = DVal
+            xtrace("Set XX = " & XX)
+
+        End If
+
+        xtrace_sube("SharedDefaults", LT)
     End Sub
 
     Function StringToBoolean(Val As String) As Boolean

@@ -74,7 +74,7 @@
         xtrace_i("ARDCount = " & ARDCount.ToString)
 
         For Nr As Integer = 0 To ARDCount - 1
-            ArStep = ARData(Nr)
+            ArStep = ARData(Nr).Trim
             TextBoxAutoRun.Text = ArStep
             Do_Events()
 
@@ -112,11 +112,15 @@
 
                         If Name.ToLower = "deporoot" Then ComboBoxDevDepo.Text = Val
                         If Name.ToLower = "instname" Then ComboBoxInstName.Text = Val
+                        If Name.ToLower = "instv" Then ComboBoxInstVer.Text = Val
 
                         If Name.ToLower = "sepinit" Then CheckBoxBatSeparateInit.Checked = StringToBool(Val)
                         If Name.ToLower = "sepapp" Then CheckBoxBatSeparateApp.Checked = StringToBool(Val)
                         If Name.ToLower = "seppost" Then CheckBoxBatSeparatePost.Checked = StringToBool(Val)
                         If Name.ToLower = "sepdept" Then CheckBoxDeptConfigs.Checked = StringToBool(Val)
+
+                        If Name.ToLower = "stopupdates" Then CheckBoxStopUpdates.Checked = StringToBool(Val)
+                        If Name.ToLower = "logtoserver" Then CheckBoxLogToServer.Checked = StringToBool(Val)
 
                         If Name.ToLower = "adddebugprompt" Then AddDebugPromptToolStripMenuItem.Checked = StringToBool(Val)
                     End If
@@ -275,7 +279,7 @@
     Private Sub ButtonCheckWizard_Click(sender As Object, e As EventArgs) Handles ButtonCheckWizard.Click
         xtrace_subs("ButtonCheckWizard_Click")
         If ComboBoxInstName.Text = "" Then
-            ShowHint("Please enter the name of the new installation")
+            ShowHint("Please enter the name of the New installation")
             ComboBoxInstName.BackColor = ButtonHighLite
         Else
             WizardInitialized = False  ' Explicit call, always initialize
@@ -292,7 +296,7 @@
         ListGUISettings()
 
         If ComboBoxInstName.Text = "" Then
-            ShowHint("Please enter the name of the new installation")
+            ShowHint("Please enter the name of the New installation")
             ComboBoxInstName.BackColor = ButtonHighLite
         End If
 
@@ -323,16 +327,16 @@
             SetStatus("Done.")
 
         Else
-            SetStatus("First select the installation type and it's components")
+            SetStatus("First select the installation type And it's components")
             MsgBox("Please select the installation type" & vbCrLf & " and it's components", MessageBoxIcon.Information, "Hint:")
-            'TabPageWinBat.BackColor = ButtonHighLite
-            'TabPagePS.BackColor = ButtonHighLite
-            'TabControl1.BackColor = ButtonHighLite
-            'TabControl1.SelectedTab = TabPageWinBat
-            SelectScriptType()
-        End If
+                            'TabPageWinBat.BackColor = ButtonHighLite
+                            'TabPagePS.BackColor = ButtonHighLite
+                            'TabControl1.BackColor = ButtonHighLite
+                            'TabControl1.SelectedTab = TabPageWinBat
+                            SelectScriptType()
+                        End If
 
-        ButtonStartCreate.Enabled = True
+                        ButtonStartCreate.Enabled = True
         CheckResultPath()
 
         xtrace_sube("ButtonStartCreate_Click")
@@ -350,12 +354,16 @@
         xtrace_i("Copy to local  = " & CheckBoxCopySource.Checked.ToString)
         xtrace_i("RemTyp         = " & RemType)
         xtrace_i("AddDebugPrompt = " & AddDebugPromptToolStripMenuItem.Checked.ToString)
-        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
         xtrace_i("Re-Download    = " & CheckBoxReDownload.Checked.ToString)
         xtrace_i("Saparate Init  = " & CheckBoxBatSeparateInit.Checked.ToString)
         xtrace_i("Separate App   = " & CheckBoxBatSeparateApp.Checked.ToString)
         xtrace_i("Separate Post  = " & CheckBoxBatSeparatePost.Checked.ToString)
         xtrace_i("Sep Dept Conf  = " & CheckBoxDeptConfigs.Checked.ToString)
+        xtrace_i("Stop updates   = " & CheckBoxStopUpdates.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+        'xtrace_i(" = " & CheckBoxTASetup.Checked.ToString)
+
     End Sub
     '---- Show the resuly
     Private Sub ButtonShowResult_Click(sender As Object, e As EventArgs) Handles ButtonShowResult.Click

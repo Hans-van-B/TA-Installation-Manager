@@ -1,4 +1,6 @@
-﻿Module Create_Installation_Type_Bat
+﻿Imports System.Security.Policy
+
+Module Create_Installation_Type_Bat
     '==== Frequently used strings
     Dim BatRemStr As String
     Dim BatFileHeader As String
@@ -208,6 +210,11 @@
             WTO(ContentInit)    ' Optional Wizard Content
         End If
 
+        If Form1.CheckBoxStopUpdates.Checked Then
+            WTO("call '%InstLibBat%\stop_updates' START")
+        End If
+
+
         ' Add footer and write
         If SeparateFile Then
             WTO(BatFileFooter)
@@ -308,8 +315,13 @@
             WTO("")
             WTO(CreRemLine("Copy source files"))
             WTO("")
+            WTO("%WRITE% ' * Preparing...'")
             WTO("set ARCHIVES=%INSTTMP%\Archives")
-            WTO("robocopy '%SOURCEPATH%' '%ARCHIVES%' /mir /r:3 /w:10 /FFT")
+            WTO(":: /Z = Restartable Mode")
+            WTO(":: /J = Unbuffered for large files")
+            WTO(":: /R = Retry")
+            WTO(":: /W = Wait time in Sec.")
+            WTO("robocopy '%SOURCEPATH%' '%ARCHIVES%' /mir /Z /J /r:3 /w:10 /FFT  /LOG+:'%INSTTMP%\CopyArchives.Log'")
             WTO("set CRESULT=%ERRORLEVEL%")
             WTO("")
         End If
@@ -351,6 +363,7 @@
         WTO("")
         WTO(CreRemLine("End Inst"))
         WTO(":INSTDONE")
+        WTO(BatTimeStamp)
         WTO("")
 
         ' Add footer
@@ -451,6 +464,8 @@
         WTO("")
         WTO("echo  Done. >con")
         WTO("wait 10 >con")
+        WTO("%WRITE% ' Done.'")
+        WTO("wait 10 > con")
         WTO(BatFileFooter)
         WTO("exit 0")
 

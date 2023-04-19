@@ -23,7 +23,9 @@ Module InstallationWizardStart
     Sub InstallationWizard()
         xtrace_subs("InstallationWizard")
 
-        If WizardInitialized Then
+        If Disable_Wizard Then
+            xtrace_i("Wizard Disabled")
+        ElseIf WizardInitialized Then
             xtrace_i("Don't initialize again")
         Else
             InitWizard()
@@ -125,7 +127,7 @@ Module InstallationWizardStart
                 DVal = Mid(Line, P1 + 1)
                 xtrace("Default " & DName & "=" & DVal)
 
-                If Group.ToUpper = WizardName.ToUpper Then
+                If (Group.ToUpper = WizardName.ToUpper) And (Not Disable_Wizard) Then
                     If Not WizardExists Then
                         xtrace_i("Group Matches")   ' Only log once
                         Form1.SetStatus("Wizard found")

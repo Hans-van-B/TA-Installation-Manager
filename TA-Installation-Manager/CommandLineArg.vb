@@ -70,6 +70,11 @@
                     xtrace_i(" Set LicTraceLevel = " & LicC.LicTraceLevel.ToString)
                 End If
 
+                If SwName = "dw" Then
+                    Disable_Wizard = True
+                    xtrace_i("Disable Wizard = " & Disable_Wizard.ToString)
+                End If
+
                 Continue For
             End If
 
