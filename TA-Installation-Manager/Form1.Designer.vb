@@ -36,6 +36,7 @@ Partial Class Form1
         Me.ResetLicenseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownloadMethodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
+        Me.AddDebugPromptToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CreateDepoShareToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReconnectToLocalDepoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -97,7 +98,7 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.AddDebugPromptToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckBoxExtract = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -204,6 +205,12 @@ Partial Class Form1
         Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
         Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 23)
         Me.ToolStripComboBox1.Text = "VBDownloadFile"
+        '
+        'AddDebugPromptToolStripMenuItem
+        '
+        Me.AddDebugPromptToolStripMenuItem.Name = "AddDebugPromptToolStripMenuItem"
+        Me.AddDebugPromptToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
+        Me.AddDebugPromptToolStripMenuItem.Text = "Add Debug Prompt to Inst."
         '
         'CreateDepoShareToolStripMenuItem
         '
@@ -466,6 +473,7 @@ Partial Class Form1
         'SplitContainer2V.Panel1
         '
         Me.SplitContainer2V.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxExtract)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.Panel1)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxReDownload)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxCopySource)
@@ -898,11 +906,15 @@ Partial Class Form1
         'TimerInit
         '
         '
-        'AddDebugPromptToolStripMenuItem
+        'CheckBoxExtract
         '
-        Me.AddDebugPromptToolStripMenuItem.Name = "AddDebugPromptToolStripMenuItem"
-        Me.AddDebugPromptToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
-        Me.AddDebugPromptToolStripMenuItem.Text = "Add Debug Prompt to Inst."
+        Me.CheckBoxExtract.AutoSize = True
+        Me.CheckBoxExtract.Location = New System.Drawing.Point(6, 49)
+        Me.CheckBoxExtract.Name = "CheckBoxExtract"
+        Me.CheckBoxExtract.Size = New System.Drawing.Size(119, 17)
+        Me.CheckBoxExtract.TabIndex = 6
+        Me.CheckBoxExtract.Text = "Extract inst. archive"
+        Me.CheckBoxExtract.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -1025,4 +1037,5 @@ Partial Class Form1
     Friend WithEvents ButtonDeleteDepo As Button
     Friend WithEvents ReconnectToLocalDepoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AddDebugPromptToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CheckBoxExtract As CheckBox
 End Class

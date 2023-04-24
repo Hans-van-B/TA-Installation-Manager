@@ -321,24 +321,41 @@ Module Create_Installation_Type_Bat
             WTO(":: /J = Unbuffered for large files")
             WTO(":: /R = Retry")
             WTO(":: /W = Wait time in Sec.")
-            WTO("robocopy '%SOURCEPATH%' '%ARCHIVES%' /mir /Z /J /r:3 /w:10 /FFT  /LOG+:'%INSTTMP%\CopyArchives.Log'")
+            WTO("robocopy '%SOURCEPATH%' '%ARCHIVES%' /mir /Z /J /R:3 /W:10 /FFT  /LOG+:'%INSTTMP%\CopyArchives.Log'")
             WTO("set CRESULT=%ERRORLEVEL%")
             WTO("")
         End If
 
-        If ContentAIExtr <> "" Then
+        '---- Extract
+        Dim AddExtr As Boolean = ((ContentAIExtr <> "") Or Form1.CheckBoxExtract.Checked)
+
+        If AddExtr Then
             WTO(CreRemLine("Extract Installation Archive"))
             WTO("")
-            WTO(ContentAIExtr)
+            WTO("SET INST=%InstTmp%\Inst")
+            WTO("If Not exist Then %INST% md %INST%")
+
+        End If
+
+        If (ContentAIExtr <> "") Then
+            WTO(ContentAIExtr)      ' Extract command supplied by wizard
+        ElseIf Form1.CheckBoxExtract.Checked Then
+            WTO(":: ToDo")
+            WTO(":: '%InstLibExe%\unzip' -od '%InstTarget%' 'ArchDir\ArchName'")
+            WTO(":: '%InstLibExe%\W64\7z.exe' x %ARCHIVES%\Archive.zip -o'%Inst%' -aoa")
+        End If
+
+        If AddExtr Then
             WTO("SET ERESULT=%ERRORLEVEL%")
             WTO("")
             WTO("if /i not '%TA_INST_KEEP_ARCHIVES%'=='TRUE' rd /s/q '%ARCHIVES%'")
             WTO("")
+
+            WTO(CreRemLine("Start the App installation."))
+            WTO("")
         End If
 
-        WTO(CreRemLine("Start the App installation."))
-        WTO("")
-
+        '--- Start Debug Console
         If Form1.AddDebugPromptToolStripMenuItem.Checked Then
             WTO("Start ""Debug Prompt"" cmd")
         End If
