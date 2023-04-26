@@ -1,4 +1,5 @@
 ﻿Imports System.Security.Policy
+Imports System.IO
 
 Module Create_Installation_Type_Bat
     '==== Frequently used strings
@@ -8,25 +9,36 @@ Module Create_Installation_Type_Bat
     Dim BatTimeStamp As String
     Dim InstBat As String
     Dim InstData As String
+    Dim CRLTL As Integer = 2   ' Create Rem Line Trace Level
 
     '==== Short notation of write to batch file
     Dim OutFile As String
     Dim InstallStartFile As String = "\bat\Install.bat"
 
     Sub WTI(Content As String)  ' Default append
+        xtrace_subs("WTI", CRLTL)
         WT(Content, True, "I")
+        xtrace_sube("WTI", CRLTL)
     End Sub
     Sub WTI(Content As String, Append As Boolean)
+        xtrace_subs("WTI", CRLTL)
         WT(Content, Append, "I")
+        xtrace_sube("WTI", CRLTL)
     End Sub
 
     Sub WTO(Content As String)  ' Default append
+        xtrace_subs("WTO", CRLTL)
         WT(Content, True, "O")
+        xtrace_sube("WTO", CRLTL)
     End Sub
     Sub WTO(Content As String, Append As Boolean)
+        xtrace_subs("WTO", CRLTL)
         WT(Content, Append, "O")
+        xtrace_sube("WTO", CRLTL)
     End Sub
     Sub WT(Content As String, Append As Boolean, OID As String)
+        xtrace_subs("WT", CRLTL)
+
         Dim Output As String
         If OID = "I" Then
             Output = InstallStartFile
@@ -41,15 +53,24 @@ Module Create_Installation_Type_Bat
             xtrace_i("Warning: WT" & OID & " Content is nothing")
         End If
 
-        Content = Content.Replace("'", """")
+        'Content = Content.Replace("'", """")
         WriteTxtToFile(InstRoot & Output, Content & vbCrLf, Append, 0, "", "", True, True)
+
+        xtrace_sube("WT", CRLTL)
     End Sub
 
     '---- Create echo line with title
     Function CreRemLine(Msg As String)
+        xtrace_subs("CreRemLine", CRLTL)
+        xtrace_i("Input: " & Msg, CRLTL)
+        If BatRemStr Is Nothing Then SetBatRemString()
+
         Msg = BatRemStr & "---- " & Msg & " --------------------------------------------------"
         Msg = Left(Msg, 60)
         CreRemLine = Msg
+
+        xtrace_i("Return: " & Msg, CRLTL)
+        xtrace_sube("CreRemLine", CRLTL)
     End Function
 
     ' Both lines produce the same result
@@ -60,29 +81,58 @@ Module Create_Installation_Type_Bat
         WriteMsg = Msg
     End Function
 
+    '---- Create line proc start ---------------------------------------------------
+    Function CreRemLineProcStart(Msg As String)
+        xtrace_subs("CreRemLineProcStart", CRLTL)
+
+        Msg = System.IO.Path.GetFileName(Msg)
+        Msg = CreRemLine("Start: " & Msg)
+        CreRemLineProcStart = Msg
+
+        xtrace_i("Return: " & Msg, CRLTL)
+        xtrace_sube("CreRemLineProcStart", CRLTL)
+    End Function
+
+    '---- Create line proc end ---------------------------------------------------
+    Function CreRemLineProcEnd(Msg As String)
+        xtrace_subs("CreRemLineProcEnd", CRLTL)
+
+        Msg = System.IO.Path.GetFileName(Msg)
+        Msg = CreRemLine("End: " & Msg)
+        CreRemLineProcEnd = Msg
+
+        xtrace_i("Return: " & Msg, CRLTL)
+        xtrace_sube("CreRemLineProcEnd", CRLTL)
+    End Function
+
     '---- Set the bat remark string ------------------------------------------------
 
     Sub SetBatRemString()
-        xtrace_subs("SetBatRemString")
+        xtrace_subs("SetBatRemString", CRLTL)
 
         If RemType = "REM" Then BatRemStr = "REM "
         If RemType = "::" Then BatRemStr = "::"
         If RemType = "echo" Then BatRemStr = "@echo "
         If RemType = "#" Then BatRemStr = "# "
-        xtrace_i("BatRemStr = " & BatRemStr)
+        xtrace_i("BatRemStr     = " & BatRemStr, CRLTL)
 
         BatFileHeader =
-            BatRemStr & "---- Start %~n0 ----------------------------" & vbCrLf &
+            BatRemStr & "---- Start %~n0 ------------------------------------------" & vbCrLf &
             BatRemStr & "Created by " & AppName & " V" & AppVer
         BatFileFooter =
             vbCrLf &
             ":END" & vbCrLf &
-            BatRemStr & "---- End %~n0 ------------------------------"
+            BatRemStr & "---- End %~n0 --------------------------------------------"
         BatTimeStamp =
             BatRemStr & "Timestamp: %DATE% / %TIME%"
 
-        xtrace_sube("SetBatRemString")
+        xtrace_i("BatFileHeader = " & BatFileHeader, CRLTL)
+        xtrace_i("BatFileFooter = " & BatFileFooter, CRLTL)
+        xtrace_i("BatTimeStamp  = " & BatTimeStamp, CRLTL)
+
+        xtrace_sube("SetBatRemString", CRLTL)
     End Sub
+
     '==== Add Installation Components Bat ==========================================
     Sub Add_Installation_Components_Bat()
         xtrace_line()
@@ -198,11 +248,33 @@ Module Create_Installation_Type_Bat
 
         If Form1.CheckBoxDeptConfigs.Checked Then
             xtrace_i("Add site init")
+            WTO(CreRemLine("Default TA_SITE?"))
+            ' todo
+            WTO("set ALLOW_DEFAULT_SITE=TRUE")
+            WTO("")
+            WTO("if %ALLOW_DEFAULT_SITE%==FALSE if '%TA_SITE%'=='' call '%InstLibBat%\Err_Fatal_Msg' No_Site")
+            WTO("if %ALLOW_DEFAULT_SITE%==TRUE if '%TA_SITE%'=='' set TA_SITE=" & Form1.TextBoxDept.Lines(0))
+            WTO("")
+            WTO(CreRemLine("Set TA_SITE"))
+            WTO("echo  * TA_SITE = %TA_SITE% >>%ICL%")
             WTO("set site_conf=%instroot%\bat\%TA_SITE%")
             WTO("set site_data=%instroot%\data\%TA_SITE%")
+            WTO("@if not exist '%site_conf%\site_init.bat' %WRITE% 'ERROR: site_init does not exist' & call '%util%\exit'")
             WTO("call '%site_conf%\site_init'")
             WTO("")
         End If
+
+        WTO(CreRemLine("Processor Architecture"))
+        WTO("set PA=%PROCESSOR_ARCHITECTURE%
+if %PA%==x86   set WPBIT=32
+if %PA%==AMD64 set WPBIT=64
+@if '%WPBIT%'=='' %WRITE% 'Error: Failed to detect the Processor Architecture' & call '%util%\exit'
+
+set instexe_pa=%instroot%\exe\W%WPBIT%
+set SOURCE_PA=%SOURCEPATH%\W%WPBIT%
+
+set path=%instexe_pa%;%InstLibExe%;%path%
+")
 
         If (ContentInit = "") Or (ContentInit Is Nothing) Then
             WTO(":: Add initialization content here")
@@ -516,23 +588,23 @@ Module Create_Installation_Type_Bat
 
         DeinstallationFileTxt = BatFileHeader & vbCrLf &
             BatTimeStamp & "
-if ""%ICL%""==""""     set ICL=%TEMP%\Remove_%AppName%.log
-if ""%INSTTMP%""=="""" set INSTTMP=C:\Temp
+if '%ICL%'==''     set ICL=%TEMP%\Remove_%AppName%.log
+if '%INSTTMP%'=='' set INSTTMP=C:\Temp
 title %InstTitle%
 echo on
 
-%WRITE% "" * Init""
+%WRITE% ' * Init'
 
 rem Seek installation directory
 set APPL_BASE_DIR=xxx
 
-if exist ""%ProgramFiles%\XX""  SET APPL_BASE_DIR=%ProgramFiles%\XX
+if exist '%ProgramFiles%\XX'  SET APPL_BASE_DIR=%ProgramFiles%\XX
 
-%WRITE% "" * %AppName% Root Dir = %APPL_BASE_DIR%""
+%WRITE% ' * %AppName% Root Dir = %APPL_BASE_DIR%'
 
 @echo ---- Start the de-installation ----------------------
 :START
-%WRITE% "" * Start de-installation""
+%WRITE% ' * Start de-installation'
  " &
  ContentMsiDeinstall & vbCrLf &
 "
@@ -540,7 +612,7 @@ if exist ""%ProgramFiles%\XX""  SET APPL_BASE_DIR=%ProgramFiles%\XX
 echo  * De-installation finished >>%ICL%
 
 @echo ---- Cleanup ----------------------------------------
-%WRITE% "" * Post de-installation cleanup""
+%WRITE% ' * Post de-installation cleanup'
 
 :: allow quitting accidental startup
 %instexe%\wait 6
@@ -549,14 +621,14 @@ echo  * De-installation finished >>%ICL%
 @echo ---- Files -----------------
 echo  * Removing files >>%ICL%
 
-if not ""%APPL_BASE_DIR%""==""xxx"" rd /s/q ""%APPL_BASE_DIR%""
-rd /s/q ""C:\Temp\Inst_%AppName%_logs""
+if not '%APPL_BASE_DIR%'=='xxx' rd /s/q '%APPL_BASE_DIR%'
+rd /s/q 'C:\Temp\Inst_%AppName%_logs'
 
 @echo ---- User profiles ---------
 :UPROF
 echo  * Cleanup Userprofiles >>%ICL%
 
-FOR /F %%D IN ('dir /B /A:D C:\Users') DO CALL :UPROF_DEL %%D
+FOR /F %%D IN (^'dir /B /A:D C:\Users^') DO CALL :UPROF_DEL %%D
 goto ICONS
 
 :UPROF_DEL
@@ -576,7 +648,7 @@ echo  * Cleanup the environment >>%ICL%
 @echo ---- Registry --------------
 echo  * Cleanup the registry >>%ICL%
 
-reg delete ""HKLM\SOFTWARE\XX"" /f
+reg delete 'HKLM\SOFTWARE\XX' /f
 
 @echo ---- firewall --------------
 
@@ -585,7 +657,7 @@ goto DONE
 rem ---- Errors ---------------------------------------------------------------
 
 :ERR1
-   %WRITE% ""Error: %AppName% installation not found""
+   %WRITE% 'Error: %AppName% installation not found'
    goto DONE
 
 rem ---- Exit -----------------------------------------------------------------

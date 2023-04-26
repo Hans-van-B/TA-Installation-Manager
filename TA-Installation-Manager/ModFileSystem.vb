@@ -1,7 +1,28 @@
 ﻿' Validate by setting the log file readonly
-Imports System.Text		' May not be included in all applications
+Imports System.Text     ' May not be included in all applications
 
 Module ModFileSystem
+    '---- Write Text To File ------------------------------------------------------------
+    Function WriteTxtToFile(FileName As String,
+                       Msg As String,
+                       Append As Boolean,
+                       ErrNr As Integer,
+                       ErrDetails As String,
+                       Hint As String) As Boolean
+
+        Dim Result As Boolean = WriteTxtToFile(FileName,
+                       Msg,
+                       Append,
+                       ErrNr,
+                       ErrDetails,
+                       Hint,
+                       True,
+                       False,
+                       True)
+        Return Result
+    End Function
+
+    ' Default replace is true
     Function WriteTxtToFile(FileName As String,
                        Msg As String,
                        Append As Boolean,
@@ -10,9 +31,35 @@ Module ModFileSystem
                        Hint As String,
                        ShowDialog As Boolean,
                        Fatal As Boolean) As Boolean
+
+        Dim Result As Boolean = WriteTxtToFile(FileName,
+                       Msg,
+                       Append,
+                       ErrNr,
+                       ErrDetails,
+                       Hint,
+                       ShowDialog,
+                       Fatal,
+                       True)
+        Return Result
+    End Function
+    Function WriteTxtToFile(FileName As String,
+                       Msg As String,
+                       Append As Boolean,
+                       ErrNr As Integer,
+                       ErrDetails As String,
+                       Hint As String,
+                       ShowDialog As Boolean,
+                       Fatal As Boolean,
+                       Replace As Boolean) As Boolean
         ' Don't xtrace here!!
         Dim Result As Boolean = True
         Try
+            If Replace Then
+                Msg = Msg.Replace("'", """")
+                Msg = Msg.Replace("^""", "'")   ' Escape single quote
+            End If
+
             My.Computer.FileSystem.WriteAllText(FileName, Msg, Append, Encoding.ASCII)
         Catch ex As Exception
             Result = False
@@ -21,6 +68,7 @@ Module ModFileSystem
         Return Result
     End Function
 
+    '---- Delete File -------------------------------------------------------------------
     Function DeleteFile(FileName As String,
                    ErrNr As Integer,
                    ErrDetails As String,
@@ -41,8 +89,8 @@ Module ModFileSystem
         End If
         Return Result
     End Function
-	
-	'---- Create Directory --------------------------------------------------------------
+
+    '---- Create Directory --------------------------------------------------------------
 
     Function CreateDirectory(DirPath As String,
                         ErrNr As Integer,
@@ -60,13 +108,13 @@ Module ModFileSystem
         End Try
         Return Result
     End Function
-	
-	' Abbriviated notation
+
+    ' Abbriviated notation
     Sub MD(Dir As String)
         CreateDirectory(Dir, 0, "Failed to create the Inst directory in TA_Template", "Please check your directory access rights", True, True)
     End Sub
-	
-	'---- Delete Directory --------------------------------------------------------------
+
+    '---- Delete Directory --------------------------------------------------------------
 
     Function DeleteDirectory(DirPath As String,
                         ErrNr As Integer,

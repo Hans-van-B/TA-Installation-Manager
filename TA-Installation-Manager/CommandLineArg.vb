@@ -48,7 +48,7 @@
                 End If
 
                 If SwName = "xhelp" Then
-                    ShowHelp()
+                    ShowXHelp()
                     ExitProgram = True
                 End If
 

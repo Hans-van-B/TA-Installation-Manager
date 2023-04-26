@@ -7,7 +7,7 @@
     Dim HelpPagePdf As String = AppRoot & "\" & AppName & ".pdf"
 
     Sub ShowHelp()
-        xtrace("Show Help")
+        xtrace_subs("ShowHelp")
 
         If (System.IO.File.Exists(HelpPageHtm)) Then
             HelpPage = HelpPageHtm
@@ -52,8 +52,7 @@ settings of an existing wizard for another application:
 	<li><p>And then create the installation 
 	</p>
 </ul>"
-            WriteHelp(HelpTxt.Replace("'", """"))
-
+            WriteHelp(HelpTxt)
 
             WriteHelp("<br>")
             WriteHelp("<br>")
@@ -63,6 +62,54 @@ settings of an existing wizard for another application:
         End If
 
         Process.Start(HelpPage, "")
+
+        xtrace_sube("ShowHelp")
+    End Sub
+
+    Sub ShowXHelp()
+        xtrace_subs("ShowXHelp")
+
+        xtrace("Create page")
+        My.Computer.FileSystem.WriteAllText(HelpPage, "<html>" & vbNewLine, False)
+        WriteHelp("<head>")
+        WriteHelp("")
+        WriteHelp("</head>")
+        WriteHelp("<H2>" & AppName & " V" & AppVer & " XHelp Page</H2>")
+
+        Dim HelpTxt As String = "<pre>
+Command-line switches
+	-h	Show the help page
+	-v  Verbose
+
+	--cvl
+	--dw               Disable Wizard, mainly intended for debugging
+	--help	           Show the help page
+	--ip               Increase Performance
+	--LicTraceVisible  Show the license processing in the log file
+	--xhelp            eXtended help shows this page
+
+Command-line arguments
+	--AutoRun="Step1;Step2;Step3"
+	--DownloadMethod=...
+
+Arguments without dashes
+	/?                 Show the help page
+
+Supported ini file variables
+  When saving the defaults (File, Save), all defaults supported are included in the ini file.
+
+Environment variables
+
+</pre>"
+        WriteHelp(HelpTxt)
+        WriteHelp("<br>")
+        WriteHelp("The " & AppName & " log can be found here: " & LogFile & "<br>")
+        WriteHelp("</body>")
+        WriteHelp("</html")
+
+        Process.Start(HelpPage, "")
+
+        xtrace_sube("ShowXHelp")
     End Sub
 
     Sub ShowHelpAbout()
