@@ -35,6 +35,7 @@
 
     Public StopUpdates As String = "False"
     Public CopyLogToServer As String = "False"
+    Public BinLib As String = AppRoot & "\Lib\Bin"
 
     Public EndDelay As Integer = 2
     Public EndPause As Boolean = False

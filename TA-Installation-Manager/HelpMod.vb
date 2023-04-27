@@ -104,6 +104,14 @@ Supported ini file variables
   When saving the defaults (File, Save), all defaults supported are included in the ini file.
 
 Environment variables
+    TEMP
+    DEBUG
+*1  TAIS_BINLIB        Points to the Bin library
+    TAIS_DEV_DEPO      Points to the development software deposit
+    TAIS_LOC_DEPO      Points to the local software deposit, used for tesing or consultancy
+                       It allows you to distribute/install software from your laptop to other computers
+    validatedir        Points back to the validation procedure directory that has started this program
+                       See the module ValidateSupport
 
 </pre>"
         WriteHelp(HelpTxt)

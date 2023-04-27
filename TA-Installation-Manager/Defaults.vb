@@ -415,4 +415,14 @@
 
     End Sub
 
+    Sub ReadDefaultsFromEnv()
+        xtrace_subs("ReadDefaultsFromEnv")
+        If Environment.GetEnvironmentVariable("TAIS_BINLIB") <> "" Then
+            Glob.BinLib = Environment.GetEnvironmentVariable("TAIS_BINLIB")
+            xtrace_i("Set BinLib = " & BinLib)
+        End If
+
+        xtrace_sube("ReadDefaultsFromEnv")
+    End Sub
+
 End Module

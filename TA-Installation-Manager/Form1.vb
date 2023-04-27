@@ -8,6 +8,7 @@
         WriteInfo("Log file = " & LogFile)
         Log.xtrace("Initializing")
         Defaults.ReadDefaults()
+        Defaults.ReadDefaultsFromEnv()
         Read_Command_Line_Arg()
 
         LicC.GetLic()

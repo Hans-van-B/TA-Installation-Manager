@@ -3,7 +3,6 @@
     Dim UseBinLib As Boolean
     Dim UseUrl As Boolean
     Dim GetFileURL As String
-    Public BinLib As String = AppRoot & "\Lib\Bin"
     Sub GetFile(FileName As String, Target As String)
         xtrace_subs("GetFile (" & Target & "\" & FileName & ")")
         If FileExists(FileName, Target) Then GoTo QUIT
