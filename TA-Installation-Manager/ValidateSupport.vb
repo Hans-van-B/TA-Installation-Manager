@@ -14,6 +14,12 @@ Module ValidateSupport
 
         If ValidateEnv Then
 
+            ' Does not yet support installations where TA_SITE=... is mandatory
+            If RunResult Then
+                xtrace_i("Run the created installation")
+                StartNormal(InstRoot & "\TA-Setup.exe", "-E")
+            End If
+
             If Form1.ResultPathExist Then
 
                 '---- Create a compiled list of all the batch files

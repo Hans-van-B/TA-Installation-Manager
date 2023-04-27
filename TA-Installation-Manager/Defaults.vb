@@ -104,12 +104,15 @@
                         xtrace("Set TAISLocDepo = " & TAISLocDepo)
                     End If
 
+                    If DName = "SetWinLoc" Then
+                        Form1.CheckBoxSetWinLocations.Checked = StringToBool(DVal)
+                        xtrace("Set SetWinLoc = " & Form1.CheckBoxSetWinLocations.Checked.ToString)
+                    End If
 
                     If DName = "XX" Then
                         XX = DVal
                         xtrace("Set XX = " & XX)
                     End If
-
                 End If
 
             Catch ex As Exception
@@ -247,6 +250,11 @@
         If DName = "LogToServer" Then
             Form1.CheckBoxLogToServer.Checked = StringToBool(DVal)
             xtrace("Set LogToServer = " & Form1.CheckBoxLogToServer.Checked.ToString)
+        End If
+
+        If DName = "ListEnv" Then
+            Form1.ListEnvironmentToolStripMenuItem.Checked = StringToBool(DVal)
+            xtrace("Set ListEnv = " & Form1.ListEnvironmentToolStripMenuItem.Checked.ToString)
         End If
 
         If DName = "xx" Then

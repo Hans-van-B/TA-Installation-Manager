@@ -81,16 +81,21 @@ Command-line switches
 	-h	Show the help page
 	-v  Verbose
 
-	--cvl
-	--dw               Disable Wizard, mainly intended for debugging
+*1  --rr               Run result. Run installation that was created
+*1	--cvl              Create validate logs. Validate and debug only.
+*1	--dw               Disable Wizard
 	--help	           Show the help page
 	--ip               Increase Performance
-	--LicTraceVisible  Show the license processing in the log file
+*1	--LicTraceVisible  Show the license processing in the log file
 	--xhelp            eXtended help shows this page
 
 Command-line arguments
-	--AutoRun="Step1;Step2;Step3"
+*1	--AutoRun='Step1;Step2;Step3'
 	--DownloadMethod=...
+
+Remarks
+*1) These switches/arguments are (maily) for valitating, testing and debugging
+    the TA-Installation Manager
 
 Arguments without dashes
 	/?                 Show the help page
@@ -145,7 +150,7 @@ Environment variables
     End Sub
 
     Sub WriteHelp(Line As String)
-        My.Computer.FileSystem.WriteAllText(HelpPage, Line & vbNewLine, True)
+        WriteTxtToFile(HelpPage, Line & vbCrLf, True, 0, "", "")
     End Sub
 
     Sub ShowSupport()

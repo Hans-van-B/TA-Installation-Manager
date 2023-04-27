@@ -65,21 +65,26 @@
                     CVL = True
                 End If
 
+                If SwName = "rr" Then
+                    RunResult = True
+                    xtrace_i("Set RunResult = True")
+                End If
+
                 If SwName = "LicTraceVisible" Then
-                    LicC.LicTraceLevel = 2
-                    xtrace_i(" Set LicTraceLevel = " & LicC.LicTraceLevel.ToString)
+                        LicC.LicTraceLevel = 2
+                        xtrace_i(" Set LicTraceLevel = " & LicC.LicTraceLevel.ToString)
+                    End If
+
+                    If SwName = "dw" Then
+                        Disable_Wizard = True
+                        xtrace_i("Disable Wizard = " & Disable_Wizard.ToString)
+                    End If
+
+                    Continue For
                 End If
 
-                If SwName = "dw" Then
-                    Disable_Wizard = True
-                    xtrace_i("Disable Wizard = " & Disable_Wizard.ToString)
-                End If
-
-                Continue For
-            End If
-
-            '---- Single-dash arguments
-            If Left(argument, 1) = "-" Then
+                '---- Single-dash arguments
+                If Left(argument, 1) = "-" Then
                 ' Switch String = remaining switches
                 SwString = Mid(argument, 2)
 

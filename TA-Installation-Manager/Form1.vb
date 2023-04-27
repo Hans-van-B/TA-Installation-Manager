@@ -123,8 +123,10 @@
                         If Name.ToLower = "logtoserver" Then CheckBoxLogToServer.Checked = StringToBool(Val)
 
                         If Name.ToLower = "adddebugprompt" Then AddDebugPromptToolStripMenuItem.Checked = StringToBool(Val)
+                        If Name.ToLower = "setwinloc" Then CheckBoxSetWinLocations.Checked = StringToBool(Val)
+                        If Name.ToLower = "listenv" Then ListEnvironmentToolStripMenuItem.Checked = StringToBool(Val)
+                        End If
                     End If
-                End If
             End If
 
             'End If

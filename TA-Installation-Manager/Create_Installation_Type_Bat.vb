@@ -167,6 +167,12 @@ Module Create_Installation_Type_Bat
         WTI("echo Starting the " & InstName & " installation >%ICL%")
         WTI("echo  * INSTROOT = %INSTROOT% >>%ICL%")
         WTI("")
+        If Form1.ListEnvironmentToolStripMenuItem.Checked Then
+            xtrace_i("Add list environment")
+            WTI("set >%INSTTMP%\env1.txt")
+        Else
+            xtrace_i("List environment is off")
+        End If
 
         '---- Create bat\init.bat
         Add_Installation_Init()
@@ -275,9 +281,13 @@ set SOURCE_PA=%SOURCEPATH%\W%WPBIT%
 
 set path=%instexe_pa%;%InstLibExe%;%path%
 ")
+        If Form1.CheckBoxSetWinLocations.Checked Then
+            WTO("call '%InstLibBat%\set_win_locations'")
+            WTO("")
+        End If
 
         If (ContentInit = "") Or (ContentInit Is Nothing) Then
-            WTO(":: Add initialization content here")
+            WTO(":: Add additional initialization content here")
         Else
             WTO(ContentInit)    ' Optional Wizard Content
         End If
@@ -427,6 +437,7 @@ set path=%instexe_pa%;%InstLibExe%;%path%
             WTO("")
         End If
 
+        If Form1.ListEnvironmentToolStripMenuItem.Checked Then WTI("set >%INSTTMP%\env2.txt")
         '--- Start Debug Console
         If Form1.AddDebugPromptToolStripMenuItem.Checked Then
             WTO("Start ""Debug Prompt"" cmd")
