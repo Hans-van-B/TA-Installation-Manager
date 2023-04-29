@@ -423,9 +423,9 @@ set SOURCE_PA=%SOURCEPATH%\W%WPBIT%
         If (ContentAIExtr <> "") Then
             WTO(ContentAIExtr)      ' Extract command supplied by wizard
         ElseIf Form1.CheckBoxExtract.Checked Then
-            WTO(":: ToDo")
-            WTO(":: '%InstLibExe%\unzip' -od '%InstTarget%' 'ArchDir\ArchName'")
-            WTO(":: '%InstLibExe%\W64\7z.exe' x %ARCHIVES%\Archive.zip -o'%Inst%' -aoa")
+            WTO(BatRemStr & "ToDo")
+            WTO(BatRemStr & "'%InstLibExe%\unzip' -od '%InstTarget%' 'ArchDir\ArchName'")
+            WTO(BatRemStr & "'%InstLibExe%\W64\7z.exe' x %ARCHIVES%\Archive.zip -o'%Inst%' -aoa")
         End If
 
         If AddExtr Then
