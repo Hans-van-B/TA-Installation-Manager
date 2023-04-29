@@ -4,6 +4,7 @@ Imports System.Text
 Module ValidateSupport
     Sub CreateValidateLogs()
         xtrace_subs("CreateValidateLogs")
+        Form1.WriteInfo("Creating Validate Logs")
 
         Dim ValidateEnv As Boolean = True
         Dim vlogf As String

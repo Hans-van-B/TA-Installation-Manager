@@ -279,7 +279,7 @@ if %PA%==AMD64 set WPBIT=64
 set instexe_pa=%instroot%\exe\W%WPBIT%
 set SOURCE_PA=%SOURCEPATH%\W%WPBIT%
 
-set path=%instexe_pa%;%InstLibExe%;%path%
+:: set path=%instexe_pa%;%InstLibExe%;%path%
 ")
         If Form1.CheckBoxSetWinLocations.Checked Then
             WTO("call '%InstLibBat%\set_win_locations'")
@@ -399,12 +399,13 @@ set path=%instexe_pa%;%InstLibExe%;%path%
             WTO("")
             WTO("%WRITE% ' * Preparing...'")
             WTO("set ARCHIVES=%INSTTMP%\Archives")
+            WTO("If Not exist %ARCHIVES% md %ARCHIVES%")
             WTO(":: /Z = Restartable Mode")
             WTO(":: /J = Unbuffered for large files")
             WTO(":: /R = Retry")
             WTO(":: /W = Wait time in Sec.")
             WTO("robocopy '%SOURCEPATH%' '%ARCHIVES%' /mir /Z /J /R:3 /W:10 /FFT  /LOG+:'%INSTTMP%\CopyArchives.Log'")
-            WTO("set CRESULT=%ERRORLEVEL%")
+            WTO("set RESULTC=%ERRORLEVEL%")
             WTO("")
         End If
 
@@ -415,7 +416,7 @@ set path=%instexe_pa%;%InstLibExe%;%path%
             WTO(CreRemLine("Extract Installation Archive"))
             WTO("")
             WTO("SET INST=%InstTmp%\Inst")
-            WTO("If Not exist Then %INST% md %INST%")
+            WTO("If Not exist %INST% md %INST%")
 
         End If
 
@@ -428,7 +429,7 @@ set path=%instexe_pa%;%InstLibExe%;%path%
         End If
 
         If AddExtr Then
-            WTO("SET ERESULT=%ERRORLEVEL%")
+            WTO("SET RESULTE=%ERRORLEVEL%")
             WTO("")
             WTO("if /i not '%TA_INST_KEEP_ARCHIVES%'=='TRUE' rd /s/q '%ARCHIVES%'")
             WTO("")
@@ -448,7 +449,7 @@ set path=%instexe_pa%;%InstLibExe%;%path%
         Else
             WTO(ContentInstCmd)
         End If
-        WTO("SET IRESULT=%ERRORLEVEL%")
+        WTO("SET RESULTI=%ERRORLEVEL%")
         WTO("")
         WTO(CreRemLine("App Settings"))
         WTO(":APPSET")

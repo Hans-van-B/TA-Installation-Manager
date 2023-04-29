@@ -91,7 +91,7 @@ Module Create_Installation_Depo
         GetFile("TA-Select.exe", TA_Template_Inst)
         GetFile("TA-Deinstall.exe", TA_Template_Inst)
 
-        '-- Create TAI_WRITE
+        '-- Create TAI_WRITE --------------------------------------------------
         Dim NewFile As String = TA_InstLib_Inst & "\Bat\TAI_Write.bat"
         Dim Content As String
 
@@ -101,7 +101,7 @@ Module Create_Installation_Depo
             WriteTxtToFile(NewFile, Content, False, 0, "", "", True, False)
         End If
 
-        '-- Create Err_Fatal_Msg
+        '-- Create Err_Fatal_Msg ----------------------------------------------
         NewFile = TA_InstLib_Inst & "\Bat\Err_Fatal_Msg.bat"
         If Not My.Computer.FileSystem.FileExists(NewFile) Then
             xtrace_i("Create " & NewFile)
@@ -114,6 +114,68 @@ type %MSG% >>%ICL%
 
 call '%util%\exit'
 
+" & CreRemLineProcEnd(NewFile)
+
+            WriteTxtToFile(NewFile, Content, False, 0, "", "", True, False)
+        End If
+
+        '-- Create Stop_Updates -----------------------------------------------
+        NewFile = TA_InstLib_Inst & "\Bat\Stop_Updates.bat"
+        If Not My.Computer.FileSystem.FileExists(NewFile) Then
+            xtrace_i("Create " & NewFile)
+            Content = CreRemLineProcStart(NewFile) & "
+
+:: This procedure is to prevent conflicts between manual and background installations
+:: Especially directly after a computer rollout this happens frequently
+
+:: Do not run if the installation already exists
+if '%INST_EXISTS%'=='TRUE' goto END
+
+:: Do not run if disabled
+if '%PREVENT_INSTALLER_CONFLICTS%'=='FALSE' %WRITE% ' * PREVENT_INSTALLER_CONFLICTS = FALSE'    & goto END
+if '%NO_STOP_UPDATES%'=='TRUE'              %WRITE% ' * Stopping the updates has been disabled' & goto END
+
+:: Do not run if executed as system account
+if /i '%USERNAME%'=='System'                %WRITE% ' * This seems to be a background process'  & goto END
+
+:: Mandatory parameter, Goto START or FINISH
+goto %1
+
+::---- Start ------------------------------------------------------------------
+:START
+   :: Check for nested installations, only execute at the base level
+   if '%TA_INST_LEVEL%'=='' set TA_INST_LEVEL=0
+   set /a TA_INST_LEVEL=%TA_INST_LEVEL%+1
+   if %TA_INST_LEVEL% gtr 1 goto END
+
+   %WRITE% ' * Stop automatic updates'
+   :: Windows Update - W10, W11
+   net stop wuauserv
+   :: Background Intelligent Transfer Service - W10, W11
+   net stop bits
+   :: Delivery Optimization - W10, W11
+   net stop dosvc
+   :: Application Management
+   net stop AppMgmt
+   :: Mozilla Maintenance Service
+   net stop MozillaMaintenance
+
+   goto END
+
+
+::---- Finish -----------------------------------------------------------------
+:FINISH
+   :: Check for nested installations, only execute at the base level
+   set /a TA_INST_LEVEL=%TA_INST_LEVEL%-1
+   if %TA_INST_LEVEL% gtr 0 goto END
+
+   %WRITE% ' * Start automatic updates'
+   net start wuauserv
+   net start bits
+   net start dosvc
+   net start AppMgmt
+
+:END
 " & CreRemLineProcEnd(NewFile)
 
             WriteTxtToFile(NewFile, Content, False, 0, "", "", True, False)
