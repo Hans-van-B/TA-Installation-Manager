@@ -160,6 +160,20 @@ goto %1
    :: Mozilla Maintenance Service
    net stop MozillaMaintenance
 
+   :: W10 Windows Modules Installer component
+   net stop TrustedInstaller
+   net stop smstsmgr
+   net stop CcmExec
+   
+   taskkill /IM TrustedInstaller.exe %SULOG%
+   taskkill /IM CcmExec.exe  /F /T %SULOG%
+   taskkill /IM SMSCliUI.exe /F /T %SULOG%
+   :: checks for Java updates
+   taskkill /IM jucheck.exe /f /t %SULOG%
+   taskkill /IM jusched.exe /f /t %SULOG%
+   :: InstallShield Sceduler
+   taskkill /IM issch.exe /F /T %SULOG%
+   taskkill /IM ISUSPM.exe /F /T %SULOG%
    goto END
 
 
