@@ -257,10 +257,9 @@
             xtrace("Set ListEnv = " & Form1.ListEnvironmentToolStripMenuItem.Checked.ToString)
         End If
 
-        If DName = "xx" Then
-            XX = DVal
-            xtrace("Set XX = " & XX)
-
+        If DName = "CheckSystem" Then
+            Form1.CheckBoxCheckSystem.Checked = StringToBool(DVal)
+            xtrace("Set ListEnv = " & Form1.CheckBoxCheckSystem.Checked.ToString)
         End If
 
         If DName = "xx" Then

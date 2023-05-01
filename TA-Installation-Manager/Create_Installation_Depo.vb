@@ -127,8 +127,9 @@ call '%util%\exit'
 
 :: This procedure is to prevent conflicts between manual and background installations
 :: Especially directly after a computer rollout this happens frequently
+:: Services errors that occur in this procedure can usually be ignored
 
-:: Do not run if the installation already exists
+:: Do not run if the installation already exists (prevents unnessesary delay)
 if '%INST_EXISTS%'=='TRUE' goto END
 
 :: Do not run if disabled
@@ -165,15 +166,15 @@ goto %1
    net stop smstsmgr
    net stop CcmExec
    
-   taskkill /IM TrustedInstaller.exe %SULOG%
-   taskkill /IM CcmExec.exe  /F /T %SULOG%
-   taskkill /IM SMSCliUI.exe /F /T %SULOG%
+   taskkill /IM TrustedInstaller.exe
+   taskkill /IM CcmExec.exe  /F /T
+   taskkill /IM SMSCliUI.exe /F /T
    :: checks for Java updates
-   taskkill /IM jucheck.exe /f /t %SULOG%
-   taskkill /IM jusched.exe /f /t %SULOG%
+   taskkill /IM jucheck.exe /f /t
+   taskkill /IM jusched.exe /f /t
    :: InstallShield Sceduler
-   taskkill /IM issch.exe /F /T %SULOG%
-   taskkill /IM ISUSPM.exe /F /T %SULOG%
+   taskkill /IM issch.exe /F /T
+   taskkill /IM ISUSPM.exe /F /T
    goto END
 
 
@@ -194,6 +195,27 @@ goto %1
 
             WriteTxtToFile(NewFile, Content, False, 0, "", "", True, False)
         End If
+
+        '-- Copy from binlib -------------------------------------------------
+        xtrace_i("Copy from binlib")
+        Dim BinLibFiles() As String = {"system_tests.pl", "gen.pl", "xtrace01.pl"}
+        Dim SourceF, TargetD, Ext, TargetF As String
+        For Each File As String In BinLibFiles
+            SourceF = BinLib & "\" & File
+            Ext = Mid(System.IO.Path.GetExtension(File), 2)
+            xtrace_i("ext = " & Ext)
+            TargetD = TA_InstLib_Inst & "\" & Ext
+            TargetF = TargetD & "\" & File
+            If Not My.Computer.FileSystem.DirectoryExists(BinLib) Then
+                xtrace_warn("BinLib missing: " & BinLib)
+            ElseIf Not My.Computer.FileSystem.DirectoryExists(TargetD) Then
+                xtrace_warn("Target missing: " & TargetD)
+            ElseIf Not My.Computer.FileSystem.FileExists(SourceF) Then
+                xtrace_warn("Source file missing: " & SourceF)
+            Else
+                CopyFile(SourceF, TargetF, 0, "Failed to copy file from BinLib To InstLib", "", True, False)
+            End If
+        Next
 
         xtrace_sube("Create_Depo")
     End Sub

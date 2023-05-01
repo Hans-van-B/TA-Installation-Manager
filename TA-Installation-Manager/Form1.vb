@@ -126,11 +126,11 @@
                         If Name.ToLower = "adddebugprompt" Then AddDebugPromptToolStripMenuItem.Checked = StringToBool(Val)
                         If Name.ToLower = "setwinloc" Then CheckBoxSetWinLocations.Checked = StringToBool(Val)
                         If Name.ToLower = "listenv" Then ListEnvironmentToolStripMenuItem.Checked = StringToBool(Val)
-                        End If
+                        If Name.ToLower = "checksystem" Then CheckBoxCheckSystem.Checked = StringToBool(Val)
                     End If
-            End If
 
-            'End If
+                End If
+            End If
         Next
         GroupBoxAutoRun.Visible = False
 

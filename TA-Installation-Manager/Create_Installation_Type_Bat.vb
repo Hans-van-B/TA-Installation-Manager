@@ -9,7 +9,7 @@ Module Create_Installation_Type_Bat
     Dim BatTimeStamp As String
     Dim InstBat As String
     Dim InstData As String
-    Dim CRLTL As Integer = 2   ' Create Rem Line Trace Level
+    Dim CRLTL As Integer = 3   ' Create Rem Line Trace Level
 
     '==== Short notation of write to batch file
     Dim OutFile As String
@@ -278,9 +278,16 @@ if %PA%==AMD64 set WPBIT=64
 
 set instexe_pa=%instroot%\exe\W%WPBIT%
 set SOURCE_PA=%SOURCEPATH%\W%WPBIT%
-
-:: set path=%instexe_pa%;%InstLibExe%;%path%
 ")
+        ':: set path=%instexe_pa%;%InstLibExe%;%path%
+
+        If Form1.CheckBoxCheckSystem.Checked Then
+            WTO("perl '%InstLibPl%\system_tests.pl' - -dfree = 2G")
+            WTO("Call '%INSTTMP%\SYSTEM_TEST_STAT.bat'")
+            WTO("If '%SYSTEM_TEST_ERRORS%' == 'True' Then Call '%util%\Exit'")
+            WTO("")
+        End If
+
         If Form1.CheckBoxSetWinLocations.Checked Then
             WTO("call '%InstLibBat%\set_win_locations'")
             WTO("")

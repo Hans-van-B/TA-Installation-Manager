@@ -36,6 +36,9 @@ Partial Class Form1
         Me.ResetLicenseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownloadMethodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripMenuInstallation = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddDebugPromptToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListEnvironmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CreateDepoShareToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReconnectToLocalDepoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -69,6 +72,11 @@ Partial Class Form1
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPageWinBat = New System.Windows.Forms.TabPage()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CheckBoxBatSeparatePost = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxBatSeparateApp = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxBatSeparateInit = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxSetWinLocations = New System.Windows.Forms.CheckBox()
         Me.GroupBoxDeptList = New System.Windows.Forms.GroupBox()
         Me.TextBoxDept = New System.Windows.Forms.TextBox()
         Me.CheckBoxDeptConfigs = New System.Windows.Forms.CheckBox()
@@ -95,14 +103,7 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.CheckBoxSetWinLocations = New System.Windows.Forms.CheckBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.CheckBoxBatSeparatePost = New System.Windows.Forms.CheckBox()
-        Me.CheckBoxBatSeparateApp = New System.Windows.Forms.CheckBox()
-        Me.CheckBoxBatSeparateInit = New System.Windows.Forms.CheckBox()
-        Me.ToolStripMenuInstallation = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AddDebugPromptToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ListEnvironmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckBoxCheckSystem = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -119,12 +120,12 @@ Partial Class Form1
         Me.SplitContainer2V.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPageWinBat.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.GroupBoxDeptList.SuspendLayout()
         Me.GroupBoxRem.SuspendLayout()
         Me.TabPageCreateShare.SuspendLayout()
         Me.GroupBoxCreateDepo.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -194,14 +195,14 @@ Partial Class Form1
         'ResetLicenseToolStripMenuItem
         '
         Me.ResetLicenseToolStripMenuItem.Name = "ResetLicenseToolStripMenuItem"
-        Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ResetLicenseToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.ResetLicenseToolStripMenuItem.Text = "Reset License"
         '
         'DownloadMethodToolStripMenuItem
         '
         Me.DownloadMethodToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripComboBox1})
         Me.DownloadMethodToolStripMenuItem.Name = "DownloadMethodToolStripMenuItem"
-        Me.DownloadMethodToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DownloadMethodToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.DownloadMethodToolStripMenuItem.Text = "Download Method"
         '
         'ToolStripComboBox1
@@ -210,6 +211,27 @@ Partial Class Form1
         Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
         Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 23)
         Me.ToolStripComboBox1.Text = "VBDownloadFile"
+        '
+        'ToolStripMenuInstallation
+        '
+        Me.ToolStripMenuInstallation.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddDebugPromptToolStripMenuItem, Me.ListEnvironmentToolStripMenuItem})
+        Me.ToolStripMenuInstallation.Name = "ToolStripMenuInstallation"
+        Me.ToolStripMenuInstallation.Size = New System.Drawing.Size(203, 22)
+        Me.ToolStripMenuInstallation.Text = "Installation"
+        '
+        'AddDebugPromptToolStripMenuItem
+        '
+        Me.AddDebugPromptToolStripMenuItem.CheckOnClick = True
+        Me.AddDebugPromptToolStripMenuItem.Name = "AddDebugPromptToolStripMenuItem"
+        Me.AddDebugPromptToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
+        Me.AddDebugPromptToolStripMenuItem.Text = "Add Debug Prompt to Inst."
+        '
+        'ListEnvironmentToolStripMenuItem
+        '
+        Me.ListEnvironmentToolStripMenuItem.CheckOnClick = True
+        Me.ListEnvironmentToolStripMenuItem.Name = "ListEnvironmentToolStripMenuItem"
+        Me.ListEnvironmentToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
+        Me.ListEnvironmentToolStripMenuItem.Text = "List environment"
         '
         'CreateDepoShareToolStripMenuItem
         '
@@ -472,6 +494,7 @@ Partial Class Form1
         'SplitContainer2V.Panel1
         '
         Me.SplitContainer2V.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxCheckSystem)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxExtract)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.Panel1)
         Me.SplitContainer2V.Panel1.Controls.Add(Me.CheckBoxReDownload)
@@ -512,7 +535,7 @@ Partial Class Form1
         'CheckBoxReDownload
         '
         Me.CheckBoxReDownload.AutoSize = True
-        Me.CheckBoxReDownload.Location = New System.Drawing.Point(6, 129)
+        Me.CheckBoxReDownload.Location = New System.Drawing.Point(6, 144)
         Me.CheckBoxReDownload.Name = "CheckBoxReDownload"
         Me.CheckBoxReDownload.Size = New System.Drawing.Size(91, 17)
         Me.CheckBoxReDownload.TabIndex = 4
@@ -535,7 +558,7 @@ Partial Class Form1
         'CheckBoxLogToServer
         '
         Me.CheckBoxLogToServer.AutoSize = True
-        Me.CheckBoxLogToServer.Location = New System.Drawing.Point(6, 105)
+        Me.CheckBoxLogToServer.Location = New System.Drawing.Point(6, 120)
         Me.CheckBoxLogToServer.Name = "CheckBoxLogToServer"
         Me.CheckBoxLogToServer.Size = New System.Drawing.Size(121, 17)
         Me.CheckBoxLogToServer.TabIndex = 2
@@ -547,7 +570,7 @@ Partial Class Form1
         'CheckBoxStopUpdates
         '
         Me.CheckBoxStopUpdates.AutoSize = True
-        Me.CheckBoxStopUpdates.Location = New System.Drawing.Point(6, 82)
+        Me.CheckBoxStopUpdates.Location = New System.Drawing.Point(6, 97)
         Me.CheckBoxStopUpdates.Name = "CheckBoxStopUpdates"
         Me.CheckBoxStopUpdates.Size = New System.Drawing.Size(91, 17)
         Me.CheckBoxStopUpdates.TabIndex = 1
@@ -595,6 +618,60 @@ Partial Class Form1
         Me.TabPageWinBat.TabIndex = 0
         Me.TabPageWinBat.Text = "Windows Batch"
         Me.TabPageWinBat.UseVisualStyleBackColor = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.CheckBoxBatSeparatePost)
+        Me.GroupBox1.Controls.Add(Me.CheckBoxBatSeparateApp)
+        Me.GroupBox1.Controls.Add(Me.CheckBoxBatSeparateInit)
+        Me.GroupBox1.Location = New System.Drawing.Point(10, 6)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(201, 94)
+        Me.GroupBox1.TabIndex = 8
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Structure"
+        '
+        'CheckBoxBatSeparatePost
+        '
+        Me.CheckBoxBatSeparatePost.AutoSize = True
+        Me.CheckBoxBatSeparatePost.Location = New System.Drawing.Point(6, 66)
+        Me.CheckBoxBatSeparatePost.Name = "CheckBoxBatSeparatePost"
+        Me.CheckBoxBatSeparatePost.Size = New System.Drawing.Size(165, 19)
+        Me.CheckBoxBatSeparatePost.TabIndex = 5
+        Me.CheckBoxBatSeparatePost.Text = "Separate Post Installation"
+        Me.CheckBoxBatSeparatePost.UseVisualStyleBackColor = True
+        '
+        'CheckBoxBatSeparateApp
+        '
+        Me.CheckBoxBatSeparateApp.AutoSize = True
+        Me.CheckBoxBatSeparateApp.Location = New System.Drawing.Point(5, 42)
+        Me.CheckBoxBatSeparateApp.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBoxBatSeparateApp.Name = "CheckBoxBatSeparateApp"
+        Me.CheckBoxBatSeparateApp.Size = New System.Drawing.Size(187, 19)
+        Me.CheckBoxBatSeparateApp.TabIndex = 4
+        Me.CheckBoxBatSeparateApp.Text = "Separate Application Inst. File"
+        Me.CheckBoxBatSeparateApp.UseVisualStyleBackColor = True
+        '
+        'CheckBoxBatSeparateInit
+        '
+        Me.CheckBoxBatSeparateInit.AutoSize = True
+        Me.CheckBoxBatSeparateInit.Location = New System.Drawing.Point(5, 19)
+        Me.CheckBoxBatSeparateInit.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBoxBatSeparateInit.Name = "CheckBoxBatSeparateInit"
+        Me.CheckBoxBatSeparateInit.Size = New System.Drawing.Size(95, 19)
+        Me.CheckBoxBatSeparateInit.TabIndex = 3
+        Me.CheckBoxBatSeparateInit.Text = "Separate Init"
+        Me.CheckBoxBatSeparateInit.UseVisualStyleBackColor = True
+        '
+        'CheckBoxSetWinLocations
+        '
+        Me.CheckBoxSetWinLocations.AutoSize = True
+        Me.CheckBoxSetWinLocations.Location = New System.Drawing.Point(16, 106)
+        Me.CheckBoxSetWinLocations.Name = "CheckBoxSetWinLocations"
+        Me.CheckBoxSetWinLocations.Size = New System.Drawing.Size(153, 19)
+        Me.CheckBoxSetWinLocations.TabIndex = 7
+        Me.CheckBoxSetWinLocations.Text = "Set Windows Locations"
+        Me.CheckBoxSetWinLocations.UseVisualStyleBackColor = True
         '
         'GroupBoxDeptList
         '
@@ -882,80 +959,15 @@ Partial Class Form1
         'TimerInit
         '
         '
-        'CheckBoxSetWinLocations
+        'CheckBoxCheckSystem
         '
-        Me.CheckBoxSetWinLocations.AutoSize = True
-        Me.CheckBoxSetWinLocations.Location = New System.Drawing.Point(16, 106)
-        Me.CheckBoxSetWinLocations.Name = "CheckBoxSetWinLocations"
-        Me.CheckBoxSetWinLocations.Size = New System.Drawing.Size(153, 19)
-        Me.CheckBoxSetWinLocations.TabIndex = 7
-        Me.CheckBoxSetWinLocations.Text = "Set Windows Locations"
-        Me.CheckBoxSetWinLocations.UseVisualStyleBackColor = True
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.CheckBoxBatSeparatePost)
-        Me.GroupBox1.Controls.Add(Me.CheckBoxBatSeparateApp)
-        Me.GroupBox1.Controls.Add(Me.CheckBoxBatSeparateInit)
-        Me.GroupBox1.Location = New System.Drawing.Point(10, 6)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(201, 94)
-        Me.GroupBox1.TabIndex = 8
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Structure"
-        '
-        'CheckBoxBatSeparatePost
-        '
-        Me.CheckBoxBatSeparatePost.AutoSize = True
-        Me.CheckBoxBatSeparatePost.Location = New System.Drawing.Point(6, 66)
-        Me.CheckBoxBatSeparatePost.Name = "CheckBoxBatSeparatePost"
-        Me.CheckBoxBatSeparatePost.Size = New System.Drawing.Size(165, 19)
-        Me.CheckBoxBatSeparatePost.TabIndex = 5
-        Me.CheckBoxBatSeparatePost.Text = "Separate Post Installation"
-        Me.CheckBoxBatSeparatePost.UseVisualStyleBackColor = True
-        '
-        'CheckBoxBatSeparateApp
-        '
-        Me.CheckBoxBatSeparateApp.AutoSize = True
-        Me.CheckBoxBatSeparateApp.Location = New System.Drawing.Point(5, 42)
-        Me.CheckBoxBatSeparateApp.Margin = New System.Windows.Forms.Padding(2)
-        Me.CheckBoxBatSeparateApp.Name = "CheckBoxBatSeparateApp"
-        Me.CheckBoxBatSeparateApp.Size = New System.Drawing.Size(187, 19)
-        Me.CheckBoxBatSeparateApp.TabIndex = 4
-        Me.CheckBoxBatSeparateApp.Text = "Separate Application Inst. File"
-        Me.CheckBoxBatSeparateApp.UseVisualStyleBackColor = True
-        '
-        'CheckBoxBatSeparateInit
-        '
-        Me.CheckBoxBatSeparateInit.AutoSize = True
-        Me.CheckBoxBatSeparateInit.Location = New System.Drawing.Point(5, 19)
-        Me.CheckBoxBatSeparateInit.Margin = New System.Windows.Forms.Padding(2)
-        Me.CheckBoxBatSeparateInit.Name = "CheckBoxBatSeparateInit"
-        Me.CheckBoxBatSeparateInit.Size = New System.Drawing.Size(95, 19)
-        Me.CheckBoxBatSeparateInit.TabIndex = 3
-        Me.CheckBoxBatSeparateInit.Text = "Separate Init"
-        Me.CheckBoxBatSeparateInit.UseVisualStyleBackColor = True
-        '
-        'ToolStripMenuInstallation
-        '
-        Me.ToolStripMenuInstallation.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddDebugPromptToolStripMenuItem, Me.ListEnvironmentToolStripMenuItem})
-        Me.ToolStripMenuInstallation.Name = "ToolStripMenuInstallation"
-        Me.ToolStripMenuInstallation.Size = New System.Drawing.Size(203, 22)
-        Me.ToolStripMenuInstallation.Text = "Installation"
-        '
-        'AddDebugPromptToolStripMenuItem
-        '
-        Me.AddDebugPromptToolStripMenuItem.CheckOnClick = True
-        Me.AddDebugPromptToolStripMenuItem.Name = "AddDebugPromptToolStripMenuItem"
-        Me.AddDebugPromptToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
-        Me.AddDebugPromptToolStripMenuItem.Text = "Add Debug Prompt to Inst."
-        '
-        'ListEnvironmentToolStripMenuItem
-        '
-        Me.ListEnvironmentToolStripMenuItem.CheckOnClick = True
-        Me.ListEnvironmentToolStripMenuItem.Name = "ListEnvironmentToolStripMenuItem"
-        Me.ListEnvironmentToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
-        Me.ListEnvironmentToolStripMenuItem.Text = "List environment"
+        Me.CheckBoxCheckSystem.AutoSize = True
+        Me.CheckBoxCheckSystem.Location = New System.Drawing.Point(6, 72)
+        Me.CheckBoxCheckSystem.Name = "CheckBoxCheckSystem"
+        Me.CheckBoxCheckSystem.Size = New System.Drawing.Size(94, 17)
+        Me.CheckBoxCheckSystem.TabIndex = 7
+        Me.CheckBoxCheckSystem.Text = "Check System"
+        Me.CheckBoxCheckSystem.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -991,6 +1003,8 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPageWinBat.ResumeLayout(False)
         Me.TabPageWinBat.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.GroupBoxDeptList.ResumeLayout(False)
         Me.GroupBoxDeptList.PerformLayout()
         Me.GroupBoxRem.ResumeLayout(False)
@@ -1000,8 +1014,6 @@ Partial Class Form1
         Me.GroupBoxCreateDepo.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1085,4 +1097,5 @@ Partial Class Form1
     Friend WithEvents ToolStripMenuInstallation As ToolStripMenuItem
     Friend WithEvents AddDebugPromptToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ListEnvironmentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CheckBoxCheckSystem As CheckBox
 End Class
