@@ -281,8 +281,11 @@ set SOURCE_PA=%SOURCEPATH%\W%WPBIT%
 ")
         ':: set path=%instexe_pa%;%InstLibExe%;%path%
 
+        WTO("::---- Target directory ----")
+        WTO("set APPL_BASE_DIR=%ProgramFiles%\AppName") ' Used by system_tests
+
         If Form1.CheckBoxCheckSystem.Checked Then
-            WTO("perl '%InstLibPl%\system_tests.pl' - -dfree = 2G")
+            WTO("perl '%InstLibPl%\system_tests.pl' --dfree=4G")
             WTO("Call '%INSTTMP%\SYSTEM_TEST_STAT.bat'")
             WTO("If '%SYSTEM_TEST_ERRORS%' == 'True' Then Call '%util%\Exit'")
             WTO("")

@@ -234,11 +234,7 @@ Module Log
         End If
     End Sub
 
-    Sub xtrace(Msg As String)
-        xtrace_root(" " & Msg, 2)
-    End Sub
-
-    Sub xtrace(Msg As String, TV As Integer)
+    Sub xtrace(Msg As String, Optional TV As Integer = 2)
         xtrace_root(" " & Msg, TV)
     End Sub
 
@@ -268,20 +264,20 @@ Module Log
     End Sub
 
     '--- xtrace Sub ----
-    Sub xtrace_subs(Msg As String)  ' Default trace level
+    Sub xtrace_subs(Msg As String)                  ' Default/Global trace level
         xtrace_root("->" & Msg & " (" & (SubLevel + 1).ToString & ")", G_TL_Sub)
         SubLevel = SubLevel + 1
     End Sub
-    Sub xtrace_subs(Msg As String, TV As Integer)   ' Specific trace level
+    Sub xtrace_subs(Msg As String, TV As Integer)   ' Specified trace level
         xtrace_root("->" & Msg & " (" & (SubLevel + 1).ToString & ")", TV)
         SubLevel = SubLevel + 1
     End Sub
 
-    Sub xtrace_sube(Msg As String)
+    Sub xtrace_sube(Msg As String)                  ' Default/Global trace level
         SubLevel = SubLevel - 1
         xtrace_root("<-" & Msg & " (" & (SubLevel + 1).ToString & ")", G_TL_Sub)
     End Sub
-    Sub xtrace_sube(Msg As String, TV As Integer)
+    Sub xtrace_sube(Msg As String, TV As Integer)   ' Specified trace level
         SubLevel = SubLevel - 1
         xtrace_root("<-" & Msg & " (" & (SubLevel + 1).ToString & ")", TV)
     End Sub
@@ -394,14 +390,14 @@ Module Log
 
 
     '---- XTrace Warn
-    Sub xtrace_warn(Msg As String)
+    Sub xtrace_warn(Msg As String, Optional TV As Integer = 1)
         WarningCount = WarningCount + 1
-        xtrace("Warning: " & Msg, 1)
+        xtrace("Warning: " & Msg, TV)
         wait(1)
     End Sub
 
     ' Replaces xtrace_warn2 because specifying the trace value is more clear and consistent
-    Sub xtrace_warn(Msg() As String, TV As Integer)
+    Sub xtrace_warn(Msg() As String, Optional TV As Integer = 1)
         Dim LNr As Integer = 0
         For Each Line As String In Msg
             LNr += 1
@@ -412,11 +408,6 @@ Module Log
             End If
         Next
         wait(1)
-    End Sub
-
-    ' Default trace value = 1
-    Sub xtrace_warn(Msg() As String)
-        xtrace_warn(Msg, 1)
     End Sub
 
     'Move to Form1

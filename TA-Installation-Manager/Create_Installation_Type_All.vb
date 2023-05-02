@@ -42,6 +42,21 @@
         AddInstFile(Form1.CheckBoxTASelect.Checked, "TA-Select.exe", "Inst")
         AddInstFile(Form1.CheckBoxTADeinstall.Checked, "TA-Deinstall.exe", "Inst")
 
+        '-- Create data\Installation_Files.txt --------------------------------
+        Dim NewFile As String = InstRoot & "\data\Installation_Files.txt"
+        Dim Content As String
+
+        If My.Computer.FileSystem.FileExists(NewFile) Then
+            xtrace_i(NewFile & " Exists")
+        Else
+            xtrace_i("Create " & NewFile)
+            Content = "# Absolute paths or paths inside %APPL_BASE_DIR%" & vbCrLf &
+                "AppDir\AppFile1.dll" & vbCrLf &
+                "AppDir\AppFile2.exe" & vbCrLf
+            WriteTxtToFile(NewFile, Content, False, 0, "", "", True, False)
+        End If
+
+
         Form1.ButtonShowResult.Enabled = True
 
         xtrace_sube("Create_Installation_Base")
