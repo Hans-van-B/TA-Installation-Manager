@@ -63,6 +63,7 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ComboBoxDevDepo = New System.Windows.Forms.ComboBox()
         Me.SplitContainer2V = New System.Windows.Forms.SplitContainer()
+        Me.CheckBoxCheckSystem = New System.Windows.Forms.CheckBox()
         Me.CheckBoxExtract = New System.Windows.Forms.CheckBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.CheckBoxReDownload = New System.Windows.Forms.CheckBox()
@@ -103,7 +104,7 @@ Partial Class Form1
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
         Me.TimerInit = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.CheckBoxCheckSystem = New System.Windows.Forms.CheckBox()
+        Me.ButtonReset = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainerBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerBase.Panel1.SuspendLayout()
@@ -281,6 +282,7 @@ Partial Class Form1
         'SplitContainerBase.Panel1
         '
         Me.SplitContainerBase.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonReset)
         Me.SplitContainerBase.Panel1.Controls.Add(Me.GroupBoxAutoRun)
         Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonCheckWizard)
         Me.SplitContainerBase.Panel1.Controls.Add(Me.ButtonDeleteResult)
@@ -336,7 +338,7 @@ Partial Class Form1
         'ButtonDeleteResult
         '
         Me.ButtonDeleteResult.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonDeleteResult.Location = New System.Drawing.Point(12, 155)
+        Me.ButtonDeleteResult.Location = New System.Drawing.Point(12, 191)
         Me.ButtonDeleteResult.Name = "ButtonDeleteResult"
         Me.ButtonDeleteResult.Size = New System.Drawing.Size(161, 36)
         Me.ButtonDeleteResult.TabIndex = 2
@@ -347,7 +349,7 @@ Partial Class Form1
         '
         Me.ButtonShowResult.Enabled = False
         Me.ButtonShowResult.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonShowResult.Location = New System.Drawing.Point(12, 114)
+        Me.ButtonShowResult.Location = New System.Drawing.Point(12, 150)
         Me.ButtonShowResult.Name = "ButtonShowResult"
         Me.ButtonShowResult.Size = New System.Drawing.Size(161, 35)
         Me.ButtonShowResult.TabIndex = 1
@@ -357,7 +359,7 @@ Partial Class Form1
         'ButtonStartCreate
         '
         Me.ButtonStartCreate.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonStartCreate.Location = New System.Drawing.Point(10, 74)
+        Me.ButtonStartCreate.Location = New System.Drawing.Point(10, 110)
         Me.ButtonStartCreate.Name = "ButtonStartCreate"
         Me.ButtonStartCreate.Size = New System.Drawing.Size(163, 34)
         Me.ButtonStartCreate.TabIndex = 0
@@ -510,6 +512,16 @@ Partial Class Form1
         Me.SplitContainer2V.Size = New System.Drawing.Size(824, 395)
         Me.SplitContainer2V.SplitterDistance = 190
         Me.SplitContainer2V.TabIndex = 2
+        '
+        'CheckBoxCheckSystem
+        '
+        Me.CheckBoxCheckSystem.AutoSize = True
+        Me.CheckBoxCheckSystem.Location = New System.Drawing.Point(6, 72)
+        Me.CheckBoxCheckSystem.Name = "CheckBoxCheckSystem"
+        Me.CheckBoxCheckSystem.Size = New System.Drawing.Size(94, 17)
+        Me.CheckBoxCheckSystem.TabIndex = 7
+        Me.CheckBoxCheckSystem.Text = "Check System"
+        Me.CheckBoxCheckSystem.UseVisualStyleBackColor = True
         '
         'CheckBoxExtract
         '
@@ -959,15 +971,16 @@ Partial Class Form1
         'TimerInit
         '
         '
-        'CheckBoxCheckSystem
+        'ButtonReset
         '
-        Me.CheckBoxCheckSystem.AutoSize = True
-        Me.CheckBoxCheckSystem.Location = New System.Drawing.Point(6, 72)
-        Me.CheckBoxCheckSystem.Name = "CheckBoxCheckSystem"
-        Me.CheckBoxCheckSystem.Size = New System.Drawing.Size(94, 17)
-        Me.CheckBoxCheckSystem.TabIndex = 7
-        Me.CheckBoxCheckSystem.Text = "Check System"
-        Me.CheckBoxCheckSystem.UseVisualStyleBackColor = True
+        Me.ButtonReset.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonReset.Location = New System.Drawing.Point(10, 71)
+        Me.ButtonReset.Name = "ButtonReset"
+        Me.ButtonReset.Size = New System.Drawing.Size(163, 33)
+        Me.ButtonReset.TabIndex = 5
+        Me.ButtonReset.Text = "Reset Settings"
+        Me.ToolTip1.SetToolTip(Me.ButtonReset, "Reread the saved defaults")
+        Me.ButtonReset.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -1098,4 +1111,5 @@ Partial Class Form1
     Friend WithEvents AddDebugPromptToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ListEnvironmentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CheckBoxCheckSystem As CheckBox
+    Friend WithEvents ButtonReset As Button
 End Class

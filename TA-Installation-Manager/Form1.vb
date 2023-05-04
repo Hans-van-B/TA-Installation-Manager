@@ -20,6 +20,24 @@
         SplitContainerBase.SplitterDistance = 200
         TimerInit.Start()
 
+        Dim BX As Integer = 10
+        Dim BY As Integer = 20
+        Dim BD As Integer = 40
+        ButtonCheckWizard.Left = BX
+        ButtonCheckWizard.Top = BY
+        BY += BD
+        ButtonReset.Left = BX
+        ButtonReset.Top = BY
+        BY += BD
+        ButtonStartCreate.Left = BX
+        ButtonStartCreate.Top = BY
+        BY += BD
+        ButtonShowResult.Left = BX
+        ButtonShowResult.Top = BY
+        BY += BD
+        ButtonDeleteResult.Left = BX
+        ButtonDeleteResult.Top = BY
+
         Log.xtrace_sube("Form1_Load")
     End Sub
 
@@ -31,7 +49,7 @@
         WriteInfo("Bin Library = " & BinLib)
 
         Set_TAISDevDepo()
-        ButtonCheckWizard.Left = 10
+
         TabControl1.SelectTab(0)
 
         SetGUIScryptType(Glob.ScriptTypeSelect)
@@ -332,11 +350,11 @@
         Else
             SetStatus("First select the installation type And it's components")
             MsgBox("Please select the installation type" & vbCrLf & " and it's components", MessageBoxIcon.Information, "Hint:")
-                            'TabPageWinBat.BackColor = ButtonHighLite
-                            'TabPagePS.BackColor = ButtonHighLite
-                            'TabControl1.BackColor = ButtonHighLite
-                            'TabControl1.SelectedTab = TabPageWinBat
-                            SelectScriptType()
+            'TabPageWinBat.BackColor = ButtonHighLite
+            'TabPagePS.BackColor = ButtonHighLite
+            'TabControl1.BackColor = ButtonHighLite
+            'TabControl1.SelectedTab = TabPageWinBat
+            SelectScriptType()
                         End If
 
                         ButtonStartCreate.Enabled = True
@@ -419,6 +437,7 @@
     End Sub
     Private Sub ComboBoxInstName_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxInstName.SelectedIndexChanged
         xtrace_subs("ComboBoxInstName_SelectedIndexChanged")
+        WizardInitialized = False
         xtrace_i("InstName = " & ComboBoxInstName.Text)
         xtrace_sube("ComboBoxInstName_SelectedIndexChanged")
     End Sub
@@ -610,5 +629,13 @@
             "then search the log file for SetReconnectEnable"
 
         xtrace_sube("SetReconnectEnable")
+    End Sub
+
+    '---- Button Reset Settings
+    Private Sub ButtonReset_Click(sender As Object, e As EventArgs) Handles ButtonReset.Click
+        xtrace_subs("ButtonReset_Click")
+        Defaults.ReadDefaults()
+        Defaults.ReadDefaultsFromEnv()
+        xtrace_sube("ButtonReset_Click")
     End Sub
 End Class

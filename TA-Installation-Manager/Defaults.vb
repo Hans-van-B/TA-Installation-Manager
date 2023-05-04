@@ -109,6 +109,11 @@
                         xtrace("Set SetWinLoc = " & Form1.CheckBoxSetWinLocations.Checked.ToString)
                     End If
 
+                    If DName = "Extract" Then
+                        Form1.CheckBoxExtract.Checked = StringToBool(DVal)
+                        xtrace("Set XX = " & XX)
+                    End If
+
                     If DName = "XX" Then
                         XX = DVal
                         xtrace("Set XX = " & XX)
@@ -299,6 +304,8 @@
         WriteIniLine("ScriptTypeSelect", Glob.ScriptTypeSelect)
         WriteIniLine("BatSeparateInit", Form1.CheckBoxBatSeparateInit.Checked)
         WriteIniLine("CopySourceToLocal", Form1.CheckBoxCopySource.Checked)
+        WriteIniLine("Extract", Form1.CheckBoxExtract.Checked)
+        WriteIniLine("CheckSystem", Form1.CheckBoxCheckSystem.Checked)
         WriteIniLine("BatSeparateApp", Form1.CheckBoxBatSeparateApp.Checked)
         WriteIniLine("BatSeparatePost", Form1.CheckBoxBatSeparatePost.Checked)
         WriteIniLine("BatRemarkMethod", RemType)
