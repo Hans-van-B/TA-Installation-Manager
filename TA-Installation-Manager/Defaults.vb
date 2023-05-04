@@ -321,6 +321,10 @@
 
         If TAISLocDepo = "" Then TAISLocDepo = StrNothing   ' Nothing will not be read
         WriteIniLine("TAISLocDepo", TAISLocDepo)
+
+        Dim DeptNames As String = Join(Form1.TextBoxDept.Lines, ";")
+        WriteIniLine("DeptNameList=" & DeptNames)
+
         WriteIniLine("")
 
         xtrace_sube("WriteIniFile")
